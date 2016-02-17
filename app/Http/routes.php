@@ -36,6 +36,10 @@ Route::get('test', function(){
 Route::delete('test', function(){
 	echo 'DELETE';
 });
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -49,4 +53,15 @@ Route::delete('test', function(){
 
 Route::group(['middleware' => ['web']], function () {
     //
+});
+
+Route::group(['middleware' => 'web'], function () {
+
+    Route::auth();
+
+	Route::group([ 'middleware' => 'auth' ], function ()
+	{
+		Route::get('/home', 'HomeController@index');
+		Route::get('/home/{user}', 'HomeController@test');
+	});
 });
