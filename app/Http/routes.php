@@ -23,7 +23,6 @@ Route::get('hello/{name}', function ($name){
 Route::get('test', function() {
 	echo 'POST';
 });
-
 //Read an item
 Route::get('test', function(){
 	echo '<form method = "POST" action="test">';
@@ -56,6 +55,10 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::group(['middleware' => 'web'], function () {
+	Route::get('/tripsurvey', 'TripSurveyController@index');
+	Route::get('/tripsurvey/create', 'TripSurveyController@create');
+	Route::post('/tripsurvey', 'TripSurveyController@store');
+	Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
 
     Route::auth();
 
