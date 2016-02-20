@@ -15,6 +15,7 @@ Route::get('/', function () {
     //echo 'Welcome to my site';
     return view('welcome');
 });
+Route::get('tripdatabase', 'TripDatabaseController@index');
 
 Route::get('hello/{name}', function ($name){
 	echo 'Hello There ' . $name;
@@ -63,5 +64,6 @@ Route::group(['middleware' => 'web'], function () {
 	{
 		Route::get('/home', 'HomeController@index');
 		Route::get('/home/{user}', 'HomeController@test');
+
 	});
 });
