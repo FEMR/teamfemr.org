@@ -6,7 +6,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading"><center>Trip Database</center></div>
-                <h2 style="float:left; width:150px;"><a href="homestead.app/usersurvey">Can't find your team, click here.</a></h2>
+                <h2 style="float:left; width:150px;"><a href="tripsurvey/create">Can't find your team, click here.</a></h2>
                 <div class="panel-body">
                 <section>
                     <head>
@@ -27,25 +27,36 @@
                                 center: {lat: 44.540, lng: -78.546},
                                 zoom: 2
                             });
-                            var marker = new google.maps.Marker({
-                                position: {lat: 44.540, lng: -78.54},
-                                map: map,
-                                title: 'Trips'
-                            });
-                            var contentString = '<div id="content">' +
-                                    '<div id=siteNotice">'+
-                                            '</div>' +
-                                            '<div id ="bodyContent">' +
-                                            '<a href="https://wayne.edu/">Wayne State University</a>' +
-                                            '</div>' +
-                                            '</div>';
+
+                            <?php
+                            foreach($surveys as $survey) {
+                            $lng =  $survey->lng;
+                            $lat = $survey->lat;
+                                $team = $survey->teamname;
+                            ?>
+                            // Creating a marker and positioning it on the map
                             
-                            var infowindow = new google.maps.InfoWindow({
-                                content: contentString
+
+                            var infowindow2 = new google.maps.InfoWindow({
+                                content: "<?php echo $team ?>"
                             });
-                            marker.addListener('click', function() {
-                                infowindow.open(map, marker);
+                             var marker2 = new google.maps.Marker({
+                                position: new google.maps.LatLng(<?php echo $lat ?>, <?php echo $lng; ?>),
+                                map: map
+
                             });
+                            marker2.addListener('click', function() {
+                                infowindow2.open(map, marker2);
+                            });
+
+
+
+
+                                    <?php
+                                    }
+                                    ?>
+
+
                         }
                     </script>
                     <script src = "https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>

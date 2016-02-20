@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\User;
 use Illuminate\Http\Request;
-
+use App\Survey;
 class TripDatabaseController extends Controller
 {
     /**
@@ -15,7 +15,8 @@ class TripDatabaseController extends Controller
      */
     public function index( )
     {
-        return view( 'tripdatabase' );
+        $surveys = Survey::All();
+        return view( 'tripdatabase', compact('surveys') );
     }
 
 }
