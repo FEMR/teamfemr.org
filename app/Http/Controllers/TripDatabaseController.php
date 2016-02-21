@@ -16,6 +16,8 @@ class TripDatabaseController extends Controller
     public function index( )
     {
         $surveys = Survey::All();
+        //dd($surveys);
+
         return view( 'tripdatabase', compact('surveys') );
     }
 
