@@ -55,6 +55,12 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/literaturebank') }}">Literature Bank</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
+                </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->

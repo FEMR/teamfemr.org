@@ -16,7 +16,12 @@ Route::get('/', function () {
     //echo 'Welcome to my site';
     return view('welcome');
 });
+
 Route::get('tripdatabase', 'TripDatabaseController@index');
+
+Route::get('literaturebank', 'literaturebankController@index');
+
+Route::get('discussionboard', 'discussionboardController@index');
 
 Route::get('hello/{name}', function ($name){
 	echo 'Hello There ' . $name;
