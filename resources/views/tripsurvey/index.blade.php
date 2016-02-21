@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+
 @section('content')
-<h1>Survey</h1>
+    <div class = "container">
+        <h1>Survey</h1>
 
-
+    </div>
 @endsection()

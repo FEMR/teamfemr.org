@@ -52,6 +52,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/tripdatabase') }}">Trip Database</a></li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>
+                </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
