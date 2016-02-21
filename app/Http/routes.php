@@ -1,4 +1,5 @@
 <?php
+use App\Survey;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +25,39 @@ Route::get('hello/{name}', function ($name){
 Route::get('test', function() {
 	echo 'POST';
 });
+
+Route::get('/users/xml', function() {
+	$surveys = Survey::all();
+
+
+	$xml = new XMLWriter();
+	$xml->openMemory();
+	$xml->startDocument();
+	$xml->startElement('markers');
+	foreach($surveys as $survey) {
+		$xml->startElement('marker');
+		$xml->writeAttribute('id', $survey->id);
+		$xml->writeAttribute('teamname', $survey->teamname);
+		$xml->writeAttribute('lat', $survey->lat);
+		$xml->writeAttribute('lng', $survey->lng);
+		$xml->endElement();
+	}
+	$xml->endElement();
+	$xml->endDocument();
+
+	$content = $xml->outputMemory();
+	$xml = null;
+
+	return response($content)->header('Content-Type', 'text/xml');
+});
+
 //Read an item
 Route::get('test', function(){
 	echo '<form method = "POST" action="test">';
 	echo '<input type="submit">';
 	echo '<input type="hidden" value="DELETE" name="_method">';
 	echo '<form>';
+
 });
 
 //Delete an item
