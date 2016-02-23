@@ -41,6 +41,16 @@
         {!! Form::text( 'visitedlocale' , null, ['class' => 'form-control']) !!}
 
 
+        {!! Form::label('lat', 'Latitude:') !!}
+
+        {!! Form::number( 'lat' , null, ['class' => 'form-control']) !!}
+
+
+        {!! Form::label('lng', 'Longitude:') !!}
+
+        {!! Form::number('lng' , null, ['class' => 'form-control']) !!}
+
+
         {!! Form::label('monthsoftravel', 'month(s) of travel:') !!}
 
         {!! Form::text( 'monthsoftravel' , null, ['class' => 'form-control']) !!}

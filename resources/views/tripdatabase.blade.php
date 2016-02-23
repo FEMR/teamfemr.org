@@ -18,14 +18,7 @@
                     <script type="text/javascript">
                         //<![CDATA[
 
-                        var customIcons = {
-                            restaurant: {
-                                icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png'
-                            },
-                            bar: {
-                                icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png'
-                            }
-                        };
+
 
                         function load() {
                             var map = new google.maps.Map(document.getElementById("map"), {
@@ -41,17 +34,15 @@
                                 var markers = xml.documentElement.getElementsByTagName("marker");
                                 for (var i = 0; i < markers.length; i++) {
                                     var name = markers[i].getAttribute("teamname");
-                                    var address = markers[i].getAttribute("id");
-                                    var type = markers[i].getAttribute("type");
+                                    var address = markers[i].getAttribute("lat");
                                     var point = new google.maps.LatLng(
                                             parseFloat(markers[i].getAttribute("lat")),
                                             parseFloat(markers[i].getAttribute("lng")));
                                     var html = "<b>" + name + "</b> <br/>" + address;
-                                    var icon = customIcons[type] || {};
+
                                     var marker = new google.maps.Marker({
                                         map: map,
-                                        position: point,
-                                        icon: icon.icon
+                                        position: point
                                     });
                                     bindInfoWindow(marker, map, infoWindow, html);
                                 }
@@ -90,7 +81,7 @@
                     </head>
 
                     <body onload="load()">
-                    <div id="map" style="width: 500px; height: 300px"></div>
+                    <div id="map" style="width: 700px; height: 400px"></div>
                     </body>
 
                     </body>

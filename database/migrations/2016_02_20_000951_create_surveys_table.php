@@ -31,8 +31,8 @@ class CreateSurveysTable extends Migration
             $table->text('facultytimeallotted');
             $table->text('adminsupport');
             $table->text('contactinfo');
-            $table->float('lat');
-            $table->float('lng');
+            $table->double('lat');
+            $table->double('lng');
 
 
             $table->timestamps();

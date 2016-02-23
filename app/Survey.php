@@ -23,6 +23,8 @@ class Survey extends Model
                 'finsupport',
                 'facultytimeallotted',
                 'adminsupport',
-                'contactinfo'
+                'contactinfo',
+                'lat',
+                'lng'
         ];
 }

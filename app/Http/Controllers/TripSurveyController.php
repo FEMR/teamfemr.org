@@ -34,7 +34,7 @@ class TripSurveyController extends Controller
 
 
 
-       return redirect('tripsurvey');
+       return redirect('tripdatabase');
     }
 
 }
