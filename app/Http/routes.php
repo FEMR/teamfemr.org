@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('tripdatabase', 'TripDatabaseController@index');
+Route::get('literaturebank', 'LiteratureBankController@index');
 
 Route::get('hello/{name}', function ($name){
 	echo 'Hello There ' . $name;
@@ -97,4 +98,20 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('/home/{user}', 'HomeController@test');
 
 	});
+
+	Route::group(['middleware' => 'web'], function () {
+		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
+		Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');
+		Route::post('/litbanksurvey', 'LiteratureBankSurveyController@store');
+		Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
+
+		Route::auth();
+
+		Route::group(['middleware' => 'auth'], function () {
+			Route::get('/home', 'HomeController@index');
+			Route::get('/home/{user}', 'HomeController@test');
+
+		});
+	});
 });
+

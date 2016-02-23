@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Survey</h1>
+    <h1>Literature Submitted for verification!</h1>
+
 
 @endsection()
