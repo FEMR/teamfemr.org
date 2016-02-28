@@ -5,6 +5,7 @@ use App\Literature;
 use App\Survey;
 //use Illuminate\Http\Request;
 use Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -33,7 +34,20 @@ class LiteratureBankSurveyController extends Controller
         //Call view page for Literature Bank survey, while passing data
         $input = Request::all();
         Literature::create($input);
+
+        //Getting uploaded file
+        $file = Request::file('file');
+        //if(Request::)
+        //$file->move('/', abc);
+        dd($input);
+        //Getting path of uploaded file
+   // $path = Input::file('image')->getRealPath();
+      //  $extension = Input::file('image')->getClientOriginalExtension();
+
+
         return redirect('litbanksurvey');
+
+
     }
 
 }
