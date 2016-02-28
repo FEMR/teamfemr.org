@@ -29,12 +29,11 @@ class TripSurveyController extends Controller
     public function store()
     {
         $input = Request::all();
-
         Survey::create($input);
 
 
 
-       return redirect('tripdatabase');
+       return redirect('emails');
     }
 
 }

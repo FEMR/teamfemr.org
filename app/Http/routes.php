@@ -13,9 +13,6 @@ use App\Survey;
 */
 
 
-//Route::get('contact','EmailController@index');
-//Route::post('contact_request','EmailController@createRegister');
-
 Route::get('/', function () {
     //echo 'Welcome to my site';
     return view('welcome');
@@ -25,10 +22,7 @@ Route::get('tripdatabase', 'TripDatabaseController@index');
 Route::get('literaturebank', 'LiteratureBankController@index');
 Route::get('discussionboard', 'discussionboardController@index');
 
-Route::get('/emails',array('as'=>'newRegister','uses'=>'EmailController@index'));
-Route::post('/register',array('as'=>'createRegister','uses'=>'EmailController@createRegister'));
-
-
+Route::get('emails','EmailController@index');
 
 Route::get('/users/xml', function() {
 	$surveys = Survey::all();

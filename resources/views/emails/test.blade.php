@@ -1,13 +1,4 @@
 <p>
-    This is a test, an email test.
+    Please approve this survey at the following url: <a href = "approvals">Survey Approval Needed</a>
 </p>
-<p>
-    The variable <code>$testVar</code> contains the value:
-</p>
-<ul>
-    <li><strong>{{ $testVar }}</strong></li>
-</ul>
-<hr>
-<p>
-    That is all.
-</p>
+
