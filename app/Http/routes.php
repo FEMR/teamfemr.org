@@ -16,7 +16,11 @@ Route::get('/', function () {
     //echo 'Welcome to my site';
     return view('welcome');
 });
+
+//Calls the Trip Database controller, which controls the Trip Database web page
 Route::get('tripdatabase', 'TripDatabaseController@index');
+
+//Calls the Literature Bank controller, which controls the Literature Bank web page
 Route::get('literaturebank', 'LiteratureBankController@index');
 
 Route::get('hello/{name}', function ($name){
@@ -27,6 +31,7 @@ Route::get('test', function() {
 	echo 'POST';
 });
 
+//Convert database entries to xml form
 Route::get('/users/xml', function() {
 	$surveys = Survey::all();
 
@@ -84,6 +89,7 @@ Route::group(['middleware' => ['web']], function () {
     //
 });
 
+//Call appropriate controllers (which control the Trip Survey web page and survey)
 Route::group(['middleware' => 'web'], function () {
 	Route::get('/tripsurvey', 'TripSurveyController@index');
 	Route::get('/tripsurvey/create', 'TripSurveyController@create');
@@ -99,6 +105,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	});
 
+	//Call appropriate controllers (which control the Literature Bank web page and survey)
 	Route::group(['middleware' => 'web'], function () {
 		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
 		Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');
@@ -113,5 +120,11 @@ Route::group(['middleware' => 'web'], function () {
 
 		});
 	});
+
+	//Call the upload function
+	Route::get('upload', function() {
+		return View::make('pages.upload');
+	});
+	Route::post('apply/upload', 'LiteratureBankController@upload');
 });
 

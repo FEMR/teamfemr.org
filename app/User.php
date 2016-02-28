@@ -11,6 +11,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    //Model portion of the Model-View-Controller system
+    //Variables that can be changed in the User table
     protected $fillable = [
         'name', 'email', 'password',
     ];

@@ -13,6 +13,8 @@ class TripDatabaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Call view page for Trip Database, while passing the Trip Database survey variable
     public function index( )
     {
         $surveys = Survey::All();

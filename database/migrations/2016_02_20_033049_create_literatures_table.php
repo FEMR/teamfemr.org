@@ -10,6 +10,8 @@ class CreateLiteraturesTable extends Migration
      *
      * @return void
      */
+
+    //Create database of literature resources, using the data from the Literature Bank survey
     public function up()
     {
         Schema::create('literatures', function (Blueprint $table) {

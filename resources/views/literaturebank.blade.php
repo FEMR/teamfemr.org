@@ -1,16 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Literature Bank</h1>
 
+//Literature Bank web page
+<h1>Literature Bank</h1>
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading"><center>Literature Bank</center></div>
+
+                //Link to Literature Bank Survey
                 <h2><a href="litbanksurvey/create">Click here to add a resource</a></h2>
 
+//Portion of web page where the links to resources are listed
                 </div>
                  <h4><a href="http://forteresearch.com/about/company-news/team-forte-member-volunteers-haiti/">Team Forte Member Volunteers in Haiti</a></h4>
                  <h4><a href="http://www.medicalteams.org/where-we-work/latin-america-the-caribbean/haiti/haiti-foundation-of-hope">Haiti Foundation of Hope</a></h4>
@@ -23,7 +27,6 @@
                  <h4><a href="http://www.samaritanspurse.org/medical/myungsung-christian-medical-center-addis-ababa-ethiopia/">Myungsung Christian Medical Center, Addis Ababa, Ethiopia</a></h4>
                  <h4><a href="http://www.facingafrica.org/get-involved/medical-volunteers/">Facing Africa needs volunteers!</a></h4>
                  <h4><a href="http://www.globalvolunteernetwork.org/ethiopia/">Global Volunteer Network Ethiopia</a></h4>
-
             </div>
          </div>
      </div>

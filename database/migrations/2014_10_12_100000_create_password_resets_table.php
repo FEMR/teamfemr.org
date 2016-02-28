@@ -10,6 +10,7 @@ class CreatePasswordResetsTable extends Migration
      *
      * @return void
      */
+    //Create database of email addresses, inserting the relevant variables
     public function up()
     {
         Schema::create('password_resets', function (Blueprint $table) {
