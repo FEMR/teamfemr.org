@@ -13,21 +13,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Request $request )
+    public function index(Request $request)
     {
-        $users =  User::where( 'name', '=', $request->input( 'name' ) )
-                        ->orderBy( 'email', 'desc' )
-                        ->get();
+        $users = User::where('name', '=', $request->input('name'))
+            ->orderBy('email', 'desc')
+            ->get();
 
 
-
-        return view( 'home.user', compact( 'users' ) );
+        return view('home.user', compact('users'));
     }
 
-    public function test( User $user )
+    public function test(User $user)
     {
 
-
-        return 'Hey '.$user->name;
+        return 'Hey ' . $user->name;
     }
+
+
 }

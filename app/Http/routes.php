@@ -12,6 +12,10 @@ use App\Survey;
 |
 */
 
+
+//Route::get('contact','EmailController@index');
+//Route::post('contact_request','EmailController@createRegister');
+
 Route::get('/', function () {
     //echo 'Welcome to my site';
     return view('welcome');
@@ -19,23 +23,15 @@ Route::get('/', function () {
 
 Route::get('tripdatabase', 'TripDatabaseController@index');
 Route::get('literaturebank', 'LiteratureBankController@index');
-
-Route::get('literaturebank', 'literaturebankController@index');
-
 Route::get('discussionboard', 'discussionboardController@index');
 
-Route::get('hello/{name}', function ($name){
-	echo 'Hello There ' . $name;
-});
-//Create an item
-Route::get('test', function() {
-	echo 'POST';
-});
+Route::get('/emails',array('as'=>'newRegister','uses'=>'EmailController@index'));
+Route::post('/register',array('as'=>'createRegister','uses'=>'EmailController@createRegister'));
+
+
 
 Route::get('/users/xml', function() {
 	$surveys = Survey::all();
-
-
 	$xml = new XMLWriter();
 	$xml->openMemory();
 	$xml->startDocument();
@@ -57,23 +53,6 @@ Route::get('/users/xml', function() {
 	return response($content)->header('Content-Type', 'text/xml');
 });
 
-//Read an item
-Route::get('test', function(){
-	echo '<form method = "POST" action="test">';
-	echo '<input type="submit">';
-	echo '<input type="hidden" value="DELETE" name="_method">';
-	echo '<form>';
-
-});
-
-//Delete an item
-Route::delete('test', function(){
-	echo 'DELETE';
-});
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -84,10 +63,11 @@ Route::delete('test', function(){
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+//sending emails
+Route::get('/emails', 'EmailController@index');
+Route::get('/emails/test', 'EmailController@index');
+Route::get('/emails/register', 'EmailController@index');
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
 
 Route::group(['middleware' => 'web'], function () {
 	Route::get('/tripsurvey', 'TripSurveyController@index');
