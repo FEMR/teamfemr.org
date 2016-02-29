@@ -40,18 +40,21 @@
                                 var xml = data.responseXML;
                                 var markers = xml.documentElement.getElementsByTagName("marker");
                                 for (var i = 0; i < markers.length; i++) {
-                                    var name = markers[i].getAttribute("teamname");
+                                    var name = "";
+                                    for (var j = markers[i].attributes.length-3; j >-1 ; j--)
+                                    {
+                                        name += markers[i].getAttribute("teamname"+j) ;
+                        }
+                                   // var name ='<a href="tripsurvey" >' + markers[i].getAttribute("teamname"+0)+ '</a>';
                                     var address = markers[i].getAttribute("id");
-                                    var type = markers[i].getAttribute("type");
                                     var point = new google.maps.LatLng(
                                             parseFloat(markers[i].getAttribute("lat")),
                                             parseFloat(markers[i].getAttribute("lng")));
                                     var html = "<b>" + name + "</b> <br/>" + address;
-                                    var icon = customIcons[type] || {};
                                     var marker = new google.maps.Marker({
                                         map: map,
-                                        position: point,
-                                        icon: icon.icon
+                                        position: point
+
                                     });
                                     bindInfoWindow(marker, map, infoWindow, html);
                                 }
