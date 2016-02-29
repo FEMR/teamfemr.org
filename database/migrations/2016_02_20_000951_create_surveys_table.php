@@ -25,14 +25,12 @@ class CreateSurveysTable extends Migration
             $table->text('partnerngo');
             $table->text('faculty');
             $table->text('appprocess');
-
             $table->text('programelements');
             $table->text('finsupport');
             $table->text('facultytimeallotted');
             $table->text('adminsupport');
             $table->text('contactinfo');
-            $table->double('lat');
-            $table->double('lng');
+            $table->text('status');
 
 
             $table->timestamps();

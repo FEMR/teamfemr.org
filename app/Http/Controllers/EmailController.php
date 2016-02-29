@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Mail;
 use App\User;
+use App\Survey;
+
 class EmailController extends Controller
 {
     public function index( )
@@ -19,4 +21,10 @@ class EmailController extends Controller
         return view('tripdatabase');
     }
 
+    public function approval( )
+    {
+        $Survey = Survey::all();
+
+        return view('approvals', compact('Survey'));
+    }
 }

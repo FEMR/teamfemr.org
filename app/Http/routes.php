@@ -23,6 +23,7 @@ Route::get('literaturebank', 'LiteratureBankController@index');
 Route::get('discussionboard', 'discussionboardController@index');
 
 Route::get('emails','EmailController@index');
+Route::get('approvals','EmailController@approval');
 
 Route::get('/users/xml', function() {
 	$surveys = Survey::all();
