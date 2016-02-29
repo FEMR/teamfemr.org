@@ -27,11 +27,7 @@ Route::get('approvals','EmailController@approval');
 
 Route::get('/users/xml', function() {
 	$surveys = Survey::all();
-<<<<<<< HEAD
-=======
 	$places = Place::all();
-
->>>>>>> 20a31c5ac1dba6ba6eb2e735032b722c7423b68a
 	$xml = new XMLWriter();
 	$xml->openMemory();
 	$xml->startDocument();

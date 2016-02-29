@@ -35,13 +35,6 @@
 
         {!! Form::text( 'totalperyear' , null, ['class' => 'form-control']) !!}
 
-        {!! Form::label('lat', 'Latitude:') !!}
-        {!! Form::number( 'lat' , null, ['class' => 'form-control']) !!}
-        {!! Form::label('lng', 'Longitude:') !!}
-        {!! Form::number('lng' , null, ['class' => 'form-control']) !!}
-
-
-
 
         {!! Form::label('visitedlocale', 'Locations visited:') !!}
 

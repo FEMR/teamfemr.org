@@ -48,6 +48,7 @@
                                <td width="10%">{{$survey->facultytimeallotted}}</td>
                                <td width="10%">{{$survey->adminsupport}}</td>
                                <td width="10%">{{$survey->contactinfo}}</td>
+                               <td width="10%">{{$survey->status}}</td>
 
                            </tr>
                        </table>

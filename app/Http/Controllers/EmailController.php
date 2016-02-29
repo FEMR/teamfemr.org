@@ -24,7 +24,6 @@ class EmailController extends Controller
     public function approval( )
     {
         $Survey = Survey::all();
-
         return view('approvals', compact('Survey'));
     }
 }
