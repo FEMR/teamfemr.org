@@ -33,16 +33,33 @@
                                 var xml = data.responseXML;
                                 var markers = xml.documentElement.getElementsByTagName("marker");
                                 for (var i = 0; i < markers.length; i++) {
+<<<<<<< HEAD
                                     var name = markers[i].getAttribute("teamname");
                                     var address = markers[i].getAttribute("lat");
+=======
+                                    var name = "";
+                                    for (var j = markers[i].attributes.length-3; j >-1 ; j--)
+                                    {
+                                        name += markers[i].getAttribute("teamname"+j) ;
+                        }
+                                   // var name ='<a href="tripsurvey" >' + markers[i].getAttribute("teamname"+0)+ '</a>';
+                                    var address = markers[i].getAttribute("id");
+>>>>>>> 20a31c5ac1dba6ba6eb2e735032b722c7423b68a
                                     var point = new google.maps.LatLng(
                                             parseFloat(markers[i].getAttribute("lat")),
                                             parseFloat(markers[i].getAttribute("lng")));
                                     var html = "<b>" + name + "</b> <br/>" + address;
+<<<<<<< HEAD
 
                                     var marker = new google.maps.Marker({
                                         map: map,
                                         position: point
+=======
+                                    var marker = new google.maps.Marker({
+                                        map: map,
+                                        position: point
+
+>>>>>>> 20a31c5ac1dba6ba6eb2e735032b722c7423b68a
                                     });
                                     bindInfoWindow(marker, map, infoWindow, html);
                                 }

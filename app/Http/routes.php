@@ -1,6 +1,6 @@
 <?php
 use App\Survey;
-
+use App\Place;
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -27,17 +27,31 @@ Route::get('approvals','EmailController@approval');
 
 Route::get('/users/xml', function() {
 	$surveys = Survey::all();
+<<<<<<< HEAD
+=======
+	$places = Place::all();
+
+>>>>>>> 20a31c5ac1dba6ba6eb2e735032b722c7423b68a
 	$xml = new XMLWriter();
 	$xml->openMemory();
 	$xml->startDocument();
 	$xml->startElement('markers');
-	foreach($surveys as $survey) {
+	foreach($places as $place) {
+		$teams = '';
+
 		$xml->startElement('marker');
-		$xml->writeAttribute('id', $survey->id);
-		$xml->writeAttribute('teamname', $survey->teamname);
-		$xml->writeAttribute('lat', $survey->lat);
-		$xml->writeAttribute('lng', $survey->lng);
+		$xml->writeAttribute('lat', $place->lat);
+		$xml->writeAttribute('lng', $place->lng);
+		foreach($place->surveys as $index => $survey){
+
+			$xml->writeAttribute('teamname'.$index, $survey->teamname);
+
+
+		}
 		$xml->endElement();
+
+
+
 	}
 	$xml->endElement();
 	$xml->endDocument();

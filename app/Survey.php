@@ -27,4 +27,9 @@ class Survey extends Model
                 'lat',
                 'lng'
         ];
+
+        public function places()
+        {
+                return $this->belongsToMany('App\Place');
+        }
 }

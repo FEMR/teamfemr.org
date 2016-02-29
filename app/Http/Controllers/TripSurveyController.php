@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Survey;
+use App\Place;
 //use Illuminate\Http\Request;
 use Request;
 use App\Http\Requests;
@@ -28,8 +29,30 @@ class TripSurveyController extends Controller
 
     public function store()
     {
+<<<<<<< HEAD
         $input = Request::all();
         Survey::create($input);
+=======
+        //$input = Request::all();
+        $input = Request::except('lat', 'lng');
+
+        $survey = new Survey($input);
+        $input2 = Request::only('lat', 'lng');
+       // $place = Place::where('lat', '=', $input2['lat'])->where('lng', '=', $input2['lng'])->findOrFail(1);
+        //$place = Place::where('lat', '=', '5')->firstOrFail();
+        $place = Place::firstOrNew(['lat' => $input2['lat'], 'lng' => $input2['lng']]);
+
+
+
+
+
+        $survey->save();
+        //$place->survey_id = $survey->id;
+       // dd($place);
+        $survey->places()->save($place);
+       // $place->surveys()->save($survey);
+
+>>>>>>> 20a31c5ac1dba6ba6eb2e735032b722c7423b68a
 
 
 
