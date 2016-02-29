@@ -4,13 +4,13 @@
 @section('content')
     <div class = "container">
 
-        //Print to web page
+        <!--Print to web page-->
     <h1> write survey</h1>
 
-        //url for the Literature Bank survey
+        <!--url for the Literature Bank survey-->
         {!! Form::open(['url' => 'tripsurvey']) !!}
 
-        //Use a form to get the variables from the Literature Bank survey
+        <!--Use a form to get the variables from the Literature Bank survey-->
         {!! Form::label('teamname', 'Program Name:') !!}
         {!! Form::text('teamname' , null, ['class' => 'form-control']) !!}
 
@@ -86,7 +86,7 @@
         {!! Form::label('contactinfo', 'contact info:') !!}
         {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
 
-//Submit and close form
+<!--Submit and close form-->
     {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
     {!! Form::close() !!}
 

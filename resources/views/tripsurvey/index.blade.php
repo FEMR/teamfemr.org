@@ -2,7 +2,7 @@
 
 @section('content')
 
-    //Print to web page
+    <!--Print to web page-->
     <h1>Survey</h1>
 
 @endsection()

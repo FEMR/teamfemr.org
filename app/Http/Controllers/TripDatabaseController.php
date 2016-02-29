@@ -19,8 +19,10 @@ class TripDatabaseController extends Controller
     {
         $surveys = Survey::All();
         //dd($surveys);
-
         return view( 'tripdatabase', compact('surveys') );
     }
 
 }
+
+
+

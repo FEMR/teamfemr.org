@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Literature;
 use Input;
 use Validator;
 use Redirect;
@@ -16,7 +16,8 @@ class LiteratureBankController extends Controller
 //Controls the view of the Literature Bank, by calling the view file (literaturebank.plade.php)
     public function index()
     {
-        return view('literaturebank');
+        $literatures=Literature::All();
+        return view('literaturebank', compact ('literatures'));
     }
 
     //Controls upload functionality on the Literature Bank Survey

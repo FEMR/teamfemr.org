@@ -36,10 +36,11 @@ class LiteratureBankSurveyController extends Controller
         Literature::create($input);
 
         //Getting uploaded file
-        $file = Request::file('file');
+        //$file = Request::file('file');
+       // $file = $Request->file('photo');
         //if(Request::)
         //$file->move('/', abc);
-        dd($input);
+       // dd($input);
         //Getting path of uploaded file
    // $path = Input::file('image')->getRealPath();
       //  $extension = Input::file('image')->getClientOriginalExtension();
