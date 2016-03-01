@@ -33,19 +33,16 @@
                                 var xml = data.responseXML;
                                 var markers = xml.documentElement.getElementsByTagName("marker");
                                 for (var i = 0; i < markers.length; i++) {
-                                    var name = markers[i].getAttribute("teamname");
-                                    var address = markers[i].getAttribute("lat");
+                                    //var name = markers[i].getAttribute("teamname");
                                     var name = "";
                                     for (var j = markers[i].attributes.length-3; j >-1 ; j--)
                                     {
-                                        name += markers[i].getAttribute("teamname"+j) +"<br/>" ;
+                                        name += markers[i].getAttribute("teamname"+j);
                         }
-                                   // var name ='<a href="tripsurvey" >' + markers[i].getAttribute("teamname"+0)+ '</a>';
-                                    var address = markers[i].getAttribute("id");
                                     var point = new google.maps.LatLng(
                                             parseFloat(markers[i].getAttribute("lat")),
                                             parseFloat(markers[i].getAttribute("lng")));
-                                    var html = "<b>" + name + "</b> <br/>" + address;
+                                    var html = "<b>" + name  ;
 
                                     var marker = new google.maps.Marker({
                                         map: map,
@@ -89,6 +86,14 @@
 
                     <body onload="load()">
                     <div id="map" style="width: 700px; height: 400px"></div>
+                    @foreach ($surveys as $survey)
+                        <A NAME ={{$survey->teamname}}></A>
+                        <h1>{{$survey->teamname}}</h1>
+                        <h1>{{$survey->teamname}}</h1>
+                        <h1>{{$survey->teamname}}</h1>
+                        <h1>{{$survey->teamname}}</h1>
+
+                        @endforeach
                     </body>
 
                     </body>
