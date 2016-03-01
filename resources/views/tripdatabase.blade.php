@@ -61,6 +61,19 @@
                                             parseFloat(markers[i].getAttribute("lng")));
                                     var html = "<b>" + name + "</b> <br/>" + address;
                                     //var icon = customIcons[type] || {};
+=======
+                                for (var i = 0; i < markers.length; i++) {
+                                    //var name = markers[i].getAttribute("teamname");
+                                    var name = "";
+                                    for (var j = markers[i].attributes.length-3; j >-1 ; j--)
+                                    {
+                                        name += markers[i].getAttribute("teamname"+j);
+                        }
+                                    var point = new google.maps.LatLng(
+                                            parseFloat(markers[i].getAttribute("lat")),
+                                            parseFloat(markers[i].getAttribute("lng")));
+                                    var html = "<b>" + name  ;
+>>>>>>> dan/dannybranch
 
                                     <!--Create new pop up pin on the map interface (based on the latitude and longitude entered into the Trip Database Survevy)-->
                                     var marker = new google.maps.Marker({
