@@ -33,12 +33,11 @@ class TripSurveyController extends Controller
     //Redirect to the Trip Survey page
     public function store()
     {
-<<<<<<< HEAD
         //$input = Request::all();
         $input = Request::except('lat', 'lng');
 
         $survey = new Survey($input);
-        $survey->status = 'new';
+        $survey->status = 'not_approved';
         $input2 = Request::only('lat', 'lng');
        // $place = Place::where('lat', '=', $input2['lat'])->where('lng', '=', $input2['lng'])->findOrFail(1);
         //$place = Place::where('lat', '=', '5')->firstOrFail();
@@ -51,7 +50,18 @@ class TripSurveyController extends Controller
         $survey->places()->save($place);
        // $place->surveys()->save($survey);
 
-       return redirect('emails');
+       return redirect('tripdatabase');
+    }
+
+    public function update($survey_id, Request $request){
+//        survey edit
+        $survey= Survey::findOrFail($survey_id);
+
+        $survey->is_approved= ($request->input('is_approved')===1)? true:false;
+
+        $survey->save();
+
+        return view ('tripsurvey.create');
     }
 
 }

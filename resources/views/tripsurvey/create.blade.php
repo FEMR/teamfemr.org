@@ -2,11 +2,17 @@
 
 
 @section('content')
-    <div class = "container">
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                        <div class="panel-heading"><center><h1>Write Survey</h1></center></div>
+                    <div class="panel-body">
         <!--Print to web page-->
-    <h1> write survey</h1>
 
+        <form class="form-horizontal">
+            <div class="col-sm-6">
+            {{--<label for="survey" class="col-lg-6 control-label">--}}
         <!--url for the Literature Bank survey-->
         {!! Form::open(['url' => 'tripsurvey']) !!}
 
@@ -40,24 +46,12 @@
 
 
         {!! Form::label('lat', 'Latitude:') !!}
-<<<<<<< HEAD
-
-=======
->>>>>>> 6bec1ca83a3dbfb892bce734d2a21883f9591833
         {!! Form::number( 'lat' , null, ['class' => 'form-control']) !!}
 
 
         {!! Form::label('lng', 'Longitude:') !!}
-<<<<<<< HEAD
-
         {!! Form::number('lng' , null, ['class' => 'form-control']) !!}
 
-
-        {!! Form::label('monthsoftravel', 'month(s) of travel:') !!}
-=======
-        {!! Form::number('lng' , null, ['class' => 'form-control']) !!}
-
->>>>>>> 6bec1ca83a3dbfb892bce734d2a21883f9591833
 
         {!! Form::label('monthsoftravel', 'month(s) of travel:') !!}
         {!! Form::text( 'monthsoftravel' , null, ['class' => 'form-control']) !!}
@@ -98,15 +92,16 @@
         {!! Form::label('contactinfo', 'contact info:') !!}
         {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
 
-<<<<<<< HEAD
-
-    {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
-
-=======
 <!--Submit and close form-->
     {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
->>>>>>> 6bec1ca83a3dbfb892bce734d2a21883f9591833
-    {!! Form::close() !!}
 
+    {!! Form::close() !!}
+            {{--</label>--}}
+</form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 @endsection

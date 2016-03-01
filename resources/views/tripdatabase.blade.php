@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading"><center>Trip Database</center></div>
+                <div class="panel-heading"><center><h1>Trip Database</h1></center></div>
 
                 <!--Link to Trip Database survey-->
                 <h2 style="float:left; width:150px;"><a href="tripsurvey/create">Can't find your team, click here.</a></h2>
@@ -18,11 +18,12 @@
                     <!--Building the Google maps Graphical User Interface (GUI) into the web page-->
                     <title>PHP/MySQL & Google Maps Example</title>
                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPVo3nvRyyRrnXvB-nIII6z13evOGCKkM"
-                            type="text/javascript"></script>
+                            type="text/javascript">
+
+                    </script>
+
                     <script type="text/javascript">
                         //<![CDATA[
-
-
 
                         function load() {
                             var map = new google.maps.Map(document.getElementById("map"), {
@@ -44,31 +45,24 @@
                                 {
                                     <!--Pull data from Trip Database Survey-->
                                     var name = markers[i].getAttribute("teamname");
-                                    var address = markers[i].getAttribute("lat");
+                                   // var address = markers[i].getAttribute("lat");
                                     var name = "";
                                     for (var j = markers[i].attributes.length-3; j >-1 ; j--)
                                     {
                                         name += markers[i].getAttribute("teamname"+j) +"<br/>" ;
-                        }
+                                    }
                                    // var name ='<a href="tripsurvey" >' + markers[i].getAttribute("teamname"+0)+ '</a>';
                                     var address = markers[i].getAttribute("id");
-<<<<<<< HEAD
-=======
                                     var type = markers[i].getAttribute("type");
 
                                     <!--Pull latitude and longitude data from the Trip Database survey-->
->>>>>>> 6bec1ca83a3dbfb892bce734d2a21883f9591833
                                     var point = new google.maps.LatLng(
                                             parseFloat(markers[i].getAttribute("lat")),
                                             parseFloat(markers[i].getAttribute("lng")));
                                     var html = "<b>" + name + "</b> <br/>" + address;
-<<<<<<< HEAD
-
-=======
-                                    var icon = customIcons[type] || {};
+                                    //var icon = customIcons[type] || {};
 
                                     <!--Create new pop up pin on the map interface (based on the latitude and longitude entered into the Trip Database Survevy)-->
->>>>>>> 6bec1ca83a3dbfb892bce734d2a21883f9591833
                                     var marker = new google.maps.Marker({
                                         map: map,
                                         position: point
@@ -108,33 +102,37 @@
                     </head>
                     <body onload="load()">
                     <div id="map" style="width: 700px; height: 400px"></div>
-                    </body>
 
-                    </body>
+
+                </body>
                 </div>
             </div>
         </div>
     </div>
-    @foreach($surveys as $survey)
-        <ul>
-            <A HREF="#TripDatabase">{{$survey->teamname}}</A>
-            <li>{{$survey->totalmatriculants}}</li>
-            <li>{{$survey->medschoolterms}}</li>
-            <li>{{$survey->aidingschools}}</li>
-            <li>{{$survey->totalperyear}}</li>
-            <li>{{$survey->visitedlocale}}</li>
-            <li>{{$survey->monthsoftravel}}</li>
-            <li>{{$survey->partnerngo}}</li>
-            <li>{{$survey->faculty}}</li>
-            <li>{{$survey->appprocess}}</li>
-            <li>{{$survey->programelements}}</li>
-            <li>{{$survey->finsupport}}</li>
-            <li>{{$survey->facultytimeallotted}}</li>
-            <li>{{$survey->adminsupport}}</li>
-            <li>{{$survey->contactinfo}}</li>
-        </ul>
+    <div class="form-group">
 
-
+        @foreach($surveys as $survey)
+            <table class="table">
+            <ul>
+                <a name="TripDatabase"></a>
+                <h3>{{$survey->teamname}}</h3>
+                <li>{{$survey->totalmatriculants}}</li>
+                <li>{{$survey->medschoolterms}}</li>
+                <li>{{$survey->aidingschools}}</li>
+                <li>{{$survey->totalperyear}}</li>
+                <li>{{$survey->visitedlocale}}</li>
+                <li>{{$survey->monthsoftravel}}</li>
+                <li>{{$survey->partnerngo}}</li>
+                <li>{{$survey->faculty}}</li>
+                <li>{{$survey->appprocess}}</li>
+                <li>{{$survey->programelements}}</li>
+                <li>{{$survey->finsupport}}</li>
+                <li>{{$survey->facultytimeallotted}}</li>
+                <li>{{$survey->adminsupport}}</li>
+                <li>{{$survey->contactinfo}}</li>
+            </ul>
+            </table>
+    </div>
     @endforeach
 </div>
 
