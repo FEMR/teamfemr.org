@@ -18,13 +18,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
+=======
+//Calls the Trip Database controller, which controls the Trip Database web page
+>>>>>>> 6bec1ca83a3dbfb892bce734d2a21883f9591833
 Route::get('tripdatabase', 'TripDatabaseController@index');
+
+//Calls the Literature Bank controller, which controls the Literature Bank web page
 Route::get('literaturebank', 'LiteratureBankController@index');
 Route::get('discussionboard', 'discussionboardController@index');
 
 Route::get('emails','EmailController@index');
 Route::get('approvals','EmailController@approval');
 
+//Convert database entries to xml form
 Route::get('/users/xml', function() {
 	$surveys = Survey::all();
 	$places = Place::all();
@@ -74,6 +81,7 @@ Route::get('/emails/test', 'EmailController@index');
 Route::get('/emails/register', 'EmailController@index');
 
 
+//Call appropriate controllers (which control the Trip Survey web page and survey)
 Route::group(['middleware' => 'web'], function () {
 	Route::get('/tripsurvey', 'TripSurveyController@index');
 	Route::get('/tripsurvey/create', 'TripSurveyController@create');
@@ -89,6 +97,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	});
 
+	//Call appropriate controllers (which control the Literature Bank web page and survey)
 	Route::group(['middleware' => 'web'], function () {
 		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
 		Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');
@@ -103,5 +112,11 @@ Route::group(['middleware' => 'web'], function () {
 
 		});
 	});
+
+	//Call the upload function
+	Route::get('upload', function() {
+		return View::make('pages.upload');
+	});
+	Route::post('apply/upload', 'LiteratureBankController@upload');
 });
 

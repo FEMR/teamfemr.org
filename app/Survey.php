@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Survey extends Model
 {
+        //Model portion of the Model-View-Controller system
+        //Variables that can be changed in the Trip Database table
         protected $fillable = [
-
-            'teamname', //these things can be mass assigned
+            'teamname',
             'initiated',
             'totalmatriculants',
                 'medschoolterms',

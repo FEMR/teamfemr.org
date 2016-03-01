@@ -10,6 +10,8 @@ class CreateSurveysTable extends Migration
      *
      * @return void
      */
+
+    //Create database of variables from the Trip Database survey (information regarding the medical teams and their trips)
     public function up()
     {
         Schema::create('surveys', function (Blueprint $table) {
