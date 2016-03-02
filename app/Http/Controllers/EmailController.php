@@ -18,7 +18,7 @@ class EmailController extends Controller
         {
             $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Please approve fEMR survey.');
         });
-        return view('tripdatabase');
+        return redirect('/tripdatabase');
     }
 
     public function approval( )
@@ -26,4 +26,30 @@ class EmailController extends Controller
         $Survey = Survey::all();
         return view('approvals', compact('Survey'));
     }
+
+    public function store(Request $request)
+    {
+        $input = $request->only('id','status');
+
+        $survey= Survey::findOrFail('id');
+
+        $survey->status = ($request->input('is_approved')===1)? true:false;
+
+        $survey->save();
+
+    }
+//editing the survey
+//    public function update($survey_id, Request $request){
+////        survey edit
+//        $survey= Survey::findOrFail($survey_id);
+//
+//        $survey->is_approved= ($request->input('is_approved')===1)? true:false;
+//
+//        $survey->save();
+//
+//
+//        $survey = Survey::where('is_approved', '=', 1)->get;
+//
+//        return view ('tripsurvey.create', compact('survey'));
+//    }
 }

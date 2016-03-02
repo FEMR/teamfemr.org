@@ -10,7 +10,7 @@
                     <div class="panel-body">
         <!--Print to web page-->
 
-        <form class="form-horizontal">
+
             <div class="col-sm-6">
             {{--<label for="survey" class="col-lg-6 control-label">--}}
         <!--url for the Literature Bank survey-->
@@ -97,7 +97,7 @@
 
     {!! Form::close() !!}
             {{--</label>--}}
-</form>
+
     </div>
     </div>
     </div>

@@ -41,39 +41,19 @@
                                 var markers = xml.documentElement.getElementsByTagName("marker");
 
                                 <!--Use a for loop to iterate through all of the pop up pins/markers and input the information-->
-                                for (var i = 0; i < markers.length; i++)
-                                {
-                                    <!--Pull data from Trip Database Survey-->
-                                    var name = markers[i].getAttribute("teamname");
-                                   // var address = markers[i].getAttribute("lat");
-                                    var name = "";
-                                    for (var j = markers[i].attributes.length-3; j >-1 ; j--)
-                                    {
-                                        name += markers[i].getAttribute("teamname"+j) +"<br/>" ;
-                                    }
-                                   // var name ='<a href="tripsurvey" >' + markers[i].getAttribute("teamname"+0)+ '</a>';
-                                    var address = markers[i].getAttribute("id");
-                                    var type = markers[i].getAttribute("type");
 
-                                    <!--Pull latitude and longitude data from the Trip Database survey-->
-                                    var point = new google.maps.LatLng(
-                                            parseFloat(markers[i].getAttribute("lat")),
-                                            parseFloat(markers[i].getAttribute("lng")));
-                                    var html = "<b>" + name + "</b> <br/>" + address;
-                                    //var icon = customIcons[type] || {};
-=======
                                 for (var i = 0; i < markers.length; i++) {
                                     //var name = markers[i].getAttribute("teamname");
                                     var name = "";
                                     for (var j = markers[i].attributes.length-3; j >-1 ; j--)
                                     {
-                                        name += markers[i].getAttribute("teamname"+j);
+                                        name += markers[i].getAttribute("teamname"+j) + "<br>";
+                                        //add in hyperlink here: name = "<a href = \"# +
                         }
                                     var point = new google.maps.LatLng(
                                             parseFloat(markers[i].getAttribute("lat")),
                                             parseFloat(markers[i].getAttribute("lng")));
                                     var html = "<b>" + name  ;
->>>>>>> dan/dannybranch
 
                                     <!--Create new pop up pin on the map interface (based on the latitude and longitude entered into the Trip Database Survevy)-->
                                     var marker = new google.maps.Marker({
@@ -125,7 +105,7 @@
     <div class="form-group">
 
         @foreach($surveys as $survey)
-            <table class="table">
+            <table>
             <ul>
                 <a name="TripDatabase"></a>
                 <h3>{{$survey->teamname}}</h3>

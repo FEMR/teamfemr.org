@@ -32,7 +32,7 @@ class CreateSurveysTable extends Migration
             $table->text('facultytimeallotted');
             $table->text('adminsupport');
             $table->text('contactinfo');
-            $table->text('status');
+            $table->boolean('status');
             //$table->float('lat');
             //$table->float('lng');
 

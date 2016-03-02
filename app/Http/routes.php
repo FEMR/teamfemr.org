@@ -25,7 +25,7 @@ Route::get('tripdatabase', 'TripDatabaseController@index');
 Route::get('literaturebank', 'LiteratureBankController@index');
 Route::get('discussionboard', 'discussionboardController@index');
 
-Route::get('emails','EmailController@index');
+//Route::get('emails','EmailController@index');
 Route::get('approvals','EmailController@approval');
 
 //Convert database entries to xml form
@@ -75,7 +75,7 @@ Route::get('/users/xml', function() {
 //sending emails
 Route::get('/emails', 'EmailController@index');
 Route::get('/emails/test', 'EmailController@index');
-Route::get('/emails/register', 'EmailController@index');
+//Route::get('/emails/register', 'EmailController@index');
 
 
 //Call appropriate controllers (which control the Trip Survey web page and survey)
@@ -84,6 +84,11 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/tripsurvey/create', 'TripSurveyController@create');
 	Route::post('/tripsurvey', 'TripSurveyController@store');
 	Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
+	Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
+	Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');
+	Route::post('/litbanksurvey', 'LiteratureBankSurveyController@store');
+	Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
+	Route::post('/approvals', 'EmailController@store');
 
     Route::auth();
 
@@ -95,20 +100,7 @@ Route::group(['middleware' => 'web'], function () {
 	});
 
 	//Call appropriate controllers (which control the Literature Bank web page and survey)
-	Route::group(['middleware' => 'web'], function () {
-		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
-		Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');
-		Route::post('/litbanksurvey', 'LiteratureBankSurveyController@store');
-		Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
 
-		Route::auth();
-
-		Route::group(['middleware' => 'auth'], function () {
-			Route::get('/home', 'HomeController@index');
-			Route::get('/home/{user}', 'HomeController@test');
-
-		});
-	});
 
 	//Call the upload function
 	Route::get('upload', function() {
