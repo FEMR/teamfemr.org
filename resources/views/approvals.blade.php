@@ -8,20 +8,22 @@
                     <div class="panel-heading"><center><h1>Approvals Needed</h1></center></div>
     <div class="form-group">
         {{--//loops through survey database and lists select columns in a table--}}
-        @foreach($Survey as $survey)
-            <div class="table-responsive">
-                <table class="table">
+        {!! Form::open(['url' => 'tripsurvey']) !!}
+        <div class="table-responsive">
+            <table class="table">
+                 @foreach($Survey as $survey)
+
                     <tr>
                         <td><a href="#teamname">{{$survey->teamname}}</a></td>
                         <td>{{$survey->visitedlocale}}</td>
                         <td>{{$survey->monthsoftravel}}</td>
                         <td>{{$survey->contactinfo}}</td>
                         <td>
-                            {!! Form::open(['url' => 'tripsurvey']) !!}
+
                             <div class="checkbox">
                                 <label>
                                     {{--<input type="checkbox"> Approve--}}
-                                    {!! Form::checkbox('approved', 1, null, ['class'=> 'form-control']) !!}
+                                    {!! Form::checkbox('approved[]', 1, null, ['class'=> 'form-control']) !!}
                                     Approved
                                 </label>
                             </div>
@@ -31,12 +33,14 @@
 
                     </tr>
 
-            </div>
-        @endforeach
-        </table>
-        {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
 
-        {!! Form::close() !!}
+                 @endforeach
+            </table>
+
+                {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+
+                {!! Form::close() !!}
+        </div>
     </div>
 {{--<div align='center'>--}}
         {{--<button type="submit" class="btn btn-primary btn-lgt">Submit</button>--}}

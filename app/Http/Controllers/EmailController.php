@@ -23,7 +23,8 @@ class EmailController extends Controller
 
     public function approval( )
     {
-        $Survey = Survey::all();
+       $Survey = Survey::all();
+//       $Survey = Survey::where('status', '=', 0)->get;
         return view('approvals', compact('Survey'));
     }
 
@@ -38,9 +39,11 @@ class EmailController extends Controller
         $survey->save();
 
     }
+
 //editing the survey
+//
 //    public function update($survey_id, Request $request){
-////        survey edit
+//
 //        $survey= Survey::findOrFail($survey_id);
 //
 //        $survey->is_approved= ($request->input('is_approved')===1)? true:false;
@@ -48,7 +51,7 @@ class EmailController extends Controller
 //        $survey->save();
 //
 //
-//        $survey = Survey::where('is_approved', '=', 1)->get;
+//        $survey = Survey::where('status', '=', 1)->get;
 //
 //        return view ('tripsurvey.create', compact('survey'));
 //    }
