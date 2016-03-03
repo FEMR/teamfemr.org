@@ -7,7 +7,7 @@
 
 
     <!--Print to web page-->
-    <h1>Survey</h1>
+    <h1>Your survey was submitted for approval.</h1>
 
 
     </div>

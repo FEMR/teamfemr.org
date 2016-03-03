@@ -18,7 +18,7 @@ class EmailController extends Controller
         {
             $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Please approve fEMR survey.');
         });
-        return redirect('/tripdatabase');
+        return redirect('/tripsurvey');
     }
 
     public function approval( )
@@ -34,7 +34,7 @@ class EmailController extends Controller
 
         $survey= Survey::findOrFail('id');
 
-        $survey->status = ($request->input('is_approved')===1)? true:false;
+        $survey->status = ($request->input('status')===1)? true:false;
 
         $survey->save();
 
@@ -46,7 +46,7 @@ class EmailController extends Controller
 //
 //        $survey= Survey::findOrFail($survey_id);
 //
-//        $survey->is_approved= ($request->input('is_approved')===1)? true:false;
+//        $survey->is_approved= ($request->input('status')===1)? true:false;
 //
 //        $survey->save();
 //
