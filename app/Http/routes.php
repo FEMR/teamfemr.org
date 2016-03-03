@@ -67,20 +67,12 @@ Route::get('/users/xml', function() {
 
 Route::group(['middleware' => 'web'], function ()
 {
-	//Call appropriate controllers (which control the Trip Survey web page and survey)
-	Route::get('/tripsurvey', 'TripSurveyController@index');
-	Route::get('/tripsurvey/create', 'TripSurveyController@create');
-	Route::post('/tripsurvey', 'TripSurveyController@store');
-	Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
+
 
 	//Calls the Trip Database controller, which controls the Trip Database web page
 	Route::get('tripdatabase', 'TripDatabaseController@index');
 
-//	Calls the literature bank web page and create function
-	Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
-	Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');
-	Route::post('/litbanksurvey', 'LiteratureBankSurveyController@store');
-	Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
+
 	//Calls the Literature Bank controller, which controls the Literature Bank web page
 	Route::get('literaturebank', 'LiteratureBankController@index');
 
@@ -92,15 +84,32 @@ Route::group(['middleware' => 'web'], function ()
 	Route::get('/emails', 'EmailController@index');
 	Route::get('/emails/test', 'EmailController@index');
 
-//	gets the approvals page
-	Route::get('approvals','EmailController@approval');
-//	stores the updated information
-	Route::post('/approvals', 'EmailController@store');
 
 	//pulls the authorization page
 	Route::auth();
 
+//	all pages inside this group must be logged in to use
+	Route::group([ 'middleware' => 'auth' ], function ()
+	{
+		Route::get('/home', 'HomeController@index');
+		Route::get('/home/{user}', 'HomeController@test');
+		//Call appropriate controllers (which control the Trip Survey web page and survey)
+		Route::get('/tripsurvey', 'TripSurveyController@index');
+		Route::get('/tripsurvey/create', 'TripSurveyController@create');
+		Route::post('/tripsurvey', 'TripSurveyController@store');
+		Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
 
+		//	Calls the literature bank web page and create function
+		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
+		Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');
+		Route::post('/litbanksurvey', 'LiteratureBankSurveyController@store');
+		Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
+
+		//	gets the approvals page
+		Route::get('approvals','EmailController@approval');
+//	stores the updated information
+		Route::post('/approvals', 'EmailController@store');
+	});
 
 	//Call the upload function
 	Route::get('upload', function() {
