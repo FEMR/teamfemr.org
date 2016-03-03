@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Survey;
 use App\Place;
-use Illuminate\Http\Request;
-//use Request;
+//use Illuminate\Http\Request;
+use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -38,7 +38,7 @@ class TripSurveyController extends Controller
         $input = Request::except('lat', 'lng');
 
         $survey = new Survey($input);
-//        $survey->status = false;
+        $survey->status = false;
         $input2 = Request::only('lat', 'lng');
        // $place = Place::where('lat', '=', $input2['lat'])->where('lng', '=', $input2['lng'])->findOrFail(1);
         //$place = Place::where('lat', '=', '5')->firstOrFail();
