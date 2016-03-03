@@ -38,7 +38,7 @@ class TripSurveyController extends Controller
         $input = Request::except('lat', 'lng');
 
         $survey = new Survey($input);
-        $survey->status = false;
+//        $survey->status = false;
         $input2 = Request::only('lat', 'lng');
        // $place = Place::where('lat', '=', $input2['lat'])->where('lng', '=', $input2['lng'])->findOrFail(1);
         //$place = Place::where('lat', '=', '5')->firstOrFail();
