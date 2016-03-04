@@ -1,8 +1,8 @@
-@extends ('layouts.app')
+@@extends ('layouts.app')
 
 @section('content')
 
-<!--Trip Database web page-->
+        <!--Trip Database web page-->
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -41,19 +41,20 @@
                                 var markers = xml.documentElement.getElementsByTagName("marker");
 
                                 <!--Use a for loop to iterate through all of the pop up pins/markers and input the information-->
-
-                                for (var i = 0; i < markers.length; i++) {
-                                    //var name = markers[i].getAttribute("teamname");
+                                for (var i = 0; i < markers.length; i++)
+                                {
                                     var name = "";
-                                    for (var j = markers[i].attributes.length-3; j >-1 ; j--)
+                                    for (var j = ((markers[i].attributes.length-2)/2)-1; j >-1 ; j--)
                                     {
-                                        name += markers[i].getAttribute("teamname"+j) + "<br>";
-                                        //add in hyperlink here: name = "<a href = \"# +
-                        }
+
+                                        name += "<a href=\"#"+ markers[i].getAttribute("id"+j) +"\">" + markers[i].getAttribute("teamname"+j) + "</a>" +"<br>" ;
+                                    }
+                                    <!--Pull latitude and longitude data from the Trip Database survey-->
                                     var point = new google.maps.LatLng(
                                             parseFloat(markers[i].getAttribute("lat")),
                                             parseFloat(markers[i].getAttribute("lng")));
-                                    var html = "<b>" + name  ;
+                                    var html =  name  ;
+
 
                                     <!--Create new pop up pin on the map interface (based on the latitude and longitude entered into the Trip Database Survevy)-->
                                     var marker = new google.maps.Marker({
@@ -97,7 +98,7 @@
                     <div id="map" style="width: 700px; height: 400px"></div>
 
 
-                </body>
+                    </body>
                 </div>
             </div>
         </div>
@@ -105,25 +106,25 @@
     <div class="form-group">
 
         @foreach($surveys as $survey)
-            <table>
-            <ul>
-                <a name="TripDatabase"></a>
-                <h3>{{$survey->teamname}}</h3>
-                <li>{{$survey->totalmatriculants}}</li>
-                <li>{{$survey->medschoolterms}}</li>
-                <li>{{$survey->aidingschools}}</li>
-                <li>{{$survey->totalperyear}}</li>
-                <li>{{$survey->visitedlocale}}</li>
-                <li>{{$survey->monthsoftravel}}</li>
-                <li>{{$survey->partnerngo}}</li>
-                <li>{{$survey->faculty}}</li>
-                <li>{{$survey->appprocess}}</li>
-                <li>{{$survey->programelements}}</li>
-                <li>{{$survey->finsupport}}</li>
-                <li>{{$survey->facultytimeallotted}}</li>
-                <li>{{$survey->adminsupport}}</li>
-                <li>{{$survey->contactinfo}}</li>
-            </ul>
+            <table class="table">
+                <ul>
+                    <a name={{$survey->id}}></a>
+                    <h3>{{$survey->teamname}}</h3>
+                    <li>{{$survey->totalmatriculants}}</li>
+                    <li>{{$survey->medschoolterms}}</li>
+                    <li>{{$survey->aidingschools}}</li>
+                    <li>{{$survey->totalperyear}}</li>
+                    <li>{{$survey->visitedlocale}}</li>
+                    <li>{{$survey->monthsoftravel}}</li>
+                    <li>{{$survey->partnerngo}}</li>
+                    <li>{{$survey->faculty}}</li>
+                    <li>{{$survey->appprocess}}</li>
+                    <li>{{$survey->programelements}}</li>
+                    <li>{{$survey->finsupport}}</li>
+                    <li>{{$survey->facultytimeallotted}}</li>
+                    <li>{{$survey->adminsupport}}</li>
+                    <li>{{$survey->contactinfo}}</li>
+                </ul>
             </table>
     </div>
     @endforeach

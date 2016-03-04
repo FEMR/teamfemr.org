@@ -12,33 +12,16 @@ use App\Survey;
 
 class EmailController extends Controller
 {
+//    sends email to client
     public function index( )
     {
         Mail::send('emails.test', ['name' => 'fEMR Admin'], function($message)
         {
             $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Please approve fEMR survey.');
         });
-        return redirect('/tripsurvey');
+        return redirect('/tripdatabase');
     }
 
-    public function approval( )
-    {
-       $Survey = Survey::all();
-//       $Survey = Survey::where('status', '=', 0)->get;
-        return view('approvals', compact('Survey'));
-    }
-
-    public function store(Request $request)
-    {
-        $input = $request->only('id','status');
-
-        $survey= Survey::findOrFail('id');
-
-        $survey->status = ($request->input('status')===1)? true:false;
-
-        $survey->save();
-
-    }
 
 //editing the survey
 //

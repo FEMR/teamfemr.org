@@ -12,8 +12,21 @@
 
 
             <div class="col-sm-6">
-            {{--<label for="survey" class="col-lg-6 control-label">--}}
-        <!--url for the Literature Bank survey-->
+{{--This did not work, tried to get approval message displayed on the form RD --}}
+                {{--@if(Session::has('flash_message'))--}}
+                    {{--<div class="alert alert-success">--}}
+                        {{--{{ Session::get('flash_message') }}--}}
+                    {{--</div>--}}
+                {{--@endif--}}
+{{--*********************************************************--}}
+{{--This displays an error message if required fields are left blank - RD--}}
+        @if($errors->any())
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
         {!! Form::open(['url' => 'tripsurvey']) !!}
 
         <!--Use a form to get the variables from the Literature Bank survey-->

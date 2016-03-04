@@ -33,7 +33,7 @@ Route::get('/users/xml', function() {
 		$xml->writeAttribute('lat', $place->lat);
 		$xml->writeAttribute('lng', $place->lng);
 		foreach($place->surveys as $index => $survey){
-
+			$xml->writeAttribute('id'.$index, $survey->id);
 			$xml->writeAttribute('teamname'.$index, $survey->teamname);
 
 
@@ -107,9 +107,15 @@ Route::group(['middleware' => 'web'], function ()
 		Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
 
 		//	gets the approvals page
-		Route::get('approvals','EmailController@approval');
+		Route::get('/approvals/edit','ApprovalsController@edit');
 //	stores the updated information
-		Route::post('/approvals', 'EmailController@store');
+		Route::post('/approvals', 'ApprovalsController@update');
+
+		//Route::get('/approvals','ApprovalsController@update');
+
+		//Route::get('approvals/(:any)/edit','ApprovalsController@edit');
+
+
 	});
 
 	//Call the upload function
