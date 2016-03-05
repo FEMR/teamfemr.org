@@ -11,39 +11,6 @@ use App\Survey;
 
 class ApprovalsController extends Controller
 {
-    //
-    public function approval( )
-    {
-        $Survey = Survey::all();
-       //$Survey = Survey::where('status', '=', 0)->get;
-        return view('approvals.edit', compact('Survey'));
-    }
-
-    public function store(Request $request)
-    {
-        $input = $request->only('approved');
-//
-//        $survey= Survey::findOrFail('id');
-//
-//        $survey->status = ($request->input('status')===1)? true:false;
-//
-//        $survey->save();
-
-//        $this->validate($request, [
-//            'title' => 'required',
-//            'description' => 'required'
-//        ]);
-        dd($input);
-//        $input = $request->all();
-
-        Survey::create($input);
-
-//        Session::flash('flash_message', 'Task successfully added!');
-
-//        return redirect()->back();
-        return redirect('tripdatabase', compact('Survey'));
-
-    }
 
     public function edit()
     {
@@ -52,23 +19,66 @@ class ApprovalsController extends Controller
         return view('approvals.edit', compact('Survey'));
     }
 
-    public function update( Request $request)
+    public function update(Request $request)
     {
+        Survey::$Survey->update($request->only('status', 1));
+
+        return view('approvals.edit', compact('Survey'));
+    }
+}
+
+//*********************************************************************************************
+//Text below is previous code, might use in future
         //$Survey = Survey::findOrFail($id);
 
 //        $this->validate($request, [
 //            'title' => 'required',
 //            'description' => 'required'
 //        ]);
-        $input = $request->only('approved');
-        dd($input);
-//        $input = $request->all();
+//        $input = $request->only('approved');
+//        dd($input);
+////        $input = $request->all();
+//
+//        $Survey->fill($input)->save();
+//
+////        Session::flash('flash_message', 'Survey successfully approved!');
+//
+////        return redirect()->back();
+//        return redirect('tripdatabase', compact('Survey'));
 
-        $Survey->fill($input)->save();
 
-//        Session::flash('flash_message', 'Survey successfully approved!');
 
-//        return redirect()->back();
-        return redirect('tripdabase', compact('Survey'));
-    }
-}
+
+//
+//    public function approval( )
+//    {
+//        $Survey = Survey::all();
+//       //$Survey = Survey::where('status', '=', 0)->get;
+//        return view('approvals.edit', compact('Survey'));
+//    }
+
+//    public function store(Request $request)
+//    {
+//        $input = $request->only('approved');
+////
+////        $survey= Survey::findOrFail('id');
+////
+////        $survey->status = ($request->input('status')===1)? true:false;
+////
+////        $survey->save();
+//
+////        $this->validate($request, [
+////            'title' => 'required',
+////            'description' => 'required'
+////        ]);
+//        dd($input);
+////        $input = $request->all();
+//
+//        Survey::create($input);
+//
+////        Session::flash('flash_message', 'Task successfully added!');
+//
+////        return redirect()->back();
+//        return redirect('tripdatabase', compact('Survey'));
+//
+//    }

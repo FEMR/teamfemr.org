@@ -106,14 +106,14 @@ Route::group(['middleware' => 'web'], function ()
 		Route::post('/litbanksurvey', 'LiteratureBankSurveyController@store');
 		Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
 
-		//	gets the approvals page
+		//	gets the approvals.edit page
 		Route::get('/approvals/edit','ApprovalsController@edit');
 //	stores the updated information
-		Route::post('/approvals', 'ApprovalsController@update');
+		Route::patch('/approvals/edit', 'ApprovalsController@update');
 
 		//Route::get('/approvals','ApprovalsController@update');
 
-		//Route::get('approvals/(:any)/edit','ApprovalsController@edit');
+//		Route::get('approvals/(:any)/edit','ApprovalsController@edit');
 
 
 	});
