@@ -40,8 +40,6 @@ Route::get('/users/xml', function() {
 		}
 		$xml->endElement();
 
-
-
 	}
 	$xml->endElement();
 	$xml->endDocument();
@@ -109,13 +107,13 @@ Route::group(['middleware' => 'web'], function ()
 		//	gets the approvals.edit page
 		Route::get('/approvals/edit','ApprovalsController@edit');
 //	stores the updated information
-		Route::patch('/approvals/edit', 'ApprovalsController@update');
-
-		//Route::get('/approvals','ApprovalsController@update');
-
-//		Route::get('approvals/(:any)/edit','ApprovalsController@edit');
+		Route::patch('/approvals', 'ApprovalsController@update');
+		Route::post('/approvals', 'ApprovalsController@update');
 
 
+		//trying to get one record updated:
+//		Route::get('/approvals/{status}/edit','ApprovalsController@edit');
+//		Route::patch('/approvals/{status}','ApprovalsController@update');
 	});
 
 	//Call the upload function

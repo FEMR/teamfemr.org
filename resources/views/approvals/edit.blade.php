@@ -7,11 +7,20 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><center><h1>Approvals Needed</h1></center></div>
                     <div class="panel-body">
-
-                        <form method = "POST" action="/approvals.edit">
+                        <form method = "POST" action="/approvals/">
+                            {{csrf_field()}}
+                        {{--<form method = "POST" action="/approvals/{{$status->id}}">--}}
                             {{ method_field('PATCH') }}
-
                             <div class="form-group">
+                                {{--<textarea name="status" class="form-control">{{$Survey->status}}</textarea>--}}
+                            {{--</div>--}}
+                            {{--<div>--}}
+                                {{--<button type="submit" class = "btn btn-primary">Update Status</button>--}}
+                            {{--</div>--}}
+
+
+                            {{--//*************************************************************************--}}
+
 
                                 <div class="table-responsive">
 
@@ -27,7 +36,7 @@
                                                     <div class="checkbox">
                                                         <label>
                                                             {{--<input type="checkbox"> Approve--}}
-                                                            {!! Form::checkbox('approved[]',1, null, ['class'=> 'form-control']) !!}
+                                                            {!! Form::checkbox('status'.$survey->id,1, null, ['class'=> 'form-control']) !!}
                                                             Approved
                                                         </label>
                                                     </div>
@@ -44,6 +53,7 @@
 
                             <div class="form-group">
                                 {!! Form::submit('Submit for Approval', ['class' => 'btn btn-primary form-control']) !!}
+                            </div>
                             </form>
 
                         {{--{!! Form::close() !!}--}}

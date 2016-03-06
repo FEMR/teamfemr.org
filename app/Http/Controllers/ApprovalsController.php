@@ -8,23 +8,41 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Survey;
+use DB;
 
 class ApprovalsController extends Controller
 {
 
     public function edit()
     {
-        $Survey = Survey::where('status', 0)->get();
+        $Survey = Survey::where('status', '=', 0)->get();
 
-        return view('approvals.edit', compact('Survey'));
+        return view('approvals/edit', compact('Survey'));
     }
 
     public function update(Request $request)
     {
-        Survey::$Survey->update($request->only('status', 1));
+
+        dd($request->all());
+//
+//        DB::table('survey')
+//            ->where('statusid', 1)
+//            ->update(['status' => 1]);
+//        Survey::update($request->all());
+//        Survey::findMany($status)->update(['status' => 1]);
+//
+//        Survey::findMany($unCheckedIDs)->update(['is_checked' => 0]);
 
         return view('approvals.edit', compact('Survey'));
     }
+
+    //trying with just one record:
+//    public function update(Request $request, Survey $status )
+//    {
+//        dd('hit');
+//        $status->update($request->all());
+//        return back();
+//    }
 }
 
 //*********************************************************************************************
