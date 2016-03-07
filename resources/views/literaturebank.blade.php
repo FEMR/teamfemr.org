@@ -17,7 +17,7 @@
                                 <!--Portion of web page where the links to resources are listed-->
 <h3>New Additions:</h3>
 @foreach($literatures as $literature)
-        <h4><a href>{{ $literature->addLink}}</a> </h4>
+        <h4><a href = {{$literature->addLink}}>{{ $literature->addLink}}</a> </h4>
 @endforeach
             </div>
          </div>

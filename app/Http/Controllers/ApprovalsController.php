@@ -13,7 +13,7 @@ class ApprovalsController extends Controller
 
     public function edit()
     {
-        $surveys = Survey::where('status', '=', 0)->get();
+        $surveys = Survey::where('approved', '=', 0)->get();
 
         return view('approvals/edit', compact('surveys'));
     }
@@ -51,7 +51,7 @@ class ApprovalsController extends Controller
             $survey = Survey::findOrFail( $survey_id );
 
             // update the status
-            $survey->status = 1;
+            $survey->approved = 1;
 
             /**
              *  NOTE: I a little unclear on the name `status` for the column used above. Its not very clear at a first
@@ -77,59 +77,3 @@ class ApprovalsController extends Controller
     }
 
 }
-
-//*********************************************************************************************
-//Text below is previous code, might use in future
-        //$Survey = Survey::findOrFail($id);
-
-//        $this->validate($request, [
-//            'title' => 'required',
-//            'description' => 'required'
-//        ]);
-//        $input = $request->only('approved');
-//        dd($input);
-////        $input = $request->all();
-//
-//        $Survey->fill($input)->save();
-//
-////        Session::flash('flash_message', 'Survey successfully approved!');
-//
-////        return redirect()->back();
-//        return redirect('tripdatabase', compact('Survey'));
-
-
-
-
-//
-//    public function approval( )
-//    {
-//        $Survey = Survey::all();
-//       //$Survey = Survey::where('status', '=', 0)->get;
-//        return view('approvals.edit', compact('Survey'));
-//    }
-
-//    public function store(Request $request)
-//    {
-//        $input = $request->only('approved');
-////
-////        $survey= Survey::findOrFail('id');
-////
-////        $survey->status = ($request->input('status')===1)? true:false;
-////
-////        $survey->save();
-//
-////        $this->validate($request, [
-////            'title' => 'required',
-////            'description' => 'required'
-////        ]);
-//        dd($input);
-////        $input = $request->all();
-//
-//        Survey::create($input);
-//
-////        Session::flash('flash_message', 'Task successfully added!');
-//
-////        return redirect()->back();
-//        return redirect('tripdatabase', compact('Survey'));
-//
-//    }

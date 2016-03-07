@@ -18,7 +18,7 @@
 
                         <script type="text/javascript">
                             document.getElementById("forum_embed").src =
-                                    "https://groups.google.com/forum/embed/?place=forum/fEMR" +
+                                    "https://groups.google.com/forum/embed/?place=forum/femr" +
                                     "&showsearch=true&showpopout=true&parenturl=" +
                                     encodeURIComponent(window.location.href);
                         </script>

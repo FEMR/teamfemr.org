@@ -19,7 +19,7 @@
 
 
         {!! Form::label('addLink', 'Add Link to Resource:') !!}
-        {!! Form::text( 'addLink' , null, ['class' => 'form-control']) !!}
+        {!! Form::url( 'addLink' , null, ['class' => 'form-control']) !!}
 
 
         {!! Form::file('image') !!}
