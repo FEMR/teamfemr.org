@@ -7,56 +7,70 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><center><h1>Approvals Needed</h1></center></div>
                     <div class="panel-body">
-                        <form method = "POST" action="/approvals/">
-                            {{csrf_field()}}
-                        {{--<form method = "POST" action="/approvals/{{$status->id}}">--}}
-                            {{ method_field('PATCH') }}
-                            <div class="form-group">
-                                {{--<textarea name="status" class="form-control">{{$Survey->status}}</textarea>--}}
-                            {{--</div>--}}
-                            {{--<div>--}}
-                                {{--<button type="submit" class = "btn btn-primary">Update Status</button>--}}
-                            {{--</div>--}}
+                        {{--
+
+                        @rachel
+
+                        Using the Form facade to open the form will:
+                            - output the opening Form html tag
+                            - add the csrf field
+                            - Add the method PATCH field -- this is something odd. Some web servers don't accept PATCH
+                                   requests nicely, so to account for this Laravel sends PATCH requests as a POST with
+                                   the hidden method_field
+
+                        It is good to tie your form submit urls to the controller paths or route names (ask me another
+                            time about these). This way if you want to change /approvals to /admin/approvals you would
+                            only need to make that change in the routes file.
+
+                        --}}
+
+                            @if( $surveys->count() > 0 )
+                            <div class="table-responsive">
+
+                                {!! Form::open([ 'method' => 'PATCH', 'action' => 'ApprovalsController@update' ]) !!}
+                                <table class="table table-striped">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Approve</th>
+                                            <th>Team Name</th>
+                                            <th>Locale</th>
+                                            <th>Months of Travel</th>
+                                            <th>Contact Info</th>
+                                        </tr>
+                                    </thead>
+
+                                    @foreach($surveys as $survey)
+
+                                        <tr>
+
+                                            <td>
+                                                {!! Form::checkbox('approvals[]', $survey->id, null) !!}
+                                            </td>
+                                            <td><a href="#teamname">{{$survey->teamname}}</a></td>
+                                            <td>{{$survey->visitedlocale}}</td>
+                                            <td>{{$survey->monthsoftravel}}</td>
+                                            <td>{{$survey->contactinfo}}</td>
+
+                                        </tr>
 
 
-                            {{--//*************************************************************************--}}
+                                    @endforeach
 
-
-                                <div class="table-responsive">
-
-                                    <table class="table">
-                                        @foreach($Survey as $survey)
-
-                                            <tr>
-                                                <td><a href="#teamname">{{$survey->teamname}}</a></td>
-                                                <td>{{$survey->visitedlocale}}</td>
-                                                <td>{{$survey->monthsoftravel}}</td>
-                                                <td>{{$survey->contactinfo}}</td>
-                                                <td>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            {{--<input type="checkbox"> Approve--}}
-                                                            {!! Form::checkbox('status'.$survey->id,1, null, ['class'=> 'form-control']) !!}
-                                                            Approved
-                                                        </label>
-                                                    </div>
-                                                </td>
-
-
-                                            </tr>
-
-
-                                        @endforeach
-                                    </table>
+                                </table>
+                                <div class="form-group">
+                                    {!! Form::submit('Submit for Approval', ['class' => 'btn btn-primary form-control']) !!}
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                {!! Form::submit('Submit for Approval', ['class' => 'btn btn-primary form-control']) !!}
+                                {!! Form::close() !!}
                             </div>
-                            </form>
+                            @else
+                            <p>There are no Surveys to approve.</p>
+                            @endif
 
-                        {{--{!! Form::close() !!}--}}
                         </div>
                     </div>
+            </div>
+        </div>
+    </div>
 @endsection

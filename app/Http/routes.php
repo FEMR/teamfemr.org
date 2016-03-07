@@ -108,7 +108,7 @@ Route::group(['middleware' => 'web'], function ()
 		Route::get('/approvals/edit','ApprovalsController@edit');
 //	stores the updated information
 		Route::patch('/approvals', 'ApprovalsController@update');
-		Route::post('/approvals', 'ApprovalsController@update');
+//		Route::post('/approvals', 'ApprovalsController@update');
 
 
 		//trying to get one record updated:
