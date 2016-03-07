@@ -27,9 +27,10 @@
                 @endforeach
             </div>
         @endif
-        {!! Form::open(['url' => 'tripsurvey']) !!}
-
-        <!--Use a form to get the variables from the Literature Bank survey-->
+        {{--{!! Form::open(['url' => 'tripsurvey']) !!}--}}
+                <form id="codeForm" method="POST" action="/tripsurvey">
+                    {{csrf_field()}}
+                <!--Use a form to get the variables from the Literature Bank survey-->
         {!! Form::label('teamname', 'Program Name:') !!}
         {!! Form::text('teamname' , null, ['class' => 'form-control']) !!}
 
@@ -54,16 +55,16 @@
         {!! Form::text( 'totalperyear' , null, ['class' => 'form-control']) !!}
 
 
-        {!! Form::label('visitedlocale', 'Locations visited:') !!}
-        {!! Form::text( 'visitedlocale' , null, ['class' => 'form-control']) !!}
+        {{--{!! Form::label('visitedlocale', 'Locations visited:') !!}--}}
+        {{--{!! Form::text( 'visitedlocale' , null, ['class' => 'form-control']) !!}--}}
 
 
-        {!! Form::label('lat', 'Latitude:') !!}
-        {!! Form::number( 'lat' , null, ['class' => 'form-control']) !!}
+        {{--{!! Form::label('lat', 'Latitude:') !!}--}}
+        {{--{!! Form::number( 'lat' , null, ['class' => 'form-control']) !!}--}}
 
 
-        {!! Form::label('lng', 'Longitude:') !!}
-        {!! Form::number('lng' , null, ['class' => 'form-control']) !!}
+        {{--{!! Form::label('lng', 'Longitude:') !!}--}}
+        {{--{!! Form::number('lng' , null, ['class' => 'form-control']) !!}--}}
 
 
         {!! Form::label('monthsoftravel', 'month(s) of travel:') !!}
@@ -104,12 +105,57 @@
 
         {!! Form::label('contactinfo', 'contact info:') !!}
         {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
+                    <input type='hidden' name="lat">
+                    <input type='hidden' name="lng">
+                    <input id="address" type='text' name='visitedlocale'>
+                    <input id="submit" type="button" value="Geocode">
+
+                    <div id="map" style="width: 700px; height: 400px"></div>
 
 <!--Submit and close form-->
     {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
 
-    {!! Form::close() !!}
-            {{--</label>--}}
+                    <script>
+                        function initMap() {
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 8,
+                                center: {lat: -34.397, lng: 150.644}
+                            });
+                            var geocoder = new google.maps.Geocoder();
+
+                            document.getElementById('submit').addEventListener('click', function() {
+                                geocodeAddress(geocoder, map);
+                            });
+                        }
+
+                        function geocodeAddress(geocoder, resultsMap) {
+                            myForm =  document.forms["codeForm"]
+
+                            var address = document.getElementById('address').value;
+                            geocoder.geocode({'address': address}, function(results, status) {
+                                if (status === google.maps.GeocoderStatus.OK) {
+                                    lat = results[0].geometry.location.lat()
+                                    lng = results[0].geometry.location.lng()
+                                    myForm.elements["lat"].value=lat
+                                    myForm.elements["lng"].value=lng
+                                    resultsMap.setCenter(results[0].geometry.location);
+
+                                    var marker = new google.maps.Marker({
+                                        map: resultsMap,
+                                        position: results[0].geometry.location
+                                    });
+                                } else {
+                                    alert('Geocode was not successful for the following reason: ' + status);
+                                }
+                            });
+                        }
+                    </script>
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxOG3dfRrm8yZ7ACXvkbB_q_Bc7DOW0&callback=initMap">
+                    </script>
+
+    {{--{!! Form::close() !!}--}}
+            </form>
 
     </div>
     </div>
