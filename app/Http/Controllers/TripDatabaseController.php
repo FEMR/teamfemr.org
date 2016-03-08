@@ -17,7 +17,12 @@ class TripDatabaseController extends Controller
     //Call view page for Trip Database, while passing the Trip Database survey variable
     public function index( )
     {
-        $surveys = Survey::where('approved', '=', 1)->get();
+        $surveys = Survey::where('approved', '=', 1)
+                        ->with( 'places' )
+                        ->get();
+
+
+
 //        dd($surveys);
         return view( 'tripdatabase', compact('surveys') );
     }

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
-<!--Literature Bank web page-->
-<h1>Literature Bank</h1>
+
 @section('content')
 
 <div class="container">
@@ -10,15 +9,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><center><h1>Literature Bank</h1></center></div>
 
-                <!--Link to Literature Bank Survey-->
-                <h2><a href="litbanksurvey/create">Click here to add a resource</a></h2>
-                                </div>
+                    <!--Link to Literature Bank Survey-->
+                    <h2><a href="litbanksurvey/create">Click here to add a resource</a></h2>
+
+                </div>
 
                                 <!--Portion of web page where the links to resources are listed-->
-<h3>New Additions:</h3>
-@foreach($literatures as $literature)
-        <h4><a href = {{$literature->addLink}}>{{ $literature->addLink}}</a> </h4>
-@endforeach
+                <h3>New Additions:</h3>
+                @foreach($literatures as $literature)
+                        <h4><a href = {{$literature->addLink}}>{{ $literature->addLink}}</a> </h4>
+                @endforeach
             </div>
          </div>
      </div>

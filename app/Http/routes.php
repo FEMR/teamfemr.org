@@ -20,25 +20,41 @@ Route::get('/', function () {
 
 //Convert database entries to xml form
 Route::get('/users/xml', function() {
-	$surveys = Survey::all();
-	$places = Place::all();
+
+//	$surveys = Survey::where( 'approved', '=', 1 )
+//				->with( 'places' )
+//				->get();
+
+//	dd( $surveys );
+
+	$places = Place::whereHas( 'surveys', function($query){
+
+		$query->where( 'approved', '=', 1 );
+
+	})
+	->with( 'surveys' )
+	->get();
+
+//	dd( $places );
+
 	$xml = new XMLWriter();
 	$xml->openMemory();
 	$xml->startDocument();
 	$xml->startElement('markers');
 	foreach($places as $place) {
+
 		$teams = '';
 
 		$xml->startElement('marker');
 		$xml->writeAttribute('lat', $place->lat);
 		$xml->writeAttribute('lng', $place->lng);
-		foreach($place->surveys as $index => $survey){
-			$xml->writeAttribute('id'.$index, $survey->id);
-			$xml->writeAttribute('teamname'.$index, $survey->teamname);
-
+		foreach ($place->surveys as $index => $survey) {
+			$xml->writeAttribute('id' . $index, $survey->id);
+			$xml->writeAttribute('teamname' . $index, $survey->teamname);
 
 		}
 		$xml->endElement();
+
 
 	}
 	$xml->endElement();

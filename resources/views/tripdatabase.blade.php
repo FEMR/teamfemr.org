@@ -124,6 +124,7 @@
                     <li>{{$survey->facultytimeallotted}}</li>
                     <li>{{$survey->adminsupport}}</li>
                     <li>{{$survey->contactinfo}}</li>
+                    <li>{{ $survey->places->first() }}</li>
                 </ul>
             </table>
     </div>
