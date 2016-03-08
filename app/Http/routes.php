@@ -21,21 +21,16 @@ Route::get('/', function () {
 //Convert database entries to xml form
 Route::get('/users/xml', function() {
 
-//	$surveys = Survey::where( 'approved', '=', 1 )
-//				->with( 'places' )
-//				->get();
-
-//	dd( $surveys );
 
 	$places = Place::whereHas( 'surveys', function($query){
 
-		$query->where( 'approved', '=', 1 );
+					$query->where( 'approved', '=', 1 );
 
-	})
-	->with( 'surveys' )
-	->get();
+				})
+				->with( 'surveys' )
+				->get();
 
-//	dd( $places );
+	//	dd( $places );
 
 	$xml = new XMLWriter();
 	$xml->openMemory();
@@ -48,11 +43,13 @@ Route::get('/users/xml', function() {
 		$xml->startElement('marker');
 		$xml->writeAttribute('lat', $place->lat);
 		$xml->writeAttribute('lng', $place->lng);
+
 		foreach ($place->surveys as $index => $survey) {
+
 			$xml->writeAttribute('id' . $index, $survey->id);
 			$xml->writeAttribute('teamname' . $index, $survey->teamname);
-
 		}
+
 		$xml->endElement();
 
 
@@ -109,10 +106,10 @@ Route::group(['middleware' => 'web'], function ()
 		Route::get('/home/{user}', 'HomeController@test');
 
 		//Call appropriate controllers (which control the Trip Survey web page and survey)
-		Route::get('/tripsurvey', 'TripSurveyController@index');
-		Route::get('/tripsurvey/create', 'TripSurveyController@create');
-		Route::post('/tripsurvey', 'TripSurveyController@store');
-		Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
+		Route::get( '/tripsurvey', 'TripSurveyController@index' );
+		Route::get( '/tripsurvey/create', 'TripSurveyController@create' );
+		Route::post( '/tripsurvey', 'TripSurveyController@store' );
+		Route::get( '/tripsurvey/{id}', 'TripSurveyController@show' );
 
 		//	Calls the literature bank web page and create function
 		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');

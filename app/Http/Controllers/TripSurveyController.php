@@ -38,22 +38,59 @@ class TripSurveyController extends Controller
 
         ]);
 
+        $survey = Survey::create( $request->all() );
+
+        foreach( $request->input( 'lat' ) as $id => $lat ){
+
+            $lat = round( $lat, 5 );
+
+            // we aren't 100% positive that $lng[$id] is set
+            $lng = round( $request->input( 'lng' )[$id], 5);
+            $address = $request->input( 'address' )[$id];
+
+            $existing = Place::where( 'lat', '=', $lat )
+                             ->where( 'lng', '=', $lng )
+                             ->first();
+
+            if( $existing ){
+
+                // link to the existing place
+                $survey->places()->attach( $existing );
+            }
+            else{
+
+                // Doesn't exist create new
+                $survey->places()->create([
+
+                    'lat' => $lat,
+                    'lng' => $lng,
+                    //'address' => $address
+                ]);
+            }
+
+        }
+
+
+
+
         //$input = Request::all();
-        $input = $request->except('lat', 'lng');
-
-        $survey = new Survey($input);
-        $survey->approved = false;
-        $input2 = $request->only('lat', 'lng');
-
-       // $place = Place::where('lat', '=', $input2['lat'])->where('lng', '=', $input2['lng'])->findOrFail(1);
-        //$place = Place::where('lat', '=', '5')->firstOrFail();
-        $place = Place::firstOrNew(['lat' => $input2['lat'], 'lng' => $input2['lng']]);
-
-
-        $survey->save();
-        //$place->survey_id = $survey->id;
-       // dd($place);
-        $survey->places()->save($place);
+//        $input = $request->except('lat', 'lng');
+//
+//        $survey = new Survey($input);
+//        $survey->approved = false;
+//        $input2 = $request->only('lat', 'lng');
+//
+//       // $place = Place::where('lat', '=', $input2['lat'])->where('lng', '=', $input2['lng'])->findOrFail(1);
+//        //$place = Place::where('lat', '=', '5')->firstOrFail();
+//        $place = Place::firstOrNew(['lat' => $input2['lat'], 'lng' => $input2['lng']]);
+//
+//
+//        $survey->save();
+//
+//
+//        //$place->survey_id = $survey->id;
+//       // dd($place);
+//        $survey->places()->save($place);
        // $place->surveys()->save($survey);
 
 //        Session::flash('flash_message', 'Survey successfully submitted!');{{--This did not work RD --}}

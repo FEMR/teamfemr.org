@@ -27,10 +27,10 @@
                 @endforeach
             </div>
         @endif
-        {{--{!! Form::open(['url' => 'tripsurvey']) !!}--}}
-                <form id="codeForm" method="POST" action="/tripsurvey">
-                    {{csrf_field()}}
-                <!--Use a form to get the variables from the Literature Bank survey-->
+
+        {!! Form::open([ 'method' => 'POST', 'action' => 'TripSurveyController@store', 'id' => 'codeForm' ]) !!}
+
+        <!--Use a form to get the variables from the Literature Bank survey-->
         {!! Form::label('teamname', 'Program Name:') !!}
         {!! Form::text('teamname' , null, ['class' => 'form-control']) !!}
 
@@ -105,10 +105,14 @@
 
         {!! Form::label('contactinfo', 'contact info:') !!}
         {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
-                    <input type='hidden' name="lat">
-                    <input type='hidden' name="lng">
-                    <input id="address" type='text' name='visitedlocale'>
-                    <input id="submit" type="button" value="Geocode">
+
+                    {{--<input type='hidden' name="lat[]">--}}
+                    {{--<input type='hidden' name="lng[]">--}}
+
+                    <div class="form-group">
+                        <input id="address" type='text' name='address' />
+                        <input id="submit" type="button" value="Geocode">
+                    </div>
 
                     <div id="map" style="width: 700px; height: 400px"></div>
 
@@ -117,34 +121,70 @@
 
                     <script>
                         function initMap() {
+
                             var map = new google.maps.Map(document.getElementById('map'), {
                                 zoom: 8,
                                 center: {lat: -34.397, lng: 150.644}
                             });
+
                             var geocoder = new google.maps.Geocoder();
 
                             document.getElementById('submit').addEventListener('click', function() {
+
                                 geocodeAddress(geocoder, map);
                             });
                         }
 
                         function geocodeAddress(geocoder, resultsMap) {
-                            myForm =  document.forms["codeForm"]
 
+                            var myForm =  document.forms["codeForm"];
                             var address = document.getElementById('address').value;
+
                             geocoder.geocode({'address': address}, function(results, status) {
+
                                 if (status === google.maps.GeocoderStatus.OK) {
-                                    lat = results[0].geometry.location.lat()
-                                    lng = results[0].geometry.location.lng()
-                                    myForm.elements["lat"].value=lat
-                                    myForm.elements["lng"].value=lng
-                                    resultsMap.setCenter(results[0].geometry.location);
+
+                                    var lat = results[0].geometry.location.lat();
+                                    var lng = results[0].geometry.location.lng();
+
+//                                    myForm.elements["lat"].value = lat;
+//                                    myForm.elements["lng"].value = lng;
+
+                                    // create new hidden form element
+                                    // <input type="hidden" name="lat[]" value="" />
+                                    // <input type="hidden" name="lng[]" value="" />
+                                    // <input type="hidden" name="visitedlocale[]" value="" />
+
+                                    var latElem = document.createElement("input");
+                                    latElem.setAttribute( 'type', "hidden" );
+                                    latElem.setAttribute( 'name', "lat[]" );
+                                    latElem.value = lat;
+
+                                    var lngElem = document.createElement("input");
+                                    lngElem.setAttribute( 'type', "hidden" );
+                                    lngElem.setAttribute( 'name', "lng[]" );
+                                    lngElem.value = lng;
+
+                                    var locale = document.createElement("input");
+                                    locale.setAttribute( 'type', "hidden" );
+                                    locale.setAttribute( 'name', "address[]" );
+                                    locale.value = address;
+
+                                    // append them to the form
+                                    myForm.appendChild( latElem );
+                                    myForm.appendChild( lngElem );
+                                    myForm.appendChild( locale );
+
+                                    resultsMap.setCenter( results[0].geometry.location );
 
                                     var marker = new google.maps.Marker({
+
                                         map: resultsMap,
                                         position: results[0].geometry.location
                                     });
+
                                 } else {
+
                                     alert('Geocode was not successful for the following reason: ' + status);
                                 }
                             });
