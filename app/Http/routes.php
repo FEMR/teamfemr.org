@@ -100,33 +100,42 @@ Route::group(['middleware' => 'web'], function ()
 	Route::auth();
 
 //	all pages inside this group must be logged in to use
-	Route::group([ 'middleware' => 'auth' ], function ()
-	{
+	Route::group([ 'middleware' => 'auth' ], function () {
 		Route::get('/home', 'HomeController@index');
 		Route::get('/home/{user}', 'HomeController@test');
 
 		//Call appropriate controllers (which control the Trip Survey web page and survey)
-		Route::get( '/tripsurvey', 'TripSurveyController@index' );
-		Route::get( '/tripsurvey/create', 'TripSurveyController@create' );
-		Route::post( '/tripsurvey', 'TripSurveyController@store' );
-		Route::get( '/tripsurvey/{id}', 'TripSurveyController@show' );
+		Route::get('/tripsurvey', 'TripSurveyController@index');
+		Route::get('/tripsurvey/create', 'TripSurveyController@create');
+		Route::post('/tripsurvey', 'TripSurveyController@store');
+		Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
 
 		//	Calls the literature bank web page and create function
 		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
 		Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');
 		Route::post('/litbanksurvey', 'LiteratureBankSurveyController@store');
 		Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
+	});
 
+	//Moderator Pages
+		Route::group([ 'middleware' => 'moderator' ], function ()
+	{
 		//	gets the approvals.edit page
 		Route::get('/approvals/edit','ApprovalsController@edit');
-//	stores the updated information
+		//	stores the updated information
 		Route::patch('/approvals', 'ApprovalsController@update');
-//		Route::post('/approvals', 'ApprovalsController@update');
+
+		//approvals for the literature articles
+		Route::get('/approvals/lit_approvals','LitApprovalsController@edit');
+		//	stores the updated information
+		Route::patch('/approvals', 'LitApprovalsController@update');
+
+		//approvals for the moderators
+		Route::get('/approvals/mod_approvals','ModApprovalsController@edit');
+		//	stores the updated information
+		Route::patch('/approvals', 'ModApprovalsController@update');
 
 
-		//trying to get one record updated:
-//		Route::get('/approvals/{status}/edit','ApprovalsController@edit');
-//		Route::patch('/approvals/{status}','ApprovalsController@update');
 	});
 
 	//Call the upload function

@@ -1,11 +1,5 @@
 @extends('layouts.app')
 
-{{--**************************Trying to have user specific nav bar *******************************************--}}
-{{--@if(Auth::user()->isAdmin())--}}
-    {{--@include('navigation.admin');--}}
-    {{--@endIf--}}
-{{--**********************************************************************************************--}}
-
 @section('content')
     <div class="collapse navbar-collapse" id="app-navbar-collapse">
         <!-- Left Side Of Navbar -->
@@ -13,14 +7,14 @@
             <li><a href="{{ url('/approvals/lit_approvals') }}">Literature Approvals</a></li>
         </ul>
         <ul class="nav navbar-nav">
-            <li><a href="{{ url('/approvals/mod_approvals') }}">Moderator Approvals</a></li>
+            <li><a href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
         </ul>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><center><h1>Approvals Needed</h1></center></div>
+                    <div class="panel-heading"><center><h1>Moderator Approvals Needed</h1></center></div>
                     <div class="panel-body">
                         {{--
 
@@ -39,33 +33,30 @@
 
                         --}}
 
-                            @if( $surveys->count() > 0 )
+                        @if( $users->count() > 0 )
                             <div class="table-responsive">
 
-                                {!! Form::open([ 'method' => 'PATCH', 'action' => 'ApprovalsController@update' ]) !!}
+                                {!! Form::open([ 'method' => 'PATCH', 'action' => 'ModApprovalsController@update' ]) !!}
                                 <table class="table table-striped">
 
                                     <thead>
-                                        <tr>
-                                            <th>Approve</th>
-                                            <th>Team Name</th>
-                                            <th>Locale</th>
-                                            <th>Months of Travel</th>
-                                            <th>Contact Info</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Approve</th>
+                                        <th>Contributor Name</th>
+                                        <th>Author Name</th>
+                                        <th>Link</th>
+                                    </tr>
                                     </thead>
 
-                                    @foreach($surveys as $survey)
+                                    @foreach($users as $user)
 
                                         <tr>
 
                                             <td>
-                                                {!! Form::checkbox('approvals[]', $survey->id, null) !!}
+                                                {!! Form::checkbox('approvals[]', $user->id, null) !!}
                                             </td>
-                                            <td><a href="#teamname">{{$survey->teamname}}</a></td>
-                                            <td>{{$survey->visitedlocale}}</td>
-                                            <td>{{$survey->monthsoftravel}}</td>
-                                            <td>{{$survey->contactinfo}}</td>
+                                            <td>{{$user->}}</td>
+
 
                                         </tr>
 
@@ -79,12 +70,12 @@
 
                                 {!! Form::close() !!}
                             </div>
-                            @else
-                            <p>There are no Surveys to approve.</p>
-                            @endif
+                        @else
+                            <p>There are no Moderators to approve.</p>
+                        @endif
 
-                        </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>

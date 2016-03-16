@@ -17,25 +17,10 @@ class EmailController extends Controller
     {
         Mail::send('emails.test', ['name' => 'fEMR Admin'], function($message)
         {
-            $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Please approve fEMR survey.');
+            $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Approvals Needed.');
         });
         return redirect('/tripdatabase');
     }
 
 
-//editing the survey
-//
-//    public function update($survey_id, Request $request){
-//
-//        $survey= Survey::findOrFail($survey_id);
-//
-//        $survey->is_approved= ($request->input('status')===1)? true:false;
-//
-//        $survey->save();
-//
-//
-//        $survey = Survey::where('status', '=', 1)->get;
-//
-//        return view ('tripsurvey.create', compact('survey'));
-//    }
 }
