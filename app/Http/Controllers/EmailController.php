@@ -22,5 +22,22 @@ class EmailController extends Controller
         return redirect('/tripdatabase');
     }
 
+    public function index2( )
+    {
+        Mail::send('emails.test2', ['name' => 'fEMR Admin'], function($message)
+        {
+            $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Approvals Needed.');
+        });
+        return redirect('/literaturebank');
+    }
+
+    public function index3( )
+    {
+        Mail::send('emails.test3', ['name' => 'fEMR Admin'], function($message)
+        {
+            $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Approvals Needed.');
+        });
+        return redirect('/auth/register');
+    }
 
 }

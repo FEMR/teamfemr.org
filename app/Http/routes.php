@@ -95,6 +95,14 @@ Route::group(['middleware' => 'web'], function ()
 	Route::get('/emails', 'EmailController@index');
 	Route::get('/emails/test', 'EmailController@index');
 
+	//sends email
+	Route::get('/emails', 'EmailController@index2');
+	Route::get('/emails/test2', 'EmailController@index2');
+
+	//sends email
+	Route::get('/emails', 'EmailController@index3');
+	Route::get('/emails/test3', 'EmailController@index3');
+
 
 	//pulls the authorization page
 	Route::auth();

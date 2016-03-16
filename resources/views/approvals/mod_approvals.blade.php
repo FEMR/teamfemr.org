@@ -42,9 +42,8 @@
                                     <thead>
                                     <tr>
                                         <th>Approve</th>
-                                        <th>Contributor Name</th>
-                                        <th>Author Name</th>
-                                        <th>Link</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
                                     </tr>
                                     </thead>
 
@@ -55,7 +54,8 @@
                                             <td>
                                                 {!! Form::checkbox('approvals[]', $user->id, null) !!}
                                             </td>
-                                            <td>{{$user->}}</td>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->email}}</td>
 
 
                                         </tr>
