@@ -72,31 +72,6 @@ class TripSurveyController extends Controller
         }
 
 
-
-
-        //$input = Request::all();
-//        $input = $request->except('lat', 'lng');
-//
-//        $survey = new Survey($input);
-//        $survey->approved = false;
-//        $input2 = $request->only('lat', 'lng');
-//
-//       // $place = Place::where('lat', '=', $input2['lat'])->where('lng', '=', $input2['lng'])->findOrFail(1);
-//        //$place = Place::where('lat', '=', '5')->firstOrFail();
-//        $place = Place::firstOrNew(['lat' => $input2['lat'], 'lng' => $input2['lng']]);
-//
-//
-//        $survey->save();
-//
-//
-//        //$place->survey_id = $survey->id;
-//       // dd($place);
-//        $survey->places()->save($place);
-       // $place->surveys()->save($survey);
-
-//        Session::flash('flash_message', 'Survey successfully submitted!');{{--This did not work RD --}}
-
-
         return redirect('emails');
     }
 //

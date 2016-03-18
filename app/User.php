@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function moderator()
+    {
+        if ($this->isModerator)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 }

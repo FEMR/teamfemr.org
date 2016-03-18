@@ -46,7 +46,7 @@ class LiteratureBankSurveyController extends Controller
       //  $extension = Input::file('image')->getClientOriginalExtension();
 
 
-        return redirect('litbanksurvey');
+        return redirect('emails/test2');
 
 
     }
