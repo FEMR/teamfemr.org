@@ -9,7 +9,8 @@ class Place extends Model
     protected $fillable = [
 
         'lat',
-        'lng'
+        'lng',
+        'place'
     ];
 
     public function surveys()

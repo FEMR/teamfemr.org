@@ -111,12 +111,19 @@
 
                     <div class="form-group">
                         <input id="address" type='text' name='address' />
-                        <input id="submit" type="button" value="Geocode">
+                        <input id="submit" type="button" value="Add City">
                     </div>
 
+                    <ul class="list-group" id="list">
+
+                    </ul>
                     <div id="map" style="width: 700px; height: 400px"></div>
 
-<!--Submit and close form-->
+
+
+
+
+                    <!--Submit and close form-->
     {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
 
                     <script>
@@ -133,8 +140,14 @@
 
                                 geocodeAddress(geocoder, map);
                             });
-                        }
 
+                            document.getElementById('addlist').addEventListener('click', function() {
+
+                                myFunction() ;
+                            });
+                        }
+                        geocodeAddress.counter = 0;
+                        var gmarkers = [];
                         function geocodeAddress(geocoder, resultsMap) {
 
                             var myForm =  document.forms["codeForm"];
@@ -144,8 +157,11 @@
 
                                 if (status === google.maps.GeocoderStatus.OK) {
 
+
+
                                     var lat = results[0].geometry.location.lat();
                                     var lng = results[0].geometry.location.lng();
+                                    var locale = results[0].formatted_address;
 
 //                                    myForm.elements["lat"].value = lat;
 //                                    myForm.elements["lng"].value = lng;
@@ -158,23 +174,46 @@
                                     var latElem = document.createElement("input");
                                     latElem.setAttribute( 'type', "hidden" );
                                     latElem.setAttribute( 'name', "lat[]" );
+                                    latElem.setAttribute("id", geocodeAddress.counter);
+
                                     latElem.value = lat;
 
                                     var lngElem = document.createElement("input");
                                     lngElem.setAttribute( 'type', "hidden" );
                                     lngElem.setAttribute( 'name', "lng[]" );
+                                    lngElem.setAttribute("id", geocodeAddress.counter);
+
                                     lngElem.value = lng;
 
-                                    var locale = document.createElement("input");
-                                    locale.setAttribute( 'type', "hidden" );
-                                    locale.setAttribute( 'name', "address[]" );
-                                    locale.value = address;
+                                    var localeElem = document.createElement("input");
+                                    localeElem.setAttribute( 'type', "hidden" );
+                                    localeElem.setAttribute( 'name', "address[]" );
+                                    localeElem.setAttribute("id", geocodeAddress.counter);
+                                    localeElem.value = locale;
 
                                     // append them to the form
                                     myForm.appendChild( latElem );
                                     myForm.appendChild( lngElem );
-                                    myForm.appendChild( locale );
+                                    myForm.appendChild( localeElem );
 
+                                    var node = document.createElement("LI");
+                                    node.setAttribute( 'class', "list-group-item" );
+                                    node.setAttribute('id', geocodeAddress.counter);
+
+                                    var textnode = document.createTextNode(results[0].formatted_address);
+                                    var kill = document.createElement("a");
+                                    var id =  localeElem.getAttribute("id");
+
+
+                                    kill.setAttribute('class', "pull-right");
+
+                                    kill.innerHTML="remove";
+                                    kill.onclick=function() {killFunction(id)};
+
+                                    node.appendChild(textnode);
+                                    node.appendChild(kill);
+                                    document.getElementById("list").appendChild(node);
+                                    geocodeAddress.counter++;
                                     resultsMap.setCenter( results[0].geometry.location );
 
                                     var marker = new google.maps.Marker({
@@ -182,6 +221,7 @@
                                         map: resultsMap,
                                         position: results[0].geometry.location
                                     });
+                                    gmarkers.push(marker);
 
                                 } else {
 
@@ -189,10 +229,38 @@
                                 }
                             });
                         }
+
+                        function killFunction(id) {
+                            removeElement(id);
+                            removeElement(id);
+                            removeElement(id);
+                            removeElement(id);
+                            removeMarker(id);
+
+
+                        }
+
+                        function removeMarker(id){
+
+                                gmarkers[id].setMap(null);
+
+                        }
                     </script>
                     <script async defer
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxOG3dfRrm8yZ7ACXvkbB_q_Bc7DOW0&callback=initMap">
+
+
+
+
                     </script>
+                <script>
+                    function removeElement(elementId) {
+                        // Removes an element from the document
+                        var element = document.getElementById(elementId);
+                        element.parentNode.removeChild(element);
+                    }
+                </script>
+
 
     {{--{!! Form::close() !!}--}}
             </form>

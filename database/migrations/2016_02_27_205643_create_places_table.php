@@ -24,8 +24,9 @@ class CreatePlacesTable extends Migration
 //                ->onDelete('cascade');
 
 
-            $table->float('lat');
-            $table->float('lng');
+            $table->float('lat',8,5);
+            $table->float('lng',8,5);
+            $table->text('place');
             $table->timestamps();
 
 

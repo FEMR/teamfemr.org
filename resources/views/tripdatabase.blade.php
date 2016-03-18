@@ -110,11 +110,15 @@
                 <ul>
                     <a name={{$survey->id}}></a>
                     <h3>{{$survey->teamname}}</h3>
+                    <li>{{$survey->initiated}}</li>
+
                     <li>{{$survey->totalmatriculants}}</li>
                     <li>{{$survey->medschoolterms}}</li>
                     <li>{{$survey->aidingschools}}</li>
                     <li>{{$survey->totalperyear}}</li>
-                    <li>{{$survey->visitedlocale}}</li>
+                    @foreach($survey->places as $place)
+                    <li>{{$place->place}}</li>
+                    @endforeach
                     <li>{{$survey->monthsoftravel}}</li>
                     <li>{{$survey->partnerngo}}</li>
                     <li>{{$survey->faculty}}</li>

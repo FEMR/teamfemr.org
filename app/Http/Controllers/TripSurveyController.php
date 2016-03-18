@@ -33,13 +33,13 @@ class TripSurveyController extends Controller
     //Redirect to the Trip Survey page
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'teamname' => 'required',
 
         ]);
 
         $survey = Survey::create( $request->all() );
-
         foreach( $request->input( 'lat' ) as $id => $lat ){
 
             $lat = round( $lat, 5 );
@@ -47,9 +47,9 @@ class TripSurveyController extends Controller
             // we aren't 100% positive that $lng[$id] is set
             $lng = round( $request->input( 'lng' )[$id], 5);
             $address = $request->input( 'address' )[$id];
-
             $existing = Place::where( 'lat', '=', $lat )
                              ->where( 'lng', '=', $lng )
+                             ->where( 'place', '=', $address)
                              ->first();
 
             if( $existing ){
@@ -64,6 +64,7 @@ class TripSurveyController extends Controller
 
                     'lat' => $lat,
                     'lng' => $lng,
+                    'place' => $address,
                     //'address' => $address
                 ]);
             }
