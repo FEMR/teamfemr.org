@@ -15,7 +15,7 @@ class LitApprovalsController extends Controller
     {
         $literatures = literature::where('approved', '=', 0)->get();
 
-        return view('approvals.lit_approvals', compact('literatures'));
+        return view('approvals/lit_approvals', compact('literatures'));
     }
 
     /**
@@ -45,10 +45,10 @@ class LitApprovalsController extends Controller
          */
 
         // loop through the submitted approvals -> which are survey_ids that need to be marked as approved
-        foreach( $request->input( 'approvals' ) as $literature_id )
+        foreach( $request->input( 'approved' ) as $literature_id )
         {
             // get the surveys row we want to update
-            $literature = Literature::findOrFail( $literature_id );
+            $literature = literature::findOrFail( $literature_id );
 
             // update the status
             $literature->approved = 1;
