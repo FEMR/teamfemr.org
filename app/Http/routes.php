@@ -97,11 +97,11 @@ Route::group(['middleware' => 'web'], function ()
 	Route::get('/emails/test', 'EmailController@index');
 
 	//sends email
-	Route::get('/emails', 'EmailController@index2');
+	//Route::get('/emails', 'EmailController@index2');
 	Route::get('/emails/test2', 'EmailController@index2');
 
 	//sends email
-	Route::get('/emails', 'EmailController@index3');
+	//Route::get('/emails', 'EmailController@index3');
 	Route::get('/emails/test3', 'EmailController@index3');
 
 
@@ -137,12 +137,12 @@ Route::group(['middleware' => 'web'], function ()
 		//approvals for the literature articles
 		Route::get('/approvals/lit_approvals','LitApprovalsController@edit');
 		//	stores the updated information
-		Route::patch('/approvals', 'LitApprovalsController@update');
+		//Route::patch('/approvals', 'LitApprovalsController@update');
 
 		//approvals for the moderators
 		Route::get('/approvals/mod_approvals','ModApprovalsController@edit');
 		//	stores the updated information
-		Route::patch('/approvals', 'ModApprovalsController@update');
+		//Route::patch('/approvals', 'ModApprovalsController@update');
 
 
 	});

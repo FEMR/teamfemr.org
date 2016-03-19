@@ -105,14 +105,19 @@
     </div>
     <div class="form-group">
 
-        @foreach($surveys as $survey)
-            <table class="table">
+
+        @foreach($surveys as $id => $survey)
+            <div class="container">
+            <table class="table" >
                 <ul>
                     <a name={{$survey->id}}></a>
-                    <h3>{{$survey->teamname}}</h3>
-                    <li>{{$survey->initiated}}</li>
 
-                    <li>{{$survey->totalmatriculants}}</li>
+                    <h3 data-toggle="collapse" data-target="#<?php echo $survey->teamname ?>">{{$survey->teamname}}</h3>
+
+<div id="<?php echo $survey->teamname ?>" class="collapse">
+                    <li >{{$survey->initiated}}</li>
+
+                    <li >{{$survey->totalmatriculants}}</li>
                     <li>{{$survey->medschoolterms}}</li>
                     <li>{{$survey->aidingschools}}</li>
                     <li>{{$survey->totalperyear}}</li>
@@ -129,7 +134,12 @@
                     <li>{{$survey->adminsupport}}</li>
                     <li>{{$survey->contactinfo}}</li>
                     <li>{{ $survey->places->first() }}</li>
+
+</div>
+
+
                 </ul>
+            </div>
             </table>
     </div>
     @endforeach
