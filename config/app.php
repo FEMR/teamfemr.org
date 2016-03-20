@@ -156,8 +156,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
         Barryvdh\Debugbar\ServiceProvider::class,
+        BackupManager\Laravel\Laravel5ServiceProvider::class,
     ],
 
     /*
