@@ -51,14 +51,9 @@
                     <li><a href="{{ url('/tripdatabase') }}">Trip Database</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
                     <li><a href="{{ url('/literaturebank') }}">Literature Bank</a></li>
                 </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
-                </ul>
+
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
@@ -66,7 +61,38 @@
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
+                </ul>
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-left">
+                    {{--Moderator User--}}
+                    @elseif (Auth::user()->moderator())
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>
+                            <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
+                            <li><a href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
+                            <li><a href="{{ url('/approvals/lit_approvals') }}">Literature Approvals</a></li>
+                            <li><a href="{{ url('/approvals/mod_approvals') }}">Mod Approvals</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    {{--Registered User--}}
                     @else
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
+                        </ul>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>

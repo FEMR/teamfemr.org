@@ -1,15 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="collapse navbar-collapse" id="app-navbar-collapse">
-        <!-- Left Side Of Navbar -->
-        <ul class="nav navbar-nav">
-            <li><a href="{{ url('/approvals/mod_approvals') }}">Moderator Approvals</a></li>
-        </ul>
-        <ul class="nav navbar-nav">
-            <li><a href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
-        </ul>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -53,7 +44,7 @@
                                         <tr>
 
                                             <td>
-                                                {!! Form::checkbox('approvals[]', $literatures->id, null) !!}
+                                                {!! Form::checkbox('approved[]', $literature->id, null) !!}
                                             </td>
                                             <td>{{$literature->contributorName}}</td>
                                             <td>{{$literature->authorName}}</td>
