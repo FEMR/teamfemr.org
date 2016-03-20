@@ -7,7 +7,8 @@
         <h1>Add Literature Resource</h1>
 
         <!--url for the Literature Bank survey-->
-        {!! Form::open(['url' => 'litbanksurvey']) !!}
+        {{--{!! Form::open(['url' => 'litbanksurvey']) !!}--}}
+        {!! Form::open([ 'method' => 'POST', 'action' => 'LiteratureBankSurveyController@store', 'id' => 'codeForm' ]) !!}
 
         <!--Use a form to get the variables from the Literature Bank survey-->
         {!! Form::label('contributorName', 'Contributor Name:') !!}

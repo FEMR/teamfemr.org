@@ -13,8 +13,8 @@ class LiteratureBankSurveyController extends Controller
 {
     public function index()
     {
-        //Call view page for Literature Bank Survey
-        return view ('litbanksurvey.index');
+        $literatures = literature::where('approved', '=', 1)->get();
+        return view('literaturebank', compact ('literatures'));
     }
     public function show($id)
     {

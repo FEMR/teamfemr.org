@@ -132,17 +132,17 @@ Route::group(['middleware' => 'web'], function ()
 		//	gets the approvals.edit page
 		Route::get('/approvals/edit','ApprovalsController@edit');
 		//	stores the updated information
-		Route::patch('/approvals', 'ApprovalsController@update');
+		Route::patch('/approvals/edit', 'ApprovalsController@update');
 
 		//approvals for the literature articles
 		Route::get('/approvals/lit_approvals','LitApprovalsController@edit');
 		//	stores the updated information
-		//Route::patch('/approvals', 'LitApprovalsController@update');
+		Route::patch('/approvals/lit_approvals', 'LitApprovalsController@update');
 
 		//approvals for the moderators
 		Route::get('/approvals/mod_approvals','ModApprovalsController@edit');
 		//	stores the updated information
-		//Route::patch('/approvals', 'ModApprovalsController@update');
+		Route::patch('/approvals/mod_approvals', 'ModApprovalsController@update');
 
 
 	});

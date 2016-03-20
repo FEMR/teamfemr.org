@@ -7,15 +7,6 @@
 {{--**********************************************************************************************--}}
 
 @section('content')
-    <div class="collapse navbar-collapse" id="app-navbar-collapse">
-        <!-- Left Side Of Navbar -->
-        <ul class="nav navbar-nav">
-            <li><a href="{{ url('/approvals/lit_approvals') }}">Literature Approvals</a></li>
-        </ul>
-        <ul class="nav navbar-nav">
-            <li><a href="{{ url('/approvals/mod_approvals') }}">Moderator Approvals</a></li>
-        </ul>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
