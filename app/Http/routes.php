@@ -93,7 +93,7 @@ Route::group(['middleware' => 'web'], function ()
 
 	//sends email
 	Route::get('/emails', 'EmailController@index');
-	Route::get('/emails2', 'EmailController@index2');
+//	Route::get('/emails2', 'EmailController@index2');
 	Route::get('/emails/test', 'EmailController@index');
 
 	//sends email
