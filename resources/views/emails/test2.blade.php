@@ -1,3 +1,3 @@
 <p>
-    Please approve this survey at the following url: <a href = "homestead.app/approvals/mod_approvals">Moderator Approval Needed</a>
+    Please approve this article at the following url: <a href = "homestead.app/approvals/lit_approvals">Article Approval Needed</a>
 </p>
