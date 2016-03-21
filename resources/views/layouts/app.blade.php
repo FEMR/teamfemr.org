@@ -67,11 +67,11 @@
                     {{--Moderator User--}}
                     @elseif (Auth::user()->moderator())
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>
+                            {{--<li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>--}}
                             <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
                             <li><a href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
                             <li><a href="{{ url('/approvals/lit_approvals') }}">Literature Approvals</a></li>
-                            <li><a href="{{ url('/approvals/mod_approvals') }}">Mod Approvals</a></li>
+                            <li><a href="{{ url('/approvals/mod_approvals') }}">Moderator Approvals</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -87,9 +87,9 @@
 
                     {{--Registered User--}}
                     @else
-                        <ul class="nav navbar-nav">
-                            <li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>
-                        </ul>
+                        {{--<ul class="nav navbar-nav">--}}
+                            {{--<li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>--}}
+                        {{--</ul>--}}
                         <ul class="nav navbar-nav">
                             <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
                         </ul>

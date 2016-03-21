@@ -1,4 +1,4 @@
-@@extends ('layouts.app')
+@extends ('layouts.app')
 
 @section('content')
 
@@ -107,38 +107,40 @@
 
 
         @foreach($surveys as $id => $survey)
-            <div class="container">
-            <table class="table" >
-                <ul>
+            <div style="width:800px; margin:0 auto;">
+                <table class="table table-striped">
+
+                <ul class="list-unstyled">
                     <a name={{$survey->id}}></a>
 
-                    <h3 data-toggle="collapse" data-target="#<?php echo $survey->teamname ?>">{{$survey->teamname}}</h3>
+                    <h3 data-toggle="collapse" data-target="#<?php echo $survey->teamname ?>"><a><label  style="font-weight: bold ; width: 25%; display:inline-block">Team Name:</label> {{$survey->teamname}}</a></h3>
 
 <div id="<?php echo $survey->teamname ?>" class="collapse">
-                    <li >{{$survey->initiated}}</li>
+                    <li><label  style="font-weight: bold ; width: 25%; display:inline-block">Initiated:</label> {{$survey->initiated}}</li>
 
-                    <li >{{$survey->totalmatriculants}}</li>
-                    <li>{{$survey->medschoolterms}}</li>
-                    <li>{{$survey->aidingschools}}</li>
-                    <li>{{$survey->totalperyear}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Total Matriculants:</label> {{$survey->totalmatriculants}}</li>
+                    <li><label  style="font-weight: bold ; width: 25%; display:inline-block">Med School Terms:</label> {{$survey->medschoolterms}}</li>
+                    <li><label  style="font-weight: bold ; width: 25%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</li>
                     @foreach($survey->places as $place)
-                    <li>{{$place->place}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Location:</label>{{$place->place}}</li>
                     @endforeach
-                    <li>{{$survey->monthsoftravel}}</li>
-                    <li>{{$survey->partnerngo}}</li>
-                    <li>{{$survey->faculty}}</li>
-                    <li>{{$survey->appprocess}}</li>
-                    <li>{{$survey->programelements}}</li>
-                    <li>{{$survey->finsupport}}</li>
-                    <li>{{$survey->facultytimeallotted}}</li>
-                    <li>{{$survey->adminsupport}}</li>
-                    <li>{{$survey->contactinfo}}</li>
-                    <li>{{ $survey->places->first() }}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Months of Travel:</label>{{$survey->monthsoftravel}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Partner NGO:</label>{{$survey->partnerngo}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Faculty:</label>{{$survey->faculty}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">App. Process:</label>{{$survey->appprocess}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Program Elements:</label>{{$survey->programelements}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Financial Support:</label>{{$survey->finsupport}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Faculty Time:</label>{{$survey->facultytimeallotted}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Admin Support:</label>{{$survey->adminsupport}}</li>
+                    <li><label style="font-weight: bold ; width: 25%; display:inline-block">Contact Info:</label>{{$survey->contactinfo}}</li>
+                    {{--<li>{{ $survey->places->first() }}</li>--}}
 
 </div>
 
 
                 </ul>
+                    {{--</tr>--}}
             </div>
             </table>
     </div>
