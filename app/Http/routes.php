@@ -129,6 +129,9 @@ Route::group(['middleware' => 'web'], function ()
 	//Moderator Pages
 		Route::group([ 'middleware' => 'moderator' ], function ()
 	{
+
+		Route::get('surveys/{survey}/edit', 'TripSurveyController@edit');
+		Route::patch('surveys/{survey}', 'TripSurveyController@update');
 		//	gets the approvals.edit page
 		Route::get('/approvals/edit','ApprovalsController@edit');
 		//	stores the updated information

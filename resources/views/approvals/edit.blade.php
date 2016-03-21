@@ -54,7 +54,9 @@
                                                 {!! Form::checkbox('approvals[]', $survey->id, null) !!}
                                             </td>
                                             <td><a href="#teamname">{{$survey->teamname}}</a></td>
-                                            <td>{{$survey->visitedlocale}}</td>
+                                            <td> @foreach($survey->places as $place)
+                                                    <li>{{$place->place}}</li>
+                                                @endforeach</td>
                                             <td>{{$survey->monthsoftravel}}</td>
                                             <td>{{$survey->contactinfo}}</td>
 

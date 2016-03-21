@@ -15,7 +15,6 @@ class Survey extends Model
                 'medschoolterms',
                 'aidingschools',
                 'totalperyear',
-                'visitedlocale',
                 'monthsoftravel',
                 'partnerngo',
                 'faculty',

@@ -16,8 +16,7 @@ class LiteratureBankController extends Controller
 //Controls the view of the Literature Bank, by calling the view file (literaturebank.plade.php)
     public function index()
     {
-//        $literatures=literature::All();
-        $literatures = literature::where('approved', '=', 1)->get();
+        $literatures=Literature::All();
         return view('literaturebank', compact ('literatures'));
     }
 
