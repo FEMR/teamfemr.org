@@ -106,6 +106,8 @@
         {!! Form::label('contactinfo', 'contact info:') !!}
         {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
 
+                <br>
+                <h1>sites visited</h1>
                     {{--<input type='hidden' name="lat[]">--}}
                     {{--<input type='hidden' name="lng[]">--}}
 

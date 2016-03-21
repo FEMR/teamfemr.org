@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use Carbon\Carbon;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         $date = Carbon::now()->toW3cString();
         $environment = env('APP_ENV');
         $schedule->command(
-            "db:backup --database=mysql --destination=s3 --destinationPath=/{$environment}/projectname_{$environment}_{$date} --compression=gzip"
+            "db:backup --database=mysql --destination=dropbox --destinationPath=/{$environment}/projectname_{$environment}_{$date} --compression=gzip"
         )->daily();
     }
 }

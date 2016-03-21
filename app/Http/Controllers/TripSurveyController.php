@@ -30,6 +30,17 @@ class TripSurveyController extends Controller
         return view('tripsurvey.create');
     }
 
+    public function edit(Survey $survey){
+        return view('tripsurvey.edit', compact('survey'));
+    }
+
+    public function update(Request $request, Survey $survey)
+    {
+        $survey->update($request->all());
+
+        return back();
+    }
+
     //Redirect to the Trip Survey page
     public function store(Request $request)
     {
