@@ -112,10 +112,16 @@
 
                 <ul class="list-unstyled">
                     <a name={{$survey->id}}></a>
+                    @if (Auth::guest() || !Auth::user()->moderator())
+                        <h3 data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><a><label  style="font-weight: bold ; width: 25%; display:inline-block">Team Name:</label> {{$survey->teamname}}</a> </h3>
+                    @elseif (Auth::user()->moderator())
+                        <h3 data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><a><label  style="font-weight: bold ; width: 25%; display:inline-block">Team Name:</label> {{$survey->teamname}}</a>
+                        <a href ="/surveys/<?php echo $survey->id ?>/edit" class="btn btn-primary btn-sm">EDIT</a></h3>
+                    @endif
 
-                    <h3 data-toggle="collapse" data-target="#<?php echo $survey->teamname ?>"><a><label  style="font-weight: bold ; width: 25%; display:inline-block">Team Name:</label> {{$survey->teamname}}</a></h3>
 
-<div id="<?php echo $survey->teamname ?>" class="collapse">
+
+                <div id="<?php echo $survey->id ?>" class="collapse">
                     <li><label  style="font-weight: bold ; width: 25%; display:inline-block">Initiated:</label> {{$survey->initiated}}</li>
 
                     <li><label style="font-weight: bold ; width: 25%; display:inline-block">Total Matriculants:</label> {{$survey->totalmatriculants}}</li>

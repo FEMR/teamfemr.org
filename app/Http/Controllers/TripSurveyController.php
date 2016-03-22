@@ -30,6 +30,7 @@ class TripSurveyController extends Controller
         return view('tripsurvey.create');
     }
 
+    //Editing the Survey ***********************************
     public function edit(Survey $survey){
         return view('tripsurvey.edit', compact('survey'));
     }
@@ -40,6 +41,7 @@ class TripSurveyController extends Controller
 
         return back();
     }
+//    *******************************************************
 
     //Redirect to the Trip Survey page
     public function store(Request $request)

@@ -147,6 +147,8 @@ Route::group(['middleware' => 'web'], function ()
 		//	stores the updated information
 		Route::patch('/approvals/mod_approvals', 'ModApprovalsController@update');
 
+		Route::get('/approvals/surveyedits', 'SurveyEditsController@index');
+
 
 	});
 

@@ -69,6 +69,7 @@
                         <ul class="nav navbar-nav">
                             {{--<li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>--}}
                             <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
+                            <li><a href="{{ url('/approvals/surveyedits') }}">Surveys</a></li>
                             <li><a href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
                             <li><a href="{{ url('/approvals/lit_approvals') }}">Literature Approvals</a></li>
                             <li><a href="{{ url('/approvals/mod_approvals') }}">Moderator Approvals</a></li>
