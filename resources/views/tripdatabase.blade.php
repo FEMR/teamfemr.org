@@ -11,6 +11,7 @@
 
                 <!--Link to Trip Database survey-->
                 <h2 style="float:left; width:150px;"><a href="tripsurvey/create">Can't find your team, click here.</a></h2>
+                {{--<div><a href ="/tripsurvey/create" class="btn btn-primary btn-sm">click here</a></div>--}}
                 <div class="panel-body">
                     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
                     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -47,7 +48,7 @@
                                     for (var j = ((markers[i].attributes.length-2)/2)-1; j >-1 ; j--)
                                     {
 
-                                        name += "<a href=\"#"+ markers[i].getAttribute("id"+j) +"\">" + markers[i].getAttribute("teamname"+j) + "</a>" +"<br>" ;
+                                        name += "<a href=\"#jump"+ markers[i].getAttribute("id"+j) +"\">" + markers[i].getAttribute("teamname"+j) + "</a>" +"<br>" ;
                                     }
                                     <!--Pull latitude and longitude data from the Trip Database survey-->
                                     var point = new google.maps.LatLng(
@@ -111,7 +112,7 @@
                 <table class="table table-striped">
 
                 <ul class="list-unstyled">
-                    <a name={{$survey->id}}></a>
+                    <a name=<?php echo ("jump".$survey->id) ?>></a>
                     @if (Auth::guest() || !Auth::user()->moderator())
                         <h3 data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><a><label  style="font-weight: bold ; width: 25%; display:inline-block">Team Name:</label> {{$survey->teamname}}</a> </h3>
                     @elseif (Auth::user()->moderator())
