@@ -6,7 +6,9 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                        <div class="panel-heading"><center><h1>Write Survey</h1></center></div>
+                        <div class="panel-heading"><center><h1>Write Survey</h1>
+                            <p>Please fill out every box, if not applicable put NA.</p></center>
+                        </div>
                     <div class="panel-body">
         <!--Print to web page-->
 
@@ -66,13 +68,38 @@
         {{--{!! Form::label('lng', 'Longitude:') !!}--}}
         {{--{!! Form::number('lng' , null, ['class' => 'form-control']) !!}--}}
 
-
         {!! Form::label('monthsoftravel', 'month(s) of travel:') !!}
         {!! Form::text( 'monthsoftravel' , null, ['class' => 'form-control']) !!}
 
 
+                    {{--//Adding Cities--}}
+                    <br>
+                    <h1>sites visited</h1>
+                    {{--<input type='hidden' name="lat[]">--}}
+                    {{--<input type='hidden' name="lng[]">--}}
+
+                    <div class="form-group">
+                        <input id="address" type='text' name='address' />
+                        <input id="submit" type="button" value="Add City">
+                    </div>
+
+                    <ul class="list-group" id="list">
+
+                    </ul>
+                    <div id="map" style="width: 700px; height: 400px"></div>
+
+                    <br>
+                    <div class="col-sm-50"; style="text-align:center">
+                    <!--Submit and close form-->
+                    {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+</div>
+            </div>
+
+                        <div class="col-sm-6">
+
         {!! Form::label('partnerngo', 'NGO/Parter organizations:') !!}
         {!! Form::text( 'partnerngo' , null, ['class' => 'form-control']) !!}
+
 
 
         {!! Form::label('faculty', 'Faculty and staffing:') !!}
@@ -106,28 +133,9 @@
         {!! Form::label('contactinfo', 'contact info:') !!}
         {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
 
-                <br>
-                <h1>sites visited</h1>
-                    {{--<input type='hidden' name="lat[]">--}}
-                    {{--<input type='hidden' name="lng[]">--}}
-
-                    <div class="form-group">
-                        <input id="address" type='text' name='address' />
-                        <input id="submit" type="button" value="Add City">
-                    </div>
-
-                    <ul class="list-group" id="list">
-
-                    </ul>
-                    <div id="map" style="width: 700px; height: 400px"></div>
-
-
-
-
-
-                    <!--Submit and close form-->
-    {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
-
+                    {{--<!--Submit and close form-->--}}
+    {{--{!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}--}}
+</div>
                     <script>
                         function initMap() {
 

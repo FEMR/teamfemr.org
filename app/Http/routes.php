@@ -13,11 +13,6 @@ use App\Place;
 */
 
 
-Route::get('/', function () {
-    //echo 'Welcome to my site';
-    return view('welcome');
-});
-
 //Convert database entries to xml form
 Route::get('/users/xml', function() {
 
@@ -79,9 +74,15 @@ Route::get('/users/xml', function() {
 Route::group(['middleware' => 'web'], function ()
 {
 
+	Route::get('/', function () {
+		$surveys = Survey::All();
+		return view( 'tripdatabase', compact('surveys') );
+	});
+
 
 	//Calls the Trip Database controller, which controls the Trip Database web page
 	Route::get('tripdatabase', 'TripDatabaseController@index');
+
 
 
 	//Calls the Literature Bank controller, which controls the Literature Bank web page
@@ -104,6 +105,9 @@ Route::group(['middleware' => 'web'], function ()
 	//Route::get('/emails', 'EmailController@index3');
 	Route::get('/emails/test3', 'EmailController@index3');
 
+	Route::get('/confirmations/surveymsg', 'ConfirmationMsgController@index');
+
+	Route::get('/confirmations/literaturemsg', 'ConfirmationMsgController@literature');
 
 	//pulls the authorization page
 	Route::auth();

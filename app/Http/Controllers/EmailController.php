@@ -19,7 +19,8 @@ class EmailController extends Controller
         {
             $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Approvals Needed.');
         });
-        return redirect('/tripdatabase');
+
+        return redirect('/confirmations/surveymsg');
     }
 
     public function index2( )
@@ -28,7 +29,7 @@ class EmailController extends Controller
         {
             $message->to('femrsquad@gmail.com','Admin')->from('femrsquad@gmail.com')->subject('Approvals Needed.');
         });
-        return redirect('/literaturebank');
+        return redirect('/confirmations/literaturemsg');
     }
 
     public function index3( )

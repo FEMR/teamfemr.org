@@ -3,16 +3,23 @@
 @section('content')
 
         <!--Trip Database web page-->
+
 <div class="container">
+
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
+        <div class="col-sm-1">
+            <br><br><br><br>
+        <h5><center>Can't find your team? <br>Click the button.</center>
+          <a href ="/tripsurvey/create" class="btn btn-primary btn-sm">ADD TEAM</a></h5>
+            </div>
+        <div class="col-md-10">
+            <h2 class="panel panel-default">
                 <div class="panel-heading"><center><h1>Trip Database</h1></center></div>
 
                 <!--Link to Trip Database survey-->
-                <h2 style="float:left; width:150px;"><a href="tripsurvey/create">Can't find your team, click here.</a></h2>
-                {{--<div><a href ="/tripsurvey/create" class="btn btn-primary btn-sm">click here</a></div>--}}
+
                 <div class="panel-body">
+
                     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
                     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
@@ -96,7 +103,7 @@
                     </script>
                     </head>
                     <body onload="load()">
-                    <div id="map" style="width: 700px; height: 400px"></div>
+                    <div id="map" style="width: 900px; height: 400px"></div>
 
 
                     </body>
