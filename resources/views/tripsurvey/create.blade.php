@@ -89,7 +89,7 @@
                     <div id="map" style="width: 700px; height: 400px"></div>
 
                     <br>
-                    <div class="col-sm-50"; style="text-align:center">
+                    <div class="col-sm-50 col-md-offset-10"; style="text-align:center">
                     <!--Submit and close form-->
                     {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
 </div>

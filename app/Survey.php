@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Survey extends Model
 {
@@ -30,4 +31,7 @@ class Survey extends Model
         {
                 return $this->belongsToMany('App\Place');
         }
+        use SoftDeletes;
+
+        protected $dates = ['deleted_at'];
 }

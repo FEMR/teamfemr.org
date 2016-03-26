@@ -39,6 +39,7 @@
                                     <thead>
                                         <tr>
                                             <th>Approve</th>
+                                            <th>Delete</th>
                                             <th>Team Name</th>
                                             <th>Locale</th>
                                             <th>Months of Travel</th>
@@ -52,6 +53,9 @@
 
                                             <td>
                                                 {!! Form::checkbox('approvals[]', $survey->id, null) !!}
+                                            </td>
+                                            <td>
+                                                {!! Form::checkbox('deletes[]', $survey->id, null) !!}
                                             </td>
                                             <td><a href="#teamname">{{$survey->teamname}}</a></td>
                                             <td> @foreach($survey->places as $place)

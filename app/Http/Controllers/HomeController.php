@@ -15,19 +15,19 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::where('name', '=', $request->input('name'))
-            ->orderBy('email', 'desc')
-            ->get();
+//        $users = User::where('name', '=', $request->input('name'))
+//            ->orderBy('email', 'desc')
+//            ->get();
 
 
-        return view('home.user', compact('users'));
+        return redirect('tripdatabase'); //, compact('users'));
     }
 
-    public function test(User $user)
-    {
-
-        return 'Hey ' . $user->name;
-    }
+//    public function test(User $user)
+//    {
+//
+//        return 'Hey ' . $user->name;
+//    }
 
 
 }

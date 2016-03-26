@@ -43,7 +43,8 @@ class ApprovalsController extends Controller
                       ]
                     ]
          */
-
+    if($request->input('approvals'))
+    {
         // loop through the submitted approvals -> which are survey_ids that need to be marked as approved
         foreach( $request->input( 'approvals' ) as $survey_id )
         {
@@ -53,20 +54,18 @@ class ApprovalsController extends Controller
             // update the status
             $survey->approved = 1;
 
-            /**
-             *  NOTE: I a little unclear on the name `status` for the column used above. Its not very clear at a first
-             *      glance what that field represents. Would it make more sense to name that column `is_approved` rather
-             *      than status?
-             *
-             *  If you do want to keep the name of the column `status`, that can work, but really that column should be a
-             *      foreign key to a `statuses` table in the database. The `statuses` table would be just an `id` and a
-             *      `name` column. Then it would be a little clearer what `status` represents is to a newcomer to the code.
-             *
-             *  There are pros and cons to both methods. Ultimately its up to you, just giving a suggestion
-             */
-
             // Update (save) record back in the database
             $survey->save();
+
+        }
+    }
+        foreach( $request->input( 'deletes' ) as $survey_id )
+        {
+            // get the surveys row we want to update
+            $survey = Survey::findOrFail( $survey_id );
+
+            // update the status
+            $survey->delete();
 
         }
 
@@ -75,5 +74,6 @@ class ApprovalsController extends Controller
         //return view('approvals.edit', compact('Survey'));
         return redirect()->action( 'ApprovalsController@edit' );
     }
+
 
 }

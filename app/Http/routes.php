@@ -115,7 +115,7 @@ Route::group(['middleware' => 'web'], function ()
 //	all pages inside this group must be logged in to use
 	Route::group([ 'middleware' => 'auth' ], function () {
 		Route::get('/home', 'HomeController@index');
-		Route::get('/home/{user}', 'HomeController@test');
+//		Route::get('/home/{user}', 'HomeController@test');
 
 		//Call appropriate controllers (which control the Trip Survey web page and survey)
 		Route::get('/tripsurvey', 'TripSurveyController@index');
