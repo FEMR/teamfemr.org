@@ -1,0 +1,20 @@
+.tiles_left{
+	float: left;
+	width: 50%;
+}
+.tiles_right{
+	float: right;
+	width: 50%;
+}
+.tiles_left h3{
+	text-align: center;
+}
+.tiles_right h3{
+	text-align: center;
+}
+
+@media(max-width: 420px){
+	.content_middle li{
+		font-size: 12px;
+	}
+}

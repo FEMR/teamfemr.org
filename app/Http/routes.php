@@ -78,7 +78,18 @@ Route::group(['middleware' => 'web'], function ()
 		$surveys = Survey::All();
 		return view( 'tripdatabase', compact('surveys') );
 	});
-
+	Route::get('/emr', function () {
+		return view( 'emr' );
+	});
+	Route::get('/home0', function () {
+		return view( 'home0	' );
+	});
+	Route::get('/news', function () {
+		return view( 'news' );
+	});
+	Route::get('/slack', function () {
+		return view( 'slack' );
+	});
 
 	//Calls the Trip Database controller, which controls the Trip Database web page
 	Route::get('tripdatabase', 'TripDatabaseController@index');

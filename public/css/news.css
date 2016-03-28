@@ -1,0 +1,8 @@
+#newsList{
+	text-align: center;
+	margin-top: 0;
+}
+#newsList li{
+	list-style-type: none;
+	padding: 10px;
+}
