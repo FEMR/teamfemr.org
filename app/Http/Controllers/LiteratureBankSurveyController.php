@@ -5,7 +5,7 @@ use App\Literature;
 use App\Survey;
 //use Illuminate\Http\Request;
 use Request;
-
+use Storage;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -34,6 +34,13 @@ class LiteratureBankSurveyController extends Controller
         //Call view page for Literature Bank survey, while passing data
         $input = Request::all();
         Literature::create($input);
+        $files = Request::file('file');
+
+        if(!empty($files)):
+            foreach($files as $file):
+                Storage::put($file->getClientOriginalName(), file_get_contents($file));
+            endforeach;
+        endif;
 
         //Getting uploaded file
         //$file = Request::file('file');
