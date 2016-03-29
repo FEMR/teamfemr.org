@@ -24,7 +24,8 @@ class Survey extends Model
                 'finsupport',
                 'facultytimeallotted',
                 'adminsupport',
-                'contactinfo'
+                'contactinfo',
+                'approved'
         ];
 
         public function places()

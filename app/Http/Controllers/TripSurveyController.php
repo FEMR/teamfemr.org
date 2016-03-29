@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 //use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class TripSurveyController extends Controller
 {
@@ -67,6 +68,14 @@ class TripSurveyController extends Controller
         ]);
 
         $survey = Survey::create( $request->all() );
+
+        $user = Auth::user();
+        if ($user->moderator())
+        {
+            $survey->approved = 1;
+            $survey->save();
+        }
+        
         foreach( $request->input( 'lat' ) as $id => $lat ){
 
             $lat = round( $lat, 5 );
