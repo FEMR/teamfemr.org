@@ -49,7 +49,7 @@
 
                                 </table>
                                                                 <div class="form-group">
-                                    {!! Form::submit('Submit Approvals', ['class' => 'btn btn-primary form-control']) !!}
+                                    {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
                                 </div>
 
                                 {!! Form::close() !!}

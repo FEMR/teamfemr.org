@@ -33,6 +33,7 @@
                                     <thead>
                                     <tr>
                                         <th>Approve</th>
+                                        <th>Delete</th>
                                         <th>Contributor Name</th>
                                         <th>Author Name</th>
                                         <th>Link</th>
@@ -46,6 +47,9 @@
                                             <td>
                                                 {!! Form::checkbox('approved[]', $literature->id, null) !!}
                                             </td>
+                                            <td>
+                                                {!! Form::checkbox('deletes[]', $literature->id, null) !!}
+                                            </td>
                                             <td>{{$literature->contributorName}}</td>
                                             <td>{{$literature->authorName}}</td>
                                             <td>{{$literature->addLink}}</td>
@@ -58,7 +62,7 @@
 
                                 </table>
                                 <div class="form-group">
-                                    {!! Form::submit('Submit Approvals', ['class' => 'btn btn-primary form-control']) !!}
+                                    {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
                                 </div>
 
                                 {!! Form::close() !!}
@@ -66,7 +70,7 @@
                         @else
                             <p>There are no Articles to approve.</p>
                         @endif
-
+                        <div><h5><a href ="/deleteArticles" class="btn btn-primary btn-sm">View Deleted Articles</a></h5></div>
                     </div>
                 </div>
             </div>

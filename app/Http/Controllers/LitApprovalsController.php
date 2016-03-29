@@ -45,36 +45,58 @@ class LitApprovalsController extends Controller
          */
 
         // loop through the submitted approvals -> which are survey_ids that need to be marked as approved
-        foreach( $request->input( 'approved' ) as $literature_id )
+        if($request->input('approved'))
         {
-            // get the surveys row we want to update
-            $literature = literature::findOrFail( $literature_id );
+            foreach( $request->input( 'approved' ) as $literature_id )
+            {
+                // get the surveys row we want to update
+                $literature = literature::findOrFail( $literature_id );
 
-            // update the status
-            $literature->approved = 1;
+                // update the status
+                $literature->approved = 1;
 
-            /**
-             *  NOTE: I a little unclear on the name `status` for the column used above. Its not very clear at a first
-             *      glance what that field represents. Would it make more sense to name that column `is_approved` rather
-             *      than status?
-             *
-             *  If you do want to keep the name of the column `status`, that can work, but really that column should be a
-             *      foreign key to a `statuses` table in the database. The `statuses` table would be just an `id` and a
-             *      `name` column. Then it would be a little clearer what `status` represents is to a newcomer to the code.
-             *
-             *  There are pros and cons to both methods. Ultimately its up to you, just giving a suggestion
-             */
+                /**
+                 *  NOTE: I a little unclear on the name `status` for the column used above. Its not very clear at a first
+                 *      glance what that field represents. Would it make more sense to name that column `is_approved` rather
+                 *      than status?
+                 *
+                 *  If you do want to keep the name of the column `status`, that can work, but really that column should be a
+                 *      foreign key to a `statuses` table in the database. The `statuses` table would be just an `id` and a
+                 *      `name` column. Then it would be a little clearer what `status` represents is to a newcomer to the code.
+                 *
+                 *  There are pros and cons to both methods. Ultimately its up to you, just giving a suggestion
+                 */
 
-            // Update (save) record back in the database
-            $literature->save();
+                // Update (save) record back in the database
+                $literature->save();
 
+            }
+        }
+        
+        
+        if($request->input('deletes'))
+        {
+            foreach ($request->input('deletes') as $literature_id) {
+                // get the surveys row we want to update
+                $literature = literature::findOrFail($literature_id);
+
+                // update the status
+                $literature->delete();
+
+            }
         }
 
         // Redirect to the edits page rather than display the form here
         // -- it is better to keep the routes separated
         //return view('approvals.edit', compact('Survey'));
         return redirect()->action( 'LitApprovalsController@edit' );
-    }
 
+    }
+    public function viewDeletes()
+    {
+        $literatures = literature::onlyTrashed()->get();
+
+        return view('deleteArticles', compact('literatures'));
+    }
 }
 

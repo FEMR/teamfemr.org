@@ -153,6 +153,7 @@ Route::group(['middleware' => 'web'], function ()
 		Route::patch('/approvals/edit', 'ApprovalsController@update');
 
 		Route::get('/deletes','ApprovalsController@viewDeletes');
+		Route::get('/deleteArticles','LitApprovalsController@viewDeletes');
 
 		//approvals for the literature articles
 		Route::get('/approvals/lit_approvals','LitApprovalsController@edit');

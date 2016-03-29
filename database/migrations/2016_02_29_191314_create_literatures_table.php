@@ -20,6 +20,7 @@ class CreateLiteraturesTable extends Migration
             $table->text('authorName');
             $table->text('addLink');
             $table->boolean('approved');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

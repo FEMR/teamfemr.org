@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class literature extends Model
 {
@@ -14,4 +16,7 @@ class literature extends Model
         'authorName',
         'addLink'
 ];
+        use SoftDeletes;
+
+        protected $dates = ['deleted_at'];
 }
