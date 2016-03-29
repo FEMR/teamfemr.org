@@ -48,6 +48,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/tripdatabase') }}">Trip Database</a></li>
             </ul>
+
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/literaturebank') }}">Literature Bank</a></li>
             </ul>

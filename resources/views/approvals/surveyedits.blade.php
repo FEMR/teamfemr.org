@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appFemr')
 
 {{--**************************Trying to have user specific nav bar *******************************************--}}
 {{--@if(Auth::user()->isAdmin())--}}

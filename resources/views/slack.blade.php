@@ -2,6 +2,7 @@
 @extends ('layouts.appFemr')
 
 @section('content')
+    <div class="container">
     <div class="content">
 
         <div class="slack-content">
@@ -16,6 +17,7 @@
             </div>
         </div>
 
+    </div>
     </div>
 
     @endsection

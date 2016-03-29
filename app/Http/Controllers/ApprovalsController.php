@@ -59,16 +59,18 @@ class ApprovalsController extends Controller
 
         }
     }
-        foreach( $request->input( 'deletes' ) as $survey_id )
-        {
+        
+    if($request->input('deletes'))
+    {
+        foreach ($request->input('deletes') as $survey_id) {
             // get the surveys row we want to update
-            $survey = Survey::findOrFail( $survey_id );
+            $survey = Survey::findOrFail($survey_id);
 
             // update the status
             $survey->delete();
 
         }
-
+    }
         // Redirect to the edits page rather than display the form here
         // -- it is better to keep the routes separated
         //return view('approvals.edit', compact('Survey'));

@@ -2,7 +2,7 @@
 @extends ('layouts.appFemr')
 
 @section('content')
-
+    <div class="container">
     <div class="content_top margins">
         <h1>A fast EMR solution for transient medical teams.</h1>
         <p>We are using open source technology to promote data driven communciation in low resource settings.</p>
@@ -70,7 +70,7 @@
     </div>
     <div class="content_bottom">
     </div>
-
+</div>
 
     @endsection
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appFemr')
 
 @section('content')
     <h1>{{$survey->teamname}}</h1>
