@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appFemr')
 
 <!-Literature Bank survey page-->
 @section('content')
@@ -23,8 +23,8 @@
         {!! Form::url( 'addLink' , null, ['class' => 'form-control']) !!}
 
 
-
-        <input type="file" name="file[]" multiple><br />
+<br>
+        {{--<input type="file" name="file[]" multiple><br />--}}
 
         <!--Submit and close form-->
         {!! Form::submit('Add Resource', ['class' => 'btn btn-primary form-control']) !!}
