@@ -59,7 +59,7 @@ class ApprovalsController extends Controller
 
         }
     }
-        
+
     if($request->input('deletes'))
     {
         foreach ($request->input('deletes') as $survey_id) {
@@ -77,5 +77,11 @@ class ApprovalsController extends Controller
         return redirect()->action( 'ApprovalsController@edit' );
     }
 
+    public function viewDeletes()
+    {
+        $surveys = Survey::onlyTrashed()->get();
+
+        return view('deletes', compact('surveys'));
+    }
 
 }

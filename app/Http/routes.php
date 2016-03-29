@@ -152,6 +152,8 @@ Route::group(['middleware' => 'web'], function ()
 		//	stores the updated information
 		Route::patch('/approvals/edit', 'ApprovalsController@update');
 
+		Route::get('/deletes','ApprovalsController@viewDeletes');
+
 		//approvals for the literature articles
 		Route::get('/approvals/lit_approvals','LitApprovalsController@edit');
 		//	stores the updated information
