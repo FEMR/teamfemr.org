@@ -14,13 +14,7 @@
 
 
             <div class="col-sm-6">
-{{--This did not work, tried to get approval message displayed on the form RD --}}
-                {{--@if(Session::has('flash_message'))--}}
-                    {{--<div class="alert alert-success">--}}
-                        {{--{{ Session::get('flash_message') }}--}}
-                    {{--</div>--}}
-                {{--@endif--}}
-{{--*********************************************************--}}
+
 {{--This displays an error message if required fields are left blank - RD--}}
         @if($errors->any())
             <div class="alert alert-danger">
@@ -57,17 +51,6 @@
         {!! Form::text( 'totalperyear' , null, ['class' => 'form-control']) !!}
 
 
-        {{--{!! Form::label('visitedlocale', 'Locations visited:') !!}--}}
-        {{--{!! Form::text( 'visitedlocale' , null, ['class' => 'form-control']) !!}--}}
-
-
-        {{--{!! Form::label('lat', 'Latitude:') !!}--}}
-        {{--{!! Form::number( 'lat' , null, ['class' => 'form-control']) !!}--}}
-
-
-        {{--{!! Form::label('lng', 'Longitude:') !!}--}}
-        {{--{!! Form::number('lng' , null, ['class' => 'form-control']) !!}--}}
-
         {!! Form::label('monthsoftravel', 'month(s) of travel:') !!}
         {!! Form::text( 'monthsoftravel' , null, ['class' => 'form-control']) !!}
 
@@ -75,8 +58,7 @@
                     {{--//Adding Cities--}}
                     <br>
                     <h1>sites visited</h1>
-                    {{--<input type='hidden' name="lat[]">--}}
-                    {{--<input type='hidden' name="lng[]">--}}
+
 
                     <div class="form-group">
                         <input id="address" type='text' name='address' />
@@ -133,8 +115,7 @@
         {!! Form::label('contactinfo', 'contact info:') !!}
         {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
 
-                    {{--<!--Submit and close form-->--}}
-    {{--{!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}--}}
+
 </div>
                     <script>
                         function initMap() {
