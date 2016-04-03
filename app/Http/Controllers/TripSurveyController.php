@@ -106,9 +106,15 @@ class TripSurveyController extends Controller
             }
 
         }
+        if ($user->moderator())
+        {
+            return redirect('tripdatabase');
+        }
+        else
+        {
+            return redirect('emails');
+        }
 
-
-        return redirect('emails');
     }
 //
 
