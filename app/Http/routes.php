@@ -16,14 +16,11 @@ use App\Place;
 //Convert database entries to xml form
 Route::get('/users/xml', function() {
 
+	
 
-	$places = Place::whereHas( 'surveys', function($query){
-
-					$query->where( 'approved', '=', 1 );
-
-				})
-				->with( 'surveys' )
-				->get();
+	$surveys = Survey::where('approved', '=', 1)
+		->with( 'places' )
+		->get();
 
 	//	dd( $places );
 
@@ -31,19 +28,20 @@ Route::get('/users/xml', function() {
 	$xml->openMemory();
 	$xml->startDocument();
 	$xml->startElement('markers');
-	foreach($places as $place) {
+	foreach($surveys as $survey) {
+		foreach($survey->places as $idx => $place){
+			$xml->startElement('marker');
+			$xml->writeAttribute('lat', $place->lat);
+			$xml->writeAttribute('lng', $place->lng);
+			$xml->writeAttribute('id' . $idx, $survey->id);
+			$xml->writeAttribute('teamname' . $idx, $survey->teamname);
 
-		$teams = '';
 
-		$xml->startElement('marker');
-		$xml->writeAttribute('lat', $place->lat);
-		$xml->writeAttribute('lng', $place->lng);
-
-		foreach ($place->surveys as $index => $survey) {
-
-			$xml->writeAttribute('id' . $index, $survey->id);
-			$xml->writeAttribute('teamname' . $index, $survey->teamname);
 		}
+
+
+
+
 
 		$xml->endElement();
 
@@ -142,7 +140,7 @@ Route::group(['middleware' => 'web'], function ()
 	});
 
 	//Moderator Pages
-		Route::group([ 'middleware' => 'moderator' ], function ()
+	Route::group([ 'middleware' => 'moderator' ], function ()
 	{
 
 		Route::get('surveys/{survey}/edit', 'TripSurveyController@edit');
