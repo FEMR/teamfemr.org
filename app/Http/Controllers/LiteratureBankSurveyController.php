@@ -34,32 +34,24 @@ class LiteratureBankSurveyController extends Controller
         //Call view page for Literature Bank survey, while passing data
         $input = Request::all();
         $literature = Literature::create($input);
-        $files = Request::file('file');
+       // $files = Request::file('file');
      //   dd($files);
 
         // Image Upload
         if( Request::file('file') && Request::file('file')->isValid() )
         {
-            $file_name = uniqid().'.'.Request::file( 'file' )->getClientOriginalExtension();
+            $file_name = uniqid() . '.' . Request::file('file')->getClientOriginalExtension();
             $path = '/assets/uploads/' . $file_name;
-            Request::file( 'file' )->move( base_path() . '/public/assets/uploads/', $file_name );
+            Request::file('file')->move(base_path() . '/public/assets/uploads/', $file_name);
 
             //dd($path);
-            $literature->image = $path;
+            $literature->fileName = $path;
             $literature->save();
         }
 
-
-        /*//Getting uploaded file
-        $file = Request::file('file');
-       //$file = $Request->file('photo');
-        if(Request::)
-       $file->move('/', abc);
-       dd($input);*/
-
         //Getting path of uploaded file
-    $path = Input::file('image')->getRealPath();
-        $extension = Input::file('image')->getClientOriginalExtension();
+    //$path = Input::file('image')->getRealPath();
+    //    $extension = Input::file('image')->getClientOriginalExtension();
 
         return redirect('emails/test2');
 

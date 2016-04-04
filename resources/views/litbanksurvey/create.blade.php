@@ -24,7 +24,7 @@
 
 
 <br>
-        <input type="file" name="file[]" multiple><br />
+        <input type="file" name="file"><br />
 
         <!--Submit and close form-->
         {!! Form::submit('Add Resource', ['class' => 'btn btn-primary form-control']) !!}
