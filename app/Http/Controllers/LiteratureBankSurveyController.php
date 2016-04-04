@@ -33,21 +33,29 @@ class LiteratureBankSurveyController extends Controller
     {
         //Call view page for Literature Bank survey, while passing data
         $input = Request::all();
-        Literature::create($input);
+        $literature = Literature::create($input);
         $files = Request::file('file');
+     //   dd($files);
 
-        if(!empty($files)):
-           foreach($files as $file)
-               Storage::put($file->getClientOriginalName(), file_get_contents($file));
-            endforeach;
-       endif;
+        // Image Upload
+        if( Request::file('file') && Request::file('file')->isValid() )
+        {
+            $file_name = uniqid().'.'.Request::file( 'file' )->getClientOriginalExtension();
+            $path = '/assets/uploads/' . $file_name;
+            Request::file( 'file' )->move( base_path() . '/public/assets/uploads/', $file_name );
 
-        //Getting uploaded file
+            //dd($path);
+            $literature->image = $path;
+            $literature->save();
+        }
+
+
+        /*//Getting uploaded file
         $file = Request::file('file');
        //$file = $Request->file('photo');
-       // if(Request::)
-       // $file->move('/', abc);
-        dd($input);
+        if(Request::)
+       $file->move('/', abc);
+       dd($input);*/
 
         //Getting path of uploaded file
     $path = Input::file('image')->getRealPath();
