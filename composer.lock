@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "429614156f4fe75fbff3402de7df221e",
-    "content-hash": "d47243767bf13071c11ccae52789a3f8",
+    "hash": "c780f7a32f8ec831929d6fda35f054ee",
+    "content-hash": "5b153ef54db22ec9a585e35400105fc5",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -375,6 +375,60 @@
                 "dropbox"
             ],
             "time": "2015-06-29 21:47:57"
+        },
+        {
+            "name": "embed/embed",
+            "version": "v2.6.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oscarotero/Embed.git",
+                "reference": "6e6c07b2ec0424d1850c7ebeb4580307b83a9b9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/6e6c07b2ec0424d1850c7ebeb4580307b83a9b9e",
+                "reference": "6e6c07b2ec0424d1850c7ebeb4580307b83a9b9e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "5.x",
+                "phpunit/phpunit": "*"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle@5.x": "To use Guzzle5 request resolver"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Embed\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oscar Otero",
+                    "email": "oom@oscarotero.com",
+                    "homepage": "http://oscarotero.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP library to retrieve page info using oembed, opengraph, etc",
+            "homepage": "https://github.com/oscarotero/Embed",
+            "keywords": [
+                "embed",
+                "embedly",
+                "oembed",
+                "opengraph",
+                "twitter cards"
+            ],
+            "time": "2016-03-25 09:40:48"
         },
         {
             "name": "jakub-onderka/php-console-color",

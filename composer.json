@@ -10,7 +10,8 @@
         "laravelcollective/html": "^5.2",
         "barryvdh/laravel-debugbar": "^2.2",
         "backup-manager/laravel": "^1.1",
-        "league/flysystem-dropbox": "^1.0"
+        "league/flysystem-dropbox": "^1.0",
+        "embed/embed": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

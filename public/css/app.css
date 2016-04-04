@@ -189,3 +189,12 @@
   height: 350px;
   margin: 0 auto;
 }
+
+.boxed {
+  width: 400px;
+  padding: 10px;
+  border: 5px solid navy;
+  margin: 25px;
+}
+
+
