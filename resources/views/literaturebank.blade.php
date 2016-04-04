@@ -15,7 +15,6 @@
                                 <!--Portion of web page where the links to resources are listed-->
                 <h3>New Additions:</h3>
 
-
                @foreach($literatures as $literature)
 
                <div class="boxed">
