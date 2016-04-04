@@ -25,6 +25,7 @@
               <br>
               <a href="<?php echo $info->url ?>"><img src="<?php echo $info->image ?>" alt="Main image" style="width:200px;height:150px;"></a>
               <br>
+
               <?php echo $info->publishedDate ?>
               </div>
 
