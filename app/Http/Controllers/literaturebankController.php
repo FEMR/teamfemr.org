@@ -17,18 +17,16 @@ class LiteratureBankController extends Controller
 //Controls the view of the Literature Bank, by calling the view file (literaturebank.plade.php)
     public function index()
     {
-        $literatures = Literature::where( 'approved', '=', 1 )->all();
+
+       // $literatures = Literature::where( 'approved', '=', 1 )->all();
+
+        $literatures = Literature::all();
         $info = [];
 
         foreach ($literatures as $id => $literature)
         {
             $info[$id] = Embed::create($literature->addLink);
         }
-
-       /* $literatures = Literature::find(4);
-            $info = Embed::create($literatures->addLink);
-       */
-       //dd($info->title);
 
         return view('literaturebank', compact ('literatures', 'info'));
     }
@@ -38,7 +36,7 @@ class LiteratureBankController extends Controller
     {
         //Get data
         $file = array('image' => Input::file('image'));
-//Set up rules
+        //Set up rules
         $rules = array('image' => 'required',);
         //messages
         //Performing validation per the rules, passing the data

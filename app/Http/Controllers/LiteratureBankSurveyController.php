@@ -34,7 +34,6 @@ class LiteratureBankSurveyController extends Controller
         //Call view page for Literature Bank survey, while passing data
         $input = Request::all();
         $literature = Literature::create($input);
-     
 
         // Image Upload
         if( Request::file('file') && Request::file('file')->isValid() )
@@ -50,8 +49,6 @@ class LiteratureBankSurveyController extends Controller
 
         return redirect('emails/test2');
 
-
     }
-
 }
 

@@ -49,7 +49,8 @@
             });
 
             function transferComplete(data){
-                response JSON.parse(data.currentTarget.response);
+                response;
+                JSON.parse(data.currentTarget.response);
                 if(response.success){
                     document.getElementById('message').innerHTML = "Successfully Uploaded Files!";
 
