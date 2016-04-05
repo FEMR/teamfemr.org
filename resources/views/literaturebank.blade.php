@@ -29,6 +29,13 @@
 
              @endforeach
 
+
+             @foreach( $literatures as $literature )
+             <h4><a href= {{$literature->fileName}}>{{ $literature->fileName}}</a></h4>
+
+
+             @endforeach
+
                 </div>
 
 

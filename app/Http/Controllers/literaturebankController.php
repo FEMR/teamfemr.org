@@ -29,6 +29,7 @@ class LiteratureBankController extends Controller
         }
 
         return view('literaturebank', compact ('literatures', 'info'));
+
     }
 
     //Controls upload functionality on the Literature Bank Survey

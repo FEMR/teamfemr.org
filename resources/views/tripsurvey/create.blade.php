@@ -238,11 +238,8 @@
                     </script>
                     <script async defer
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxOG3dfRrm8yZ7ACXvkbB_q_Bc7DOW0&callback=initMap">
-
-
-
-
                     </script>
+
                 <script>
                     function removeElement(elementId) {
                         // Removes an element from the document
