@@ -18,9 +18,7 @@ class LiteratureBankController extends Controller
     public function index()
     {
 
-       // $literatures = Literature::where( 'approved', '=', 1 )->all();
-
-        $literatures = Literature::all();
+        $literatures = Literature::where( 'approved', '=', 1 )->get();
         $info = [];
 
         foreach ($literatures as $id => $literature)

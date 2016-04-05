@@ -50,9 +50,9 @@
 
             function transferComplete(data){
                 response JSON.parse(data.currentTarget.response);
-                if(response.success){
+                if(response.success)
+                {
                     document.getElementById('message').innerHTML = "Successfully Uploaded Files!";
-
                 }
             }
         </script>

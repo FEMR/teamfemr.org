@@ -16,7 +16,6 @@
                 <h3>New Additions:</h3>
 
             @foreach( $literatures as $id => $literature )
-
              <div class="boxed">
              <a href="<?php echo $info[$id]->url ?>"><?php echo $info[$id]->title ?></a>
              <br>
@@ -26,19 +25,14 @@
              <br>
              <?php echo $info[$id]->publishedDate ?>
              </div>
-
              @endforeach
 
 
              @foreach( $literatures as $literature )
              <h4><a href= {{$literature->fileName}}>{{ $literature->fileName}}</a></h4>
-
-
              @endforeach
 
                 </div>
-
-
             </div>
          </div>
      </div>
