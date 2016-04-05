@@ -49,10 +49,6 @@ class LiteratureBankSurveyController extends Controller
             $literature->save();
         }
 
-        //Getting path of uploaded file
-    //$path = Input::file('image')->getRealPath();
-    //    $extension = Input::file('image')->getClientOriginalExtension();
-
         return redirect('emails/test2');
 
 
