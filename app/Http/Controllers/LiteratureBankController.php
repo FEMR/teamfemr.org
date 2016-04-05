@@ -11,13 +11,23 @@ use Input;
 use Validator;
 use Redirect;
 use Session;
+use Embed\Embed;
 class LiteratureBankController extends Controller
 {
 //Controls the view of the Literature Bank, by calling the view file (literaturebank.plade.php)
     public function index()
     {
-        $literatures=Literature::All();
-        return view('literaturebank', compact ('literatures'));
+
+        $literatures = Literature::where( 'approved', '=', 1 )->get();
+        $info = [];
+
+        foreach ($literatures as $id => $literature)
+        {
+            $info[$id] = Embed::create($literature->addLink);
+        }
+
+        return view('literaturebank', compact ('literatures', 'info'));
+
     }
 
     //Controls upload functionality on the Literature Bank Survey
@@ -25,7 +35,7 @@ class LiteratureBankController extends Controller
     {
         //Get data
         $file = array('image' => Input::file('image'));
-//Set up rules
+        //Set up rules
         $rules = array('image' => 'required',);
         //messages
         //Performing validation per the rules, passing the data
