@@ -16,7 +16,6 @@ class AlterLiteratureTableAddFileName extends Migration
             $table->string('fileName');
         });
     }
-
     /**
      * Reverse the migrations.
      *
