@@ -34,8 +34,7 @@ class LiteratureBankSurveyController extends Controller
         //Call view page for Literature Bank survey, while passing data
         $input = Request::all();
         $literature = Literature::create($input);
-       // $files = Request::file('file');
-     //   dd($files);
+     
 
         // Image Upload
         if( Request::file('file') && Request::file('file')->isValid() )
