@@ -33,6 +33,7 @@ class CreateSurveysTable extends Migration
             $table->text('adminsupport');
             $table->text('contactinfo');
             $table->boolean('approved');
+            $table->integer('user_id')->unsigned()->index();
             $table->softDeletes();
             //$table->float('lat');
             //$table->float('lng');

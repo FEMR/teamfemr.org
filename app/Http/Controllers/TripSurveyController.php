@@ -70,6 +70,8 @@ class TripSurveyController extends Controller
         $survey = Survey::create( $request->all() );
 
         $user = Auth::user();
+        $survey->user_id = $user->id;
+        $survey->save();
         if ($user->moderator())
         {
             $survey->approved = 1;
