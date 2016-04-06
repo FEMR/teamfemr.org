@@ -25,10 +25,10 @@
              <br>
              <a class="img-responsive center-block" href="<?php echo $info[$id]->url ?>"><img src="<?php echo $info[$id]->image ?>" alt="Main image" style="width:200px;height:150px;"></a>
              <br>
+            @if($literature->fileName)
+             <h4><a href= {{$literature->fileName}}>Download Related Content</a></h4>
+            @endif
 
-             @if (Auth::guest() || !Auth::user()->moderator())
-             <h4><a href= {{$literature->fileName}}>{{ $literature->fileName}}</a></h4>
-             @endif
 
              <?php echo $info[$id]->publishedDate ?>
              </div>
