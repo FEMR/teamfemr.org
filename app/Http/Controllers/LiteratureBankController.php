@@ -12,6 +12,7 @@ use Validator;
 use Redirect;
 use Session;
 use Embed\Embed;
+use Auth;
 class LiteratureBankController extends Controller
 {
 //Controls the view of the Literature Bank, by calling the view file (literaturebank.plade.php)
