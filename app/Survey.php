@@ -32,6 +32,11 @@ class Survey extends Model
         {
                 return $this->belongsToMany('App\Place');
         }
+
+        public function user()
+        {
+                return $this->hasMany('App\User');
+        }
         use SoftDeletes;
 
         protected $dates = ['deleted_at'];
