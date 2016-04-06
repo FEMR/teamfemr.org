@@ -8,6 +8,7 @@ use Request;
 use Storage;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class LiteratureBankSurveyController extends Controller
 {
@@ -35,6 +36,15 @@ class LiteratureBankSurveyController extends Controller
         $input = Request::all();
         $literature = Literature::create($input);
 
+        if moderator, automatically approved
+        $user = Auth::user();
+
+        if ($user->moderator())
+        {
+            $literature->approved = 1;
+            $literature->save();
+        }
+
         // Image Upload
         if( Request::file('file') && Request::file('file')->isValid() )
         {
@@ -47,8 +57,14 @@ class LiteratureBankSurveyController extends Controller
             $literature->save();
         }
 
-        return redirect('emails/test2');
-
+        if ($user->moderator())
+        {
+            return redirect('literaturebank');
+        }
+        else
+        {
+            return redirect('emails/test2');
+        }
     }
 }
 
