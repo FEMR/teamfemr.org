@@ -36,7 +36,6 @@ class LiteratureBankSurveyController extends Controller
         $input = Request::all();
         $literature = Literature::create($input);
 
-        if moderator, automatically approved
         $user = Auth::user();
 
         if ($user->moderator())
