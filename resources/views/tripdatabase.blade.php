@@ -5,7 +5,6 @@
         <!--Trip Database web page-->
 
 <div class="container">
-
     <div class="row">
         <div class="col-sm-1">
             <br><br>
