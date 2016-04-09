@@ -4,6 +4,9 @@
 }
 .navbar {
   margin-top: 40px;
+  width: 100%;
+  text-align: center;
+  border-radius: 0;
 }
   .navbar-default .navbar-brand {
     color: #ecf0f1; }
