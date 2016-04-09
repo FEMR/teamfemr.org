@@ -14,33 +14,38 @@
                 </div>
                                 <!--Portion of web page where the links to resources are listed-->
                 <h3>New Additions:</h3>
-<div class="row">
             @foreach( $literatures as $id => $literature )
+            @if($id%2 == 1)
+            <div class="row">
+            @endif
         <div class="col-md-6">
         <div class="panel panel-default">
-                 <div class="panel-heading">
-             <a href="<?php echo $info[$id]->url ?>"><?php echo $info[$id]->title ?></a></div>
-             <br>
-             <?php echo $info[$id]->description ?>
-             <br>
 
+                <div class="panel-heading">
+             <a href="<?php echo $info[$id]->url ?>"><?php echo $info[$id]->title ?></a>
+             </div>
+
+             <div class="panel-body"  style="width: 300px height: 50px; overflow-y: scroll;">
+             <?php echo $info[$id]->description ?>
              <a class="img-responsive center-block" href="<?php echo $info[$id]->url ?>"><img src="<?php echo $info[$id]->image ?>" alt="Main image" style="width:200px;height:150px;"></a>
-             <br>
              <?php echo $info[$id]->publishedDate ?>
              @if($literature->fileName)
-                                      <h4><a href= {{$literature->fileName}}>Download Related Content</a></h4>
-                                     @endif
-             </div>
-            </div>
-
-             @endforeach
+             <h4><a href= {{$literature->fileName}}>Download Related Content</a></h4>
+             @endif
+               @if($id%2 == 1)
+                         </div>
+                         @endif
+        </div>
+        </div>
 </div>
 
+             @endforeach
 
 
 
-                </div>
-            </div>
+
+         </div>
+      </div>
          </div>
      </div>
 </div>
