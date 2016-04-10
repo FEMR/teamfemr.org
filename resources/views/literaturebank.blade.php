@@ -16,9 +16,13 @@
 
 
                                 <!--Portion of web page where the links to resources are listed-->
+
                     <h3>New Additions:</h3>
                     <div class="row">
                         @foreach( $literatures as $id => $literature )
+                            @if($id%2 == 1)
+                                <div class="row">
+                                    @endif
                         <div class="col-md-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -34,6 +38,9 @@
                                  @if($literature->fileName)
                                       <h4><a href= {{$literature->fileName}}>Download Related Content</a></h4>
                                  @endif
+                                @if($id%2 == 1)
+                            </div>
+                            @endif
                             </div>
                         </div>
 
@@ -44,6 +51,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 @endsection

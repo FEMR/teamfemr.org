@@ -3,7 +3,6 @@
 <!-Literature Bank survey page-->
 @section('content')
     <div class = "container">
-
         <h1>Add Literature Resource</h1>
 
         <!--url for the Literature Bank survey-->
@@ -18,11 +17,8 @@
         {!! Form::label('authorName', 'Author Name:') !!}
         {!! Form::text( 'authorName' , null, ['class' => 'form-control']) !!}
 
-
         {!! Form::label('addLink', 'Add Link to Resource:') !!}
         {!! Form::url( 'addLink' , null, ['class' => 'form-control']) !!}
-
-
 <br>
         <input type="file" name="file"><br />
 
