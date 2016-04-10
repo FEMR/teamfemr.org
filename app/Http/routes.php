@@ -91,6 +91,7 @@ Route::group(['middleware' => 'web'], function ()
 
 	//Calls the Trip Database controller, which controls the Trip Database web page
 	Route::get('tripdatabase', 'TripDatabaseController@index');
+	
 
 
 

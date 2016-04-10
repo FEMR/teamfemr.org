@@ -6,20 +6,27 @@
 
 <div class="container">
 
+    {{--<div class="row">--}}
+        {{--<div class="col-sm-1">--}}
+            {{--<br><br>--}}
+        {{--<h5><center>Can't find your team? <br>Click the button.</center>--}}
+          {{--<a href ="/tripsurvey/create" class="btn btn-danger btn-sm">ADD TEAM</a></h5>--}}
+            {{--</div>--}}
+        {{--<div class="col-md-10 col-md-offset-1">--}}
+            {{--<h2 class="panel panel-default">--}}
+                {{--<div class="panel-heading"><center><h1>Trip Database</h1></center></div>--}}
     <div class="row">
-        <div class="col-sm-1">
-            <br><br>
-        <h5><center>Can't find your team? <br>Click the button.</center>
-          <a href ="/tripsurvey/create" class="btn btn-primary btn-sm">ADD TEAM</a></h5>
-            </div>
-        <div class="col-md-10">
-            <h2 class="panel panel-default">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
                 <div class="panel-heading"><center><h1>Trip Database</h1></center></div>
-
                 <!--Link to Trip Database survey-->
 
                 <div class="panel-body">
 
+                    <div><a href ="/tripsurvey/create" class="btn btn-danger btn-sm">ADD PROGRAM</a>
+                        {{--<a href ="/allprograms" class="btn btn-success btn-sm">SHOW ALL PROGRAMS</a>--}}
+                    <hr>
+                    </div>
                     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
                     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 

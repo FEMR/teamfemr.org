@@ -64,27 +64,26 @@
                         Team Resources <span class="caret"></span>
                     </a>
 
-                    <ul class="dropdown-menu" role="menu">  {{--This puts everything under TRIP DATABASE--}}
+                    <ul class="dropdown-menu">  {{--This puts everything under TRIP DATABASE--}}
                         <li><a href="{{ url('/tripdatabase') }}">Trip Database</a></li>
                         <li><a href="{{ url('/literaturebank') }}">Literature Bank</a></li>
 
                         @if (Auth::guest())
-                        {{--<li><a href="{{ url('/login') }}">Login</a></li>--}}
-                        {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
+
 
                         @elseif (Auth::user()->moderator())
                             <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
-                            <li><a href="{{ url('/approvals/surveyedits') }}">Surveys</a></li>
-                            {{--<li class="divider"></li>--}}
-                            {{--<li class="dropdown">--}}
-                                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
-                                    {{--Approvals <span class="caret"></span></a>--}}
-                                {{--<ul class="dropdown-menu" role="menu">--}}
-                                    <li><a href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
+                            <li class="divider"></li>
+                            {{--<li class="dropdown-menu-right"> <a tabindex="-1" href="#">Approvals <span class="caret"></span></a>--}}
+                                {{--<ul class="dropdown-menu">--}}
+                                    <li><a tabindex="-1" href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
                                     <li><a href="{{ url('/approvals/lit_approvals') }}">Literature Approvals</a></li>
                                     <li><a href="{{ url('/approvals/mod_approvals') }}">Moderator Approvals</a></li>
                                 {{--</ul>--}}
-                            {{--</li>--}}
+                            </li>
+
+                        @else
+                            <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
                         @endif
 
                     </ul>
@@ -107,6 +106,16 @@
                             <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
+                            </li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                </ul>
                             </li>
                         @endif
                     </ul>
