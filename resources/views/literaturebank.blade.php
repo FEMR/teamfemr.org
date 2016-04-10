@@ -20,11 +20,9 @@
             @endif
         <div class="col-md-6">
         <div class="panel panel-default">
-
                 <div class="panel-heading">
              <a href="<?php echo $info[$id]->url ?>"><?php echo $info[$id]->title ?></a>
              </div>
-
              <div class="panel-body"  style="width: 300px height: 50px; overflow-y: scroll;">
              <?php echo $info[$id]->description ?>
              <a class="img-responsive center-block" href="<?php echo $info[$id]->url ?>"><img src="<?php echo $info[$id]->image ?>" alt="Main image" style="width:200px;height:150px;"></a>
@@ -38,12 +36,7 @@
         </div>
         </div>
 </div>
-
              @endforeach
-
-
-
-
          </div>
       </div>
          </div>
