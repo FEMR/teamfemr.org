@@ -18,7 +18,6 @@
                         {{--<a href ="/allprograms" class="btn btn-success btn-sm">SHOW ALL PROGRAMS</a>--}}
                     <hr>
                     </div>
->>>
                     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
                     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 

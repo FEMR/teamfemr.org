@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="top margins">
 
     <img src="  /images/Logo/logo_color_med.png" alt="Logo">
 
