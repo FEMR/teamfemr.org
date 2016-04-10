@@ -22,9 +22,6 @@ class CreateSurveysTable extends Migration
             $table->string('medschoolterms');
             $table->text('aidingschools');
             $table->text('totalperyear');
-            $table->text('visitedlocale');
-            $table->text('monthsoftravel'); // could be calculated from trip dates if used
-            $table->text('partnerngo');
             $table->text('faculty');
             $table->text('appprocess');
             $table->text('programelements');

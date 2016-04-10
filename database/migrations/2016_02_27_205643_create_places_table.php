@@ -32,21 +32,7 @@ class CreatePlacesTable extends Migration
 
         });
 
-        Schema::create('place_survey', function(Blueprint $table)
-        {
-            $table->integer('survey_id')->unsigned();
-            $table->foreign('survey_id')->references('id')
-                ->on('surveys')->onDelete('cascade');
 
-            $table->integer('place_id')->unsigned();
-            $table->foreign('place_id')->references('id')
-                ->on('places')->onDelete('cascade');
-
-            $table->timestamps();
-
-
-
-        });
     }
 
     /**
@@ -56,7 +42,6 @@ class CreatePlacesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('place_survey');
         Schema::drop('places');
 
 

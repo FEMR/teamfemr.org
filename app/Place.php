@@ -13,10 +13,10 @@ class Place extends Model
         'place'
     ];
 
-    public function surveys()
+    public function trips()
     {
 
-        return $this->belongsToMany('App\Survey');
+        return $this->hasMany('App\Trip');
     }
 
 

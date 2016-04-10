@@ -19,7 +19,7 @@ Route::get('/users/xml', function() {
 	
 
 	$surveys = Survey::where('approved', '=', 1)
-		->with( 'places' )
+		->with( 'trips' )
 		->get();
 
 	//	dd( $places );
@@ -28,13 +28,13 @@ Route::get('/users/xml', function() {
 	$xml->openMemory();
 	$xml->startDocument();
 	$xml->startElement('markers');
-	foreach($surveys as $survey) {
-		foreach($survey->places as $idx => $place){
+	foreach($surveys as $id => $survey) {
+		foreach($survey->trips as $idx => $trip){
 			$xml->startElement('marker');
-			$xml->writeAttribute('lat', $place->lat);
-			$xml->writeAttribute('lng', $place->lng);
-			$xml->writeAttribute('id' . $idx, $survey->id);
-			$xml->writeAttribute('teamname' . $idx, $survey->teamname);
+			$xml->writeAttribute('lat', $trip->place->lat);
+			$xml->writeAttribute('lng', $trip->place->lng);
+			$xml->writeAttribute('id' . $id, $survey->id);
+			$xml->writeAttribute('teamname' . $id, $survey->teamname);
 
 
 		}
