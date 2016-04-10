@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Trip;
 
 class TripSurveyController extends Controller
 {
@@ -56,7 +57,6 @@ class TripSurveyController extends Controller
             'aidingschools' => 'required',
             'totalperyear' => 'required',
             'monthsoftravel' => 'required',
-            'partnerngo' => 'required',
             'faculty' => 'required',
             'appprocess' => 'required',
             'programelements' => 'required',
@@ -77,7 +77,7 @@ class TripSurveyController extends Controller
             $survey->approved = 1;
             $survey->save();
         }
-        
+
         foreach( $request->input( 'lat' ) as $id => $lat ){
 
             $lat = round( $lat, 5 );
@@ -90,21 +90,38 @@ class TripSurveyController extends Controller
                              ->where( 'place', '=', $address)
                              ->first();
 
+
+            $ngo = $request->input( 'partnerngo' )[$id];
+            $months = $request->input( 'monthsoftravel')[$id];
+
+            $trip = new Trip;
+            $trip->partnerngo = $ngo;
+            $trip->monthsoftravel = $months;
+            $trip->survey_id = $survey->id;
+
+
+
+
+
+
+
             if( $existing ){
 
                 // link to the existing place
-                $survey->places()->attach( $existing );
+                $trip->place_id = $existing->id;
+                $trip->save();
             }
             else{
 
                 // Doesn't exist create new
-                $survey->places()->create([
+                $new_place = new Place;
+                $new_place->lat = $lat;
+                $new_place->lng = $lng;
+                $new_place->place = $address;
 
-                    'lat' => $lat,
-                    'lng' => $lng,
-                    'place' => $address,
-                    //'address' => $address
-                ]);
+                $new_place->save();
+                $trip->place_id = $new_place->id;
+                $trip->save();
             }
 
         }

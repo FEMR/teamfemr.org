@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                         <div class="panel-heading"><center><h1>Write Survey</h1>
@@ -13,7 +13,6 @@
         <!--Print to web page-->
 
 
-            <div class="col-sm-6">
 
 {{--This displays an error message if required fields are left blank - RD--}}
         @if($errors->any())
@@ -24,9 +23,16 @@
             </div>
         @endif
 
+
         {!! Form::open([ 'method' => 'POST', 'action' => 'TripSurveyController@store', 'id' => 'codeForm' ]) !!}
 
-        <!--Use a form to get the variables from the Literature Bank survey-->
+<div class ="row">
+    <div class="col-sm-6">
+
+
+
+
+                    <!--Use a form to get the variables from the Literature Bank survey-->
         {!! Form::label('teamname', 'Program Name:') !!}
         {!! Form::text('teamname' , null, ['class' => 'form-control']) !!}
 
@@ -38,49 +44,19 @@
         {!! Form::label('totalmatriculants', 'total matriculants:') !!}
         {!! Form::text( 'totalmatriculants' , null, ['class' => 'form-control']) !!}
 
-
         {!! Form::label('medschoolterms', 'Medical school student class involvement (M1, M2, M3, M4):') !!}
         {!! Form::text( 'medschoolterms' , null, ['class' => 'form-control']) !!}
+
+
 
 
         {!! Form::label('aidingschools', 'other participating professional schools:') !!}
         {!! Form::text( 'aidingschools' , null, ['class' => 'form-control']) !!}
 
 
+
         {!! Form::label('totalperyear', 'total participants in global health outreach per year:') !!}
         {!! Form::text( 'totalperyear' , null, ['class' => 'form-control']) !!}
-
-
-        {!! Form::label('monthsoftravel', 'month(s) of travel:') !!}
-        {!! Form::text( 'monthsoftravel' , null, ['class' => 'form-control']) !!}
-
-
-                    {{--//Adding Cities--}}
-                    <br>
-                    <h1>sites visited</h1>
-
-
-                    <div class="form-group">
-                        <input id="address" type='text' name='address' />
-                        <input id="submit" type="button" value="Add City">
-                    </div>
-
-                    <ul class="list-group" id="list">
-
-                    </ul>
-                    <div id="map" style="width: 700px; height: 400px"></div>
-
-                    <br>
-                    <div class="col-sm-50 col-md-offset-10"; style="text-align:center">
-                    <!--Submit and close form-->
-                    {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
-</div>
-            </div>
-
-                        <div class="col-sm-6">
-
-        {!! Form::label('partnerngo', 'NGO/Parter organizations:') !!}
-        {!! Form::text( 'partnerngo' , null, ['class' => 'form-control']) !!}
 
 
 
@@ -114,9 +90,45 @@
 
         {!! Form::label('contactinfo', 'contact info:') !!}
         {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
+        <br>
 
+
+    </div>
+    <div class="col-sm-6">
+
+
+    {{--//Adding Cities--}}
+                    <br>
+        <div id="map" style="width: 420px; height: 300px"></div>
+
+        <h1>Add Trip</h1>
+
+
+                    <div class="form-group">
+                        <label for="address">Visited City:</label>
+                        <input class="form-control" name="address" type="text" id="address">
+
+                        <label for="monthsoftravel">Months of Travel:</label>
+                        <input class="form-control" name="monthsoftravel" type="text" id="monthsoftravel">
+
+                        <label for="partnerngo">Partner NGO:</label>
+                        <input class="form-control" name="partnerngo" type="text" id="partnerngo">
+
+
+
+                        <input id="submit" type="button" value="Add Trip">
+
+                    </div>
+
+                    <ul class="list-group" id="list">
+
+                    </ul>
 
 </div>
+                    <!--Submit and close form-->
+                    {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+
+
                     <script>
                         function initMap() {
 
@@ -142,7 +154,8 @@
 
                             var myForm =  document.forms["codeForm"];
                             var address = document.getElementById('address').value;
-
+                            var partnerngo =  document.getElementById('partnerngo').value;
+                            var monthsoftravel =  document.getElementById('monthsoftravel').value;
                             geocoder.geocode({'address': address}, function(results, status) {
 
                                 if (status === google.maps.GeocoderStatus.OK) {
@@ -175,6 +188,20 @@
 
                                     lngElem.value = lng;
 
+                                    var NGOElem = document.createElement("input");
+                                    NGOElem.setAttribute( 'type', "hidden" );
+                                    NGOElem.setAttribute( 'name', "partnerngo[]" );
+                                    NGOElem.setAttribute("id", geocodeAddress.counter);
+
+                                    NGOElem.value =  partnerngo;
+
+                                    var MonthsElem = document.createElement("input");
+                                    MonthsElem.setAttribute( 'type', "hidden" );
+                                    MonthsElem.setAttribute( 'name', "monthsoftravel[]" );
+                                    MonthsElem.setAttribute("id", geocodeAddress.counter);
+
+                                    MonthsElem.value = monthsoftravel;
+
                                     var localeElem = document.createElement("input");
                                     localeElem.setAttribute( 'type', "hidden" );
                                     localeElem.setAttribute( 'name', "address[]" );
@@ -185,12 +212,28 @@
                                     myForm.appendChild( latElem );
                                     myForm.appendChild( lngElem );
                                     myForm.appendChild( localeElem );
+                                    myForm.appendChild( NGOElem );
+                                    myForm.appendChild( MonthsElem );
+
 
                                     var node = document.createElement("LI");
+                                    var boldlocation = document.createElement("b");
+                                    var boldmonths = document.createElement("b");
+                                    var boldngo = document.createElement("b");
+
+                                    boldlocation.appendChild(document.createTextNode("location: "));
+                                    boldmonths.appendChild(document.createTextNode("months of travel: "));
+                                    boldngo.appendChild(document.createTextNode("Partner NGO: "));
+
                                     node.setAttribute( 'class', "list-group-item" );
                                     node.setAttribute('id', geocodeAddress.counter);
+                                    var breaker = document.createElement("br");
+                                    var breaker1 = document.createElement("br");
 
-                                    var textnode = document.createTextNode(results[0].formatted_address);
+                                    var textnode = document.createTextNode( results[0].formatted_address);
+                                    var textnode1 = document.createTextNode(monthsoftravel);
+                                    var textnode2 = document.createTextNode(partnerngo);
+
                                     var kill = document.createElement("a");
                                     var id =  localeElem.getAttribute("id");
 
@@ -199,8 +242,17 @@
 
                                     kill.innerHTML="remove";
                                     kill.onclick=function() {killFunction(id)};
+                                    node.appendChild(boldlocation);
 
                                     node.appendChild(textnode);
+                                    node.appendChild(breaker);
+                                    node.appendChild(boldmonths);
+
+                                    node.appendChild(textnode1);
+                                    node.appendChild(breaker1);
+                                    node.appendChild(boldngo);
+
+                                    node.appendChild(textnode2);
                                     node.appendChild(kill);
                                     document.getElementById("list").appendChild(node);
                                     geocodeAddress.counter++;
@@ -251,6 +303,7 @@
 
     {{--{!! Form::close() !!}--}}
             </form>
+
 
                         </div>
                     </div>

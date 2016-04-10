@@ -142,11 +142,12 @@
                             <li><label  style="font-weight: bold ; width: 30%; display:inline-block">Med School Terms:</label> {{$survey->medschoolterms}}</li>
                             <li><label  style="font-weight: bold ; width: 30%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</li>
                             <li><label style="font-weight: bold ; width: 30%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</li>
-                            @foreach($survey->places as $place)
-                                <li><label style="font-weight: bold ; width: 30%; display:inline-block">Location:</label>{{$place->place}}</li>
-                            @endforeach
-                            <li><label style="font-weight: bold ; width: 30%; display:inline-block">Months of Travel:</label>{{$survey->monthsoftravel}}</li>
-                            <li><label style="font-weight: bold ; width: 30%; display:inline-block">Partner NGO:</label>{{$survey->partnerngo}}</li>
+                            @foreach($survey->trips as $idx => $trip)
+                                <li><label style="font-weight: bold ; width: 30%; display:inline-block">Location:</label>{{$trip->place->place}}</li>
+                                <li><label style="font-weight: bold ; width: 30%; display:inline-block">Partner NGO:</label>{{$trip->monthsoftravel}}</li>
+                                    <li><label style="font-weight: bold ; width: 30%; display:inline-block">Months of Travel:</label>{{$trip->partnerngo}}</li>
+
+                                @endforeach
                             <li><label style="font-weight: bold ; width: 30%; display:inline-block">Faculty:</label>{{$survey->faculty}}</li>
                             <li><label style="font-weight: bold ; width: 30%; display:inline-block">App. Process:</label>{{$survey->appprocess}}</li>
                             <li><label style="font-weight: bold ; width: 30%; display:inline-block">Program Elements:</label>{{$survey->programelements}}</li>

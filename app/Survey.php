@@ -16,8 +16,6 @@ class Survey extends Model
                 'medschoolterms',
                 'aidingschools',
                 'totalperyear',
-                'monthsoftravel',
-                'partnerngo',
                 'faculty',
                 'appprocess',
                 'programelements',
@@ -28,11 +26,14 @@ class Survey extends Model
                 'approved'
         ];
 
-        public function places()
+//        public function places()
+//        {
+//                return $this->belongsToMany('App\Place')->withPivot('trip_id');
+//        }
+        public function trips()
         {
-                return $this->belongsToMany('App\Place');
+                return $this->hasMany('App\Trip');
         }
-
         public function user()
         {
                 return $this->hasMany('App\User');

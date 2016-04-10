@@ -19,16 +19,10 @@ class TripDatabaseController extends Controller
     public function index( )
     {
 
-        $places = Place::whereHas( 'surveys', function($query){
 
-            $query->where( 'approved', '=', 1 );
-
-        })
-            ->with( 'surveys' )
-            ->get();
 
         $surveys = Survey::where('approved', '=', 1)
-                        ->with( 'places' )
+                        ->with( 'trips' )
                         ->get();
 
 //        dd($surveys);

@@ -84,6 +84,9 @@
                                     <textarea name="contactinfo" class="form-control">{{$survey->contactinfo    }}</textarea>
                                 </div>
 
+                                <input class="btn btn-primary form-control" type="submit" value="Submit">
+
+
                             </form>
 
                  </div>

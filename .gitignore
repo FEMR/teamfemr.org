@@ -5,3 +5,4 @@ Homestead.json
 .env
 .idea
 /config/backup-manager.php
+/public/assets/uploads
