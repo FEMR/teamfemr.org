@@ -2,7 +2,7 @@
 
 <!-Literature Bank survey page-->
 @section('content')
-    <div class = "container">
+
         <h1>Add Literature Resource</h1>
 
         <!--url for the Literature Bank survey-->

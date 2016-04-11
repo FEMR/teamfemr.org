@@ -2,10 +2,7 @@
 
 
 @section('content')
-    <div class="container">
 
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
                         <div class="panel-heading"><center><h1>Write Survey</h1>
                             <p>Please fill out every box, if not applicable put NA.</p></center>
                         </div>

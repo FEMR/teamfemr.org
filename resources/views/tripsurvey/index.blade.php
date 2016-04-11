@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class = "container">
+
 
 
     <!--Print to web page-->

@@ -4,11 +4,6 @@
 
         <!--Trip Database web page-->
 
-<div class="container">
-
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
                 <div class="panel-heading"><center><h1>Trip Database</h1></center></div>
                 <!--Link to Trip Database survey-->
                 <div class="panel-body">
