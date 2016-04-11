@@ -48,9 +48,5 @@
                     <div class="content_bottom">
                     </div>
                 </div>
-                </body>
-            </div>
-            </div>
-        </div>
-    </div>
+           </div>
 @endsection

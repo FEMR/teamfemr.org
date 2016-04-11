@@ -55,8 +55,5 @@
                         @endif
                         {{--<div><h5><a href ="/deleteArticles" class="btn btn-primary btn-sm">View Deleted Articles</a></h5></div>--}}
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endsection

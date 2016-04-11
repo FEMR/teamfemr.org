@@ -1,7 +1,7 @@
 @extends('layouts.appFemr')
 
 @section('content')
-    
+
                     <div class="panel-heading"><center><h1>Approvals Needed</h1></center></div>
                     <div class="panel-body">
                         <div><a href ="/deletes" class="btn btn-danger btn-sm">View Deleted Surveys</a>
@@ -58,8 +58,5 @@
                                 {{--<div><h5><a href ="/deletes" class="btn btn-primary btn-sm">View Deleted Surveys</a></h5></div>--}}
 
                     </div>
-                    </div>
-            </div>
-        </div>
-    </div>
+
 @endsection

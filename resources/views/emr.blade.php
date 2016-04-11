@@ -73,10 +73,7 @@
                     </div>
                     <div class="content_bottom">
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
     @endsection

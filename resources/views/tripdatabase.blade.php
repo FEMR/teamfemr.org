@@ -99,14 +99,12 @@
                     </script>
                     </head>
                     <body onload="load()">
-                    <div id="map" style="width: 900px; height: 400px"></div>
-
-
+                    <center>
+                        <div id="map" style="width: 900px; height: 400px; align:center"></div>
+                    </center>
+                    <br>
                     </body>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="form-group">
 
 {{--Displays the database--}}

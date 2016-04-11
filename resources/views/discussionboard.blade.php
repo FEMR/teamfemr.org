@@ -21,9 +21,6 @@
                                     encodeURIComponent(window.location.href);
                         </script>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 @endsection
