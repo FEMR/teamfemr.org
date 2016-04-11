@@ -29,12 +29,16 @@ Route::get('/users/xml', function() {
 	$xml->startDocument();
 	$xml->startElement('markers');
 	foreach($surveys as $id => $survey) {
-		foreach($survey->trips as $idx => $trip){
+		foreach($survey->trips as  $trip){
 			$xml->startElement('marker');
 			$xml->writeAttribute('lat', $trip->place->lat);
 			$xml->writeAttribute('lng', $trip->place->lng);
-			$xml->writeAttribute('id' . $id, $survey->id);
-			$xml->writeAttribute('teamname' . $id, $survey->teamname);
+			foreach($trip->place->trips as $idz => $placetrip){
+				$xml->writeAttribute('id' . $idz, $survey->id);
+				$xml->writeAttribute('teamname' . $idz, $placetrip->survey->teamname);
+
+			}
+
 
 
 		}
