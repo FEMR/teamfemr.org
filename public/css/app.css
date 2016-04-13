@@ -92,7 +92,7 @@
   }
 
 }
-}
+
 
 /*# sourceMappingURL=app.css.map */
 
@@ -244,6 +244,32 @@
   padding: 10px;
   border: 2px solid black;
   margin: 25px;
+}
+
+
+/**
+
+  Center Nav Menu
+  - Easy Way: http://the-echoplex.net/flexyboxes
+  - Hard Way: http://matthewjamestaylor.com/blog/beautiful-css-centered-menus-no-hacks-full-cross-browser-support
+
+**/
+
+@media only screen and ( min-width: 768px ) {
+
+
+  .centered-nav{
+
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .centered-nav li{
+
+    margin: 0 10px;
+  }
 }
 
 

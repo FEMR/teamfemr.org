@@ -13,18 +13,18 @@
                         {{--<a href ="/allprograms" class="btn btn-success btn-sm">SHOW ALL PROGRAMS</a>--}}
                     <hr>
                     </div>
-                    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-                    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
                     <!--Building the Google maps Graphical User Interface (GUI) into the web page-->
-                    <title>PHP/MySQL & Google Maps Example</title>
                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPVo3nvRyyRrnXvB-nIII6z13evOGCKkM"
-                            type="text/javascript">
-
-                    </script>
+                            type="text/javascript"></script>
 
                     <script type="text/javascript">
                         //<![CDATA[
+
+                        $( document ).ready( function(){
+
+                            load();
+                        });
 
                         function load() {
                             var map = new google.maps.Map(document.getElementById("map"), {
@@ -97,13 +97,8 @@
 
                         //]]>
                     </script>
-                    </head>
-                    <body onload="load()">
-                    <center>
-                        <div id="map" style="width: 1000px; height: 500px; align:center"></div>
-                    </center>
-                    <br>
-                    </body>
+                    <div id="map" style="width: 100%; height: 500px; margin: 0 auto;"></div>
+
 
     <div class="form-group">
 
@@ -114,18 +109,19 @@
                 <tr>
 
                     <td valign="top"><label  style="width: 90%; display:inline-block">Program Name:</label></td>
-                        <a name=<?php echo ("jump".$survey->id) ?>></a>
-                        <td></td>
-                        @if (Auth::guest() || !Auth::user()->moderator())
-                            <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
-                        @elseif (Auth::user()->moderator())
-                            <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
-                            <td></td>
-                        <td></td>
 
-                            <td><a href ="/surveys/<?php echo $survey->id ?>/edit" class="btn btn-primary btn-sm">EDIT</a></td>
-                        @endif
-                    </td>
+                        <td>
+                            <a name=<?php echo ("jump".$survey->id) ?>></a>
+                        </td>
+                    @if ( Auth::guest() || !Auth::user()->moderator() )
+                        <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
+                    @elseif ( Auth::user()->moderator() )
+                        <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href ="/surveys/<?php echo $survey->id ?>/edit" class="btn btn-primary btn-sm">EDIT</a></td>
+                    @endif
+                    {{--</td>--}}
                 </tr>
             </table>
             <table width="100%">
@@ -134,35 +130,35 @@
                     <div class="row">
                         <div id="<?php echo $survey->id ?>" class="collapse">
                             <div class="col-md-6"  >
-                            <ul class="list-unstyled">
+                                <ul class="list-unstyled">
 
-                            <li><label  style="width: 60%; display:inline-block">Initiated:</label> {{$survey->initiated}}</li>
-                            <li><label style="width: 60%; display:inline-block">Total Matriculants:</label> {{$survey->totalmatriculants}}</li>
-                            <li><label  style="width: 60%; display:inline-block">Med School Terms:</label> {{$survey->medschoolterms}}</li>
-                            <li><label  style="width: 60%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</li>
-                            <li><label style="width: 60%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</li>
+                                    <li><label  style="width: 60%; display:inline-block">Initiated:</label> {{$survey->initiated}}</li>
+                                    <li><label style="width: 60%; display:inline-block">Total Matriculants:</label> {{$survey->totalmatriculants}}</li>
+                                    <li><label  style="width: 60%; display:inline-block">Med School Terms:</label> {{$survey->medschoolterms}}</li>
+                                    <li><label  style="width: 60%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</li>
+                                    <li><label style="width: 60%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</li>
 
-                            <li><label style="width: 60%; display:inline-block">Faculty:</label>{{$survey->faculty}}</li>
-                            <li><label style="width: 60%; display:inline-block">App. Process:</label>{{$survey->appprocess}}</li>
-                            <li><label style="width: 60%; display:inline-block">Program Elements:</label>{{$survey->programelements}}</li>
-                            <li><label style="width: 60%; display:inline-block">Financial Support:</label>{{$survey->finsupport}}</li>
-                            <li><label style="width: 60%; display:inline-block">Faculty Time:</label>{{$survey->facultytimeallotted}}</li>
-                            <li><label style="width: 60%; display:inline-block">Admin Support:</label>{{$survey->adminsupport}}</li>
-                            <li><label style="width: 60%; display:inline-block">Contact Info:</label>{{$survey->contactinfo}}</li>
+                                    <li><label style="width: 60%; display:inline-block">Faculty:</label>{{$survey->faculty}}</li>
+                                    <li><label style="width: 60%; display:inline-block">App. Process:</label>{{$survey->appprocess}}</li>
+                                    <li><label style="width: 60%; display:inline-block">Program Elements:</label>{{$survey->programelements}}</li>
+                                    <li><label style="width: 60%; display:inline-block">Financial Support:</label>{{$survey->finsupport}}</li>
+                                    <li><label style="width: 60%; display:inline-block">Faculty Time:</label>{{$survey->facultytimeallotted}}</li>
+                                    <li><label style="width: 60%; display:inline-block">Admin Support:</label>{{$survey->adminsupport}}</li>
+                                    <li><label style="width: 60%; display:inline-block">Contact Info:</label>{{$survey->contactinfo}}</li>
 
-                            </ul>
+                                </ul>
                             </div>
                             <div class="col-md-6">
-                            <ul class="list-unstyled">
-                            @foreach($survey->trips as $idx => $trip)
-                                <li><label style="width: 50%; display:inline-block ">Location:</label>{{$trip->place->place}}</li>
-                                    <li><label style="font-weight: bold ;width: 50%; display:inline-block ">Months of Travel:</label>{{$trip->monthsoftravel}}</li>
+                                <ul class="list-unstyled">
+                                @foreach($survey->trips as $idx => $trip)
+                                    <li><label style="width: 50%; display:inline-block ">Location:</label>{{$trip->place->place}}</li>
+                                        <li><label style="font-weight: bold ;width: 50%; display:inline-block ">Months of Travel:</label>{{$trip->monthsoftravel}}</li>
 
-                                    <li><label style="font-weight: bold ; width: 50%; display:inline-block">Partner NGO:</label>{{$trip->partnerngo}}</li>
-                                    <br>
-                            @endforeach
+                                        <li><label style="font-weight: bold ; width: 50%; display:inline-block">Partner NGO:</label>{{$trip->partnerngo}}</li>
+                                        <br>
+                                @endforeach
 
-                            </ul>
+                                </ul>
                             </div>
                          </div>
                     </div>
