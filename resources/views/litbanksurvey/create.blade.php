@@ -2,8 +2,11 @@
 
 <!-Literature Bank survey page-->
 @section('content')
+    <div class="panel-heading"><center><h1>Add Literature Resource</h1>
+           </center>
+    </div>
+    <div class="panel-body">
 
-        <h1>Add Literature Resource</h1>
 
         <!--url for the Literature Bank survey-->
         {{--{!! Form::open(['url' => 'litbanksurvey']) !!}--}}
@@ -53,5 +56,5 @@
             }
         </script>
 
-    </div>
+
 @endsection
