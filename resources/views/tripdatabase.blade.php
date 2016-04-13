@@ -10,7 +10,7 @@
 
 
                     <div><a href ="/tripsurvey/create" class="btn btn-danger btn-sm">ADD PROGRAM</a>
-                        {{--<a href ="/allprograms" class="btn btn-success btn-sm">SHOW ALL PROGRAMS</a>--}}
+                        <a href ="/allprograms" class="btn btn-success btn-sm">SHOW ALL PROGRAMS</a>
                     <hr>
                     </div>
 

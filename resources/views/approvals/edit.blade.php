@@ -4,7 +4,7 @@
 
                     <div class="panel-heading"><center><h1>Approvals Needed</h1></center></div>
                     <div class="panel-body">
-                        <div><a href ="/deletes" class="btn btn-danger btn-sm">View Deleted Surveys</a>
+                        <div><a href ="/deletes" class="btn btn-danger btn-sm">DELETED SURVEYS</a>
                             <hr>
                             @if( $surveys->count() > 0 )
                             <div class="table-responsive">

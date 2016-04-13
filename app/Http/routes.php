@@ -137,6 +137,9 @@ Route::group(['middleware' => 'web'], function ()
 		Route::post('/tripsurvey', 'TripSurveyController@store');
 		Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
 
+
+		Route::get('allprograms', 'TripDatabaseController@index2');
+
 		//	Calls the literature bank web page and create function
 		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
 		Route::get('/litbanksurvey/create', 'LiteratureBankSurveyController@create');

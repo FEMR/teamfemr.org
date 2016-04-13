@@ -29,6 +29,20 @@ class TripDatabaseController extends Controller
         return view( 'tripdatabase', compact('surveys') );
     }
 
+    public function index2( )
+    {
+
+
+
+//        $surveys = Survey::where('approved', '=', 1)
+//            ->with( 'trips' )
+//            ->get();
+
+//        dd($surveys);
+//        return view( 'allprograms', compact('surveys') );
+        return view('allprograms');
+    }
+
 }
 
 

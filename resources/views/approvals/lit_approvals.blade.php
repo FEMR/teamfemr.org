@@ -4,7 +4,7 @@
 
                     <div class="panel-heading"><center><h1>Article Approvals Needed</h1></center></div>
                     <div class="panel-body">
-                        <div><a href ="/deleteArticles" class="btn btn-danger btn-sm">View Deleted Articles</a>
+                        <div><a href ="/deleteArticles" class="btn btn-danger btn-sm">DELETED ARTICLES</a>
                             <hr>
 
                         @if( $literatures->count() > 0 )
