@@ -14,8 +14,14 @@ class literature extends Model
 
         'contributorName',
         'authorName',
-        'addLink'
+        'addLink',
+        'title',
+        'description',
+        'url',
+        'publishedDate',
+        'image'
 ];
+
         use SoftDeletes;
 
         protected $dates = ['deleted_at'];

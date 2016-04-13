@@ -25,6 +25,11 @@ class LiteratureBankController extends Controller
         foreach ($literatures as $id => $literature)
         {
             $info[$id] = Embed::create($literature->addLink);
+            $info[$id] = Embed::create($info[$id]->title);
+            $info[$id] = Embed::create($info[$id]->description);
+            $info[$id] = Embed::create($literature->url);
+            $info[$id] = Embed::create($info[$id]->publishedDate);
+            $info[$id] = Embed::create($info[$id]->image);
         }
 
         return view('literaturebank', compact ('literatures', 'info'));
@@ -47,7 +52,7 @@ class LiteratureBankController extends Controller
             return Redirect::to('upload')->withInput()->withErrors($validator);
         }
         else {
-//Checking if the file is valid
+            //Checking if the file is valid
             if (Input::file('image')->isValid()) {
                 //Upload the destination path
                 $destinationPath = 'uploads';
