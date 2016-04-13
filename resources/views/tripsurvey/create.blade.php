@@ -91,7 +91,7 @@
 
 
     </div>
-    <div class="col-sm-6">
+        <div class="col-sm-6">
 
 
     {{--//Adding Cities--}}
@@ -140,10 +140,7 @@
                                 geocodeAddress(geocoder, map);
                             });
 
-                            document.getElementById('addlist').addEventListener('click', function() {
 
-                                myFunction() ;
-                            });
                         }
                         geocodeAddress.counter = 0;
                         var gmarkers = [];
@@ -153,11 +150,18 @@
                             var address = document.getElementById('address').value;
                             var partnerngo =  document.getElementById('partnerngo').value;
                             var monthsoftravel =  document.getElementById('monthsoftravel').value;
+
+
+
+
                             geocoder.geocode({'address': address}, function(results, status) {
 
                                 if (status === google.maps.GeocoderStatus.OK) {
 
 
+                                    clearContents(document.getElementById("address"));
+                                    clearContents(document.getElementById("monthsoftravel"));
+                                    clearContents(document.getElementById("partnerngo"));
 
                                     var lat = results[0].geometry.location.lat();
                                     var lng = results[0].geometry.location.lng();
@@ -251,9 +255,11 @@
 
                                     node.appendChild(textnode2);
                                     node.appendChild(kill);
+
                                     document.getElementById("list").appendChild(node);
                                     geocodeAddress.counter++;
                                     resultsMap.setCenter( results[0].geometry.location );
+
 
                                     var marker = new google.maps.Marker({
 
@@ -270,6 +276,8 @@
                         }
 
                         function killFunction(id) {
+                            removeElement(id);
+                            removeElement(id);
                             removeElement(id);
                             removeElement(id);
                             removeElement(id);
@@ -294,6 +302,10 @@
                         // Removes an element from the document
                         var element = document.getElementById(elementId);
                         element.parentNode.removeChild(element);
+                    }
+
+                    function clearContents(element) {
+                        element.value = '';
                     }
                 </script>
 
