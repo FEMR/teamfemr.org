@@ -25,6 +25,8 @@ class LiteratureBankController extends Controller
         foreach ($literatures as $id => $literature)
         {
             $info[$id] = Embed::create($literature->addLink);
+
+            //try this
             $info[$id] = Embed::create($info[$id]->title);
             $info[$id] = Embed::create($info[$id]->description);
             $info[$id] = Embed::create($literature->url);

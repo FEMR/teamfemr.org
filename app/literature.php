@@ -15,6 +15,8 @@ class literature extends Model
         'contributorName',
         'authorName',
         'addLink',
+            
+            //may delete later
         'title',
         'description',
         'url',
@@ -22,7 +24,8 @@ class literature extends Model
         'image'
 ];
 
+        //This makes it so that the date something was deleted is a new field on the literatures survey
+        //Suggestion made by Ken, used to implement the moderator's delete option/feature
         use SoftDeletes;
-
         protected $dates = ['deleted_at'];
 }

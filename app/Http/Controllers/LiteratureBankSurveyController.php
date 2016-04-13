@@ -14,9 +14,7 @@ class LiteratureBankSurveyController extends Controller
 {
     public function index()
     {
-       // $literatures = literature::where('approved', '=', 1)->get();
-
-        $literatures = literature::all();
+        $literatures = literature::where('approved', '=', 1)->get();
         return view('literaturebank', compact ('literatures'));
     }
     public function show($id)
@@ -38,9 +36,9 @@ class LiteratureBankSurveyController extends Controller
         $input = Request::all();
         $literature = Literature::create($input);
 
-
-       //Survey is automatically approved if the user is a moderator
+        //Survey is automatically approved if the user is a moderator 
         $user = Auth::user();
+
         if ($user->moderator())
         {
             $literature->approved = 1;
