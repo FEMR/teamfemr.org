@@ -14,7 +14,9 @@ class LiteratureBankSurveyController extends Controller
 {
     public function index()
     {
-        $literatures = literature::where('approved', '=', 1)->get();
+       // $literatures = literature::where('approved', '=', 1)->get();
+
+        $literatures = literature::all();
         return view('literaturebank', compact ('literatures'));
     }
     public function show($id)
@@ -36,9 +38,9 @@ class LiteratureBankSurveyController extends Controller
         $input = Request::all();
         $literature = Literature::create($input);
 
-//        if moderator, automatically approved
-        $user = Auth::user();
 
+       //Survey is automatically approved if the user is a moderator
+        $user = Auth::user();
         if ($user->moderator())
         {
             $literature->approved = 1;
@@ -57,6 +59,7 @@ class LiteratureBankSurveyController extends Controller
             $literature->save();
         }
 
+        //If the user is a moderator, simply redirect the page to the literature bank (no need for a message that displays that the article has been submitted for verification)
         if ($user->moderator())
         {
             return redirect('literaturebank');
