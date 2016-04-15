@@ -102,6 +102,12 @@
 
     <div class="form-group">
 
+        {{--Possible search functionality}}}
+      <form method="post" action="search.php?go" id="searchform">
+      <input type="text" name="name">
+      <input type="submit" name="submit" value="Search">
+      </form>
+
 {{--Displays the database--}}
     @foreach($surveys as $id => $survey)
         <div style="width:1000px; margin:0 auto;">
