@@ -14,82 +14,73 @@
                                 <div class ="row">
                                     <div class="col-sm-6">
 
-                                        <div class="form-group">
-                                            <label for="teamname">Team Name:</label>
-                                            <textarea name="teamname" class="form-control">{{$survey->teamname}}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="initiated">Initiated:</label>
-                                            <textarea name="initiated" class="form-control">{{$survey->initiated}}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="totalmatriculants">Total Matriculants:</label>
-                                            <textarea name="totalmatriculants" class="form-control">{{$survey->totalmatriculants}}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="medschoolterms">Medical School Terms:</label>
-                                            <textarea name="medschoolterms" class="form-control">{{$survey->medschoolterms}}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="aidingschools">Aiding Schools:</label>
-                                            <textarea name="aidingschools" class="form-control">{{$survey->aidingschools}}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="totalperyear">Total students per year:</label>
-                                            <textarea name="totalperyear" class="form-control">{{$survey->totalperyear}}</textarea>
-                                        </div>
+                                        {!! Form::label('teamname', 'Program Name:') !!}
+                                        {!! Form::text('teamname' , $survey->teamname, ['class' => 'form-control', 'rows'=>'1']) !!}
 
 
-                                        <div class="form-group">
-                                            <label for="monthsoftravel">Months of travel:</label>
-                                            <textarea name="monthsoftravel" class="form-control">{{$survey->monthsoftravel}}</textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="partnerngo">Partner NGO:</label>
-                                            <textarea name="partnerngo" class="form-control">{{$survey->partnerngo}}</textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="faculty">Faculty:</label>
-                                            <textarea name="faculty" class="form-control">{{$survey->faculty}}</textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="appprocess">Application process:</label>
-                                            <textarea name="appprocess" class="form-control">{{$survey->appprocess}}</textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="programelements">Program Elements:</label>
-                                            <textarea name="programelements" class="form-control">{{$survey->programelements}}</textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="finsupport">Financial Support:</label>
-                                            <textarea name="finsupport" class="form-control">{{$survey->finsupport}}</textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="facultytimeallotted">Faculty Time Allotted:</label>
-                                            <textarea name="facultytimeallotted" class="form-control">{{$survey->facultytimeallotted}}</textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="adminsupport">Administrative Support:</label>
-                                            <textarea name="adminsupport" class="form-control">{{$survey->adminsupport}}</textarea>
-                                        </div>
+                                        {!! Form::label('initiated', 'Initiated:') !!}
+                                        {!! Form::input('year', 'initiated' , $survey->initiated, ['class' => 'form-control']) !!}
 
 
+                                        {!! Form::label('totalmatriculants', 'total matriculants:') !!}
+                                        {!! Form::text( 'totalmatriculants' , $survey->totalmatriculants, ['class' => 'form-control']) !!}
+
+                                        {!! Form::label('medschoolterms', 'Medical school student class involvement (M1, M2, M3, M4):') !!}
+                                        {!! Form::text( 'medschoolterms' , $survey->medschoolterms, ['class' => 'form-control']) !!}
+
+
+
+
+                                        {!! Form::label('aidingschools', 'other participating professional schools:') !!}
+                                        {!! Form::text( 'aidingschools' , $survey->aidingschools, ['class' => 'form-control']) !!}
+
+
+
+                                        {!! Form::label('totalperyear', 'total participants in global health outreach per year:') !!}
+                                        {!! Form::text( 'totalperyear' , $survey->totalperyear, ['class' => 'form-control']) !!}
+
+
+
+                                        {!! Form::label('faculty', 'Faculty and staffing:') !!}
+                                        {!! Form::text( 'faculty' , $survey->faculty, ['class' => 'form-control']) !!}
+
+
+                                        {!! Form::label('appprocess', 'application process:') !!}
+                                        {!! Form::text( 'appprocess' , $survey->appprocess, ['class' => 'form-control']) !!}
+
+
+
+                                        {!! Form::label('programelements', 'program elements:') !!}
+                                        {!! Form::text( 'programelements' , $survey->programelements, ['class' => 'form-control']) !!}
+
+
+
+                                        {!! Form::label('finsupport', 'financial support:') !!}
+                                        {!! Form::text( 'finsupport' , $survey->finsupport, ['class' => 'form-control']) !!}
+
+
+
+                                        {!! Form::label('facultytimeallotted', 'faculty time allotted:') !!}
+                                        {!! Form::text( 'facultytimeallotted' , $survey->facultytimeallotted, ['class' => 'form-control']) !!}
+
+
+                                        {!! Form::label('adminsupport', 'administrative support:') !!}
+                                        {!! Form::text( 'adminsupport' , $survey->adminsupport,  ['class' => 'form-control', 'placeholder' => 'sadfsdf'])!!}
+
+
+
+                                        {!! Form::label('contactinfo', 'contact info:') !!}
+                                        {!! Form::text( 'contactinfo' , $survey->contactinfo, ['class' => 'form-control']) !!}
 
                                     </div>
                                     <div class="col-sm-6">
                                         <h1>Current Trips</h1>
 
                                     @foreach($survey->trips as $idx => $trip)
-                                            <div class="form-group">
-                                                <label for="location">Location: <?php echo $idx+1 ?></label>
-                                                <textarea name="location" class="form-control">{{$trip->place->place    }}</textarea>
-                                            </div>
+
+                                            {!! Form::label('location', 'Location '.($idx+1).': ' ) !!}
+                                            {!! Form::text( 'location' , $trip->place->place, ['class' => 'form-control']) !!}
+
                                             <div class="form-group">
                                                 <label for="monthsoftravel">Months of Travel:</label>
                                                 <textarea name="monthsoftravel" class="form-control">{{$trip->monthsoftravel    }}</textarea>
@@ -106,7 +97,7 @@
 
                                             <div class="form-group">
                                                 <label for="address">Visited City:</label>
-                                                <input class="form-control" name="address" type="text" id="address">
+                                                <input class="form-control" name="address" type="text" id="address" placeholder="type city here">
 
                                                 <label for="monthsoftravel">Months of Travel:</label>
                                                 <input class="form-control" name="monthsoftravel" type="text" id="monthsoftravel">
@@ -303,9 +294,13 @@
                             var element = document.getElementById(elementId);
                             element.parentNode.removeChild(element);
                         }
+
+                        function clearContents(element) {
+                            element.value = '';
+                        }
                     </script>
 
 
 
 
-@stop
+@endsection

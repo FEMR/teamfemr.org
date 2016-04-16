@@ -27,11 +27,11 @@ class LiteratureBankController extends Controller
             $info[$id] = Embed::create($literature->addLink);
 
             //try this
-            $info[$id] = Embed::create($info[$id]->title);
-            $info[$id] = Embed::create($info[$id]->description);
-            $info[$id] = Embed::create($literature->url);
-            $info[$id] = Embed::create($info[$id]->publishedDate);
-            $info[$id] = Embed::create($info[$id]->image);
+//            $info[$id] = Embed::create($info[$id]->title);
+//            $info[$id] = Embed::create($info[$id]->description);
+//            $info[$id] = Embed::create($literature->url);
+//            $info[$id] = Embed::create($info[$id]->publishedDate);
+//            $info[$id] = Embed::create($info[$id]->image);
         }
 
         return view('literaturebank', compact ('literatures', 'info'));
