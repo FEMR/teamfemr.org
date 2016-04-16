@@ -13,14 +13,14 @@
 
         <!--Use a form to get the variables from the Literature Bank survey. Variables include: contributor name, author name, link-->
         {!! Form::label('contributorName', 'Contributor Name:') !!}
-        {!! Form::text('contributorName' , null, ['class' => 'form-control']) !!}
+        {!! Form::text('contributorName' , null, ['class' => 'form-control', 'placeholder'=>'type contributor name here']) !!}
 
 
         {!! Form::label('authorName', 'Author Name:') !!}
-        {!! Form::text( 'authorName' , null, ['class' => 'form-control']) !!}
+        {!! Form::text( 'authorName' , null, ['class' => 'form-control', 'placeholder'=>'type author here']) !!}
 
         {!! Form::label('addLink', 'Add Link to Resource:') !!}
-        {!! Form::url( 'addLink' , null, ['class' => 'form-control']) !!}
+        {!! Form::url( 'addLink' , null, ['class' => 'form-control', 'placeholder'=>'type location of site here']) !!}
 <br>
         <!--Allows user to upload a file to survey, all file types work-->
         <input type="file" name="file"><br />
