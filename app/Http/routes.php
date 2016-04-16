@@ -106,17 +106,10 @@ Route::group(['middleware' => 'web'], function ()
 //	Call the discussion board page
 	Route::get('discussionboard', 'discussionboardController@index');
 
-	//sends email
+	//sends emails
 	Route::get('/emails', 'EmailController@index');
-//	Route::get('/emails2', 'EmailController@index2');
 	Route::get('/emails/test', 'EmailController@index');
-
-	//sends email
-	//Route::get('/emails', 'EmailController@index2');
 	Route::get('/emails/test2', 'EmailController@index2');
-
-	//sends email
-	//Route::get('/emails', 'EmailController@index3');
 	Route::get('/emails/test3', 'EmailController@index3');
 
 	Route::get('/confirmations/surveymsg', 'ConfirmationMsgController@index');
@@ -138,7 +131,7 @@ Route::group(['middleware' => 'web'], function ()
 		Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
 
 
-		Route::get('allprograms', 'TripDatabaseController@index2');
+		Route::get('/allprograms', 'TripDatabaseController@show');
 
 		//	Calls the literature bank web page and create function
 		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');

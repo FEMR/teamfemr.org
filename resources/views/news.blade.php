@@ -10,7 +10,7 @@
                         <p>We are using open source technology to promote data driven communciation in low resource settings.</p>
                     <a href="./public/other/Annual_Report_2014_2015.pdf">First Annual Report</a>
                     </div>
-                    <div class="content_middle">
+                    {{--<div class="content_middle">--}}
                         <div class="tiles margins">
 
                             <ul id="newsList">
@@ -43,7 +43,7 @@
 
 
                             </ul>
-                        </div>
+                        {{--</div>--}}
                     </div>
                     <div class="content_bottom">
                     </div>

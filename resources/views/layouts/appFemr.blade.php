@@ -80,7 +80,7 @@
                     </ul>
 
                 </li> {{--ends the Trip Database WebPages--}}
-                <li><a href="{{ url('/mailto:info@teamfemr.org') }}">Contact</a></li>
+                <li><a href="mailto:info@teamfemr.org">Contact</a></li>
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
