@@ -99,7 +99,7 @@
                     </script>
                     <div id="map" style="width: 100%; height: 500px; margin: 0 auto;"></div>
 
-
+{{--*************BELOW MAP SURVEY LIST****************************************************************************--}}
     <div class="form-group">
 
         {{--Possible search functionality}}}

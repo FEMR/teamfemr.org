@@ -31,62 +31,54 @@
 
                     <!--Use a form to get the variables from the Literature Bank survey-->
         {!! Form::label('teamname', 'Program Name:') !!}
-        {!! Form::text('teamname' , null, ['class' => 'form-control']) !!}
+        {!! Form::text('teamname' , null, ['class' => 'form-control', 'placeholder'=>'type teamname here']) !!}
 
-
+        <br>
         {!! Form::label('initiated', 'Initiated:') !!}
-        {!! Form::input('year', 'initiated' , date('Y'), ['class' => 'form-control']) !!}
+        {!! Form::input('year', 'initiated' , date('Y'), ['class' => 'form-control', 'placeholder'=>'type initiated date mm/dd/yy']) !!}
 
+        <br>
+        {!! Form::label('totalmatriculants', 'Total Matriculants:') !!}
+        {!! Form::text( 'totalmatriculants' , null, ['class' => 'form-control', 'placeholder'=>'type total matriculants here']) !!}
+        <br>
+        {!! Form::label('medschoolterms', 'Medical School Student Class Involvement (M1, M2, M3, M4):') !!}
+        {!! Form::text( 'medschoolterms' , null, ['class' => 'form-control', 'placeholder'=>'type M1, M2, M3, or M4 here']) !!}
 
-        {!! Form::label('totalmatriculants', 'total matriculants:') !!}
-        {!! Form::text( 'totalmatriculants' , null, ['class' => 'form-control']) !!}
+        <br>
+        {!! Form::label('aidingschools', 'Other Participating Professional Schools:') !!}
+        {!! Form::text( 'aidingschools' , null, ['class' => 'form-control', 'placeholder'=>'type other schools here']) !!}
 
-        {!! Form::label('medschoolterms', 'Medical school student class involvement (M1, M2, M3, M4):') !!}
-        {!! Form::text( 'medschoolterms' , null, ['class' => 'form-control']) !!}
+        <br>
+        {!! Form::label('totalperyear', 'Total Participants in Global Health Outreach per Year:') !!}
+        {!! Form::text( 'totalperyear' , null, ['class' => 'form-control', 'placeholder'=>'type total participants per year here']) !!}
 
+        <br>
+        {!! Form::label('faculty', 'Faculty and Staffing:') !!}
+        {!! Form::text( 'faculty' , null, ['class' => 'form-control', 'placeholder'=>'type faculty names here']) !!}
 
+        <br>
+        {!! Form::label('appprocess', 'Application Process:') !!}
+        {!! Form::textarea( 'appprocess' , null, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type application process here']) !!}
 
+        <br>
+        {!! Form::label('programelements', 'Program Elements:') !!}
+        {!! Form::textarea( 'programelements' , null, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type program elements here']) !!}
 
-        {!! Form::label('aidingschools', 'other participating professional schools:') !!}
-        {!! Form::text( 'aidingschools' , null, ['class' => 'form-control']) !!}
+        <br>
+        {!! Form::label('finsupport', 'Financial Support:') !!}
+        {!! Form::textarea( 'finsupport' , null, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type financial support info here']) !!}
 
+        <br>
+        {!! Form::label('facultytimeallotted', 'Faculty Time Allotted:') !!}
+        {!! Form::textarea( 'facultytimeallotted' , null, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type faculty time allotted here']) !!}
 
+        <br>
+        {!! Form::label('adminsupport', 'Administrative Support:') !!}
+        {!! Form::textarea( 'adminsupport' , null, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type admin support here']) !!}
 
-        {!! Form::label('totalperyear', 'total participants in global health outreach per year:') !!}
-        {!! Form::text( 'totalperyear' , null, ['class' => 'form-control']) !!}
-
-
-
-        {!! Form::label('faculty', 'Faculty and staffing:') !!}
-        {!! Form::text( 'faculty' , null, ['class' => 'form-control']) !!}
-
-
-        {!! Form::label('appprocess', 'application process:') !!}
-        {!! Form::text( 'appprocess' , null, ['class' => 'form-control']) !!}
-
-
-
-        {!! Form::label('programelements', 'program elements:') !!}
-        {!! Form::text( 'programelements' , null, ['class' => 'form-control']) !!}
-
-
-
-        {!! Form::label('finsupport', 'financial support:') !!}
-        {!! Form::text( 'finsupport' , null, ['class' => 'form-control']) !!}
-
-
-
-        {!! Form::label('facultytimeallotted', 'faculty time allotted:') !!}
-        {!! Form::text( 'facultytimeallotted' , null, ['class' => 'form-control']) !!}
-
-
-        {!! Form::label('adminsupport', 'administrative support:') !!}
-        {!! Form::text( 'adminsupport' , null, ['class' => 'form-control']) !!}
-
-
-
-        {!! Form::label('contactinfo', 'contact info:') !!}
-        {!! Form::text( 'contactinfo' , null, ['class' => 'form-control']) !!}
+        <br>
+        {!! Form::label('contactinfo', 'Contact Info:') !!}
+        {!! Form::text( 'contactinfo' , null, ['class' => 'form-control', 'placeholder'=>'type contact info here']) !!}
         <br>
 
 
@@ -102,17 +94,16 @@
 
 
                     <div class="form-group">
-                        <label for="address">Visited City:</label>
-                        <input class="form-control" name="address" type="text" id="address">
 
-                        <label for="monthsoftravel">Months of Travel:</label>
-                        <input class="form-control" name="monthsoftravel" type="text" id="monthsoftravel">
-
-                        <label for="partnerngo">Partner NGO:</label>
-                        <input class="form-control" name="partnerngo" type="text" id="partnerngo">
-
-
-
+                        {!! Form::label('address', 'Visited City:') !!}
+                        {!! Form::text( 'address' , null, ['class' => 'form-control', 'placeholder'=>'type address info here']) !!}
+                        <br>
+                        {!! Form::label('monthsoftravel', 'Months of Travel:') !!}
+                        {!! Form::text( 'monthsoftravel' , null, ['class' => 'form-control', 'placeholder'=>'type months (month-month) here']) !!}
+                        <br>
+                        {!! Form::label('partnerngo', 'Partner NGO:') !!}
+                        {!! Form::text( 'partnerngo' , null, ['class' => 'form-control', 'placeholder'=>'type NGO info here']) !!}
+                        
                         <input id="submit" type="button" value="Add Trip">
 
                     </div>
