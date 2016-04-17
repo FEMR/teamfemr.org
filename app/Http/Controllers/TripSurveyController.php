@@ -39,8 +39,72 @@ class TripSurveyController extends Controller
 
     public function update(Request $request, Survey $survey)
     {
-        $survey->update($request->all());
+        $this->validate($request, [
+            'teamname' => 'required',
+            'initiated' => 'required',
+            'totalmatriculants' => 'required',
+            'medschoolterms' => 'required',
+            'aidingschools' => 'required',
+            'totalperyear' => 'required',
+            'monthsoftravel' => 'required',
+            'faculty' => 'required',
+            'appprocess' => 'required',
+            'programelements' => 'required',
+            'finsupport' => 'required',
+            'facultytimeallotted' => 'required',
+            'adminsupport' => 'required',
+            'contactinfo' => 'required'
 
+        ]);
+
+        $survey->update($request->all());
+        foreach( $request->input( 'lat' ) as $id => $lat ){
+
+            $lat = round( $lat, 5 );
+
+            // we aren't 100% positive that $lng[$id] is set
+            $lng = round( $request->input( 'lng' )[$id], 5);
+            $address = $request->input( 'address' )[$id];
+            $existing = Place::where( 'lat', '=', $lat )
+                ->where( 'lng', '=', $lng )
+                ->where( 'place', '=', $address)
+                ->first();
+
+
+            $ngo = $request->input( 'partnerngo' )[$id];
+            $months = $request->input( 'monthsoftravel')[$id];
+
+            $trip = new Trip;
+            $trip->partnerngo = $ngo;
+            $trip->monthsoftravel = $months;
+            $trip->survey_id = $survey->id;
+
+
+
+
+
+
+
+            if( $existing ){
+
+                // link to the existing place
+                $trip->place_id = $existing->id;
+                $trip->save();
+            }
+            else{
+
+                // Doesn't exist create new
+                $new_place = new Place;
+                $new_place->lat = $lat;
+                $new_place->lng = $lng;
+                $new_place->place = $address;
+
+                $new_place->save();
+                $trip->place_id = $new_place->id;
+                $trip->save();
+            }
+
+        }
         return back();
     }
 //    *******************************************************

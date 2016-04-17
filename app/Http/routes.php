@@ -34,7 +34,7 @@ Route::get('/users/xml', function() {
 			$xml->writeAttribute('lat', $trip->place->lat);
 			$xml->writeAttribute('lng', $trip->place->lng);
 			foreach($trip->place->trips as $idz => $placetrip){
-				$xml->writeAttribute('id' . $idz, $survey->id);
+				$xml->writeAttribute('id' . $idz, $placetrip->survey->id);
 				$xml->writeAttribute('teamname' . $idz, $placetrip->survey->teamname);
 
 			}

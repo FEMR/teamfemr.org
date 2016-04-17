@@ -73,26 +73,23 @@
                                         {!! Form::text( 'contactinfo' , $survey->contactinfo, ['class' => 'form-control']) !!}
 
                                     </div>
-                                    <div class="col-sm-6">
-                                        <h1>Current Trips</h1>
+                                    <div     class="col-sm-6">
+                                            <h1>Trips</h1>
 
+                                        <ul class="list-unstyled">
                                     @foreach($survey->trips as $idx => $trip)
 
-                                            {!! Form::label('location', 'Location '.($idx+1).': ' ) !!}
-                                            {!! Form::text( 'location' , $trip->place->place, ['class' => 'form-control']) !!}
 
-                                            <div class="form-group">
-                                                <label for="monthsoftravel">Months of Travel:</label>
-                                                <textarea name="monthsoftravel" class="form-control">{{$trip->monthsoftravel    }}</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="partnerngo">Partner NGO: </label>
-                                                <textarea name="partnerngo" class="form-control">{{$trip->partnerngo  }}</textarea>
-                                            </div>
+                                                <li><label  style="width: 22%; display:inline-block">Location <?php echo $idx+1 ?>:</label> {{$trip->place->place}}</li>
+                                                <li><label  style="width: 22%; display:inline-block">Months of Travel:</label> {{$trip->monthsoftravel}}</li>
+                                                <li><label  style="width: 22%; display:inline-block">Partner NGO:</label> {{$trip->partnerngo}}</li>
+                                        <br>
 
                                         @endforeach
+                                            </ul>
 
-                                            <div id="map" style="width: 420px; height: 300px"></div>
+
+                                            <div id="map" style="width: 550px; height: 300px"></div>
                                             <h1>Add Another Trip</h1>
 
                                             <div class="form-group">
