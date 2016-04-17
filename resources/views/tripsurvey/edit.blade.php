@@ -15,79 +15,56 @@
                                     <div class="col-sm-6">
 
                                         {!! Form::label('teamname', 'Program Name:') !!}
-                                        {!! Form::text('teamname' , $survey->teamname, ['class' => 'form-control', 'rows'=>'1']) !!}
-
-
-                                        {!! Form::label('initiated', 'Initiated:') !!}
-                                        {!! Form::input('year', 'initiated' , $survey->initiated, ['class' => 'form-control']) !!}
-
-
-                                        {!! Form::label('totalmatriculants', 'total matriculants:') !!}
-                                        {!! Form::text( 'totalmatriculants' , $survey->totalmatriculants, ['class' => 'form-control']) !!}
-
-                                        {!! Form::label('medschoolterms', 'Medical school student class involvement (M1, M2, M3, M4):') !!}
-                                        {!! Form::text( 'medschoolterms' , $survey->medschoolterms, ['class' => 'form-control']) !!}
-
-
-
-
-                                        {!! Form::label('aidingschools', 'other participating professional schools:') !!}
-                                        {!! Form::text( 'aidingschools' , $survey->aidingschools, ['class' => 'form-control']) !!}
-
-
-
-                                        {!! Form::label('totalperyear', 'total participants in global health outreach per year:') !!}
-                                        {!! Form::text( 'totalperyear' , $survey->totalperyear, ['class' => 'form-control']) !!}
-
-
-
-                                        {!! Form::label('faculty', 'Faculty and staffing:') !!}
-                                        {!! Form::text( 'faculty' , $survey->faculty, ['class' => 'form-control']) !!}
-
-
-                                        {!! Form::label('appprocess', 'application process:') !!}
-                                        {!! Form::text( 'appprocess' , $survey->appprocess, ['class' => 'form-control']) !!}
-
-
-
-                                        {!! Form::label('programelements', 'program elements:') !!}
-                                        {!! Form::text( 'programelements' , $survey->programelements, ['class' => 'form-control']) !!}
-
-
-
-                                        {!! Form::label('finsupport', 'financial support:') !!}
-                                        {!! Form::text( 'finsupport' , $survey->finsupport, ['class' => 'form-control']) !!}
-
-
-
-                                        {!! Form::label('facultytimeallotted', 'faculty time allotted:') !!}
-                                        {!! Form::text( 'facultytimeallotted' , $survey->facultytimeallotted, ['class' => 'form-control']) !!}
-
-
-                                        {!! Form::label('adminsupport', 'administrative support:') !!}
-                                        {!! Form::text( 'adminsupport' , $survey->adminsupport,  ['class' => 'form-control', 'placeholder' => 'sadfsdf'])!!}
-
-
-
-                                        {!! Form::label('contactinfo', 'contact info:') !!}
-                                        {!! Form::text( 'contactinfo' , $survey->contactinfo, ['class' => 'form-control']) !!}
-
-                                    </div>
-                                    <div     class="col-sm-6">
-                                            <h1>Trips</h1>
-
-                                        <ul class="list-unstyled">
-                                    @foreach($survey->trips as $idx => $trip)
-
-
-                                                <li><label  style="width: 22%; display:inline-block">Location <?php echo $idx+1 ?>:</label> {{$trip->place->place}}</li>
-                                                <li><label  style="width: 22%; display:inline-block">Months of Travel:</label> {{$trip->monthsoftravel}}</li>
-                                                <li><label  style="width: 22%; display:inline-block">Partner NGO:</label> {{$trip->partnerngo}}</li>
+                                        {!! Form::text('teamname' , $survey->teamname, ['class' => 'form-control', 'rows'=>'1', 'placeholder'=>'type teamname here']) !!}
                                         <br>
 
-                                        @endforeach
-                                            </ul>
+                                        {!! Form::label('initiated', 'Initiated:') !!}
+                                        {!! Form::input('year', 'initiated' , $survey->initiated, ['class' => 'form-control', 'placeholder'=>'type initiated here']) !!}
+                                        <br>
 
+                                        {!! Form::label('totalmatriculants', 'Total Matriculants:') !!}
+                                        {!! Form::text( 'totalmatriculants' , $survey->totalmatriculants, ['class' => 'form-control', 'placeholder'=>'type total # of matricrulants here']) !!}
+                                        <br>
+                                        {!! Form::label('medschoolterms', 'Medical school student class involvement (M1, M2, M3, M4):') !!}
+                                        {!! Form::text( 'medschoolterms' , $survey->medschoolterms, ['class' => 'form-control', 'placeholder'=>'type M1, M2, M3, and/or M4 here']) !!}
+                                        <br>
+
+                                        {!! Form::label('aidingschools', 'Other Participating Professional Schools:') !!}
+                                        {!! Form::text( 'aidingschools' , $survey->aidingschools, ['class' => 'form-control', 'placeholder'=>'type other participating schools here']) !!}
+                                        <br>
+                                        {!! Form::label('totalperyear', 'Total Participants in Global Health Outreach per Year:') !!}
+                                        {!! Form::text( 'totalperyear' , $survey->totalperyear, ['class' => 'form-control', 'placeholder'=>'type total participants here']) !!}
+                                        <br>
+
+                                        {!! Form::label('faculty', 'Faculty and Staffing:') !!}
+                                        {!! Form::text( 'faculty' , $survey->faculty, ['class' => 'form-control', 'placeholder'=>'type faculty and staff names here']) !!}
+                                        <br>
+
+                                        {!! Form::label('appprocess', 'Application Process:') !!}
+                                        {!! Form::textarea( 'appprocess' , $survey->appprocess, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type application process here']) !!}
+                                        <br>
+
+                                        {!! Form::label('programelements', 'Program Elements:') !!}
+                                        {!! Form::textarea( 'programelements' , $survey->programelements, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type program elements here']) !!}
+                                        <br>
+
+                                        {!! Form::label('finsupport', 'Financial Support:') !!}
+                                        {!! Form::textarea( 'finsupport' , $survey->finsupport, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type financial info here']) !!}
+                                        <br>
+
+                                        {!! Form::label('facultytimeallotted', 'Faculty Time Allotted:') !!}
+                                        {!! Form::textarea( 'facultytimeallotted' , $survey->facultytimeallotted, ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type allotted time here']) !!}
+                                        <br>
+
+                                        {!! Form::label('adminsupport', 'Administrative Support:') !!}
+                                        {!! Form::textarea( 'adminsupport' , $survey->adminsupport,  ['class' => 'form-control', 'size' => '10x3', 'placeholder'=>'type admin support here'])!!}
+                                        <br>
+
+                                        {!! Form::label('contactinfo', 'Contact Info:') !!}
+                                        {!! Form::text( 'contactinfo' , $survey->contactinfo, ['class' => 'form-control', 'placeholder'=>'type contact info here']) !!}
+                                        <br>
+                                    </div>
+                                    <div     class="col-sm-6">
 
                                             <div id="map" style="width: 550px; height: 300px"></div>
                                             <h1>Add Another Trip</h1>
@@ -109,8 +86,26 @@
 
                                                 </ul>
                                             </div>
+                                        <h1>Trips</h1>
+                                        <ul class="list-unstyled">
+                                            @foreach($survey->trips as $idx => $trip)
+
+
+                                                <li><label  style="width: 22%; display:inline-block">Location <?php echo $idx+1 ?>:</label> {{$trip->place->place}}</li>
+                                                <li><label  style="width: 22%; display:inline-block">Months of Travel:</label> {{$trip->monthsoftravel}}</li>
+                                                <li><label  style="width: 22%; display:inline-block">Partner NGO:</label> {{$trip->partnerngo}}</li>
+                                                <br>
+
+                                            @endforeach
+                                        </ul>
+
+
 
                                     </div>
+
+
+
+
                                     <input class="btn btn-primary form-control" type="submit" value="Submit">
 
                                     </div>
