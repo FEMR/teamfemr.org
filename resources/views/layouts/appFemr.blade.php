@@ -36,10 +36,6 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <!-- Branding Image -->
-            {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
-                {{--fEMR--}}
-            {{--</a>--}}
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -108,7 +104,9 @@
                 @endif
 
             </ul>
+
         </div>
+
     </div>
 </nav>
 

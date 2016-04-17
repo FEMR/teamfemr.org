@@ -2,18 +2,27 @@
 
 @section('content')
 
-        <!--Trip Database web page-->
 
-                <div class="panel-heading"><center><h1>Trip Database</h1></center></div>
+        <!--Trip Database web page-->
+<div class="panel-heading">
+{{--<div class="nav navbar-nav centered-nav">--}}
+    {{--<a href ="/literaturebank" class="btn btn-primary btn-sm">LITERATURE BANK</a>--}}
+    {{--<a href ="/discussionboard" class="btn btn-primary btn-sm">DISCUSSION BOARD</a>--}}
+
+{{--</div>--}}
+                <center><h1>Trip Database</h1></center>
+
+                </div>
                 <!--Link to Trip Database survey-->
                 <div class="panel-body">
 
 
                     <div><a href ="/tripsurvey/create" class="btn btn-danger btn-sm">ADD PROGRAM</a>
-                        <a href ="/allprograms" class="btn btn-success btn-sm">SHOW ALL PROGRAMS</a>
-                    <hr>
+                        <a href ="/allprograms" class="btn btn-success btn-sm">SHOW PROGRAM LIST</a>
+                    {{--<a href ="/literaturebank" class="btn btn-primary btn-sm">LITERATURE BANK</a>--}}
+                        {{--<a href ="/discussionboard" class="btn btn-primary btn-sm">DISCUSSION BOARD</a>--}}
+                        <hr>
                     </div>
-
                     <!--Building the Google maps Graphical User Interface (GUI) into the web page-->
                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPVo3nvRyyRrnXvB-nIII6z13evOGCKkM"
                             type="text/javascript"></script>
@@ -57,7 +66,7 @@
                                     var point = new google.maps.LatLng(
                                             parseFloat(markers[i].getAttribute("lat")),
                                             parseFloat(markers[i].getAttribute("lng")));
-                                    var html =  name  ;
+                                    var html =  name;
 
 
                                     <!--Create new pop up pin on the map interface (based on the latitude and longitude entered into the Trip Database Survevy)-->
