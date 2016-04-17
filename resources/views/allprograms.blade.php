@@ -10,17 +10,19 @@
         </div>
         <div class="form-group">
             @foreach($surveys as $id => $survey)
-                <div style="width:1000px; margin:0 auto;">
+                <div style="width:100%; margin:0 auto;">
                     <table class="table table-striped table-responsive" style="table-layout:fixed">
                         <tr>
-                            <td valign="top"><label  style="width: 90%; display:inline-block">Program Name:</label></td>
-                            <td><a name=<?php echo ("jump".$survey->id) ?>></a></td>
 
                             @if ( Auth::guest() || !Auth::user()->moderator() )
                                 <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
 
                             @elseif ( Auth::user()->moderator() )
                                 <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
+                                <td><-click to expand</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td><a href ="/surveys/<?php echo $survey->id ?>/edit" class="btn btn-primary btn-sm">EDIT</a></td>
@@ -36,18 +38,18 @@
                                         <div class="col-md-6"  >
                                             <ul class="list-unstyled">
 
-                                                <li><label  style="width: 60%; display:inline-block">Initiated:</label> {{$survey->initiated}}</li>
-                                                <li><label style="width: 60%; display:inline-block">Total Matriculants:</label> {{$survey->totalmatriculants}}</li>
-                                                <li><label  style="width: 60%; display:inline-block">Med School Terms:</label> {{$survey->medschoolterms}}</li>
-                                                <li><label  style="width: 60%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</li>
-                                                <li><label style="width: 60%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</li>
-                                                <li><label style="width: 60%; display:inline-block">Faculty:</label>{{$survey->faculty}}</li>
-                                                <li><label style="width: 60%; display:inline-block">App. Process:</label>{{$survey->appprocess}}</li>
-                                                <li><label style="width: 60%; display:inline-block">Program Elements:</label>{{$survey->programelements}}</li>
-                                                <li><label style="width: 60%; display:inline-block">Financial Support:</label>{{$survey->finsupport}}</li>
-                                                <li><label style="width: 60%; display:inline-block">Faculty Time:</label>{{$survey->facultytimeallotted}}</li>
-                                                <li><label style="width: 60%; display:inline-block">Admin Support:</label>{{$survey->adminsupport}}</li>
-                                                <li><label style="width: 60%; display:inline-block">Contact Info:</label>{{$survey->contactinfo}}</li>
+                                                <li><label  style="width: 30%; display:inline-block">Initiated:</label> {{$survey->initiated}}</li>
+                                                <li><label style="width: 30%; display:inline-block">Total Matriculants:</label> {{$survey->totalmatriculants}}</li>
+                                                <li><label  style="width: 30%; display:inline-block">Med School Terms:</label> {{$survey->medschoolterms}}</li>
+                                                <li><label  style="width: 30%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</li>
+                                                <li><label style="width: 30%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</li>
+                                                <li><label style="width: 30%; display:inline-block">Faculty:</label>{{$survey->faculty}}</li>
+                                                <li><label style="width: 30%; display:block">App. Process:</label>{{$survey->appprocess}}</li>
+                                                <li><label style="width: 30%; display:block">Program Elements:</label>{{$survey->programelements}}</li>
+                                                <li><label style="width: 30%; display:block">Financial Support:</label>{{$survey->finsupport}}</li>
+                                                <li><label style="width: 30%; display:block">Faculty Time:</label>{{$survey->facultytimeallotted}}</li>
+                                                <li><label style="width: 30%; display:block">Admin Support:</label>{{$survey->adminsupport}}</li>
+                                                <li><label style="width: 30%; display:inline-block">Contact Info:</label>{{$survey->contactinfo}}</li>
 
                                             </ul>
                                         </div>

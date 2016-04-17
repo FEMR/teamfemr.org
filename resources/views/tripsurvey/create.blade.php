@@ -103,7 +103,7 @@
                         <br>
                         {!! Form::label('partnerngo', 'Partner NGO:') !!}
                         {!! Form::text( 'partnerngo' , null, ['class' => 'form-control', 'placeholder'=>'type NGO info here']) !!}
-
+                        <br>
                         <input id="submit" type="button" value="Add Trip">
 
                     </div>

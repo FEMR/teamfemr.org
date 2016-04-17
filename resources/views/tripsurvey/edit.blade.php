@@ -2,7 +2,7 @@
 
 @section('content')
 
-                    <div class="panel-heading"><center><h1>Edit this Survey</h1></center></div>
+                    <div class="panel-heading"><center><h1>Edit Survey</h1></center></div>
                  <div class="panel-body">
 
 
@@ -66,26 +66,22 @@
                                     </div>
                                     <div     class="col-sm-6">
 
-                                            <div id="map" style="width: 550px; height: 300px"></div>
-                                            <h1>Add Another Trip</h1>
+                                        <div id="map" style="width: 550px; height: 300px"></div>
+                                             <h1>Add Another Trip</h1>
 
-                                            <div class="form-group">
-                                                <label for="address">Visited City:</label>
-                                                <input class="form-control" name="address" type="text" id="address" placeholder="type city here">
+                                                {!! Form::label('address', 'Visited City:') !!}
+                                                {!! Form::text( 'address' , null, ['class' => 'form-control', 'placeholder'=>'type address info here']) !!}
+                                                <br>
+                                                {!! Form::label('monthsoftravel', 'Months of Travel:') !!}
+                                                {!! Form::text( 'monthsoftravel' , null, ['class' => 'form-control', 'placeholder'=>'type months (month-month) here']) !!}
+                                                <br>
+                                                {!! Form::label('partnerngo', 'Partner NGO:') !!}
+                                                {!! Form::text( 'partnerngo' , null, ['class' => 'form-control', 'placeholder'=>'type NGO info here']) !!}
+                                                   <br> <input id="submit" type="button" value="Add Trip">
+                                                    {{--<ul class="list-group" id="list">--}}
 
-                                                <label for="monthsoftravel">Months of Travel:</label>
-                                                <input class="form-control" name="monthsoftravel" type="text" id="monthsoftravel">
+                                                    {{--</ul>--}}
 
-                                                <label for="partnerngo">Partner NGO:</label>
-                                                <input class="form-control" name="partnerngo" type="text" id="partnerngo">
-
-
-
-                                                <input id="submit" type="button" value="Add Trip">
-                                                <ul class="list-group" id="list">
-
-                                                </ul>
-                                            </div>
                                         <h1>Trips</h1>
                                         <ul class="list-unstyled">
                                             @foreach($survey->trips as $idx => $trip)
