@@ -116,6 +116,8 @@ Route::group(['middleware' => 'web'], function ()
 
 	Route::get('/confirmations/literaturemsg', 'ConfirmationMsgController@literature');
 
+
+
 	//pulls the authorization page
 	Route::auth();
 
@@ -128,7 +130,7 @@ Route::group(['middleware' => 'web'], function ()
 		Route::get('/tripsurvey', 'TripSurveyController@index');
 		Route::get('/tripsurvey/create', 'TripSurveyController@create');
 		Route::post('/tripsurvey', 'TripSurveyController@store');
-		Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
+
 
 
 		Route::get('/allprograms', 'TripDatabaseController@show');
@@ -139,7 +141,8 @@ Route::group(['middleware' => 'web'], function ()
 		Route::post('/litbanksurvey', 'LiteratureBankSurveyController@store');
 		Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
 	});
-
+	Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
+	
 	//Moderator Pages
 	Route::group([ 'middleware' => 'moderator' ], function ()
 	{

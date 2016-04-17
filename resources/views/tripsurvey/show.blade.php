@@ -22,11 +22,11 @@
     <p><label style="width: 30%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</p>
     <p><label style="width: 30%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</p>
     <p><label style="width: 30%; display:inline-block">Faculty:</label>{{$survey->faculty}}</p>
-    <p><label style="width: 30%; display:inline-block">App. Process:</label>{{$survey->appprocess}}</p>
-    <p><label style="width: 30%; display:inline-block">Program Elements:</label>{{$survey->programelements}}</p>
-    <p><label style="width: 30%; display:inline-block">Financial Support:</label>{{$survey->finsupport}}</p>
-    <p><label style="width: 30%; display:inline-block">Faculty Time:</label>{{$survey->facultytimeallotted}}</p>
-    <p><label style="width: 30%; display:inline-block">Admin Support:</label>{{$survey->adminsupport}}</p>
+    <p><label style="width: 30%; display:block">App. Process:</label>{{$survey->appprocess}}</p>
+    <p><label style="width: 30%; display:block">Program Elements:</label>{{$survey->programelements}}</p>
+    <p><label style="width: 30%; display:block">Financial Support:</label>{{$survey->finsupport}}</p>
+    <p><label style="width: 30%; display:block">Faculty Time:</label>{{$survey->facultytimeallotted}}</p>
+    <p><label style="width: 30%; display:block">Admin Support:</label>{{$survey->adminsupport}}</p>
     <p><label style="width: 30%; display:inline-block">Contact Info:</label>{{$survey->contactinfo}}</p>
 </div>
                     <div class="col-md-6">

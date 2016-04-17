@@ -61,7 +61,7 @@
                                         <br>
 
                                         {!! Form::label('contactinfo', 'Contact Info:') !!}
-                                        {!! Form::text( 'contactinfo' , $survey->contactinfo, ['class' => 'form-control', 'placeholder'=>'type contact info here']) !!}
+                                        {!! Form::text( 'contactinfo' , $survey->contactinfo, ['class' => 'form-control', 'placeholder'=>'type email here']) !!}
                                         <br>
                                     </div>
                                     <div     class="col-sm-6">

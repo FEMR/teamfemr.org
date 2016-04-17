@@ -59,7 +59,7 @@
 //                                        + " href=\"../tripsurvey/"
 //                                        + markers[i].getAttribute("id"+j)
                                         + " target=\"popup\""
-                                        + " onclick=\"window.open('../tripsurvey/"+ markers[i].getAttribute("id"+j)+ "','name','width=600,height=400')" + " "
+                                        + " onclick=\"window.open('../tripsurvey/"+ markers[i].getAttribute("id"+j)+ "','name','width=1000,height=500')" + " "
                                         +"\">"
 
                                                 + markers[i].getAttribute("teamname"+j) + "</a>" +"<br>" ;
@@ -111,16 +111,16 @@
                     <div id="map" style="width: 100%; height: 500px; margin: 0 auto;"></div>
 <br>
 {{--*************BELOW MAP SURVEY LIST****************************************************************************--}}
-    <div class="form-group" id="accordion" >
-        {{--Possible search functionality}}}
-      <form method="post" action="search.php?go" id="searchform">
-      <input type="text" name="name">
-      <input type="submit" name="submit" value="Search">
-      </form>
+    {{--<div class="form-group" id="accordion" >--}}
+        {{--Possible search functionality}}}--}}
+      {{--<form method="post" action="search.php?go" id="searchform">--}}
+      {{--<input type="text" name="name">--}}
+      {{--<input type="submit" name="submit" value="Search">--}}
+      {{--</form>--}}
 
 {{--Displays the database--}}
-     
-</div>
+     {{----}}
+{{--</div>--}}
 
 </div>
 

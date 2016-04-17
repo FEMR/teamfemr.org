@@ -78,7 +78,7 @@
 
         <br>
         {!! Form::label('contactinfo', 'Contact Info:') !!}
-        {!! Form::text( 'contactinfo' , null, ['class' => 'form-control', 'placeholder'=>'type contact info here']) !!}
+        {!! Form::text( 'contactinfo' , null, ['class' => 'form-control', 'placeholder'=>'type email here']) !!}
         <br>
 
 
