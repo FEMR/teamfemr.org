@@ -105,7 +105,7 @@
                         {!! Form::text( 'partnerngo' , null, ['class' => 'form-control', 'placeholder'=>'type NGO info here']) !!}
                         <br>
                         <input id="submit" type="button" value="Add Trip">
-
+<br>
                     </div>
 
                     <ul class="list-unstyled" id="list">
