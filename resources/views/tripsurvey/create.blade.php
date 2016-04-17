@@ -108,7 +108,7 @@
 
                     </div>
 
-                    <ul class="list-group" id="list">
+                    <ul class="list-unstyled" id="list">
 
                     </ul>
 
@@ -209,22 +209,31 @@
 
 
                                     var node = document.createElement("LI");
-                                    var boldlocation = document.createElement("b");
-                                    var boldmonths = document.createElement("b");
-                                    var boldngo = document.createElement("b");
 
+                                    var boldlocation = document.createElement("label");
+                                    var boldmonths = document.createElement("label");
+                                    var boldngo = document.createElement("label");
+                                    var lilocation = document.createElement("li");
+                                    var limonths = document.createElement("li");
+                                    var lingo = document.createElement("li");
+                                    lilocation.appendChild(boldlocation);
+                                    limonths.appendChild(boldmonths);
+                                    lingo.appendChild(boldngo);
                                     boldlocation.appendChild(document.createTextNode("Location: "));
                                     boldmonths.appendChild(document.createTextNode("Months of Travel: "));
                                     boldngo.appendChild(document.createTextNode("Partner NGO: "));
-
+                                    boldlocation.setAttribute('style',"width:55% display:inline-block");
+                                    boldngo.setAttribute('style',"width:22% display:inline-block");
+                                    boldmonths.setAttribute('style',"width:22% display:inline-block");
                                     node.setAttribute( 'class', "list-group-item" );
+
                                     node.setAttribute('id', geocodeAddress.counter);
                                     var breaker = document.createElement("br");
                                     var breaker1 = document.createElement("br");
 
-                                    var textnode = document.createTextNode( results[0].formatted_address);
-                                    var textnode1 = document.createTextNode(monthsoftravel);
-                                    var textnode2 = document.createTextNode(partnerngo);
+                                    var textlocation = document.createTextNode( results[0].formatted_address);
+                                    var textmonths = document.createTextNode(monthsoftravel);
+                                    var textngo = document.createTextNode(partnerngo);
 
                                     var kill = document.createElement("a");
                                     var id =  localeElem.getAttribute("id");
@@ -234,18 +243,18 @@
 
                                     kill.innerHTML="remove";
                                     kill.onclick=function() {killFunction(id)};
-                                    node.appendChild(boldlocation);
-
-                                    node.appendChild(textnode);
-                                    node.appendChild(breaker);
-                                    node.appendChild(boldmonths);
-
-                                    node.appendChild(textnode1);
-                                    node.appendChild(breaker1);
-                                    node.appendChild(boldngo);
-
-                                    node.appendChild(textnode2);
                                     node.appendChild(kill);
+
+                                    lilocation.appendChild(textlocation);
+                                    node.appendChild(lilocation);
+
+
+                                    limonths.appendChild(textmonths);
+                                    node.appendChild(limonths);
+
+                                    lingo.appendChild(textngo);
+                                    node.appendChild(lingo);
+
 
                                     document.getElementById("list").appendChild(node);
                                     geocodeAddress.counter++;
