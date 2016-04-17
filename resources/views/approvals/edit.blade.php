@@ -34,10 +34,14 @@
                                                 {!! Form::checkbox('deletes[]', $survey->id, null) !!}
                                             </td>
                                             <td><a href="#teamname">{{$survey->teamname}}</a></td>
-                                            <td> @foreach($survey->places as $place)
-                                                    <li>{{$place->place}}</li>
+                                           <td> @foreach($survey->trips as $trip)
+                                                    <li>{{$trip->place->place}}</li>
+
+                                            @endforeach</td>
+                                            <td>@foreach($survey->trips as $trip)
+                                                    <li>{{$trip->monthsoftravel}}</li>
+
                                                 @endforeach</td>
-                                            <td>{{$survey->monthsoftravel}}</td>
                                             <td>{{$survey->contactinfo}}</td>
 
                                         </tr>

@@ -39,25 +39,9 @@ class TripSurveyController extends Controller
 
     public function update(Request $request, Survey $survey)
     {
-        $this->validate($request, [
-            'teamname' => 'required',
-            'initiated' => 'required',
-            'totalmatriculants' => 'required',
-            'medschoolterms' => 'required',
-            'aidingschools' => 'required',
-            'totalperyear' => 'required',
-            'monthsoftravel' => 'required',
-            'faculty' => 'required',
-            'appprocess' => 'required',
-            'programelements' => 'required',
-            'finsupport' => 'required',
-            'facultytimeallotted' => 'required',
-            'adminsupport' => 'required',
-            'contactinfo' => 'required'
-
-        ]);
 
         $survey->update($request->all());
+
         foreach( $request->input( 'lat' ) as $id => $lat ){
 
             $lat = round( $lat, 5 );
@@ -120,7 +104,6 @@ class TripSurveyController extends Controller
             'medschoolterms' => 'required',
             'aidingschools' => 'required',
             'totalperyear' => 'required',
-            'monthsoftravel' => 'required',
             'faculty' => 'required',
             'appprocess' => 'required',
             'programelements' => 'required',
