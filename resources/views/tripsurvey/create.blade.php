@@ -3,8 +3,8 @@
 
 @section('content')
 
-                        <div class="panel-heading"><center><h1>Write Survey</h1>
-                            <p>Please fill out every box, if not applicable put NA.</p></center>
+                        <div class="panel-heading"><center><h1>Create a New Survey</h1>
+                            <p>[Please fill out every box, if not applicable put NA.]</p></center>
                         </div>
                     <div class="panel-body">
         <!--Print to web page-->
@@ -103,7 +103,7 @@
                         <br>
                         {!! Form::label('partnerngo', 'Partner NGO:') !!}
                         {!! Form::text( 'partnerngo' , null, ['class' => 'form-control', 'placeholder'=>'type NGO info here']) !!}
-                        
+
                         <input id="submit" type="button" value="Add Trip">
 
                     </div>
