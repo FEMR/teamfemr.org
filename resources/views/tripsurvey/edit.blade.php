@@ -78,12 +78,11 @@
                                                 {!! Form::label('partnerngo', 'Partner NGO:') !!}
                                                 {!! Form::text( 'partnerngo' , null, ['class' => 'form-control', 'placeholder'=>'type NGO info here']) !!}
                                                    <br> <input id="submit" type="button" value="Add Trip">
-                                                    {{--<ul class="list-group" id="list">--}}
+                                                <br>
 
-                                                    {{--</ul>--}}
 
                                         <h1>Trips</h1>
-                                        <ul class="list-unstyled">
+                                        <ul class="list-unstyled" id="list">
                                             @foreach($survey->trips as $idx => $trip)
 
 
@@ -95,7 +94,7 @@
                                             @endforeach
                                         </ul>
 
-
+                                        {{--<ul class="list-group" id="list"></ul>--}}
 
                                     </div>
 
@@ -203,8 +202,8 @@
                                     var boldmonths = document.createElement("b");
                                     var boldngo = document.createElement("b");
 
-                                    boldlocation.appendChild(document.createTextNode("location: "));
-                                    boldmonths.appendChild(document.createTextNode("months of travel: "));
+                                    boldlocation.appendChild(document.createTextNode("Location: "));
+                                    boldmonths.appendChild(document.createTextNode("Months of Travel: "));
                                     boldngo.appendChild(document.createTextNode("Partner NGO: "));
 
                                     node.setAttribute( 'class', "list-group-item" );

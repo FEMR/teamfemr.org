@@ -16,7 +16,7 @@
 
                             @if ( Auth::guest() || !Auth::user()->moderator() )
                                 <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
-
+                                <td><-click to expand</td>
                             @elseif ( Auth::user()->moderator() )
                                 <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
                                 <td><-click to expand</td>
