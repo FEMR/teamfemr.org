@@ -55,10 +55,14 @@
                                     for (var j = ((markers[i].attributes.length-2)/2)-1; j >-1 ; j--)
                                     {
 
-                                        name += "<a data-toggle=\"collapse\" data-target=\"#"
-                                        + markers[i].getAttribute("id" + j)
-                                        + "\" href=\"#jump"
-                                        + markers[i].getAttribute("id"+j) +"\">" + markers[i].getAttribute("teamname"+j) + "</a>" +"<br>" ;
+                                        name += "<a "
+//                                        + " href=\"../tripsurvey/"
+//                                        + markers[i].getAttribute("id"+j)
+                                        + " target=\"popup\""
+                                        + " onclick=\"window.open('../tripsurvey/"+ markers[i].getAttribute("id"+j)+ "','name','width=600,height=400')" + " "
+                                        +"\">"
+
+                                                + markers[i].getAttribute("teamname"+j) + "</a>" +"<br>" ;
                                     }
                                     <!--Pull latitude and longitude data from the Trip Database survey-->
                                     var point = new google.maps.LatLng(
@@ -107,8 +111,7 @@
                     <div id="map" style="width: 100%; height: 500px; margin: 0 auto;"></div>
 <br>
 {{--*************BELOW MAP SURVEY LIST****************************************************************************--}}
-    <div class="form-group">
-
+    <div class="form-group" id="accordion" >
         {{--Possible search functionality}}}
       <form method="post" action="search.php?go" id="searchform">
       <input type="text" name="name">
@@ -116,76 +119,9 @@
       </form>
 
 {{--Displays the database--}}
-    @foreach($surveys as $id => $survey)
-        <div style="width:100%; margin:0 auto;">
-            <table class="table table-striped table-responsive" style="table-layout:fixed">
-                <tr>
+     
+</div>
 
-                    {{--<td valign="top"><label  style="width: 90%; display:inline-block">Program Name:</label></td>--}}
-
-                        {{--<td>--}}
-                            <a name=<?php echo ("jump".$survey->id) ?>></a>
-                        {{--</td>--}}
-                    @if ( Auth::guest() || !Auth::user()->moderator() )
-                        <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
-                        <td><-click to expand</td>
-                    @elseif ( Auth::user()->moderator() )
-                        <td data-toggle="collapse" data-target="#<?php echo $survey->id ?>"><label  style="width: 60%; display:inline-block"><a> {{$survey->teamname}}</a></label></td>
-                        <td><-click to expand</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href ="/surveys/<?php echo $survey->id ?>/edit" class="btn btn-primary btn-sm">EDIT</a></td>
-                    @endif
-                    {{--</td>--}}
-                </tr>
-            </table>
-            <table width="100%">
-                <tr>
-                    <td>
-                    <div class="row">
-                        <div id="<?php echo $survey->id ?>" class="collapse">
-                            <div class="col-md-6"  >
-                                <ul class="list-unstyled">
-
-                                    <li><label  style="width: 30%; display:inline-block">Initiated:</label> {{$survey->initiated}}</li>
-                                    <li><label style="width: 30%; display:inline-block">Total Matriculants:</label> {{$survey->totalmatriculants}}</li>
-                                    <li><label  style="width: 30%; display:inline-block">Med School Terms:</label> {{$survey->medschoolterms}}</li>
-                                    <li><label  style="width: 30%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</li>
-                                    <li><label style="width: 30%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</li>
-                                    <li><label style="width: 30%; display:inline-block">Faculty:</label>{{$survey->faculty}}</li>
-                                    <li><label style="width: 30%; display:block">App. Process:</label>{{$survey->appprocess}}</li>
-                                    <li><label style="width: 30%; display:block">Program Elements:</label>{{$survey->programelements}}</li>
-                                    <li><label style="width: 30%; display:block">Financial Support:</label>{{$survey->finsupport}}</li>
-                                    <li><label style="width: 30%; display:block">Faculty Time:</label>{{$survey->facultytimeallotted}}</li>
-                                    <li><label style="width: 30%; display:block">Admin Support:</label>{{$survey->adminsupport}}</li>
-                                    <li><label style="width: 30%; display:inline-block">Contact Info:</label>{{$survey->contactinfo}}</li>
-
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                @foreach($survey->trips as $idx => $trip)
-                                    <li><label style="width: 50%; display:inline-block ">Location:</label>{{$trip->place->place}}</li>
-                                        <li><label style="font-weight: bold ;width: 50%; display:inline-block ">Months of Travel:</label>{{$trip->monthsoftravel}}</li>
-
-                                        <li><label style="font-weight: bold ; width: 50%; display:inline-block">Partner NGO:</label>{{$trip->partnerngo}}</li>
-                                        <br>
-                                @endforeach
-
-                                </ul>
-                            </div>
-                         </div>
-                    </div>
-                    </td>
-                </tr>
-
-            </table>
-        </div>
-
-
-        @endforeach
-    </div>
 </div>
 
 @endsection
