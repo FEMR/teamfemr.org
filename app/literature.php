@@ -15,13 +15,7 @@ class literature extends Model
         'contributorName',
         'authorName',
         'addLink',
-            
-            //may delete later
-        'title',
-        'description',
-        'url',
-        'publishedDate',
-        'image'
+ 
 ];
 
         //This makes it so that the date something was deleted is a new field on the literatures survey

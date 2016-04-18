@@ -32,7 +32,7 @@ class TripSurveyController extends Controller
         return view('tripsurvey.create');
     }
 
-    //Editing the Survey ***********************************
+    //Editing the Survey
     public function edit(Survey $survey){
         return view('tripsurvey.edit', compact('survey'));
     }
@@ -62,10 +62,6 @@ class TripSurveyController extends Controller
             $trip->partnerngo = $ngo;
             $trip->monthsoftravel = $months;
             $trip->survey_id = $survey->id;
-
-
-
-
 
 
 
@@ -149,17 +145,15 @@ class TripSurveyController extends Controller
 
 
 
-
-
-
-
-            if( $existing ){
+            if( $existing )
+            {
 
                 // link to the existing place
                 $trip->place_id = $existing->id;
                 $trip->save();
             }
-            else{
+            else
+            {
 
                 // Doesn't exist create new
                 $new_place = new Place;

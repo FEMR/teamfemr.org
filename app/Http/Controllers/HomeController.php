@@ -19,7 +19,7 @@ class HomeController extends Controller
 //            ->orderBy('email', 'desc')
 //            ->get();
 
-
+        //redirect to Trip Database page 
         return redirect('tripdatabase'); //, compact('users'));
     }
 

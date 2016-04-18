@@ -12,8 +12,8 @@ class discussionboardController extends Controller
     public function index( )
     {
         $surveys = Survey::All();
-        //dd($surveys);
-
+        
+        //Display view page for discussion board
         return view( 'discussionboard', compact('surveys') );
     }//
 }

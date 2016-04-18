@@ -25,7 +25,6 @@ class TripDatabaseController extends Controller
                         ->with( 'trips' )
                         ->get();
 
-//        dd($surveys);
         return view( 'tripdatabase', compact('surveys') );
     }
 
@@ -38,6 +37,7 @@ class TripDatabaseController extends Controller
             ->with( 'trips' )
             ->get();
         
+        //Display all programs
         return view( 'allprograms', compact('surveys') );
 //        return view('/allprograms');
     }

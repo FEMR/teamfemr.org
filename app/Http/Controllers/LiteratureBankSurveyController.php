@@ -52,7 +52,6 @@ class LiteratureBankSurveyController extends Controller
             $path = '/assets/uploads/' . $file_name;
             Request::file('file')->move(base_path() . '/public/assets/uploads/', $file_name);
 
-            //dd($path);
             $literature->fileName = $path;
             $literature->save();
         }

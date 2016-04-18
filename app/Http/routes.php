@@ -22,8 +22,6 @@ Route::get('/users/xml', function() {
 		->with( 'trips' )
 		->get();
 
-	//	dd( $places );
-
 	$xml = new XMLWriter();
 	$xml->openMemory();
 	$xml->startDocument();
@@ -36,10 +34,7 @@ Route::get('/users/xml', function() {
 			foreach($trip->place->trips as $idz => $placetrip){
 				$xml->writeAttribute('id' . $idz, $placetrip->survey->id);
 				$xml->writeAttribute('teamname' . $idz, $placetrip->survey->teamname);
-
 			}
-
-
 
 		}
 
@@ -95,9 +90,6 @@ Route::group(['middleware' => 'web'], function ()
 
 	//Calls the Trip Database controller, which controls the Trip Database web page
 	Route::get('tripdatabase', 'TripDatabaseController@index');
-	
-
-
 
 	//Calls the Literature Bank controller, which controls the Literature Bank web page
 	Route::get('literaturebank', 'LiteratureBankController@index');
@@ -118,7 +110,7 @@ Route::group(['middleware' => 'web'], function ()
 
 
 
-	//pulls the authorization page
+	//Pulls the authorization page
 	Route::auth();
 
 //	all pages inside this group must be logged in to use
