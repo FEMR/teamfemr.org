@@ -125,7 +125,7 @@ Route::group(['middleware' => 'web'], function ()
 
 
 
-		Route::get('/allprograms', 'TripDatabaseController@show');
+
 
 		//	Calls the literature bank web page and create function
 		Route::get('/litbanksurvey', 'LiteratureBankSurveyController@index');
@@ -134,6 +134,7 @@ Route::group(['middleware' => 'web'], function ()
 		Route::get('/litbanksurvey/{id}', 'LiteratureBankSurveyController@show');
 	});
 	Route::get('/tripsurvey/{id}', 'TripSurveyController@show');
+	Route::get('/allprograms', 'TripDatabaseController@show');
 	
 	//Moderator Pages
 	Route::group([ 'middleware' => 'moderator' ], function ()
