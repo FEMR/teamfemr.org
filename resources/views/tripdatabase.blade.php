@@ -5,11 +5,7 @@
 
         <!--Trip Database web page-->
 <div class="panel-heading">
-{{--<div class="nav navbar-nav centered-nav">--}}
-    {{--<a href ="/literaturebank" class="btn btn-primary btn-sm">LITERATURE BANK</a>--}}
-    {{--<a href ="/discussionboard" class="btn btn-primary btn-sm">DISCUSSION BOARD</a>--}}
 
-{{--</div>--}}
                 <center><h1>Trip Database</h1></center>
 
                 </div>
@@ -18,7 +14,7 @@
 
 
                     <div><a href ="/tripsurvey/create" class="btn btn-danger btn-sm">ADD PROGRAM</a>
-                        <a href ="/allprograms" class="btn btn-success btn-sm">SHOW PROGRAM LIST</a>
+                        <a href ="/allprograms" class="btn btn-success btn-sm">SHOW ALL PROGRAMS</a>
                         <hr>
                     </div>
                     <!--Building the Google maps Graphical User Interface (GUI) into the web page-->
