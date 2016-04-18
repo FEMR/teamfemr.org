@@ -94,19 +94,19 @@ class TripSurveyController extends Controller
     {
 
         $this->validate($request, [
-            'teamname' => 'required',
-            'initiated' => 'required',
-            'totalmatriculants' => 'required',
+            'teamname' => 'required | unique:surveys,teamname',
+            'initiated' => 'required | date_format:Y',
+            'totalmatriculants' => 'required | integer',
             'medschoolterms' => 'required',
             'aidingschools' => 'required',
-            'totalperyear' => 'required',
+            'totalperyear' => 'required | integer',
             'faculty' => 'required',
             'appprocess' => 'required',
             'programelements' => 'required',
             'finsupport' => 'required',
             'facultytimeallotted' => 'required',
             'adminsupport' => 'required',
-            'contactinfo' => 'required',
+            'contactinfo' => 'required | email',
             'address' => 'required'
 
         ]);
