@@ -107,7 +107,7 @@ class TripSurveyController extends Controller
             'facultytimeallotted' => 'required',
             'adminsupport' => 'required',
             'contactinfo' => 'required',
-            'place' => 'required'
+            'address' => 'required'
 
         ]);
 

@@ -92,7 +92,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'place' => [
+        'address' => [
             'required' => 'please add at least one trip',
         ],
     ],

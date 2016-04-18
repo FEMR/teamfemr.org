@@ -35,6 +35,7 @@ Route::get('/users/xml', function() {
 				$xml->writeAttribute('id' . $idz, $placetrip->survey->id);
 				$xml->writeAttribute('teamname' . $idz, $placetrip->survey->teamname);
 			}
+			$xml->endElement();
 
 		}
 
@@ -42,7 +43,6 @@ Route::get('/users/xml', function() {
 
 
 
-		$xml->endElement();
 
 
 	}
