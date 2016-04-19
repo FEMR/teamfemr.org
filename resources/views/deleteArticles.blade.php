@@ -2,7 +2,7 @@
 
 @section('content')
 
-                    <div class="panel-heading"><center><h1>Deleted Surveys</h1></center></div>
+                    <div class="panel-heading"><center><h1>Deleted Articles</h1></center></div>
 
                     <div class="panel-body">
                         <div class="table-responsive">
