@@ -44,7 +44,7 @@
                                                 <li><label  style="width: 30%; display:inline-block">Aiding Schools:</label>{{$survey->aidingschools}}</li>
                                                 <li><label style="width: 30%; display:inline-block">Total Per Year:</label>{{$survey->totalperyear}}</li>
                                                 <li><label style="width: 30%; display:inline-block">Faculty:</label>{{$survey->faculty}}</li>
-                                                <li><label style="width: 30%; display:block">App. Process:</label>{{$survey->appprocess}}</li>
+                                                <li><label style="width: 30%; display:block">Application Process:</label>{{$survey->appprocess}}</li>
                                                 <li><label style="width: 30%; display:block">Program Elements:</label>{{$survey->programelements}}</li>
                                                 <li><label style="width: 30%; display:block">Financial Support:</label>{{$survey->finsupport}}</li>
                                                 <li><label style="width: 30%; display:block">Faculty Time:</label>{{$survey->facultytimeallotted}}</li>
