@@ -96,7 +96,12 @@ Route::group(['middleware' => 'web'], function ()
 
 
 //	Call the discussion board page
-	Route::get('discussionboard', 'discussionboardController@index');
+	//View::addLocation('vendor/riari/laravel-forum-frontend/views');
+	//View::addNamespace('discussionboard_master', 'vendor/riari/laravel-forum-frontend/views');
+	//return
+	//View::make('discussionboard');
+	//Route::get('discussionboard', 'discussionboardController@index');
+	//Route::get('/discussionboard/create', 'DiscussionBoardPostController@create');
 
 	//sends emails
 	Route::get('/emails', 'EmailController@index');

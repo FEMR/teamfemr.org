@@ -15,47 +15,48 @@
 
               <!--Formatting of page-->
         <h3>Articles:</h3>
-        <div class="row">
+        <!-- <div class="row"> -->
 
             <!--Loop through the approved literature articles and format them so that only three literature article cards appear on one line-->
             @foreach( $literatures as $id => $literature )
-                @if($id%2 == 1)
-                    <div class="row">
+                @if($id%2 == 0)
+                    <div class="row-litbank">
                 @endif
-
-                        <!--Use bootstrap to make cards fit in with the theme of the web page-->
+                <!--Use bootstrap to make cards fit in with the theme of the web page-->
                 <div class="col-md-6">
+                <!--<div class="col-md-6">-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <!--Pull the titles of web pages and display them-->
-                            <a href="<?php echo $info[$id]->url ?>"><?php echo $info[$id]->title ?></a>
+                            <a href= {{$literature->url}}> {{$literature->title}}</a>
                         </div>
                         <div class="panel-body">
-                             <br>
-                             <?php echo $info[$id]->description ?>
+                             {{$literature->description}}
                              <br>
 
                             <!--Display scraped image-->
-                             <a class="img-responsive center-block" href="<?php echo $info[$id]->url ?>"><img src="<?php echo $info[$id]->image ?>" alt="Main image" style="width:200px;height:150px;"></a>
+                             <a class="img-responsive center-block" href={{$literature->url}}>
+                                 <img src= {{$literature->imageUrl}} alt="Mainimage" style="width:200px;height:150px;"></a>
                              <br>
-                            <!--Display scraped published date on site-->
-                             <?php echo $info[$id]->publishedDate ?>
 
                             <!--Display file from file upload-->
                              @if($literature->fileName)
                                   <h4><a href= {{$literature->fileName}}>Download Related Content</a></h4>
+                             @else
+                                 <!--br-->
                              @endif
-                            @if($id%2 == 1)
-
-                            @endif
                         </div>
                     </div>
                 </div>
-
+                @if($id%2 == 1)
+                    </div>
+                    <div class="clearfix visible-xs-block"></div>
+                    <br>
+                @endif
             @endforeach
         </div>
     </div>
-</div>
+<!--</div>-->
 
 
 @endsection

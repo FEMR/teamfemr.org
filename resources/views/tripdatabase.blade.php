@@ -2,8 +2,7 @@
 
 @section('content')
 
-
-        <!--Trip Database web page-->
+<!--Trip Database web page-->
 <div class="panel-heading">
 
                 <center><h1>Trip Database</h1></center>

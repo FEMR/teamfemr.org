@@ -59,7 +59,7 @@
 
 
                         @elseif (Auth::user()->moderator())
-                            <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
+                            <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
                             <li class="divider"></li>
                             {{--<li class="dropdown-menu-right"> <a tabindex="-1" href="#">Approvals <span class="caret"></span></a>--}}
                                 {{--<ul class="dropdown-menu">--}}
@@ -70,7 +70,7 @@
                             {{--</li>--}}
 
                         @else
-                            <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
+                            <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
                         @endif
 
                     </ul>

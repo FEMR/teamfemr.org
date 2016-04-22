@@ -68,7 +68,7 @@
                     @elseif (Auth::user()->moderator())
                         <ul class="nav navbar-nav">
                             {{--<li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>--}}
-                            <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
+                            <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
                             <li><a href="{{ url('/approvals/surveyedits') }}">Surveys</a></li>
                             <li><a href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
                             <li><a href="{{ url('/approvals/lit_approvals') }}">Literature Approvals</a></li>
@@ -92,7 +92,7 @@
                             {{--<li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>--}}
                         {{--</ul>--}}
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ url('/discussionboard') }}">Discussion Board</a></li>
+                            <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
                         </ul>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

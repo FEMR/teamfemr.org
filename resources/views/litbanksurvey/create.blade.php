@@ -15,7 +15,6 @@
         {!! Form::label('contributorName', 'Contributor Name:') !!}
         {!! Form::text('contributorName' , null, ['class' => 'form-control', 'placeholder'=>'type contributor name here']) !!}
 
-
         {!! Form::label('authorName', 'Author Name:') !!}
         {!! Form::text( 'authorName' , null, ['class' => 'form-control', 'placeholder'=>'type author here']) !!}
 
@@ -28,9 +27,6 @@
         <!--Submit and close form-->
         {!! Form::submit('Add Resource', ['class' => 'btn btn-primary form-control']) !!}
         {!! Form::close() !!}
-
-
-
 
         <div id="message"></div>
 
@@ -56,6 +52,5 @@
                 }
             }
         </script>
-
 
 @endsection

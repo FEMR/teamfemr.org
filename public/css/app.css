@@ -114,6 +114,17 @@
 }
 @font-face { font-family: quicksand; src: url('../fonts/Quicksand-Regular.otf'); }
 
+.row-litbank {
+  height:400px;
+  width:800px;
+}
+
+.col-md-6-litbank {
+  color:red;
+  width:40%;
+  float:left;
+}
+
 .content_top{
 
   overflow: hidden;
@@ -139,7 +150,6 @@
   background: #cfcfcf;
 }
 .content_middle .tiles{
-
 
 }
 .content_middle .tiles .tiles_firstrow{

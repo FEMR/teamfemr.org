@@ -16,6 +16,8 @@ class LiteratureBankSurveyController extends Controller
     {
         $literatures = literature::where('approved', '=', 1)->get();
         return view('literaturebank', compact ('literatures'));
+
+        dd($literatures);
     }
     public function show($id)
     {
@@ -35,7 +37,7 @@ class LiteratureBankSurveyController extends Controller
         //Call view page for Literature Bank survey, while passing data
         $input = Request::all();
         $literature = Literature::create($input);
-
+        
         //Survey is automatically approved if the user is a moderator 
         $user = Auth::user();
 

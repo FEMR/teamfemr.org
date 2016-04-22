@@ -18,18 +18,20 @@ class LiteratureBankController extends Controller
 //Controls the view of the Literature Bank, by calling the view file (literaturebank.plade.php)
     public function index()
     {
+        $literatures = Literature::where('approved', '=', 1)->get();
+        foreach($literatures as $id => $literature) {
 
-        $literatures = Literature::where( 'approved', '=', 1 )->get();
-        $info = [];
-
-        foreach ($literatures as $id => $literature)
-        {
-            $info[$id] = Embed::create($literature->addLink);
-            
+            if($literature->title === '') {
+                $scraped = Embed::create($literature->addLink);
+                //$literature->description = serialize($literature->imageUrl);
+                $literature->imageUrl = $scraped->image;
+                $literature->title = $scraped->title;
+                $literature->description = $scraped->description;
+                $literature->save();
+            }
         }
 
-        return view('literaturebank', compact ('literatures', 'info'));
-
+        return view('literaturebank', compact ('literatures'));
     }
 
     //Controls upload functionality on the Literature Bank Survey

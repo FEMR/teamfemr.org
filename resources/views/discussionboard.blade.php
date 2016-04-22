@@ -2,25 +2,72 @@
 
 @section('content')
 
-                <div class="panel panel-default">
-                    <div class="panel-heading"><center><h1>Discussion Board</h1></center></div>
+        <!--This page is the display for the Literature Bank page-->
 
+<!--Use bootstrap to integrate the web page, so that it looks similar to the other web pages-->
+<div class="panel-heading"><center><h1>Literature Bank</h1></center></div>
+<div class="panel-body">
+    <!--Link to Literature Bank Survey-->
+    <div><a href ="/discussionboard/create" class="btn btn-danger btn-sm">Post New Topic</a>
+        <hr>
+    </div>
+    <!--Portion of web page where the links to resources are listed-->
+
+    <!--Formatting of page-->
+    <h3>Discussion Board:</h3>
+    <div class="row">
+
+        <<form action="{{ route('forum.category.store') }}" method="POST">
+            {!! csrf_field() !!}
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <a href="#" data-toggle="collapse" data-target=".collapse.create-category">{{ trans('forum::categories.create') }}</a>
+                </div>
+                <div class="collapse create-category">
                     <div class="panel-body">
-                        <iframe id="forum_embed"
-                                src="javascript:void(0)"
-                                scrolling="no"
-                                frameborder="0"
-                                width="900"
-                                height="700">
-                        </iframe>
-
-                        <script type="text/javascript">
-                            document.getElementById("forum_embed").src =
-                                    "https://groups.google.com/forum/embed/?place=forum/femr" +
-                                    "&showsearch=true&showpopout=true&parenturl=" +
-                                    encodeURIComponent(window.location.href);
-                        </script>
+                        <div class="form-group">
+                            <label for="title">{{ trans('forum::general.title') }}</label>
+                            <input type="text" name="title" value="{{ old('title') }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">{{ trans('forum::general.description') }}</label>
+                            <input type="text" name="description" value="{{ old('description') }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="category-id">{{ trans_choice('forum::categories.category', 1) }}</label>
+                            <select name="category_id" id="category-id" class="form-control">
+                                <option value="">({{ trans('forum::general.none') }})</option>
+                                @include ('forum::category.partials.options')
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">{{ trans('forum::general.weight') }}</label>
+                            <input type="number" id="weight" name="weight" value="{{ !empty(old('weight')) ? old('weight') : 0 }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="hidden" name="enable_threads" value="0">
+                                <input type="checkbox" name="enable_threads" value="1" checked>
+                                {{ trans('forum::categories.enable_threads') }}
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="hidden" name="private" value="0">
+                                <input type="checkbox" name="private" value="1">
+                                {{ trans('forum::categories.make_private') }} <span class="text-muted">(For this demo, private categories are only accessible to the Admin user)</span>
+                            </label>
+                        </div>
                     </div>
-
-
+                    <div class="panel-footer clearfix">
+                        <button type="submit" class="btn btn-default pull-right">{{ trans('forum::general.create') }}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+                </div>
+    </div>
+</div>
 @endsection

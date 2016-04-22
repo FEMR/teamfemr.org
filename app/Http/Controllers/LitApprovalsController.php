@@ -7,6 +7,7 @@ use App\Http\Requests\ApprovalsRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use Embed\Embed;
 use App\literature;
 
 class LitApprovalsController extends Controller
@@ -51,13 +52,16 @@ class LitApprovalsController extends Controller
             {
                 // get the surveys row we want to update
                 $literature = literature::findOrFail( $literature_id );
-
                 // update the status
                 $literature->approved = 1;
+                /*
+                $scraped = Embed::create($literature->addLink);
+                $literature->imageUrl = $scraped->image;
+                $literature->title = $scraped->title;
+                $literature->description = $scraped->description;
                 
-                // Update (save) record back in the database
+                // Update (save) record back in the database */
                 $literature->save();
-
             }
         }
         
