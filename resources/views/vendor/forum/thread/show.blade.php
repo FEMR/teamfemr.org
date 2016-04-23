@@ -16,6 +16,7 @@
         </h2>
 
         <hr>
+        <!--
         @can ('manageThreads', $category)
             <form action="{{ Forum::route('thread.update', $thread) }}" method="POST" data-actions-form>
                 {!! csrf_field() !!}
@@ -24,6 +25,7 @@
                 @include ('forum::thread.partials.actions')
             </form>
         @endcan
+        -->
 
         @can ('deletePosts', $thread)
             <form action="{{ Forum::route('bulk.post.update') }}" method="POST" data-actions-form>

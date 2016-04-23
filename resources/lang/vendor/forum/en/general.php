@@ -37,6 +37,6 @@ return [
     'subject'           => "Subject",
     'title'             => "Title",
     'weight'            => "Weight",
-    'with_selection'    => "With selection…",
+    'with_selection'    => "Moderate Selected Posts:",
 
 ];

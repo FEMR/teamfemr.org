@@ -16,7 +16,6 @@
                         @endif
                         <option value="permadelete" data-confirm="true" data-method="delete">{{ trans('forum::general.perma_delete') }}</option>
                     @endcan
-
                     @if (!$thread->trashed())
                         @can ('moveThreadsFrom', $category)
                             <option value="move">{{ trans('forum::general.move') }}</option>
@@ -41,13 +40,13 @@
                     @endif
                 </select>
             </div>
-            <div class="form-group hidden" data-depends="move">
+            <div class="form-group" data-depends="move">
                 <label for="category-id">{{ trans_choice('forum::categories.category', 1) }}</label>
                 <select name="category_id" id="category-id" class="form-control">
                     @include ('forum::category.partials.options', ['hide' => $thread->category])
                 </select>
             </div>
-            <div class="form-group hidden" data-depends="rename">
+            <div class="form-group" data-depends="rename">
                 <label for="new-title">{{ trans('forum::general.title') }}</label>
                 <input type="text" name="title" value="{{ $thread->title }}" class="form-control">
             </div>

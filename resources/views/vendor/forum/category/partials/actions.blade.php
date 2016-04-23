@@ -8,9 +8,11 @@
             <div class="form-group">
                 <label for="category-action">{{ trans_choice('forum::general.actions', 1) }}</label>
                 <select name="action" id="category-action" class="form-control">
+                    <!--
                     @can ('delete', $category)
                         <option value="delete" data-confirm="true" data-method="delete">{{ trans('forum::general.delete') }}</option>
                     @endcan
+                    -->
 
                     @can ('createCategories')
                         @if ($category->threadsEnabled)
@@ -24,6 +26,7 @@
                             <option value="make-private">{{ trans('forum::categories.make_private') }}</option>
                         @endif
                     @endcan
+                    <!--
                     @can ('moveCategories')
                         <option value="move">{{ trans('forum::general.move') }}</option>
                         <option value="reorder">{{ trans('forum::general.reorder') }}</option>
@@ -31,6 +34,7 @@
                     @can ('renameCategories')
                         <option value="rename">{{ trans('forum::general.rename') }}</option>
                     @endcan
+                    -->
                 </select>
             </div>
             <div class="form-group hidden" data-depends="move">

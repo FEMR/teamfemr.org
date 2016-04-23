@@ -20,15 +20,19 @@ class LiteratureBankController extends Controller
     {
 
         $literatures = Literature::where( 'approved', '=', 1 )->get();
-        $info = [];
 
         foreach ($literatures as $id => $literature)
         {
-            $info[$id] = Embed::create($literature->addLink);
-            
+            if($literature->title === '') {
+                $scraped = Embed::create($literature->addLink);
+                $literature->title = $scraped->getTitle();
+                $literature->imageUrl = $scraped->getImage();
+                $literature->description = $scraped->getDescription();
+                $literature->save();
+            }
         }
 
-        return view('literaturebank', compact ('literatures', 'info'));
+        return view('literaturebank', compact ('literatures'));
 
     }
 

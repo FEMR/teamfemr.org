@@ -39,12 +39,8 @@ class User extends Authenticatable
         }
     }
 
-    /*
-    public function can($str, $arguments = [])
+    public function can($ability, $arguments = [])
     {
-        throw new Exception("Called can");
-        if($str === 'forum-administrate' || $str === 'forum-moderate' || $str == 'manageThreads') return $this->moderator();
-        else return false;
+        return $this->moderator();
     }
-    */
 }

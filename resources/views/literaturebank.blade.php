@@ -18,13 +18,11 @@
         <!-- <div class="row"> -->
 
             <!--Loop through the approved literature articles and format them so that only three literature article cards appear on one line-->
+            <div class="row-fluid">
             @foreach( $literatures as $id => $literature )
-                @if($id%2 == 0)
-                    <div class="row-litbank">
-                @endif
                 <!--Use bootstrap to make cards fit in with the theme of the web page-->
-                <div class="col-md-6">
-                <!--<div class="col-md-6">-->
+                <!--div class="col-md-4"-->
+                <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <!--Pull the titles of web pages and display them-->
@@ -48,11 +46,6 @@
                         </div>
                     </div>
                 </div>
-                @if($id%2 == 1)
-                    </div>
-                    <div class="clearfix visible-xs-block"></div>
-                    <br>
-                @endif
             @endforeach
         </div>
     </div>
