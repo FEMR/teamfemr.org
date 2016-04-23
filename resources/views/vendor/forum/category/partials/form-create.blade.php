@@ -25,24 +25,26 @@
                         @include ('forum::category.partials.options')
                     </select>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group hidden">
                     <label for="weight">{{ trans('forum::general.weight') }}</label>
                     <input type="number" id="weight" name="weight" value="{{ !empty(old('weight')) ? old('weight') : 0 }}" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="form-group hidden">
                     <label>
                         <input type="hidden" name="enable_threads" value="0">
                         <input type="checkbox" name="enable_threads" value="1" checked>
                         {{ trans('forum::categories.enable_threads') }}
                     </label>
                 </div>
-                <div class="form-group">
+                <div class="form-group hidden">
                     <label>
                         <input type="hidden" name="private" value="0">
                         <input type="checkbox" name="private" value="1">
                         {{ trans('forum::categories.make_private') }}
                     </label>
                 </div>
+
             </div>
             <div class="panel-footer clearfix">
                 <button type="submit" class="btn btn-default pull-right">{{ trans('forum::general.create') }}</button>
