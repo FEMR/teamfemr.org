@@ -16,7 +16,6 @@
         </h2>
 
         <hr>
-        @if($user->isModerator())
         @can ('manageThreads', $category)
             <form action="{{ Forum::route('thread.update', $thread) }}" method="POST" data-actions-form>
                 {!! csrf_field() !!}
@@ -25,7 +24,6 @@
                 @include ('forum::thread.partials.actions')
             </form>
         @endcan
-        @endif
 
         @can ('deletePosts', $thread)
             <form action="{{ Forum::route('bulk.post.update') }}" method="POST" data-actions-form>
@@ -57,7 +55,7 @@
                         {{ trans_choice('forum::posts.post', 1) }}
                         @can ('deletePosts', $thread)
                             <span class="pull-right">
-                                <!--<input type="checkbox" data-toggle-all>-->
+                                <input type="checkbox" data-toggle-all>
                             </span>
                         @endcan
                     </th>
@@ -70,12 +68,10 @@
             </tbody>
         </table>
 
-        @if($user->isModerator)
         @can ('deletePosts', $thread)
                 @include ('forum::thread.partials.post-actions')
             </form>
         @endcan
-        @endif
 
         {!! $thread->postsPaginated->render() !!}
 

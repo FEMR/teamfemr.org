@@ -15,7 +15,6 @@
         </h2>
 
         <hr>
-<!--
         @can ('manageCategories')
             <form action="{{ Forum::route('category.update', $category) }}" method="POST" data-actions-form>
                 {!! csrf_field() !!}
@@ -24,7 +23,6 @@
                 @include ('forum::category.partials.actions')
             </form>
         @endcan
--->
         @if (!$category->children->isEmpty())
             <table class="table table-category">
                 <thead>
@@ -128,12 +126,10 @@
             </table>
         @endif
 
-<!--
         @can ('manageThreads', $category) 
             @include ('forum::category.partials.thread-actions') 
             </form>
          @endcan
--->
         <div class="row">
             <div class="col-xs-4">
                 @if ($category->threadsEnabled)
