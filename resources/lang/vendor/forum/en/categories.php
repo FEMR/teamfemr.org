@@ -14,7 +14,7 @@ return [
     'mark_read'             => "Mark threads in this category as read",
     'marked_read'           => "New/updated threads in :category have been marked as read",
     'restored'              => "Category restored|Categories restored",
-    'subcategories'         => "Subcategories",
+    'subcategories'         => "Categories",
     'threads_disabled'      => "New thread creation is disabled in this category",
     'updated'               => "Category updated|Categories updated",
 

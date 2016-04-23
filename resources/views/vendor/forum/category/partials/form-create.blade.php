@@ -3,8 +3,9 @@
     {!! csrf_field() !!}
 
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-body">
             <!--span class="glyphicon glyphicon-plus"></span-->
+
             <a href="#" data-toggle="collapse" data-target=".collapse.create-category" class="btn btn-danger btn-sm">{{ trans('forum::categories.create') }}</a>
         </div>
         <div class="collapse create-category">

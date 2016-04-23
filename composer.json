@@ -12,7 +12,6 @@
         "backup-manager/laravel": "^1.1",
         "league/flysystem-dropbox": "^1.0",
         "embed/embed": "^2.6",
-        "riari/laravel-forum": "~3.0",
         "riari/laravel-forum-frontend": "~1.0"
     },
     "require-dev": {
