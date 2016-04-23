@@ -1,5 +1,7 @@
+<!--Unhid the post actions-->
 <div class="panel panel-default" data-actions data-bulk-actions>
     <div class="panel-heading"><b>{{ trans('forum::general.with_selection') }}</b></div>
+    <!--Restyle to fit fEMR layout: Changed the background from grey to white-->
     <div class="panel-body">
         <div class="form-group panel-body">
             <!--label for="thread-action">{{ trans_choice('forum::general.actions', 1) }}</label-->

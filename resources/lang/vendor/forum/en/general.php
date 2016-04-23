@@ -1,5 +1,6 @@
 <?php
 
+//Changed with_selection to fit the fEMR Discussion Board layout
 return [
 
     'actions'           => "Action|Actions",

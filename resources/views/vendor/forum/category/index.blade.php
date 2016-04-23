@@ -12,6 +12,7 @@
         <table class="table table-index">
             <thead>
                 <tr>
+                    <!--Hiding the thread count (this was on the original Riari Dicussion Forum but not relevant to the fEMR layout)-->
                     <th><!--{{ trans_choice('forum::categories.category', 1) }}--></th>
                     <th class="col-md-2"><!--{{ trans_choice('forum::threads.thread', 2)}}--></th>
                     <th class="col-md-2"><!--{{ trans_choice('forum::posts.post', 2) }}--></th>

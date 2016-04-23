@@ -3,6 +3,7 @@
     {!! csrf_field() !!}
 
     <div class="panel panel-default">
+        <!--Changed panel heading to panel body: Restyling the Discussion Board page to fit the fEMR layout-->
         <div class="panel-body">
             <!--span class="glyphicon glyphicon-plus"></span-->
 
@@ -26,6 +27,7 @@
                     </select>
                 </div>
 
+                <!--Added the hidden style so that the weight wouldn't appear-->
                 <div class="form-group hidden">
                     <label for="weight">{{ trans('forum::general.weight') }}</label>
                     <input type="number" id="weight" name="weight" value="{{ !empty(old('weight')) ? old('weight') : 0 }}" class="form-control">

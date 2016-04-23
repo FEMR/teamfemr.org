@@ -4,6 +4,8 @@
         <span class="text-muted">{{ $category->description }}</span>
     </td>
     @if ($category->threadsEnabled)
+
+        <!--Get rid of thread and post count for Discussion Board-->
         <td><!--{{ $category->threadCount }}--></td>
         <td><!--{{ $category->postCount }}--></td>
         <td>

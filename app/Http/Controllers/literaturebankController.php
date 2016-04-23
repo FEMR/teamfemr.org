@@ -23,6 +23,8 @@ class LiteratureBankController extends Controller
 
         foreach ($literatures as $id => $literature)
         {
+            //If the url has not yet been scraped, scrape it and store the title,
+            // image url and description in the literatures database
             if($literature->title === '') {
                 $scraped = Embed::create($literature->addLink);
                 $literature->title = $scraped->getTitle();

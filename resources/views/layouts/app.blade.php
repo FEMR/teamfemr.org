@@ -68,6 +68,7 @@
                     @elseif (Auth::user()->moderator())
                         <ul class="nav navbar-nav">
                             {{--<li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>--}}
+                           <!--Rerouted the Discussion Board to the forum web page for the new Laravel style Discussion Board-->
                             <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
                             <li><a href="{{ url('/approvals/surveyedits') }}">Surveys</a></li>
                             <li><a href="{{ url('/approvals/edit') }}">Survey Approvals</a></li>
@@ -92,6 +93,7 @@
                             {{--<li><a href="{{ url('/tripsurvey/create') }}">Trip Survey</a></li>--}}
                         {{--</ul>--}}
                         <ul class="nav navbar-nav">
+                            <!--Rerouted the Discussion Board to the forum web page for the new Laravel style Discussion Board-->
                             <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
                         </ul>
                         <li class="dropdown">

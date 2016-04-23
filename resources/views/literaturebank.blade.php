@@ -17,7 +17,7 @@
         <h3>Articles:</h3>
         <!-- <div class="row"> -->
 
-            <!--Loop through the approved literature articles and format them so that only three literature article cards appear on one line-->
+            <!--Loop through the approved literature articles and format them so that only two literature article cards appear on one line-->
             <div class="row">
             @foreach($literatures as $id => $literature)
                 <div class="col-md-6">

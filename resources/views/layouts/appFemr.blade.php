@@ -59,7 +59,8 @@
 
 
                         @elseif (Auth::user()->moderator())
-                            <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
+                        <!--Rerouted the Discussion Board to the forum web page for the new Laravel style Discussion Board-->
+                        <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
                             <li class="divider"></li>
                             {{--<li class="dropdown-menu-right"> <a tabindex="-1" href="#">Approvals <span class="caret"></span></a>--}}
                                 {{--<ul class="dropdown-menu">--}}
@@ -68,7 +69,7 @@
                                     <li><a href="{{ url('/approvals/mod_approvals') }}">Moderator Approvals</a></li>
                                 {{--</ul>--}}
                             {{--</li>--}}
-
+                        <!--Rerouted the Discussion Board to the forum web page for the new Laravel style Discussion Board-->
                         @else
                             <li><a href="{{ url('/forum') }}">Discussion Board</a></li>
                         @endif

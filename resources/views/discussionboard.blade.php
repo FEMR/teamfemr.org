@@ -3,6 +3,8 @@
 @section('content')
 
         <!--This page is the display for the Literature Bank page-->
+<!--This page is no longer used, old version of the blade-->
+<!--Code was copied over from the Literature Bank file to adapt the Literature Bank's format to the Discussion Board page-->
 
 <!--Use bootstrap to integrate the web page, so that it looks similar to the other web pages-->
 <div class="panel-heading"><center><h1>Literature Bank</h1></center></div>

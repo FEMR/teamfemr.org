@@ -1,5 +1,5 @@
 <?php
-
+//Changed some of these translation to fit the fEMR Discussion Board layout
 return [
 
     'actions'               => "Category actions",

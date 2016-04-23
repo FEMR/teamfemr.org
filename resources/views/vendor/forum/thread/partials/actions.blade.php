@@ -41,6 +41,8 @@
                 </select>
             </div>
             <div class="form-group" data-depends="move">
+
+                <!--Unhid the post deletion-->
                 <label for="category-id">{{ trans_choice('forum::categories.category', 1) }}</label>
                 <select name="category_id" id="category-id" class="form-control">
                     @include ('forum::category.partials.options', ['hide' => $thread->category])
