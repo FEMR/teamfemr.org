@@ -1,4 +1,7 @@
 /vendor
+/public/storage
+/public/hot
+/storage/*.key
 /node_modules
 Homestead.yaml
 Homestead.json
@@ -6,3 +9,5 @@ Homestead.json
 .idea
 /config/backup-manager.php
 /public/assets/uploads
+_ide_helper.php
+storage

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace FEMR\Http\Requests;
 
-use App\Http\Requests\Request;
+use FEMR\Http\Requests\Request;
 
 class ApprovalsRequest extends Request
 {

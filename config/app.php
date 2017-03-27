@@ -128,7 +128,6 @@ return [
          */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
-        Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
@@ -152,14 +151,12 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        FEMR\Providers\AppServiceProvider::class,
+        FEMR\Providers\AuthServiceProvider::class,
+        FEMR\Providers\EventServiceProvider::class,
+        FEMR\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        BackupManager\Laravel\Laravel5ServiceProvider::class,
-        'Riari\Forum\ForumServiceProvider',
-        'Riari\Forum\Frontend\ForumFrontendServiceProvider',
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
