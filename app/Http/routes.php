@@ -1,59 +1,57 @@
 <?php
-use App\Survey;
-use App\Place;
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+
+Auth::routes();
 
 
+
+
+
+
+
+
+
+// TODO -- not sure if this is needed, but if so definitely move out of the routes file
 //Convert database entries to xml form
-Route::get('/users/xml', function() {
-
-	
-
-	$surveys = Survey::where('approved', '=', 1)
-		->with( 'trips' )
-		->get();
-
-	$xml = new XMLWriter();
-	$xml->openMemory();
-	$xml->startDocument();
-	$xml->startElement('markers');
-	foreach($surveys as $id => $survey) {
-		foreach($survey->trips as  $trip){
-			$xml->startElement('marker');
-			$xml->writeAttribute('lat', $trip->place->lat);
-			$xml->writeAttribute('lng', $trip->place->lng);
-			foreach($trip->place->trips as $idz => $placetrip){
-				$xml->writeAttribute('id' . $idz, $placetrip->survey->id);
-				$xml->writeAttribute('teamname' . $idz, $placetrip->survey->teamname);
-			}
-			$xml->endElement();
-
-		}
-
-
-
-
-
-
-
-	}
-	$xml->endElement();
-	$xml->endDocument();
-
-	$content = $xml->outputMemory();
-	$xml = null;
-
-	return response($content)->header('Content-Type', 'text/xml');
-});
+//Route::get('/users/xml', function() {
+//
+//
+//
+//	$surveys = Survey::where('approved', '=', 1)
+//		->with( 'trips' )
+//		->get();
+//
+//	$xml = new XMLWriter();
+//	$xml->openMemory();
+//	$xml->startDocument();
+//	$xml->startElement('markers');
+//	foreach($surveys as $id => $survey) {
+//		foreach($survey->trips as  $trip){
+//			$xml->startElement('marker');
+//			$xml->writeAttribute('lat', $trip->place->lat);
+//			$xml->writeAttribute('lng', $trip->place->lng);
+//			foreach($trip->place->trips as $idz => $placetrip){
+//				$xml->writeAttribute('id' . $idz, $placetrip->survey->id);
+//				$xml->writeAttribute('teamname' . $idz, $placetrip->survey->teamname);
+//			}
+//			$xml->endElement();
+//
+//		}
+//
+//
+//
+//
+//
+//
+//
+//	}
+//	$xml->endElement();
+//	$xml->endDocument();
+//
+//	$content = $xml->outputMemory();
+//	$xml = null;
+//
+//	return response($content)->header('Content-Type', 'text/xml');
+//});
 
 
 /*
@@ -71,23 +69,16 @@ Route::get('/users/xml', function() {
 Route::group(['middleware' => 'web'], function ()
 {
 
-	Route::get('/', function () {
-		$surveys = Survey::All();
-		return view( 'tripdatabase', compact('surveys') );
-	});
-	Route::get('/emr', function () {
-		return view( 'emr' );
-	});
-	Route::get('/home0', function () {
-		return view( 'home0	' );
-	});
-	Route::get('/news', function () {
-		return view( 'news' );
-	});
-	Route::get('/slack', function () {
-		return view( 'slack' );
+	Route::group(['namespace' => 'Admin'], function () {
+		// Controllers Within The "App\Http\Controllers\Admin" Namespace
 	});
 
+
+	Route::get( '/',      'PageController@home'      )->name( 'pages.home'  );
+	Route::get( '/emr',   'PageController@emr'       )->name( 'pages.emr'   );
+	Route::get( '/news',  'PageController@news'      )->name( 'pages.news'  );
+	Route::get( '/slack', 'PageController@slack'     )->name( 'pages.slack' );
+	
 	//Calls the Trip Database controller, which controls the Trip Database web page
 	Route::get('tripdatabase', 'TripDatabaseController@index');
 

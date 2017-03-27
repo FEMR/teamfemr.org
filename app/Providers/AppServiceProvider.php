@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace FEMR\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
