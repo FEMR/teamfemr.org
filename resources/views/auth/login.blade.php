@@ -1,61 +1,62 @@
 @extends('layouts.app')
 
 @section('content')
-
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
+    <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+            <div class="card ">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Login
+                    </p>
+                </header>
+                <div class="card-content">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="content">
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <p class="control">
+                                    <input name="email" class="input{{ $errors->has('email') ? ' is-danger' : '' }}" type="email" value="{{ old('email') }}" required autofocus>
+                                </p>
                             </div>
-                        </div>
+                            @include('auth.components.form-errors', ['field' => 'email', 'type' => 'horizontal'])
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <p class="control">
+                                    <input name="password" class="input{{ $errors->has('password') ? ' is-danger' : '' }}" type="password" required>
+                                </p>
                             </div>
-                        </div>
+                            @include('auth.components.form-errors', ['field' => 'password', 'type' => 'horizontal'])
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                            <div class="field">
+                                <p class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        Remember me
                                     </label>
-                                </div>
+                                </p>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
-                                </button>
+                            <div class="field is-grouped">
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                                <a href="{{ url('/register') }}">Not Registered?</a>
+                                <p class="control">
+                                    <button class="button is-primary">Submit</button>
+                                </p>
+                                <p class="control is-expanded">
+                                    <a href="{{ url('/password/reset') }}">
+                                        Forgot password
+                                    </a>
+                                </p>
+
                             </div>
+
                         </div>
                     </form>
                 </div>
-
+            </div>
+        </div>
+    </div>
 @endsection

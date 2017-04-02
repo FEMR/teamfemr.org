@@ -13,7 +13,7 @@ class PageController extends Controller
     public function home()
     {
 
-		return view( 'home');
+		return view( 'pages.home' );
     }
 
     /**
@@ -22,7 +22,7 @@ class PageController extends Controller
     public function emr()
     {
 
-        return view( 'emr' );
+        return view( 'pages.emr' );
     }
 
     /**
@@ -31,7 +31,7 @@ class PageController extends Controller
     public function news()
     {
 
-        return view( 'news' );
+        return view( 'pages.news' );
     }
 
     /**
@@ -40,6 +40,6 @@ class PageController extends Controller
     public function slack()
     {
 
-        return view( 'slack' );
+        return view( 'pages.slack' );
     }
 }

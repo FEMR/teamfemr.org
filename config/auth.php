@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => FEMR\User::class,
+            'model' => FEMR\Models\User::class,
         ],
 
         // 'users' => [
