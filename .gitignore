@@ -1,13 +1,10 @@
 /vendor
-/public/storage
-/public/hot
 /storage/*.key
 /node_modules
 Homestead.yaml
 Homestead.json
 .env
 .idea
-/config/backup-manager.php
-/public/assets/uploads
 _ide_helper.php
 storage
+npm-debug.log

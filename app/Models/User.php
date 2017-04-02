@@ -1,6 +1,6 @@
 <?php
 
-namespace FEMR;
+namespace FEMR\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

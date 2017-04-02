@@ -1,64 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('status'))
+        <div class="notification is-success">
+            {{ session('status') }}
+        </div>
+    @endif
 
-                <div class="panel-heading">Reset Password</div>
-
-                <div class="panel-body">
+    <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+            <div class="card ">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        Reset password
+                    </p>
+                </header>
+                <div class="card-content">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-                        {!! csrf_field() !!}
+                        {{ csrf_field() }}
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ $email or old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="content">
+                            <div class="control is-horizontal">
+                                <div class="control-label">
+                                    <label class="label">E-mail</label>
+                                </div>
+                                <div class="control is-fullwidth">
+                                    <input name="email" class="input{{ $errors->has('email') ? ' is-danger' : '' }}" type="email" value="{{ old('email') }}" required autofocus>
+                                </div>
                             </div>
-                        </div>
+                            @include('auth.components.form-errors', ['field' => 'email', 'type' => 'horizontal'])
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="control is-horizontal">
+                                <div class="control-label">
+                                    <label class="label">Password</label>
+                                </div>
+                                <div class="control is-fullwidth">
+                                    <input name="password" class="input{{ $errors->has('password') ? ' is-danger' : '' }}" type="password" value="{{ old('password') }}" required>
+                                </div>
                             </div>
-                        </div>
+                            @include('auth.components.form-errors', ['field' => 'password', 'type' => 'horizontal'])
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="control is-horizontal">
+                                <div class="control-label">
+                                    <label class="label">Confirm password</label>
+                                </div>
+                                <div class="control is-fullwidth">
+                                    <input name="password_confirmation" class="input{{ $errors->has('password-confirm') ? ' is-danger' : '' }}" type="password" value="{{ old('password-confirm') }}" required>
+                                </div>
                             </div>
-                        </div>
+                            @include('auth.components.form-errors', ['field' => 'password-confirm', 'type' => 'horizontal'])
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-refresh"></i>Reset Password
-                                </button>
+                            <div class="control is-horizontal">
+                                <div class="control-label">
+                                    <!-- spacer -->
+                                </div>
+                                <div class="control is-fullwidth">
+                                    <button class="button is-primary">Reset password</button>
+                                </div>
                             </div>
+
                         </div>
                     </form>
                 </div>
-
+            </div>
+        </div>
+    </div>
 @endsection
