@@ -56,6 +56,11 @@
 
         @if (Auth::check())
             <span class="nav-item">Welcome {{ Auth::user()->name }}</span>
+            <span class="nav-item">
+
+              <a href="{{ route( 'admin.dashboard.index' ) }}" class="button">Admin</a>
+
+            </span>
             <span class="nav-item"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></span>
         @else
             <span class="nav-item"><a href="{{ url('/login') }}">Login</a></span>

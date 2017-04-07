@@ -34,6 +34,11 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
         ],
+
+        'admin' => [
+            'web',
+            'auth'
+        ]
     ];
 
     /**
@@ -47,7 +52,6 @@ class Kernel extends HttpKernel
         'auth' => \FEMR\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \FEMR\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'moderator'=> \FEMR\Http\Middleware\MustBeModerator::class
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class
     ];
 }

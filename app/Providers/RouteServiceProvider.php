@@ -2,8 +2,8 @@
 
     namespace FEMR\Providers;
 
-    use Illuminate\Support\Facades\Route;
     use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+    use Illuminate\Support\Facades\Route;
 
     class RouteServiceProvider extends ServiceProvider
     {
@@ -15,6 +15,7 @@
          * @var string
          */
         protected $namespace = 'FEMR\Http\Controllers';
+
         /**
          * Define your route model bindings, pattern filters, etc.
          *
@@ -25,6 +26,7 @@
             //
             parent::boot();
         }
+
         /**
          * Define the routes for the application.
          *
@@ -34,8 +36,27 @@
         {
             $this->mapApiRoutes();
             $this->mapWebRoutes();
+            $this->mapAdminRoutes();
             //
         }
+
+        /**
+         * Define the "web" routes for the application.
+         *
+         * These routes all receive session state, CSRF protection, etc.
+         *
+         * @return void
+         */
+        protected function mapAdminRoutes()
+        {
+            Route::group([
+                'middleware' => 'admin',
+                'namespace' => $this->namespace,
+            ], function ($router) {
+                require base_path('routes/admin.php');
+            });
+        }
+
         /**
          * Define the "web" routes for the application.
          *
@@ -52,6 +73,7 @@
                 require base_path('routes/web.php');
             });
         }
+
         /**
          * Define the "api" routes for the application.
          *

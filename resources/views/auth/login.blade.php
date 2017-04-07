@@ -10,7 +10,7 @@
                     </p>
                 </header>
                 <div class="card-content">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    <form class="login-form" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
                         <div class="content">
@@ -45,13 +45,15 @@
                                 <p class="control">
                                     <button class="button is-primary">Submit</button>
                                 </p>
-                                <p class="control is-expanded">
+
+                                <p class="control is-expanded forgot-password">
                                     <a href="{{ url('/password/reset') }}">
                                         Forgot password
                                     </a>
                                 </p>
 
                             </div>
+
 
                         </div>
                     </form>
