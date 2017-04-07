@@ -11,6 +11,8 @@ const { mix } = require('laravel-mix');
  |
  */
 
+mix.disableNotifications();
+
 mix.webpackConfig({
 
 });
@@ -25,4 +27,9 @@ mix .js( 'resources/assets/js/app.js', 'public/js' )
     .sass( 'resources/assets/sass/admin/admin.scss', 'public/css/admin' )
 
     .version()
-    .browserSync('local.teamfemr.org');
+    .browserSync({
+
+        reloadDelay: 2000,
+        notify: false,
+        proxy: 'local.teamfemr.org'
+    });

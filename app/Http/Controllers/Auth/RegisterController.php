@@ -3,7 +3,7 @@
 namespace FEMR\Http\Controllers\Auth;
 
 use FEMR\Http\Controllers\Controller;
-use FEMR\User;
+use FEMR\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,12 +25,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
