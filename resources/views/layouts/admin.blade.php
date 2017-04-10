@@ -53,8 +53,13 @@
                     </p>
                     <ul class="menu-list">
                         <li>
-                            <a href="#" class="item {{ Route::currentRouteName() == 'admin.dashboard.index' ? 'is-active' : '' }}">
+                            <a href="{{ route( 'admin.dashboard.index' ) }}" class="item {{ Route::currentRouteName() == 'admin.dashboard.index' ? 'is-active' : '' }}">
                                 Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route( 'admin.dashboard.sandbox' ) }}" class="nav-item {{ Route::currentRouteName() == 'admin.dashboard.sandbox' ? 'is-active' : '' }}">
+                                Sandbox
                             </a>
                         </li>
                         <li>
@@ -81,19 +86,11 @@
             </div>
         </aside>
         <div class="column is-10 admin-content">
-            <section class="hero">
-                <!-- Hero content: will be in the middle -->
-                <div class="hero-body">
-                    <div class="container">
-                        <h1 class="title">
-                            Admin Dashboard
-                        </h1>
-                        <h2 class="subtitle">
-                            A simple admin template
-                        </h2>
-                    </div>
-                </div>
-            </section>
+
+            @yield( 'section-header' )
+
+            @yield( 'section-content' )
+
         </div>
     </div>
 

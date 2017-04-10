@@ -2,8 +2,6 @@
 
 namespace FEMR\Http\Requests;
 
-use FEMR\Http\Requests\Request;
-
 class ApprovalsRequest extends Request
 {
     /**

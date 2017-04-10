@@ -30,7 +30,12 @@ teamfemr.org
 * Run `composer install`
 * Run `npm install`
 * Run `php artisan key:generate`
+
+### Database Setup and Seeding
+
+* Make sure your database settings are added to the .env
 * Run `php artisan migrate`
+* Run `php artisan db:seed`
 
 ### Assets
 
@@ -43,11 +48,13 @@ teamfemr.org
 * Font Awesome - http://fontawesome.io/
 * Admin Template - https://github.com/dansup/bulma-templates
 
-### Maps
+### Maps/Location Data
 
 * GeocoderLaravel
     * https://github.com/geocoder-php/GeocoderLaravel
     * http://geocoder-php.org/GeocoderLaravel
 * Open Street Maps - http://wiki.openstreetmap.org/wiki/Overpass_API
 * Mapzen - https://mapzen.com/
- 
+* Countries - http://data.okfn.org/data/core/country-codes
+* Cities - https://www.maxmind.com/en/free-world-cities-database
+

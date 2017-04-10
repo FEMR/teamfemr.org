@@ -3,7 +3,7 @@
 namespace FEMR\Http\Controllers\Auth;
 
 use FEMR\Http\Controllers\Controller;
-use FEMR\Models\User;
+use FEMR\Data\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 
