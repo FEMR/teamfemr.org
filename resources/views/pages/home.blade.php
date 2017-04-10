@@ -96,18 +96,45 @@
 
 @push( 'scripts-after' )
     <script>
+
+        var bound;
         var map;
-        function initMap() {
+
+        function initMap(){
+
+            bounds = new google.maps.LatLngBounds();
 
             map = new google.maps.Map( document.getElementById('map'), {
                 center: { lat: 0.0, lng: 0.0 },
                 zoom: 2,
                 scrollwheel: false
+//                    minZoom: 19
             });
-
-
         }
+
+        var addMarkers = function( place ){
+
+            if( typeof place == "undefined" ) return;
+
+            console.log( place );
+
+            var location = place.geometry.location;
+            markers.push(
+                    new google.maps.Marker({
+                        position: location,
+                        map: map
+                    })
+            );
+
+            bounds.extend(location);
+
+            if( markers.length >  1 ) {
+
+                map.fitBounds(bounds);
+            }
+        };
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env( 'GMAPS_API_KEY' ) }}&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env( 'GMAPS_API_KEY' ) }}&libraries=places&callback=initMap"
             async defer></script>
 @endpush

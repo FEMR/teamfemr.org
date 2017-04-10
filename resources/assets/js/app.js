@@ -1,5 +1,6 @@
 ﻿require('./bootstrap');
 
+
 $(function () {
 
     $( ".nav-toggle" ).click( function(){
@@ -8,5 +9,5 @@ $(function () {
         $( this ).siblings( ".nav-menu" ).toggleClass( "is-active" );
 
     });
-
+    
 });

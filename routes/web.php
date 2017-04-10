@@ -16,6 +16,16 @@
 
 
         //
+        // Json Request Routes
+        //
+
+        Route::group([ 'namespace' => 'Json' ], function()
+        {
+            Route::get( '/cities/random.json', 'CityController@random' )->name( 'cities.random' );
+        });
+
+
+        //
         // Backend Routes
         //
 

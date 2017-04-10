@@ -2,8 +2,6 @@
 
 namespace FEMR\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PageController extends Controller
 {
 
@@ -13,7 +11,7 @@ class PageController extends Controller
     public function home()
     {
 
-		return view( 'pages.home' );
+        return view('pages.home');
     }
 
     /**
@@ -22,7 +20,7 @@ class PageController extends Controller
     public function emr()
     {
 
-        return view( 'pages.emr' );
+        return view('pages.emr');
     }
 
     /**
@@ -31,7 +29,7 @@ class PageController extends Controller
     public function news()
     {
 
-        return view( 'pages.news' );
+        return view('pages.news');
     }
 
     /**
@@ -40,6 +38,6 @@ class PageController extends Controller
     public function slack()
     {
 
-        return view( 'pages.slack' );
+        return view('pages.slack');
     }
 }

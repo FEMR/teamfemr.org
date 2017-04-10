@@ -1,7 +1,24 @@
 
 @extends ('layouts.admin')
 
-@section('content')
+@section( 'section-header' )
+    <section class="hero">
+        <!-- Hero content: will be in the middle -->
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Admin Dashboard
+                </h1>
+                <h2 class="subtitle">
+                    A simple admin template
+                </h2>
+            </div>
+        </div>
+    </section>
+@endsection
+
+
+@section('section-content')
 
     <section class="section">
         <div class="container">
