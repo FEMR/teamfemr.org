@@ -8,3 +8,8 @@ Homestead.json
 _ide_helper.php
 storage
 npm-debug.log
+
+public/css
+public/fonts
+public/js
+public/images
