@@ -91,10 +91,7 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
-        ],
-        'address' => [
-            'required' => 'please add at least one trip',
-        ],
+        ]
     ],
 
     /*
