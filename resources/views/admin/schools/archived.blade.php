@@ -6,6 +6,7 @@
     <h1 class="title">
         Schools
     </h1>
+    <h2 class="subtitle">Archived</h2>
 
 @endsection
 
@@ -37,16 +38,16 @@
                         <nav class="level">
                             <div class="level-left"></div>
                             <div class="level-right">
-                                <p class="level-item">
-                                    <a href="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">
-                                        <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
-                                    </a>
-                                </p>
-                                <p class="level-item">
-                                    <a href="{{ route( 'admin.schools.destroy', [ $school->id ] ) }}">
-                                        <span class="icon"><i class="fa fa-trash"></i></span>
-                                    </a>
-                                </p>
+                                {{--<p class="level-item">--}}
+                                    {{--<a href="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">--}}
+                                        {{--<span class="icon"><i class="fa fa-pencil-square-o"></i></span>--}}
+                                    {{--</a>--}}
+                                {{--</p>--}}
+                                {!! Form::open([ 'method' => 'post', 'route' => [ 'admin.schools.restore', $school->id ], 'class' => 'level-item' ]) !!}
+                                <button type="submit" class="button is-white" title="restore">
+                                    <span class="icon"><i class="fa fa-undo"></i></span>
+                                </button>
+                                {!! Form::close() !!}
                             </div>
                         </nav>
                     </td>
@@ -58,7 +59,7 @@
 
     @else
 
-        <p>There are no schools, but you can <a href="{{ route( 'admin.schools.create') }}">add one</a> now.</p>
+        <p>There are archived schools</p>
 
     @endif
 

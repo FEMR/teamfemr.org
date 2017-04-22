@@ -21,7 +21,7 @@ teamfemr.org
 * Tokenizer PHP Extension
 * XML PHP Extension
 * Composer
-* Node
+* Node - https://nodejs.org/en/download
 
 ### Installation and Deployment
 

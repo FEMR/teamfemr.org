@@ -1,26 +1,18 @@
 @extends ('layouts.admin')
 
 @section( 'section-header' )
-    <section class="hero">
-        <!-- Hero content: will be in the middle -->
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Map Testing
-                </h1>
-                <h2 class="subtitle">
-                    Somewhere to play around with searching for locations on a map and getting their location information
-                </h2>
-            </div>
-        </div>
-        <hr />
-    </section>
+
+    <h1 class="title">
+        Map Testing
+    </h1>
+    <h2 class="subtitle">
+        Somewhere to play around with searching for locations on a map and getting their location information
+    </h2>
+
 @endsection
 
 @section('section-content')
 
-    <section class="section">
-        <div class="content">
 
             <div class="field">
                 <label class="label">Address</label>
@@ -32,7 +24,9 @@
                            type="text"/>
                 </p>
             </div>
+
             <div id="map" style="width: 100%; height: 350px;"></div>
+
             <script>
 
                 var MapModule = (function(){
@@ -174,7 +168,6 @@
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key={{ env( 'GMAPS_API_KEY' ) }}&libraries=places&callback=initMap"
                     async defer></script>
-        </div>
-    </section>
+
 
 @endsection
