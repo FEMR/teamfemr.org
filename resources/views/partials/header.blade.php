@@ -58,10 +58,14 @@
             <span class="nav-item">Welcome {{ Auth::user()->name }}</span>
             <span class="nav-item">
 
-              <a href="{{ route( 'admin.dashboard.index' ) }}" class="button">Admin</a>
+              <a  class="button" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>
 
             </span>
-            <span class="nav-item"><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></span>
+            <span class="nav-item">
+                {!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}
+                <button class="button" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</button>
+                {!! Form::close() !!}
+            </span>
         @else
             <span class="nav-item"><a href="{{ url('/login') }}">Login</a></span>
             <span class="nav-item"><a href="{{ url('/register') }}">Register</a></span>
