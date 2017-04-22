@@ -1,0 +1,29 @@
+.school-form-columns{
+
+    #map{
+
+        width: 100%;
+        height: 300px;
+    }
+
+    .map-column{
+
+
+    }
+}
+
+@media only screen and ( min-width: 769px ){
+
+    .school-form-columns{
+
+        .form-column{
+
+            order: 1;
+        }
+
+        .map-column{
+
+            order: 2;
+        }
+    }
+}

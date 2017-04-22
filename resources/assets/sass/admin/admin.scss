@@ -3,4 +3,11 @@
 @import "node_modules/font-awesome/scss/font-awesome";
 @import "node_modules/bulma/bulma";
 //@import "node_modules/morris.js/morris";
+
+
+@import "content";
 @import "dashboard";
+@import "schools";
+
+@import "components/level-menu";
+@import "components/section-menu";

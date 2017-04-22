@@ -5,7 +5,7 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    A fast EMR solution for transient medical teams.
+                    Some extra text. A fast EMR solution for transient medical teams.
                 </h1>
                 <h2 class="subtitle">
                     We are using open source technology to promote data driven communciation in low resource settings.

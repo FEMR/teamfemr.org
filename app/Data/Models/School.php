@@ -70,6 +70,25 @@ class School extends Model
     ];
 
     /**
+     * Returns the full address formatted as an html string
+     *
+     * @return string
+     */
+    public function getFullAddressAttribute()
+    {
+        $address = $this->address . '<br />';
+
+        if( !empty( $this->address_ext ) )
+        {
+            $address .= $this->address_ext . '<br />';
+        }
+
+        $address .= $this->locality . ', ' . $this->administrative_area_level_1 . ' ' . $this->postal_code;
+
+        return $address;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function medias()

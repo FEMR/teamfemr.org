@@ -37,7 +37,8 @@ class Kernel extends HttpKernel
 
         'admin' => [
             'web',
-            'auth'
+            'auth',
+            'bindings'
         ]
     ];
 
@@ -52,6 +53,7 @@ class Kernel extends HttpKernel
         'auth' => \FEMR\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \FEMR\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class
     ];
 }
