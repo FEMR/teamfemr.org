@@ -18,7 +18,7 @@
     <nav class="nav has-shadow" id="top">
         <div class="container">
             <div class="nav-left">
-                <a class="nav-item" href="{{ route( 'admin.dashboard.index' ) }}">
+                <a class="nav-item" href="{{ route( 'pages.home' ) }}">
                     <img src="{{ asset('images/logo/logo_color_med.png') }}" alt="Description">
                 </a>
             </div>
@@ -27,19 +27,14 @@
                 <span></span>
                 <span></span>
             </span>
-            <div class="nav-right nav-menu is-hidden-tablet">
-                <a href="{{ route( 'admin.dashboard.index' ) }}" class="nav-item {{ Route::currentRouteName() == 'admin.dashboard.index' ? 'is-active' : '' }}">
-                    Dashboard
-                </a>
-                <a href="#" class="nav-item">
-                    Schools
-                </a>
-                <a href="#" class="nav-item">
-                    Teams
-                </a>
-                <a href="#" class="nav-item">
-                    Pages
-                </a>
+            <div class="nav-right nav-menu">
+
+                <span class="nav-item">
+                    {!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}
+                    <button class="button" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</button>
+                    {!! Form::close() !!}
+                </span>
+
             </div>
         </div>
     </nav>
