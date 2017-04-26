@@ -59,7 +59,7 @@
 
     @else
 
-        <p>There are archived schools</p>
+        <p>There are no archived schools</p>
 
     @endif
 

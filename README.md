@@ -57,4 +57,5 @@ teamfemr.org
 * Mapzen - https://mapzen.com/
 * Countries - http://data.okfn.org/data/core/country-codes
 * Cities - https://www.maxmind.com/en/free-world-cities-database
+* vue2-google-maps - https://github.com/xkjyeah/vue-google-maps
 
