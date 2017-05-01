@@ -2,10 +2,11 @@ require('./bootstrap');
 
 // Register the map component
 Vue.component('femr-map', require('./components/FemrMap.vue'));
+Vue.component('school-form', require('./components/schools/SchoolForm.vue'));
 
 const app = new Vue({
+    // store,
     el: '#app',
-
     data(){
 
         return {

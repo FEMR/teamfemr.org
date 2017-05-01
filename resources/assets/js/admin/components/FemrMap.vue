@@ -1,14 +1,15 @@
 <template>
     <div class="femr-map">
+
         <div class="field">
             <label class="label">Autofill Address</label>
             <p class="control">
 
                 <gmap-autocomplete
                         class="input"
-                       placeholder="Enter your address"
+                        placeholder="Enter your address"
                         :value="description"
-                       @place_changed="setPlace">
+                        @place_changed="setPlace">
                 </gmap-autocomplete>
 
             </p>
@@ -30,17 +31,17 @@
     </div>
 </template>
 
-<script>
+<script type="text/babel">
 
     import * as VueGoogleMaps from 'vue2-google-maps';
     import Vue from 'vue';
+    import EventBus from "../event-bus"
 
     Vue.use(VueGoogleMaps, {
         load: {
             key: FEMR.googleMapsKey,
             libraries: 'places'
             //v: 'OPTIONAL VERSION NUMBER',
-            // libraries: 'places', //// If you need to use place input
         }
     });
 
@@ -59,16 +60,16 @@
             }
         },
         methods: {
-
             setPlace( place ) {
 
                 this.markers.push(
-                        {
-                            position: {
-                                lat: place.geometry.location.lat(),
-                                lng: place.geometry.location.lng()
-                            }
+                    {
+                        position: {
+
+                            lat: place.geometry.location.lat(),
+                            lng: place.geometry.location.lng()
                         }
+                    }
                 );
 
                 this.center = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
@@ -77,12 +78,8 @@
                 this.zoom = 14;
 
                 // TODO - fire event for other components to hook onto
-                console.log( place );
+                EventBus.$emit( 'address_updated', place );
             }
-        },
-        mounted() {
-
-
         }
     }
 

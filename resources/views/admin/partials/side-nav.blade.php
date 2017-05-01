@@ -9,11 +9,6 @@
         </a>
     </li>
     <li>
-        <a href="{{ route( 'admin.dashboard.sandbox' ) }}" class="nav-item {{ Route::currentRouteName() == 'admin.dashboard.sandbox' ? 'is-active' : '' }}">
-            Sandbox
-        </a>
-    </li>
-    <li>
         <a href="{{ route( 'admin.schools.index' ) }}" class="item {{ str_contains( Route::currentRouteName(), 'admin.schools.' ) ? 'is-active' : '' }}">
             Schools
         </a>
