@@ -28,7 +28,7 @@
         <div class="column is-half-tablet form-column">
         {!! Form::open([ 'route' => 'admin.schools.store' ]) !!}
 
-            @include( 'admin.schools.partials.form' )
+            <school-form></school-form>
 
         {!! Form::close() !!}
         </div>
