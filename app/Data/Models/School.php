@@ -89,6 +89,24 @@ class School extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function outreachPrograms()
+    {
+        return $this->hasMany( OutreachProgram::class );
+    }
+
+    /**
+     * Alias for outreachPrograms
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function programs()
+    {
+        return $this->outreachPrograms();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function medias()

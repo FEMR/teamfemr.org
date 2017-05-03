@@ -35,13 +35,3 @@
     </div>
 
 @endsection
-
-@push( 'scripts-after' )
-{{--<script>--}}
-
-
-
-{{--</script>--}}
-{{--<script src="https://maps.googleapis.com/maps/api/js?key={{ env( 'GMAPS_API_KEY' ) }}&libraries=places&callback=initMap"--}}
-        {{--async defer></script>--}}
-@endpush
