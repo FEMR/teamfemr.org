@@ -1,8 +1,9 @@
 require('./bootstrap');
 
-// Register the map component
+// Register vue components
 Vue.component('femr-map', require('./components/FemrMap.vue'));
 Vue.component('school-form', require('./components/schools/SchoolForm.vue'));
+Vue.component('program-form', require('./components/schools/ProgramForm.vue'));
 
 const app = new Vue({
     // store,

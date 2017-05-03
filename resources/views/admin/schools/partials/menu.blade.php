@@ -10,7 +10,7 @@
         </li>
 
         <li class="{{ ( Route::currentRouteName() == 'admin.schools.create' ) ? 'is-active' : '' }}">
-            <a href="{{ route( 'admin.schools.create') }}">
+            <a href="{{ route( 'admin.schools.create' ) }}">
                 <span class="icon is-small">
                   <i class="fa fa-plus"></i>
                 </span>

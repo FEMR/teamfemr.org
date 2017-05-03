@@ -9,7 +9,8 @@
                         class="input"
                         placeholder="Enter your address"
                         :value="description"
-                        @place_changed="setPlace">
+                        @place_changed="setPlace"
+                        @keyup.enter.prevent>
                 </gmap-autocomplete>
 
             </p>

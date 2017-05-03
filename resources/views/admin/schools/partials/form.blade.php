@@ -7,10 +7,10 @@
 
 {{-- This is set by the HasSlug trait's observer. Uncomment later if we want to manually set slugs --}}
 {{--<div class="field">--}}
-    {{--<label class="label">Slug</label>--}}
-    {{--<p class="control">--}}
-        {{--{!! Form::text( 'slug', null, [ 'class' => 'input', 'readonly' ] ) !!}--}}
-    {{--</p>--}}
+{{--<label class="label">Slug</label>--}}
+{{--<p class="control">--}}
+{{--{!! Form::text( 'slug', null, [ 'class' => 'input', 'readonly' ] ) !!}--}}
+{{--</p>--}}
 {{--</div>--}}
 
 <div class="field">
