@@ -23,29 +23,30 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Name</th>
                     <th>Address</th>
-                    <th></th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Postal Code</th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach( $schools as $school )
                 <tr>
-                    <td>{{ $school->name }}</td>
-                    <td>{!! $school->full_address !!}</td>
                     <td>
-                        <nav class="level">
-                            <div class="level-left"></div>
-                            <div class="level-right">
-                                {!! Form::open([ 'method' => 'post', 'route' => [ 'admin.schools.restore', $school->id ], 'class' => 'level-item' ]) !!}
-                                    <button type="submit" class="button is-white" title="restore">
-                                        <span class="icon"><i class="fa fa-undo"></i></span>
-                                    </button>
-                                {!! Form::close() !!}
-                            </div>
-                        </nav>
+                        {!! Form::open([ 'method' => 'post', 'route' => [ 'admin.schools.restore', $school->id ] ]) !!}
+                        <button type="submit" class="button is-small" title="Restore">
+                            <span class="icon is-small"><i class="fa fa-undo"></i></span>
+                        </button>
+                        {!! Form::close() !!}
                     </td>
+                    <td>{{ $school->name }}</td>
+                    <td>{!! $school->address !!}</td>
+                    <td>{!! $school->locality !!}</td>
+                    <td>{!! $school->administrative_area_level_1 !!}</td>
+                    <td>{!! $school->postal_code !!}</td>
                 </tr>
                 @endforeach
             </tbody>
