@@ -21,8 +21,7 @@
         Route::put(    'schools/{school}',         'SchoolController@update'   )->name( 'admin.schools.update'   );
         Route::delete( 'schools/{school}',         'SchoolController@destroy'  )->name( 'admin.schools.destroy'  );
         Route::post(   'schools/{school}/restore', 'SchoolController@restore'  )->name( 'admin.schools.restore'  );
-
-
+        
         //
         // Outreach Programs
         //

@@ -23,39 +23,36 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Name</th>
                     <th>Address</th>
-                    <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach( $schools as $school )
                 <tr>
+                    <td v-cloak>
+                        <dropdown-menu>
+                            <menu-item link="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">
+                                <span class="icon"><i class="fa fa-pencil-square-o"></i></span> Edit
+                            </menu-item>
+                            <menu-item link="{{ route( 'admin.programs.index', [ $school->id ] ) }}">
+                                <span class="icon"><i class="fa fa-list"></i></span> Outreach Programs
+                            </menu-item>
+                            <menu-form
+                                    method="delete"
+                                    route="{{ route( 'admin.schools.destroy', $school->id ) }}"
+                                    token="{{ csrf_token() }}"
+                                >
+                                <span class="icon"><i class="fa fa-trash"></i></span> Delete
+                            </menu-form>
+
+                        </dropdown-menu>
+                    </td>
                     <td>{{ $school->name }}</td>
                     <td>{!! $school->full_address !!}</td>
-                    <td>
-                        <nav class="level">
-                            <div class="level-left"></div>
-                            <div class="level-right">
-                                <p class="level-item">
-                                    <a class="button is-white" href="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">
-                                        <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
-                                    </a>
-                                </p>
-                                <p class="level-item">
-                                    <a class="button is-white" href="{{ route( 'admin.programs.index', [ $school->id ] ) }}">
-                                        <span class="icon"><i class="fa fa-list"></i></span>
-                                    </a>
-                                </p>
-                                {!! Form::open([ 'method' => 'delete', 'route' => [ 'admin.schools.destroy', $school->id ], 'class' => 'level-item' ]) !!}
-                                <button type="submit" class="button is-white">
-                                    <span class="icon"><i class="fa fa-trash"></i></span>
-                                </button>
-                                {!! Form::close() !!}
-                            </div>
-                        </nav>
-                    </td>
+
                 </tr>
                 @endforeach
             </tbody>
@@ -68,4 +65,13 @@
 
     @endif
 
+    <script type="text/babel">
+        const button = document.querySelector('.button');
+        const dropdown = document.querySelector('.dropdown');
+
+        button.addEventListener('click', () => {
+            dropdown.classList.toggle('is-open');
+        });
+
+    </script>
 @endsection
