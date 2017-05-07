@@ -1,9 +1,15 @@
 require('./bootstrap');
 
-// Register vue components
+// import store from './store';
+
+// Register the map component
 Vue.component('femr-map', require('./components/FemrMap.vue'));
 Vue.component('school-form', require('./components/schools/SchoolForm.vue'));
-Vue.component('program-form', require('./components/schools/ProgramForm.vue'));
+
+// TODO -- probably a more specific name for this
+Vue.component('dropdown-menu', require('./components/DropdownMenu.vue'));
+Vue.component('menu-item', require('./components/MenuItem.vue'));
+Vue.component('menu-form', require('./components/MenuForm.vue'));
 
 const app = new Vue({
     // store,

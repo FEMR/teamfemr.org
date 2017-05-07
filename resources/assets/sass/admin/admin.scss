@@ -9,5 +9,9 @@
 @import "dashboard";
 @import "schools";
 
+[v-cloak] {
+    display: none;
+}
+
 @import "components/level-menu";
 @import "components/section-menu";
