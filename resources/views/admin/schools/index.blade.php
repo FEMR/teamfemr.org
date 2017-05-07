@@ -26,20 +26,27 @@
                     <th></th>
                     <th>Name</th>
                     <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Postal Code</th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach( $schools as $school )
                 <tr>
-                    <td v-cloak>
-                        <dropdown-menu>
+                    <td>
+
+                        <dropdown-menu v-cloak>
+
                             <menu-item link="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">
                                 <span class="icon"><i class="fa fa-pencil-square-o"></i></span> Edit
                             </menu-item>
+
                             <menu-item link="{{ route( 'admin.programs.index', [ $school->id ] ) }}">
                                 <span class="icon"><i class="fa fa-list"></i></span> Outreach Programs
                             </menu-item>
+
                             <menu-form
                                     method="delete"
                                     route="{{ route( 'admin.schools.destroy', $school->id ) }}"
@@ -49,9 +56,13 @@
                             </menu-form>
 
                         </dropdown-menu>
+
                     </td>
                     <td>{{ $school->name }}</td>
-                    <td>{!! $school->full_address !!}</td>
+                    <td>{!! $school->address !!}</td>
+                    <td>{!! $school->locality !!}</td>
+                    <td>{!! $school->administrative_area_level_1 !!}</td>
+                    <td>{!! $school->postal_code !!}</td>
 
                 </tr>
                 @endforeach
@@ -65,13 +76,4 @@
 
     @endif
 
-    <script type="text/babel">
-        const button = document.querySelector('.button');
-        const dropdown = document.querySelector('.dropdown');
-
-        button.addEventListener('click', () => {
-            dropdown.classList.toggle('is-open');
-        });
-
-    </script>
 @endsection
