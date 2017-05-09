@@ -1,7 +1,9 @@
-// Import Bulma's initial variables
-//@import "node_modules/bulma/sass/utilities/variables";
 @import "node_modules/font-awesome/scss/font-awesome";
+
+// Import Bulma's initial variables
+//@import "node_modules/bulma/sass/utilities/_all";
 @import "node_modules/bulma/bulma";
+
 
 #map {
     width: 100%;

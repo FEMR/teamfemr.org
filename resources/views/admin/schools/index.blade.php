@@ -3,16 +3,27 @@
 
 @section( 'section-header' )
 
-    <h1 class="title">
-        Schools
-    </h1>
-    <h2 class="subtitle">All</h2>
+    <div class="header">
+
+        <h1 class="title">Schools</h1>
+
+    </div>
+
+    <div class="level breadcrumbs is-mobile">
+        <div class="level-left">
+
+            <span class="level-item"><a href="{{ route( 'admin.dashboard.index' ) }}">Dashboard</a></span>
+            <span class="level-item separator">&gt</span>
+            <span class="level-item">Schools</span>
+
+        </div>
+    </div>
 
 @endsection
 
 @section( 'section-menu' )
 
-    @include( 'admin.schools.partials.menu' )
+    @include( 'admin.schools.partials.tabs' )
 
 @endsection
 
@@ -35,28 +46,9 @@
             <tbody>
                 @foreach( $schools as $school )
                 <tr>
+
                     <td>
-
-                        <dropdown-menu v-cloak>
-
-                            <menu-item link="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">
-                                <span class="icon"><i class="fa fa-pencil-square-o"></i></span> Edit
-                            </menu-item>
-
-                            <menu-item link="{{ route( 'admin.programs.index', [ $school->id ] ) }}">
-                                <span class="icon"><i class="fa fa-list"></i></span> Outreach Programs
-                            </menu-item>
-
-                            <menu-form
-                                    method="delete"
-                                    route="{{ route( 'admin.schools.destroy', $school->id ) }}"
-                                    token="{{ csrf_token() }}"
-                                >
-                                <span class="icon"><i class="fa fa-trash"></i></span> Delete
-                            </menu-form>
-
-                        </dropdown-menu>
-
+                        @include( 'admin.schools.partials.dropdown' )
                     </td>
                     <td>{{ $school->name }}</td>
                     <td>{!! $school->address !!}</td>

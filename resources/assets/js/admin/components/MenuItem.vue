@@ -23,7 +23,7 @@
 
 <style scoped>
 
-    .link {
+    a.link {
 
         font-family: inherit;
         white-space: nowrap;
@@ -37,7 +37,12 @@
         background-color: transparent;
     }
 
-    .link:hover {
+    a.link .icon{
+
+        margin-right: 6px;
+    }
+
+    a.link:hover {
 
         color: #333333;
     }

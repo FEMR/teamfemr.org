@@ -1,5 +1,14 @@
 <template>
     <div>
+        <!--<div class="field is-clearfix">-->
+            <!--<a class="button is-success is-pulled-right" @click="showMapModal">-->
+                <!--<span class="icon is-small">-->
+                  <!--<i class="fa fa-map-o"></i>-->
+                <!--</span>-->
+                <!--<span>Autofill</span>-->
+            <!--</a>-->
+        <!--</div>-->
+
         <div class="field">
             <label class="label">Name</label>
             <p class="control">

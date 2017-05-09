@@ -27,7 +27,7 @@
 
 <style scoped>
 
-    .link {
+    button.link {
 
         font-family: inherit;
         white-space: nowrap;
@@ -41,7 +41,12 @@
         background-color: transparent;
     }
 
-    .link:hover {
+    button.link .icon{
+
+        margin-right: 6px;
+    }
+
+    button.link:hover {
 
         color: #333333;
     }

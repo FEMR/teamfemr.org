@@ -29,6 +29,7 @@
                     @click="center=m.position">
             </gmap-marker>
         </gmap-map>
+
     </div>
 </template>
 
@@ -42,7 +43,6 @@
         load: {
             key: FEMR.googleMapsKey,
             libraries: 'places'
-            //v: 'OPTIONAL VERSION NUMBER',
         }
     });
 
@@ -61,6 +61,7 @@
             }
         },
         methods: {
+
             setPlace( place ) {
 
                 this.markers.push(
@@ -78,7 +79,7 @@
                 // TODO - maybe use bounds here instead
                 this.zoom = 14;
 
-                // TODO - fire event for other components to hook onto
+                // Fire event for other components to hook onto
                 EventBus.$emit( 'address_updated', place );
             }
         }
@@ -90,8 +91,9 @@
 
     .femr-map{
 
-        background-color: #cfcfcf;
-        padding: 5px;
+        background-color: #efefef;
+        border: 1px solid #cccccc;
+        padding: 15px;
     }
 
     .femr-map .map{

@@ -20,7 +20,12 @@ const app = new Vue({
 
         }
     },
+    methods: {
+
+
+    },
     mounted(){
+
 
         // TODO - Do this better if this admin mobile menu is kept
         var burger = document.querySelector('.nav-toggle');

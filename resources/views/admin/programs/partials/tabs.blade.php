@@ -1,4 +1,4 @@
-<div class="tabs">
+<div class="tabs is-boxed">
     <ul>
 
         <li class="{{ ( Route::currentRouteName() == 'admin.programs.index' ) ? 'is-active' : '' }}">

@@ -1,7 +1,15 @@
-// Import Bulma's initial variables
-//@import "node_modules/bulma/sass/utilities/variables";
 @import "node_modules/font-awesome/scss/font-awesome";
+
+// Import Bulma's initial variables
+@import "node_modules/bulma/sass/utilities/_all";
+
+// Override Bulma variables
+$primary: #c30712;
+$link: #c30712;
+
+// Import the rest of bulma
 @import "node_modules/bulma/bulma";
+
 //@import "node_modules/morris.js/morris";
 
 
@@ -10,8 +18,10 @@
 @import "schools";
 
 [v-cloak] {
+
     display: none;
 }
 
-@import "components/level-menu";
+@import "components/header";
 @import "components/section-menu";
+@import "components/breadcrumbs";
