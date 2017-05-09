@@ -33,15 +33,10 @@
 
 @section('section-content')
 
+    {!! Form::model( $program, [ 'method' => 'put', 'route' => [ 'admin.programs.update', $school->id, $program->id ] ]) !!}
 
-    <div class="column is-half-tablet">
-        {!! Form::model( $program, [ 'method' => 'put', 'route' => [ 'admin.programs.update', $school->id, $program->id ] ]) !!}
+        @include( 'admin.programs.partials.form' )
 
-            <div class="notification">
-                @include( 'admin.programs.partials.form' )
-            </div>
-
-        {!! Form::close() !!}
-    </div>
+    {!! Form::close() !!}
 
 @endsection
