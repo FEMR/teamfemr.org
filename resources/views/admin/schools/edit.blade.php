@@ -3,26 +3,41 @@
 
 @section( 'section-header' )
 
-    <h1 class="title">
-        Schools
-    </h1>
-    <h2 class="subtitle">Edit</h2>
+    <div class="header">
+
+        <h1 class="title">Schools</h1>
+
+    </div>
+
+    <div class="level breadcrumbs is-mobile">
+        <div class="level-left">
+
+            <a class="level-item"href="{{ route( 'admin.dashboard.index' ) }}">Dashboard</a>
+            <span class="level-item separator">&gt</span>
+            <a class="level-item" href="{{ route( 'admin.schools.index' ) }}">Schools</a>
+            <span class="level-item separator">&gt</span>
+            <span class="level-item">Edit</span>
+
+        </div>
+    </div>
 
 @endsection
 
 @section( 'section-menu' )
 
-    @include( 'admin.schools.partials.menu' )
+    @include( 'admin.schools.partials.tabs' )
 
 @endsection
 
 @section('section-content')
 
 
-    <div class="column is-half-tablet form-column">
+    <div class="column is-half-tablet">
         {!! Form::model( $school, [  'method' => 'put', 'route' => [ 'admin.schools.update', $school->id ] ]) !!}
 
-            @include( 'admin.schools.partials.form' )
+            <div class="notification">
+                @include( 'admin.schools.partials.form' )
+            </div>
 
         {!! Form::close() !!}
     </div>

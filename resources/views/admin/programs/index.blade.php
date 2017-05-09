@@ -3,16 +3,29 @@
 
 @section( 'section-header' )
 
-    <h1 class="title">
-        Outreach Programs
-    </h1>
-    <h2 class="subtitle">All</h2>
+    <div class="header">
+        <h1 class="title">Outreach Programs</h1>
+    </div>
+
+    <div class="level breadcrumbs is-mobile">
+        <div class="level-left">
+
+            <a class="level-item"href="{{ route( 'admin.dashboard.index' ) }}">Dashboard</a>
+            <span class="level-item separator">&gt</span>
+            <a class="level-item" href="{{ route( 'admin.schools.index' ) }}">Schools</a>
+            <span class="level-item separator">&gt</span>
+            <a class="level-item" href="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">{{ $school->name }}</a>
+            <span class="level-item separator">&gt</span>
+            <span class="level-item">Outreach Programs</span>
+
+        </div>
+    </div>
 
 @endsection
 
 @section( 'section-menu' )
 
-    @include( 'admin.programs.partials.menu' )
+    @include( 'admin.programs.partials.tabs' )
 
 @endsection
 
@@ -23,40 +36,28 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Name</th>
                     <th>Year Initiated</th>
                     <th>Participants</th>
                     <th>Matriculants per class</th>
                     <th>Uses EMR</th>
-                    <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach( $school->programs as $program )
                 <tr>
+
+                    <td>
+                        @include( 'admin.programs.partials.dropdown' )
+                    </td>
                     <td>{{ $program->name }}</td>
                     <td>{{ $program->year_initiated }}</td>
                     <td>{{ $program->yearly_outreach_participants }}</td>
                     <td>{{ $program->matriculants_per_class }}</td>
                     <td>{{ ( $program->uses_emr ) ? 'Yes' : 'No' }}</td>
-                    <td>
-                        <nav class="level">
-                            <div class="level-left"></div>
-                            <div class="level-right">
-                                <p class="level-item">
-                                    <a class="button is-white" href="{{ route( 'admin.programs.edit', [ $school->id, $program->id ] ) }}">
-                                        <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
-                                    </a>
-                                </p>
-                                {!! Form::open([ 'method' => 'delete', 'route' => [ 'admin.programs.destroy', $school->id, $program->id ], 'class' => 'level-item' ]) !!}
-                                <button type="submit" class="button is-white">
-                                    <span class="icon"><i class="fa fa-trash"></i></span>
-                                </button>
-                                {!! Form::close() !!}
-                            </div>
-                        </nav>
-                    </td>
+
                 </tr>
                 @endforeach
             </tbody>
