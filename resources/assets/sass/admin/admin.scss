@@ -10,9 +10,11 @@ $link: #c30712;
 // Import the rest of bulma
 @import "node_modules/bulma/bulma";
 
+@import "node_modules/select2/src/scss/core";
+
 //@import "node_modules/morris.js/morris";
 
-
+@import "form";
 @import "content";
 @import "dashboard";
 @import "schools";

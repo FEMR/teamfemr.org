@@ -2,6 +2,8 @@
 
 namespace FEMR\Providers;
 
+use FEMR\Http\ViewComposers\Admin\ProgramFormComposer;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer(
+            'admin.programs.partials.form.base-fields', ProgramFormComposer::class
+        );
     }
 
     /**

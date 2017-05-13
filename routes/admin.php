@@ -25,6 +25,7 @@
         //
         // Outreach Programs
         //
+        Route::get(    'programs',                                    'ProgramController@all'      )->name( 'admin.programs.all'      );
         Route::get(    'schools/{school}/programs',                   'ProgramController@index'    )->name( 'admin.programs.index'    );
         Route::get(    'schools/{school}/programs/archived',          'ProgramController@archived' )->name( 'admin.programs.archived' );
         Route::get(    'schools/{school}/programs/create',            'ProgramController@create'   )->name( 'admin.programs.create'   );

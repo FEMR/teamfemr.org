@@ -56,8 +56,8 @@
 <div class="field">
     <label class="label">Classes</label>
     <p class="control">
-        <span class="select">
-            {!! Form::select( 'classes[]', [ 'This will be a select 2 box', 'option2', 'option3' ], null [ 'multiple' ] ) !!}
+        <span class="select is-fullwidth select2-wrapper">
+            {!! Form::select( 'school_classes[]', $school_classes, null, [ 'multiple', 'class' => 'select2' ] ) !!}
         </span>
     </p>
 </div>
