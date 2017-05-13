@@ -13,6 +13,11 @@
             Schools
         </a>
     </li>
+    <li>
+        <a href="{{ route( 'admin.programs.all' ) }}" class="item {{ str_contains( Route::currentRouteName(), 'admin.programs.all' ) ? 'is-active' : '' }}">
+            Outreach Programs
+        </a>
+    </li>
 </ul>
 
 <p class="menu-label">

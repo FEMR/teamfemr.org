@@ -2,6 +2,7 @@
 
 namespace FEMR\Data\Models;
 
+use Collective\Html\Eloquent\FormAccessible;
 use FEMR\Data\Utilities\HasSlug;
 use FEMR\Data\Models\OutreachProgram\Field;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OutreachProgram extends Model
 {
-    use SoftDeletes, HasSlug;
+    use SoftDeletes, HasSlug, FormAccessible;
 
     /**
      * The table associated with the model.
@@ -59,6 +60,62 @@ class OutreachProgram extends Model
     ];
 
     /**
+     * The default long form fields
+     * - down the road this might need its own table/ui
+     *
+     * @var array
+     */
+    public static $default_fields = [
+
+        'faculty-and-staffing'   => 'Faculty and staffing:',
+        'application-process'    => 'Application process:',
+        'program-elements'       => 'Program Elements:',
+        'financial-support'      => 'Financial Support:',
+        'faculty-time-alotted'   => 'Faculty Time Allotted:',
+        'administrative-support' => 'Administrative Support:'
+    ];
+
+    /**
+     * Grabs a value by $key from the fields relationship
+     *
+     * @param $key
+     * @return null
+     */
+    public function getAdditionalFieldValue( $key )
+    {
+        if( $this->fields->count() > 0 )
+        {
+            $field = $this->fields->filter( function( $item, $key ) use ( $key )
+                {
+                    return $item->key === $key;
+                })
+                ->first();
+
+            if( $field )
+            {
+                return $field->value;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function formSchoolClassesAttribute()
+    {
+        return $this->getRelation( 'schoolClasses' )->pluck( 'id' )->all();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function school()
+    {
+        return $this->belongsTo( School::class );
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function medias()
@@ -101,7 +158,7 @@ class OutreachProgram extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function schoolClass()
+    public function schoolClasses()
     {
         return $this->belongsToMany( SchoolClass::class )->withPivot( 'class_size' );
     }

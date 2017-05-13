@@ -4,11 +4,25 @@
 
     use FEMR\Data\Models\OutreachProgram;
     use FEMR\Data\Models\School;
+    use FEMR\Data\Models\SchoolClass;
     use FEMR\Http\Controllers\Controller;
     use FEMR\Http\Requests\Admin\ProgramRequest;
 
     class ProgramController extends Controller
     {
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function all()
+        {
+            $programs = OutreachProgram::orderBy( 'created_at', 'desc' )
+                                        ->with( 'school' )
+                                        ->paginate( 50 );
+
+            return view( 'admin.programs.all', [ 'programs' => $programs ] );
+        }
+
         /**
          * @param School $school
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -47,7 +61,63 @@
          */
         public function store( School $school, ProgramRequest $request )
         {
-            $school->programs()->create( $request->all() );
+
+            $program = $school->programs()->create( $request->all() );
+
+            if( $request->has( 'school_classes' ) )
+            {
+                $classes_to_sync = [];
+
+                foreach( $request->input( 'school_classes' ) as $class )
+                {
+                    if( is_numeric( $class ) )
+                    {
+                        $classes_to_sync[] = $class;
+                    }
+                    else
+                    {
+                        $existing = SchoolClass::where( 'name', '=', $class )->first();
+
+                        //
+                        // Add school class and get id to sync
+                        //
+                        if( is_null( $existing ) )
+                        {
+                            $new = SchoolClass::create([ 'name' => $class ]);
+                            $classes_to_sync[] = $new->id;
+                        }
+                        else
+                        {
+                            $classes_to_sync[] = $existing->id;
+                        }
+
+                    }
+                }
+
+                $program->schoolClasses()->sync( $classes_to_sync );
+            }
+
+            if( $request->has( 'additional_fields' ) )
+            {
+                foreach( $request->input( 'additional_fields' ) as $key => $value )
+                {
+                    if( $program->fields->contains( 'key', $key ) )
+                    {
+                        $program->fields()
+                            ->where( 'key', '=', $key )
+                            ->update([ 'value' => $value ]);
+                    }
+                    else
+                    {
+                        $program->fields()
+                            ->create([
+                                'name'   => OutreachProgram::$default_fields[ $key ],
+                                'key'    => $key,
+                                'value' => $value
+                            ]);
+                    }
+                }
+            }
 
             return redirect()->route( 'admin.programs.index', [ $school->id ] );
         }
@@ -59,6 +129,7 @@
          */
         public function edit( School $school, OutreachProgram $program )
         {
+            $program->load( 'schoolClasses' );
             return view( 'admin.programs.edit', [ 'school' => $school, 'program' => $program ] );
         }
 
@@ -70,7 +141,62 @@
          */
         public function update( School $school, OutreachProgram $program, ProgramRequest $request )
         {
+            // TODO - move this to a repository
             $program->update( $request->all() );
+
+            if( $request->has( 'school_classes' ) )
+            {
+                $classes_to_sync = [];
+
+                foreach( $request->input( 'school_classes' ) as $class )
+                {
+                    if( is_numeric( $class ) )
+                    {
+                        $classes_to_sync[] = $class;
+                    }
+                    else
+                    {
+                        $existing = SchoolClass::where( 'name', '=', $class )->first();
+
+                        //
+                        // Add school class and get id to sync
+                        //
+                        if( is_null( $existing ) )
+                        {
+                            $new = SchoolClass::create([ 'name' => $class ]);
+                            $classes_to_sync[] = $new->id;
+                        }
+                        else
+                        {
+                            $classes_to_sync[] = $existing->id;
+                        }
+                    }
+                }
+
+                $program->schoolClasses()->sync( $classes_to_sync );
+            }
+
+            if( $request->has( 'additional_fields' ) )
+            {
+                foreach( $request->input( 'additional_fields' ) as $key => $value )
+                {
+                    if( $program->fields->contains( 'key', $key ) )
+                    {
+                        $program->fields()
+                                ->where( 'key', '=', $key )
+                                ->update([ 'value' => $value ]);
+                    }
+                    else
+                    {
+                        $program->fields()
+                                ->create([
+                                    'name'   => OutreachProgram::$default_fields[ $key ],
+                                    'key'    => $key,
+                                    'value' => $value
+                                ]);
+                    }
+                }
+            }
 
             return redirect()->route( 'admin.programs.index', [ $school->id ] );
         }

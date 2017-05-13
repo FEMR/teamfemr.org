@@ -155,6 +155,7 @@ return [
         FEMR\Providers\AuthServiceProvider::class,
         FEMR\Providers\EventServiceProvider::class,
         FEMR\Providers\RouteServiceProvider::class,
+        FEMR\Providers\ComposerServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Geocoder\Laravel\Providers\GeocoderService::class,
