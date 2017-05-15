@@ -4,7 +4,7 @@
 @section( 'section-header' )
 
     <div class="header">
-        <h1 class="title">Outreach Programs</h1>
+        <h1 class="title">Papers</h1>
     </div>
 
     <div class="level breadcrumbs is-mobile">
