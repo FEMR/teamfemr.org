@@ -24,13 +24,7 @@
     Administration
 </p>
 <ul class="menu-list">
-    <li><a>These are not real links</a></li>
-    <li>
-        <a>Manage Your Team</a>
-        <ul>
-            <li><a>Link 1</a></li>
-            <li><a>Link 2</a></li>
-            <li><a>Link 3</a></li>
-        </ul>
-    </li>
+    <li><a>Users</a></li>
+    <li><a>Pages</a></li>
+    <li><a>News</a></li>
 </ul>
