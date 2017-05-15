@@ -5,7 +5,7 @@
             <div class="level-item">&nbsp;</div>
 
             <div class="level-item">
-                <a class="button is-small" href="#">
+                <a class="button is-small" href="{{ route( 'admin.papers.index', [ $school->id, $program->id ]) }}">
                     <span class="icon is-small"><i class="fa fa-book"></i></span>
                     <span>Papers</span>
                 </a>

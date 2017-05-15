@@ -21,17 +21,36 @@
         Route::put(    'schools/{school}',         'SchoolController@update'   )->name( 'admin.schools.update'   );
         Route::delete( 'schools/{school}',         'SchoolController@destroy'  )->name( 'admin.schools.destroy'  );
         Route::post(   'schools/{school}/restore', 'SchoolController@restore'  )->name( 'admin.schools.restore'  );
-        
+
         //
         // Outreach Programs
         //
-        Route::get(    'programs',                                    'ProgramController@all'      )->name( 'admin.programs.all'      );
-        Route::get(    'schools/{school}/programs',                   'ProgramController@index'    )->name( 'admin.programs.index'    );
-        Route::get(    'schools/{school}/programs/archived',          'ProgramController@archived' )->name( 'admin.programs.archived' );
-        Route::get(    'schools/{school}/programs/create',            'ProgramController@create'   )->name( 'admin.programs.create'   );
-        Route::post(   'schools/{school}/programs',                   'ProgramController@store'    )->name( 'admin.programs.store'    );
-        Route::get(    'schools/{school}/programs/{program}/edit',    'ProgramController@edit'     )->name( 'admin.programs.edit'     );
-        Route::put(    'schools/{school}/programs/{program}',         'ProgramController@update'   )->name( 'admin.programs.update'   );
-        Route::delete( 'schools/{school}/programs/{program}',         'ProgramController@destroy'  )->name( 'admin.programs.destroy'  );
-        Route::post(   'schools/{school}/programs/{program}/restore', 'ProgramController@restore'  )->name( 'admin.programs.restore'  );
+        Route::get( 'programs', 'ProgramController@all' )->name( 'admin.programs.all' );
+        Route::group([ 'prefix' => 'schools/{school}' ], function(){
+
+
+            Route::get(    'programs',                   'ProgramController@index'    )->name( 'admin.programs.index'    );
+            Route::get(    'programs/archived',          'ProgramController@archived' )->name( 'admin.programs.archived' );
+            Route::get(    'programs/create',            'ProgramController@create'   )->name( 'admin.programs.create'   );
+            Route::post(   'programs',                   'ProgramController@store'    )->name( 'admin.programs.store'    );
+            Route::get(    'programs/{program}/edit',    'ProgramController@edit'     )->name( 'admin.programs.edit'     );
+            Route::put(    'programs/{program}',         'ProgramController@update'   )->name( 'admin.programs.update'   );
+            Route::delete( 'programs//{program}',         'ProgramController@destroy' )->name( 'admin.programs.destroy'  );
+            Route::post(   'programs/{program}/restore', 'ProgramController@restore'  )->name( 'admin.programs.restore'  );
+        });
+
+        //
+        // Papers
+        //
+        Route::group([ 'prefix' => 'schools/{school}/programs/{program}' ], function() {
+
+            Route::get(    'papers',                 'PaperController@index'    )->name( 'admin.papers.index'    );
+            Route::get(    'papers/archived',        'PaperController@archived' )->name( 'admin.papers.archived' );
+            Route::get(    'papers/create',          'PaperController@create'   )->name( 'admin.papers.create'   );
+            Route::post(   'papers',                 'PaperController@store'    )->name( 'admin.papers.store'    );
+            Route::get(    'papers/{paper}/edit',    'PaperController@edit'     )->name( 'admin.papers.edit'     );
+            Route::put(    'papers/{paper}',         'PaperController@update'   )->name( 'admin.papers.update'   );
+            Route::delete( 'papers/{paper}',         'PaperController@destroy'  )->name( 'admin.papers.destroy'  );
+            Route::post(   'papers/{paper}/restore', 'PaperController@restore'  )->name( 'admin.papers.restore'  );
+        });
     });
