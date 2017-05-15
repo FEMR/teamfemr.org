@@ -8,7 +8,7 @@
     </menu-item>
 
     <menu-item
-            link="#"
+            link="{{ route( 'admin.papers.index', [ $school->id, $program->id ]) }}"
     >
         <span class="icon"><i class="fa fa-book"></i></span>
         <span>Papers</span>
