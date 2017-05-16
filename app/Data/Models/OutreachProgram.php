@@ -128,7 +128,7 @@ class OutreachProgram extends Model
      */
     public function contacts()
     {
-        return $this->belongsToMany( Contact::class );
+        return $this->belongsToMany( Contact::class, 'outreach_program_contact' );
     }
 
     /**
@@ -168,7 +168,7 @@ class OutreachProgram extends Model
      */
     public function partnerOrganizations()
     {
-        return $this->belongsToMany( PartnerOrganization::class );
+        return $this->belongsToMany( PartnerOrganization::class, 'outreach_program_partner', 'outreach_program_id', 'partner_id' );
     }
 
     /**

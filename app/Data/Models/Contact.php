@@ -75,6 +75,6 @@ class Contact extends Model
      */
     public function outreachProgram()
     {
-        return $this->belongsToMany( OutreachProgram::class );
+        return $this->belongsToMany( OutreachProgram::class, 'outreach_program_contact' );
     }
 }
