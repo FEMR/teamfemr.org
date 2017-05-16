@@ -67,10 +67,18 @@ class VisitedLocation extends Model
     ];
 
     /**
+     * @return string
+     */
+    public function getFullAddressAttribute()
+    {
+        return 'Implement the Full Address Attribute';
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function outreachProgram()
     {
-        return $this->belongsTo( OutreachProgram::class );
+        return $this->belongsTo( OutreachProgram::class, 'outreach_program_partner', 'partner_id', 'outreach_program_id' );
     }
 }

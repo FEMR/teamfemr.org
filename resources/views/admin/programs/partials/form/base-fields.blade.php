@@ -61,9 +61,3 @@
         </span>
     </p>
 </div>
-
-<div class="field is-grouped">
-    <p class="control">
-        <button class="button is-primary">Submit</button>
-    </p>
-</div>
