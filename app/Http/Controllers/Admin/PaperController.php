@@ -12,102 +12,63 @@
     {
 
         /**
-         * @param School $school
-         * @param OutreachProgram $program
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @param $program_id
          */
-        public function index( School $school, OutreachProgram $program )
+        public function index( $program_id )
         {
-            return view( 'admin.programs.papers.index', [ 'school' => $school, 'program' => $program ] );
+            return Paper::where( 'outreach_program_id', '=', $program_id )->get();
         }
 
         /**
-         * @param School $school
-         * @param OutreachProgram $program
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
-        public function archived( School $school, OutreachProgram $program )
-        {
-            $papers = $program->papers()->onlyTrashed()->get();
-            $program->setRelation( 'papers', $papers );
-
-            return view( 'admin.programs.papers.archived', [ 'school' => $school, 'program' => $program ] );
-        }
-
-        /**
-         * @param School $school
-         * @param OutreachProgram $program
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
-        public function create( School $school, OutreachProgram $program )
-        {
-            return view( 'admin.programs.papers.create', [ 'school' => $school, 'program' => $program ] );
-        }
-
-        /**
-         * @param $school_id
-         * @param OutreachProgram $program
+         * @param $program_id
          * @param PaperRequest $request
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function store( $school_id, OutreachProgram $program, PaperRequest $request )
+        public function store( $program_id, PaperRequest $request )
         {
-            $paper = $program->papers()->create( $request->all() );
-
-            return redirect()->route( 'admin.papers.index', [ $school_id, $program->id ] );
+            $program = OutreachProgram::findOrFail( $program_id );
+            return $program->papers()->create( $request->all() );
         }
 
         /**
-         * @param School $school
-         * @param OutreachProgram $program
-         * @param Paper $paper
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
-        public function edit( School $school, OutreachProgram $program, Paper $paper )
-        {
-            return view( 'admin.programs.papers.edit', [ 'school' => $school, 'program' => $program, 'paper' => $paper ] );
-        }
-
-        /**
-         * @param $school_id
          * @param $program_id
-         * @param Paper $paper
+         * @param $paper_id
          * @param PaperRequest $request
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function update( $school_id, $program_id, Paper $paper, PaperRequest $request )
+        public function update( $program_id, $paper_id, PaperRequest $request )
         {
-            $paper->update( $request->all() );
+            $paper = Paper::where( 'outreach_program_id', '=', $program_id )->findOrFail( $paper_id );
+            return [
 
-            return redirect()->route( 'admin.papers.index', [ $school_id, $program_id ] );
+                'status' => $paper->update( $request->all() )
+            ];
         }
 
         /**
-         * @param $school_id
-         * @param $program_id
-         * @param Paper $paper
-         * @return \Illuminate\Http\RedirectResponse
-         */
-        public function destroy( $school_id, $program_id, Paper $paper )
-        {
-            $paper->delete();
-
-            return redirect()->route( 'admin.papers.index', [ $school_id, $program_id ]);
-        }
-
-        /**
-         * @param $school_id
          * @param $program_id
          * @param $paper_id
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function restore( $school_id, $program_id, $paper_id )
+        public function destroy( $program_id, $paper_id )
+        {
+            return [
+
+                'status' => Paper::where( 'outreach_program_id', '=', $program_id )->findOrFail( $paper_id )->delete()
+            ];
+        }
+
+        /**
+         * @param $program_id
+         * @param $paper_id
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function restore( $program_id, $paper_id )
         {
             $paper = Paper::where( 'outreach_program_id', '=', $program_id )
                         ->withTrashed()
                         ->findOrFail( $paper_id );
-            $paper->restore();
 
-            return redirect()->route( 'admin.papers.index', [ $school_id, $program_id ] );
+            return $paper->restore();
         }
     }

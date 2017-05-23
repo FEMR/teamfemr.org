@@ -42,13 +42,11 @@
         //
         // Papers
         //
-        Route::group([ 'prefix' => 'schools/{school}/programs/{program}' ], function() {
+        Route::group([ 'prefix' => 'programs/{program}' ], function() {
 
             Route::get(    'papers',                 'PaperController@index'    )->name( 'admin.papers.index'    );
             Route::get(    'papers/archived',        'PaperController@archived' )->name( 'admin.papers.archived' );
-            Route::get(    'papers/create',          'PaperController@create'   )->name( 'admin.papers.create'   );
             Route::post(   'papers',                 'PaperController@store'    )->name( 'admin.papers.store'    );
-            Route::get(    'papers/{paper}/edit',    'PaperController@edit'     )->name( 'admin.papers.edit'     );
             Route::put(    'papers/{paper}',         'PaperController@update'   )->name( 'admin.papers.update'   );
             Route::delete( 'papers/{paper}',         'PaperController@destroy'  )->name( 'admin.papers.destroy'  );
             Route::post(   'papers/{paper}/restore', 'PaperController@restore'  )->name( 'admin.papers.restore'  );
