@@ -1,14 +1,6 @@
-import EventBus from "../../event-bus"
-
-/*
-
-    TODO
-
-    - Error Checking
-    - How to update the parent table? Refresh ajax call on close?
-
- */
-
+import EventBus from "../../event-bus";
+import PaperService from "../../services/paper.service.js";
+import Errors from "../../errors.js";
 
 export default {
 
@@ -20,6 +12,7 @@ export default {
 
             isLoading: false,
             isVisible: false,
+            errors: new Errors(),
 
             id: '',
             title: '',
@@ -32,77 +25,55 @@ export default {
         savePaper() {
 
             this.isLoading = true;
-
+            
             // Create
             if( this.id == '' ) {
 
+                PaperService.create( this.programId, this.title, this.url, this.description )
+                    .then( ( response ) => {
 
-
-                    // TODO - move to service
-                    axios.post('/admin/programs/' + this.programId + '/papers', {
-
-                        title: this.title,
-                        url: this.url,
-                        description: this.description
+                        this.hideForm();
+                        console.log(response);
                     })
-                        .then((response) => {
+                    .catch( ( errors ) => {
 
-                            this.isLoading = false;
-                            this.hideForm();
-
-                            console.log(response);
-                        })
-                        .catch((error) => {
-
-                            this.isLoading = false;
-                            console.log(error);
-                        });
+                        this.errors.record( errors.response.data );
+                        this.isLoading = false;
+                    });
             }
 
             // Edit
             else {
-                // TODO - move to service
-                axios.put('/admin/programs/' + this.programId + '/papers/' + this.id, {
+                
+                PaperService.update( this.programId, this.id, this.title, this.url, this.description )
+                    .then( ( response ) => {
 
-                        title: this.title,
-                        url: this.url,
-                        description: this.description
-                    })
-                    .then((response) => {
-
-
-                        this.isLoading = false;
                         this.hideForm();
-
                         console.log(response);
                     })
-                    .catch((error) => {
+                    .catch( ( errors ) => {
 
+                        this.errors.record( errors.response.data );
                         this.isLoading = false;
-                        console.log(error);
                     });
             }
 
         },
         destroyPaper(){
 
-            // TODO - move to service
-            axios.delete( '/admin/programs/' + this.programId + '/papers/' + this.id )
+            PaperService.destroy()
                 .then( ( response ) => {
 
                     this.isLoading = false;
                     this.hideForm();
-
-                    console.log(response);
                 })
                 .catch( ( error ) => {
 
+                    this.errors.record( errors.response.data );
                     this.isLoading = false;
-                    console.log(error);
                 });
         },
         cancel(){
-
 
             this.hideForm();
         },
@@ -115,6 +86,8 @@ export default {
 
             this.isLoading = false;
             this.isVisible = false;
+
+            this.errors.clear();
 
             EventBus.$emit( "papers.closeForm" );
         }

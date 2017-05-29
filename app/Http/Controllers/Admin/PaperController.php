@@ -4,7 +4,6 @@
 
     use FEMR\Data\Models\OutreachProgram;
     use FEMR\Data\Models\Paper;
-    use FEMR\Data\Models\School;
     use FEMR\Http\Controllers\Controller;
     use FEMR\Http\Requests\Admin\PaperRequest;
 
@@ -13,6 +12,7 @@
 
         /**
          * @param $program_id
+         * @return mixed
          */
         public function index( $program_id )
         {
@@ -22,7 +22,7 @@
         /**
          * @param $program_id
          * @param PaperRequest $request
-         * @return \Illuminate\Http\RedirectResponse
+         * @return mixed
          */
         public function store( $program_id, PaperRequest $request )
         {
@@ -34,7 +34,7 @@
          * @param $program_id
          * @param $paper_id
          * @param PaperRequest $request
-         * @return \Illuminate\Http\RedirectResponse
+         * @return mixed
          */
         public function update( $program_id, $paper_id, PaperRequest $request )
         {
@@ -48,7 +48,7 @@
         /**
          * @param $program_id
          * @param $paper_id
-         * @return \Illuminate\Http\RedirectResponse
+         * @return mixed
          */
         public function destroy( $program_id, $paper_id )
         {
@@ -61,7 +61,7 @@
         /**
          * @param $program_id
          * @param $paper_id
-         * @return \Illuminate\Http\RedirectResponse
+         * @return mixed
          */
         public function restore( $program_id, $paper_id )
         {

@@ -1,9 +1,8 @@
 require('./bootstrap');
 
-import EventBus from "./event-bus"
 import "select2"
 // import store from './store';
-//
+
 import PapersForm from './components/papers/form';
 Vue.component( 'papers-form', PapersForm );
 import PapersTable from './components/papers/table';
@@ -19,13 +18,8 @@ Vue.component('menu-item', require('./components/MenuItem.vue'));
 Vue.component('menu-form', require('./components/MenuForm.vue'));
 
 const app = new Vue({
-    // store,
-    el: '#app',
-    components: {
 
-        // 'paper-form': PapersForm,
-        // 'papers-table': PapersTable
-    },
+    el: '#app',
     data(){
 
         return {
