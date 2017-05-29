@@ -29,7 +29,7 @@
                     <td>@{{ paper.title }}</td>
                     <td>@{{ paper.url }}</td>
                     <td>@{{ paper.description }}</td>
-                    <td>
+                    <td style="width: 85px;">
                         <a class="button is-small edit-button" @click="editPaper(paper)">
                             <span class="icon is-small">
                               <i class="fa fa-edit"></i>

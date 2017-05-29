@@ -1,4 +1,5 @@
-import EventBus from "../../event-bus"
+import EventBus from "../../event-bus";
+import PaperService from "../../services/paper.service.js";
 
 export default {
 
@@ -15,13 +16,10 @@ export default {
 
         getPapers(){
 
-            // TODO - move to service
-            axios.get( '/admin/programs/' + this.programId + '/papers' )
+            PaperService.index( this.programId )
                 .then( ( response ) => {
 
                     this.papers = response.data;
-
-                    console.log(response);
                 })
                 .catch( ( error ) => {
 
@@ -34,21 +32,21 @@ export default {
         },
         destroyPaper( paper ){
 
-            var shouldDelete = confirm( "Are you sure you want to delete: " + paper.name );
+            console.log( paper );
+
+            var shouldDelete = confirm( "Are you sure you want to delete: " + paper.title );
             if( shouldDelete ) {
 
-                // TODO - move to service
-                axios.delete('/admin/programs/' + this.programId + '/papers/' + paper.id)
+                PaperService.destroy( this.programId, paper.id )
                     .then((response) => {
 
-                        console.log(response);
+                        this.getPapers();
                     })
                     .catch((error) => {
 
                         console.log(error);
                     });
             }
-            // EventBus.$emit( "papers.destroyForm", paper );
         },
         newPaper(){
 
@@ -58,7 +56,7 @@ export default {
     mounted() {
 
         this.getPapers();
-        
+
         EventBus.$on( "papers.closeForm", () => {
 
             this.getPapers();
