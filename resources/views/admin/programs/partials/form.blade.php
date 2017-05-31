@@ -20,14 +20,18 @@
 
     <div class="column is-half">
 
-        @include( 'admin.programs.partials.form.papers.table' )
+        {{-- Only show the additional fields when there is an existing program --}}
+        @if( isset( $program ) )
 
-        @include( 'admin.programs.partials.form.partner-organization' )
+            @include( 'admin.programs.partials.form.papers.table' )
 
-        @include( 'admin.programs.partials.form.visited-locations' )
+            @include( 'admin.programs.partials.form.partner-organization' )
 
-        @include( 'admin.programs.partials.form.contacts' )
+            @include( 'admin.programs.partials.form.visited-locations' )
 
+            @include( 'admin.programs.partials.form.contacts' )
+
+        @endif
 
     </div>
 
