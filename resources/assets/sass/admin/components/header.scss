@@ -1,5 +1,30 @@
-.header{
+.header {
 
     margin-bottom: 15px;
     width: 100%;
+}
+
+.top-nav {
+
+    .nav-item {
+
+        &.is-active {
+
+            color: $femrRed;
+        }
+
+        &.is-tab {
+
+            &.is-active {
+
+                border-bottom-color: $femrRed;
+            }
+
+            &:hover {
+
+              border-bottom-color: $femrRed;
+            }
+        }
+    }
+
 }
