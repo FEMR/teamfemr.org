@@ -119,7 +119,7 @@
                 }
             }
 
-            return redirect()->route( 'admin.programs.index', [ $school->id ] );
+            return redirect()->route( 'admin.programs.edit', [ $school->id, $program->id ] );
         }
 
         /**

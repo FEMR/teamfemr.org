@@ -42,7 +42,7 @@
         //
         // Papers
         //
-        Route::group([ 'prefix' => 'programs/{program}' ], function() {
+        Route::group([ 'prefix' => 'programs/{program}', 'namespace' => 'Json' ], function() {
 
             Route::get(    'papers',                 'PaperController@index'    )->name( 'admin.papers.index'    );
             Route::get(    'papers/archived',        'PaperController@archived' )->name( 'admin.papers.archived' );

@@ -1,6 +1,6 @@
 <?php
 
-    namespace FEMR\Http\Controllers\Admin;
+    namespace FEMR\Http\Controllers\Admin\Json;
 
     use FEMR\Data\Models\OutreachProgram;
     use FEMR\Data\Models\Paper;
