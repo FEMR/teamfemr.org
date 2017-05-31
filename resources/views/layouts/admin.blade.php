@@ -16,12 +16,23 @@
 <body>
 
     <div id="app">
-        <nav class="nav has-shadow" id="top">
+        <nav class="nav top-nav has-shadow" id="top">
             <div class="container">
                 <div class="nav-left">
                     <a class="nav-item" href="{{ route( 'pages.home' ) }}">
                         <img src="{{ asset('images/logo/logo_color_med.png') }}" alt="Description">
                     </a>
+
+                    <a href="{{ route( 'admin.dashboard.index' ) }}"  class="nav-item is-tab {{ Route::currentRouteName() == 'admin.dashboard.index' ? 'is-active' : '' }}">
+                        Dashboard
+                    </a>
+                    <a href="{{ route( 'admin.schools.index' ) }}"  class="nav-item is-tab {{ str_contains( Route::currentRouteName(), 'admin.schools.' ) ? 'is-active' : '' }}">
+                        Schools
+                    </a>
+                    <a href="{{ route( 'admin.programs.all' ) }}" class="nav-item is-tab {{ str_contains( Route::currentRouteName(), 'admin.programs.' ) ? 'is-active' : '' }}">
+                        Outreach Programs
+                    </a>
+
                 </div>
                 <span class="nav-toggle">
                     <span></span>
@@ -32,7 +43,7 @@
 
                     <span class="nav-item">
                         {!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}
-                        <button class="button" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</button>
+                        <button class="button is-small" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out is-small"></i>Logout</button>
                         {!! Form::close() !!}
                     </span>
 
@@ -41,16 +52,7 @@
         </nav>
 
         <div class="columns admin-panel">
-            <aside class="column is-2 aside hero is-fullheight is-hidden-mobile">
-                <div class="main">
-                    <aside class="menu is-dark">
-
-                        @include( 'admin.partials.side-nav' )
-
-                    </aside>
-                </div>
-            </aside>
-            <div class="column is-10 admin-content">
+            <div class="column is-12 admin-content">
 
                 {{-- Header Section --}}
                 <section class="hero">
