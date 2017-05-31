@@ -35,7 +35,7 @@
             Route::post(   'programs',                   'ProgramController@store'    )->name( 'admin.programs.store'    );
             Route::get(    'programs/{program}/edit',    'ProgramController@edit'     )->name( 'admin.programs.edit'     );
             Route::put(    'programs/{program}',         'ProgramController@update'   )->name( 'admin.programs.update'   );
-            Route::delete( 'programs//{program}',         'ProgramController@destroy' )->name( 'admin.programs.destroy'  );
+            Route::delete( 'programs/{program}',         'ProgramController@destroy' )->name( 'admin.programs.destroy'  );
             Route::post(   'programs/{program}/restore', 'ProgramController@restore'  )->name( 'admin.programs.restore'  );
         });
 
