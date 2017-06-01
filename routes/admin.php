@@ -51,4 +51,17 @@
             Route::delete( 'papers/{paper}',         'PaperController@destroy'  )->name( 'admin.papers.destroy'  );
             Route::post(   'papers/{paper}/restore', 'PaperController@restore'  )->name( 'admin.papers.restore'  );
         });
+
+        //
+        // Partner Organizations
+        //
+        Route::group([ 'prefix' => 'programs/{program}', 'namespace' => 'Json' ], function() {
+
+            Route::get(    'partners',                   'PartnerController@index'    )->name( 'admin.partners.index'    );
+            Route::get(    'partners/archived',          'PartnerController@archived' )->name( 'admin.partners.archived' );
+            Route::post(   'partners',                   'PartnerController@store'    )->name( 'admin.papers.store'      );
+            Route::put(    'partners/{partner}',         'PartnerController@update'   )->name( 'admin.partners.update'   );
+            Route::delete( 'partners/{partner}',         'PartnerController@destroy'  )->name( 'admin.partners.destroy'  );
+            Route::post(   'partners/{partner}/restore', 'PartnerController@restore'  )->name( 'admin.partners.restore'  );
+        });
     });

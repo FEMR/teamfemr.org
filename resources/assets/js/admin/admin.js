@@ -8,6 +8,12 @@ Vue.component( 'papers-form', PapersForm );
 import PapersTable from './components/papers/table';
 Vue.component( 'papers-table', PapersTable );
 
+import PartnersForm from './components/partners/form';
+Vue.component( 'partners-form', PartnersForm );
+import PartnersTable from './components/partners/table';
+Vue.component( 'partners-table', PartnersTable );
+
+
 // Register the map component
 Vue.component('femr-map', require('./components/FemrMap.vue'));
 Vue.component('school-form', require('./components/schools/SchoolForm.vue'));
@@ -34,8 +40,8 @@ const app = new Vue({
 
 
         // TODO - Do this better if this admin mobile menu is kept
-        var burger = document.querySelector('.nav-toggle');
-        var menu = document.querySelector('.nav-menu');
+        let burger = document.querySelector('.nav-toggle');
+        let menu = document.querySelector('.nav-menu');
         burger.addEventListener('click', function() {
 
             burger.classList.toggle('is-active');

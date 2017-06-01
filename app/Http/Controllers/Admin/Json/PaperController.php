@@ -5,7 +5,7 @@
     use FEMR\Data\Models\OutreachProgram;
     use FEMR\Data\Models\Paper;
     use FEMR\Http\Controllers\Controller;
-    use FEMR\Http\Requests\Admin\PaperRequest;
+    use FEMR\Http\Requests\Admin\Json\PaperRequest;
 
     class PaperController extends Controller
     {

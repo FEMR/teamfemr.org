@@ -27,7 +27,7 @@ trait HasSlug
                 //
                 $ct = 1;
                 $slug = Str::slug( $entity->name );
-                while( $previous = static::where( 'slug', '=', $slug )->withTrashed()->first() != null )
+                while( $previous = static::where( 'slug', '=', $slug )->where( 'id', '!=', $entity->id )->withTrashed()->first() != null )
                 {
                     $slug = Str::slug( $entity->name ) . '-' . $ct++;
                 }

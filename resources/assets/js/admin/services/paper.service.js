@@ -1,11 +1,11 @@
-var PaperService = (function(){
+let PaperService = (function(){
 
     /**
      *
      * @param programId
      * @returns {*}
      */
-    var index = function( programId ){
+    let index = function( programId ){
 
         return axios.get( '/admin/programs/' + programId + '/papers' )
     };
@@ -19,7 +19,7 @@ var PaperService = (function(){
      * @param description
      * @returns {*}
      */
-    var create = function( programId, title, url, description ){
+    let create = function( programId, title, url, description ){
 
         return axios.post('/admin/programs/' + programId + '/papers', {
 
@@ -40,7 +40,7 @@ var PaperService = (function(){
      * @param description
      * @returns {*}
      */
-    var update = function( programId, paperId, title, url, description ){
+    let update = function( programId, paperId, title, url, description ){
 
         return axios.put('/admin/programs/' + programId + '/papers/' + paperId, {
 
@@ -57,7 +57,7 @@ var PaperService = (function(){
      * @param paperId
      * @returns {boolean|*}
      */
-    var destroy = function( programId, paperId ){
+    let destroy = function( programId, paperId ){
 
         return axios.delete( '/admin/programs/' + programId + '/papers/' + paperId );
     };

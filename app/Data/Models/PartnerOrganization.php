@@ -36,7 +36,7 @@ class PartnerOrganization extends Model
     protected $casts = [
         'name'    => 'string',
         'slug'    => 'string',
-        'website' => 'integer'
+        'website' => 'string'
     ];
 
     /**
@@ -52,10 +52,10 @@ class PartnerOrganization extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function outreachPrograms()
     {
-        return $this->belongsToMany( OutreachProgram::class );
+        return $this->belongsToMany( OutreachProgram::class, 'outreach_program_partner', 'partner_id', 'outreach_program_id' );
     }
 }
