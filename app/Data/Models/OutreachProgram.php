@@ -85,7 +85,7 @@ class OutreachProgram extends Model
     {
         if( $this->fields->count() > 0 )
         {
-            $field = $this->fields->filter( function( $item, $key ) use ( $key )
+            $field = $this->fields->filter( function( $item ) use ( $key )
                 {
                     return $item->key === $key;
                 })
