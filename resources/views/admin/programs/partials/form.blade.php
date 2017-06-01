@@ -25,7 +25,7 @@
 
             @include( 'admin.programs.partials.form.papers.table' )
 
-            @include( 'admin.programs.partials.form.partner-organization' )
+            @include( 'admin.programs.partials.form.partners.table' )
 
             @include( 'admin.programs.partials.form.visited-locations' )
 
