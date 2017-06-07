@@ -33,10 +33,47 @@
 
 @section('section-content')
 
-    {!! Form::model( $program, [ 'method' => 'put', 'route' => [ 'admin.programs.update', $school->id, $program->id ] ]) !!}
+    <div class="columns">
 
-        @include( 'admin.programs.partials.form' )
+        <div class="column is-half">
 
-    {!! Form::close() !!}
+            <div class="notification ">
+
+                {!! Form::model( $program, [ 'method' => 'put', 'route' => [ 'admin.programs.update', $school->id, $program->id ] ]) !!}
+
+                    @include( 'admin.programs.partials.form.base-fields' )
+
+                    @include( 'admin.programs.partials.form.other-fields' )
+
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <button class="button is-primary">Submit</button>
+                        </p>
+                    </div>
+
+                {!! Form::close() !!}
+
+            </div>
+
+        </div>
+
+        <div class="column is-half">
+
+            {{-- Only show the additional fields when there is an existing program --}}
+            @if( isset( $program ) )
+
+                @include( 'admin.programs.partials.form.papers.table' )
+
+                @include( 'admin.programs.partials.form.partners.table' )
+
+                @include( 'admin.programs.partials.form.visited-locations' )
+
+                @include( 'admin.programs.partials.form.contacts' )
+
+            @endif
+
+        </div>
+
+    </div>
 
 @endsection
