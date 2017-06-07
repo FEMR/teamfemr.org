@@ -2,9 +2,10 @@
 
     namespace FEMR\Http\Controllers\Admin;
 
+    use FEMR\Data\Criteria\OutreachProgram\NewestFirstWithSchool;
+    use FEMR\Data\Criteria\OutreachProgram\TrashedForSchool;
     use FEMR\Data\Models\OutreachProgram;
     use FEMR\Data\Models\School;
-    use FEMR\Data\Models\SchoolClass;
     use FEMR\Http\Controllers\Controller;
     use FEMR\Http\Requests\Admin\ProgramRequest;
 
@@ -16,9 +17,7 @@
          */
         public function all()
         {
-            $programs = OutreachProgram::orderBy( 'created_at', 'desc' )
-                                        ->with( 'school' )
-                                        ->paginate( 50 );
+            $programs = OutreachProgram::applyCriteria( new NewestFirstWithSchool() )->paginate( 50 );
 
             return view( 'admin.programs.all', [ 'programs' => $programs ] );
         }
@@ -61,62 +60,17 @@
          */
         public function store( School $school, ProgramRequest $request )
         {
-
+            /** @var OutreachProgram $program */
             $program = $school->programs()->create( $request->all() );
 
             if( $request->has( 'school_classes' ) )
             {
-                $classes_to_sync = [];
-
-                foreach( $request->input( 'school_classes' ) as $class )
-                {
-                    if( is_numeric( $class ) )
-                    {
-                        $classes_to_sync[] = $class;
-                    }
-                    else
-                    {
-                        $existing = SchoolClass::where( 'name', '=', $class )->first();
-
-                        //
-                        // Add school class and get id to sync
-                        //
-                        if( is_null( $existing ) )
-                        {
-                            $new = SchoolClass::create([ 'name' => $class ]);
-                            $classes_to_sync[] = $new->id;
-                        }
-                        else
-                        {
-                            $classes_to_sync[] = $existing->id;
-                        }
-
-                    }
-                }
-
-                $program->schoolClasses()->sync( $classes_to_sync );
+                $program->syncSchoolClasses( $request->input( 'school_classes' ) );
             }
 
             if( $request->has( 'additional_fields' ) )
             {
-                foreach( $request->input( 'additional_fields' ) as $key => $value )
-                {
-                    if( $program->fields->contains( 'key', $key ) )
-                    {
-                        $program->fields()
-                            ->where( 'key', '=', $key )
-                            ->update([ 'value' => $value ]);
-                    }
-                    else
-                    {
-                        $program->fields()
-                            ->create([
-                                'name'   => OutreachProgram::$default_fields[ $key ],
-                                'key'    => $key,
-                                'value' => $value
-                            ]);
-                    }
-                }
+                $program->syncAdditionalFields( $request->input( 'additional_fields' ) );
             }
 
             return redirect()->route( 'admin.programs.edit', [ $school->id, $program->id ] );
@@ -141,61 +95,16 @@
          */
         public function update( School $school, OutreachProgram $program, ProgramRequest $request )
         {
-            // TODO - move this to a repository
             $program->update( $request->all() );
 
             if( $request->has( 'school_classes' ) )
             {
-                $classes_to_sync = [];
-
-                foreach( $request->input( 'school_classes' ) as $class )
-                {
-                    if( is_numeric( $class ) )
-                    {
-                        $classes_to_sync[] = $class;
-                    }
-                    else
-                    {
-                        $existing = SchoolClass::where( 'name', '=', $class )->first();
-
-                        //
-                        // Add school class and get id to sync
-                        //
-                        if( is_null( $existing ) )
-                        {
-                            $new = SchoolClass::create([ 'name' => $class ]);
-                            $classes_to_sync[] = $new->id;
-                        }
-                        else
-                        {
-                            $classes_to_sync[] = $existing->id;
-                        }
-                    }
-                }
-
-                $program->schoolClasses()->sync( $classes_to_sync );
+                $program->syncSchoolClasses( $request->input( 'school_classes' ) );
             }
 
             if( $request->has( 'additional_fields' ) )
             {
-                foreach( $request->input( 'additional_fields' ) as $key => $value )
-                {
-                    if( $program->fields->contains( 'key', $key ) )
-                    {
-                        $program->fields()
-                                ->where( 'key', '=', $key )
-                                ->update([ 'value' => $value ]);
-                    }
-                    else
-                    {
-                        $program->fields()
-                                ->create([
-                                    'name'   => OutreachProgram::$default_fields[ $key ],
-                                    'key'    => $key,
-                                    'value' => $value
-                                ]);
-                    }
-                }
+                $program->syncAdditionalFields( $request->input( 'additional_fields' ) );
             }
 
             return redirect()->route( 'admin.programs.index', [ $school->id ] );
@@ -221,11 +130,10 @@
          */
         public function restore( $school_id, $program_id )
         {
-            $program = OutreachProgram::where( 'school_id', '=', $school_id )
-                            ->where( 'id', '=', $program_id )
-                            ->withTrashed()
-                            ->findOrFail( $program_id );
-            $program->restore();
+            OutreachProgram::
+                applyCriteria( new TrashedForSchool( $school_id, $program_id ))
+                ->findOrFail( $program_id )
+                ->restore();
 
             return redirect()->route( 'admin.programs.index', [ $school_id ] );
         }

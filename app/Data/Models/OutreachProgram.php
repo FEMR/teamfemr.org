@@ -3,6 +3,7 @@
 namespace FEMR\Data\Models;
 
 use Collective\Html\Eloquent\FormAccessible;
+use FEMR\Data\Traits\UsesCriteria;
 use FEMR\Data\Utilities\HasSlug;
 use FEMR\Data\Models\OutreachProgram\Field;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OutreachProgram extends Model
 {
-    use SoftDeletes, HasSlug, FormAccessible;
+    use SoftDeletes, HasSlug, FormAccessible, usesCriteria;
 
     /**
      * The table associated with the model.
@@ -179,4 +180,70 @@ class OutreachProgram extends Model
         return $this->belongsToMany( User::class );
     }
 
+    /**
+     * @param array $school_classes
+     * @return $this
+     */
+    public function syncSchoolClasses( $school_classes = [] )
+    {
+        $classes_to_sync = [];
+
+        foreach( $school_classes as $class )
+        {
+            if( is_numeric( $class ) )
+            {
+                $classes_to_sync[] = $class;
+            }
+            else
+            {
+                $existing = $this->schoolClasses()->where( 'name', '=', $class )->first();
+
+                //
+                // Add school class and get id to sync
+                //
+                if( is_null( $existing ) )
+                {
+                    $new = $this->schoolClasses()->create([ 'name' => $class ]);
+                    $classes_to_sync[] = $new->id;
+                }
+                else
+                {
+                    $classes_to_sync[] = $existing->id;
+                }
+
+            }
+        }
+
+        $this->schoolClasses()->sync( $classes_to_sync );
+
+        return $this;
+    }
+
+    /**
+     * @param array $additional_fields
+     * @return $this
+     */
+    public function syncAdditionalFields( $additional_fields = [] )
+    {
+        foreach( $additional_fields as $key => $value )
+        {
+            if( $this->fields->contains( 'key', $key ) )
+            {
+                $this->fields()
+                    ->where( 'key', '=', $key )
+                    ->update([ 'value' => $value ]);
+            }
+            else
+            {
+                $this->fields()
+                    ->create([
+                        'name'   => OutreachProgram::$default_fields[ $key ],
+                        'key'    => $key,
+                        'value' => $value
+                    ]);
+            }
+        }
+
+        return $this;
+    }
 }
