@@ -4,7 +4,7 @@
 
     use Illuminate\Foundation\Http\FormRequest;
 
-    class PaperRequest extends FormRequest
+    class ContactRequest extends FormRequest
     {
         /**
          * Determine if the user is authorized to make this request.
@@ -24,9 +24,16 @@
         public function rules()
         {
             return [
-                'title'       => 'required|string',
-                'url'         => 'required|string|url',
-                'description' => 'required|string|max:65535'
+
+                'prefix'      => 'string|max:255',
+                'first_name'  => 'required|string|max:255',
+                'middle_name' => 'string|max:255',
+                'last_name'   => 'string|max:255',
+                'suffix'      => 'string|max:255',
+                'title'       => 'string|max:255',
+                'phone'       => 'string|max:255',
+                'email'       => 'email',
+                'notes'       => 'string'
             ];
         }
     }

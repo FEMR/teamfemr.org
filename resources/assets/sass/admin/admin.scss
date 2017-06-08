@@ -26,6 +26,12 @@ $link: #232b2d;
     display: none;
 }
 
+table{
+
+    font-size: 0.9rem;
+}
+
+
 @import "components/header";
 @import "components/section-menu";
 @import "components/breadcrumbs";

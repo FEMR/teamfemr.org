@@ -6,7 +6,16 @@
 
 .top-nav {
 
+    background-color: #3f3f3f;
+
     .nav-item {
+
+        color: #efefef;
+
+        &:hover{
+
+            color: #ffffff;
+        }
 
         &.is-active {
 
@@ -17,6 +26,7 @@
 
             &.is-active {
 
+                color: #ffffff;
                 border-bottom-color: $femrRed;
             }
 

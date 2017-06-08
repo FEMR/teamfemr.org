@@ -13,6 +13,15 @@ Vue.component( 'partners-form', PartnersForm );
 import PartnersTable from './components/partners/table';
 Vue.component( 'partners-table', PartnersTable );
 
+import LocationsForm from './components/locations/form';
+Vue.component( 'locations-form', LocationsForm );
+import LocationsTable from './components/locations/table';
+Vue.component( 'locations-table', LocationsTable );
+
+import ContactsForm from './components/contacts/form';
+Vue.component( 'contacts-form', ContactsForm );
+import ContactsTable from './components/contacts/table';
+Vue.component( 'contacts-table', ContactsTable );
 
 // Register the map component
 Vue.component('femr-map', require('./components/FemrMap.vue'));

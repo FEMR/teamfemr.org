@@ -53,6 +53,32 @@
         });
 
         //
+        // Contacts
+        //
+        Route::group([ 'prefix' => 'programs/{program}', 'namespace' => 'Json' ], function() {
+
+            Route::get(    'contacts',                   'ContactController@index'    )->name( 'admin.contacts.index'    );
+            Route::get(    'contacts/archived',          'ContactController@archived' )->name( 'admin.contacts.archived' );
+            Route::post(   'contacts',                   'ContactController@store'    )->name( 'admin.contacts.store'    );
+            Route::put(    'contacts/{contact}',         'ContactController@update'   )->name( 'admin.contacts.update'   );
+            Route::delete( 'contacts/{contact}',         'ContactController@destroy'  )->name( 'admin.contacts.destroy'  );
+            Route::post(   'contacts/{contact}/restore', 'ContactController@restore'  )->name( 'admin.contacts.restore'  );
+        });
+
+        //
+        // Visted Locations
+        //
+        Route::group([ 'prefix' => 'programs/{program}', 'namespace' => 'Json' ], function() {
+
+            Route::get(    'locations',                 'LocationController@index'    )->name( 'admin.locations.index'    );
+            Route::get(    'locations/archived',        'LocationController@archived' )->name( 'admin.locations.archived' );
+            Route::post(   'locations',                 'LocationController@store'    )->name( 'admin.locations.store'    );
+            Route::put(    'locations/{paper}',         'LocationController@update'   )->name( 'admin.locations.update'   );
+            Route::delete( 'locations/{paper}',         'LocationController@destroy'  )->name( 'admin.locations.destroy'  );
+            Route::post(   'locations/{paper}/restore', 'LocationController@restore'  )->name( 'admin.locations.restore'  );
+        });
+
+        //
         // Partner Organizations
         //
         Route::group([ 'prefix' => 'programs/{program}', 'namespace' => 'Json' ], function() {

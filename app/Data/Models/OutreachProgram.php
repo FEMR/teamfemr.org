@@ -135,6 +135,14 @@ class OutreachProgram extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function locations()
+    {
+        return $this->visitedLocations();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function visitedLocations()
     {
         return $this->hasMany( VisitedLocation::class );
