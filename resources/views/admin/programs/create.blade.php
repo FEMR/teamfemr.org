@@ -62,13 +62,14 @@
             {{-- Only show the additional fields when there is an existing program --}}
             @if( isset( $program ) )
 
+                @include( 'admin.programs.partials.form.visited-locations' )
+
+                @include( 'admin.programs.partials.form.contacts' )
+
                 @include( 'admin.programs.partials.form.papers.table' )
 
                 @include( 'admin.programs.partials.form.partners.table' )
 
-                @include( 'admin.programs.partials.form.visited-locations' )
-
-                @include( 'admin.programs.partials.form.contacts' )
 
             @endif
 

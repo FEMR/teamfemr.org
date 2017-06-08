@@ -29,6 +29,11 @@
 
     button.link {
 
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
         font-family: inherit;
         white-space: nowrap;
         text-align: left;

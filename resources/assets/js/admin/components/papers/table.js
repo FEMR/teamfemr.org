@@ -21,10 +21,7 @@ export default {
 
                     this.papers = response.data;
                 })
-                .catch( ( error ) => {
-
-                    console.log(error);
-                });
+                .catch( ( error ) => { console.log(error); });
         },
         editPaper( paper ){
 
@@ -42,10 +39,7 @@ export default {
 
                         this.getPapers();
                     })
-                    .catch((error) => {
-
-                        console.log(error);
-                    });
+                    .catch((error) => { console.log(error); });
             }
         },
         newPaper(){

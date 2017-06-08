@@ -21,10 +21,7 @@ export default {
 
                     this.partners = response.data;
                 })
-                .catch( ( error ) => {
-
-                    console.log(error);
-                });
+                .catch( ( error ) => { console.log(error); });
         },
         editPartner( partner ){
 
@@ -42,10 +39,7 @@ export default {
 
                         this.getPartners();
                     })
-                    .catch((error) => {
-
-                        console.log(error);
-                    });
+                    .catch((error) => { console.log(error); });
             }
         },
         newPartner(){
