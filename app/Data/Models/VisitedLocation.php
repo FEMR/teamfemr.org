@@ -55,6 +55,13 @@ class VisitedLocation extends Model
     ];
 
     /**
+     * The storage format of the model's date columns.
+     *
+     * @var string
+     */
+    protected $dateFormat = 'Y-m-d';
+
+    /**
      * The attributes that should not be encoded to json
      *
      * @var array
@@ -67,12 +74,16 @@ class VisitedLocation extends Model
     ];
 
     /**
-     * @return string
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
      */
-    public function getFullAddressAttribute()
-    {
-        return 'Implement the Full Address Attribute';
-    }
+    protected $dates = [
+
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

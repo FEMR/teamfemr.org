@@ -171,17 +171,13 @@
                 if ( place.hasOwnProperty('geometry') ){
 
                     this.latitude = place.geometry.location.lat().toFixed( 5 );
-                }
-
-                if ( place.hasOwnProperty('geometry') ){
-
                     this.longitude = place.geometry.location.lng().toFixed( 5 );
                 }
             }
         },
         mounted() {
 
-            EventBus.$on( 'address_updated', this.getAddressFromPlace );
+            EventBus.$on( 'femr_map.address_updated', this.getAddressFromPlace );
         }
     }
 

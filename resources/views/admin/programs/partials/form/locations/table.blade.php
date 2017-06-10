@@ -56,7 +56,7 @@
         inline-template
         v-cloak>
     <div>
-        <div :class="{ modal: true, 'is-active': isVisible }">
+        <div :class="{ modal: true, 'location-modal': true, 'is-active': isVisible }">
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
@@ -64,7 +64,21 @@
                 </header>
                 <section class="modal-card-body">
 
-                    @include( 'admin.programs.partials.form.locations.fields' )
+                    <div class="columns">
+
+                        <div class="column column-map">
+
+                            <femr-map></femr-map>
+
+                        </div>
+
+                        <div class="column">
+
+                            @include( 'admin.programs.partials.form.locations.fields' )
+
+                        </div>
+
+                    </div>
 
                 </section>
                 <footer class="modal-card-foot">

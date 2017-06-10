@@ -100,10 +100,79 @@ export default {
             this.errors.clear();
 
             EventBus.$emit( "locations.closeForm" );
+        },
+        getAddressFromPlace( place ) {
+
+            console.log(place);
+
+            var components = {};
+            for (var i = 0; i < place.address_components.length; i++) {
+
+                var c = place.address_components[i];
+                components[c.types[0]] = c;
+            }
+
+            if ( components.hasOwnProperty('street_number') ) {
+
+                this.address = components.street_number.long_name + ' '
+            }
+
+            if ( components.hasOwnProperty('route') ){
+
+                this.address += components.route.long_name;
+            }
+
+            if ( components.hasOwnProperty('subpremise') ){
+
+                this.address_ext = components.subpremise.long_name;
+            }
+
+            if ( components.hasOwnProperty('locality') ){
+
+                this.locality = components.locality.long_name;
+            }
+
+            if ( components.hasOwnProperty('administrative_area_level_1') ){
+
+                this.administrative_area_level_1 = components.administrative_area_level_1.short_name;
+            }
+
+            if ( components.hasOwnProperty('postal_code') ){
+
+                this.postal_code = components.postal_code.long_name;
+            }
+
+            if ( components.hasOwnProperty('country') ){
+
+                this.country = components.country.long_name;
+            }
+
+            if ( place.hasOwnProperty('geometry') ){
+
+                this.latitude = place.geometry.location.lat().toFixed( 5 );
+                this.longitude = place.geometry.location.lng().toFixed( 5 );
+            }
         }
 
     },
+    computed: {
+
+        locations: function() {
+
+            return [
+                {
+                    position: {
+
+                        lat: this.latitude,
+                        lng: this.longitude
+                    }
+                }
+            ];
+        }
+    },
     mounted() {
+
+        EventBus.$on( 'femr_map.address_updated', this.getAddressFromPlace );
 
         EventBus.$on( "locations.editForm", ( newLocation ) => {
 
@@ -121,6 +190,10 @@ export default {
             this.end_date = newLocation.end_date;
 
             this.showForm();
+
+            console.log( "Add Marker Emit" );
+            EventBus.$emit( 'femr_map.load' );
+            EventBus.$emit( 'femr_map.add_marker', this.latitude, this.longitude );
         });
 
         EventBus.$on( "locations.newForm", () => {
