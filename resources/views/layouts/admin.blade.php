@@ -65,6 +65,8 @@
                     </div>
                 </section>
 
+                @include( 'admin.partials.message' )
+
                 {{-- Section Menu --}}
                 <section class="section section-menu">
                     <div class="wrapper">

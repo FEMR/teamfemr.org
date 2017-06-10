@@ -2,6 +2,7 @@
 
     namespace FEMR\Http\ViewComposers\Admin;
 
+    use FEMR\Data\Models\School;
     use FEMR\Data\Models\SchoolClass;
     use Illuminate\View\View;
 
@@ -23,6 +24,7 @@
          */
         public function compose(View $view)
         {
-            $view->with( 'school_classes', SchoolClass::pluck( 'name', 'id' ) );
+            $view->with( 'school_classes', SchoolClass::pluck( 'name', 'id' )->all() );
+            $view->with( 'schools',        School::orderBy( 'name' )->pluck( 'name', 'id' )->all() );
         }
     }

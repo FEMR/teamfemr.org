@@ -25,14 +25,16 @@
         //
         // Outreach Programs
         //
-        Route::get( 'programs', 'ProgramController@all' )->name( 'admin.programs.all' );
+        Route::get( 'programs',        'ProgramController@all'    )->name( 'admin.programs.all'        );
+        Route::get( 'programs/create', 'ProgramController@create' )->name( 'admin.programs.all.create' );
+        Route::post( 'programs',       'ProgramController@store'  )->name( 'admin.programs.store'      );
         Route::group([ 'prefix' => 'schools/{school}' ], function(){
 
 
             Route::get(    'programs',                   'ProgramController@index'    )->name( 'admin.programs.index'    );
             Route::get(    'programs/archived',          'ProgramController@archived' )->name( 'admin.programs.archived' );
             Route::get(    'programs/create',            'ProgramController@create'   )->name( 'admin.programs.create'   );
-            Route::post(   'programs',                   'ProgramController@store'    )->name( 'admin.programs.store'    );
+//            Route::post(   'programs',                   'ProgramController@store'    )->name( 'admin.programs.store'    );
             Route::get(    'programs/{program}/edit',    'ProgramController@edit'     )->name( 'admin.programs.edit'     );
             Route::put(    'programs/{program}',         'ProgramController@update'   )->name( 'admin.programs.update'   );
             Route::delete( 'programs/{program}',         'ProgramController@destroy' )->name( 'admin.programs.destroy'  );
