@@ -5,6 +5,15 @@
     </p>
 </div>
 
+<div class="field">
+    <label class="label">School</label>
+    <p class="control">
+        <span class="select">
+        {!! Form::select( 'school_id', [ -1 => 'Choose a school' ] + $schools, null, [ 'class' => 'input' ] ) !!}
+        </span>
+    </p>
+</div>
+
 <div class="columns">
     <div class="column is-half">
 

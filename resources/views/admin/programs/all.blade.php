@@ -20,7 +20,8 @@
 @endsection
 
 @section( 'section-menu' )
-
+s
+    @include( 'admin.programs.partials.tabs' )
 
 @endsection
 

@@ -45,23 +45,27 @@
         }
 
         /**
-         * @param School $school
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function create( School $school )
+        public function create()
         {
-            return view( 'admin.programs.create', [ 'school' => $school ] );
+            return view( 'admin.programs.create' );
         }
 
         /**
-         * @param School $school
          * @param ProgramRequest $request
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function store( School $school, ProgramRequest $request )
+        public function store( ProgramRequest $request )
         {
             /** @var OutreachProgram $program */
-            $program = $school->programs()->create( $request->all() );
+            $program = OutreachProgram::create( $request->except( 'school_id' ) );
+
+            if( $request->has( 'school_id' ) )
+            {
+                $school = School::findOrFail( $request->input( 'school_id' ) );
+                $program->school()->associate( $school );
+            }
 
             if( $request->has( 'school_classes' ) )
             {
@@ -95,7 +99,14 @@
          */
         public function update( School $school, OutreachProgram $program, ProgramRequest $request )
         {
-            $program->update( $request->all() );
+            $program->update( $request->except( 'school_id' ) );
+
+            if( $request->has( 'school_id' ) )
+            {
+                $school = School::findOrFail( $request->input( 'school_id' ) );
+                $program->school()->associate( $school );
+                $program->save();
+            }
 
             if( $request->has( 'school_classes' ) )
             {
@@ -107,7 +118,9 @@
                 $program->syncAdditionalFields( $request->input( 'additional_fields' ) );
             }
 
-            return redirect()->route( 'admin.programs.index', [ $school->id ] );
+            session()->flash( 'message', [ 'type' => 'is-success', 'message' => 'Updated Successfully' ]);
+
+            return redirect()->route( 'admin.programs.edit', [ $school->id, $program->id ] );
         }
 
         /**

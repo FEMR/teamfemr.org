@@ -12,12 +12,23 @@
 
             <a class="level-item"href="{{ route( 'admin.dashboard.index' ) }}">Dashboard</a>
             <span class="level-item separator">&gt</span>
+
+            @if( isset( $school ) )
+
             <a class="level-item" href="{{ route( 'admin.schools.index' ) }}">Schools</a>
             <span class="level-item separator">&gt</span>
             <a class="level-item" href="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">{{ $school->name }}</a>
             <span class="level-item separator">&gt</span>
             <a class="level-item" href="{{ route( 'admin.programs.index', [ $school->id ] ) }}">Outreach Programs</a>
             <span class="level-item separator">&gt</span>
+
+            @else
+
+            <a class="level-item" href="{{ route( 'admin.programs.all' ) }}">Outreach Programs</a>
+            <span class="level-item separator">&gt</span>
+
+            @endif
+
             <span class="level-item">Create</span>
 
         </div>
@@ -39,7 +50,7 @@
 
             <div class="notification ">
 
-                {!! Form::open([ 'route' => [ 'admin.programs.store', $school->id ] ]) !!}
+                {!! Form::open([ 'route' => [ 'admin.programs.store' ] ]) !!}
 
                 @include( 'admin.programs.partials.form.base-fields' )
 

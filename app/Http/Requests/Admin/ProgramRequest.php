@@ -24,12 +24,21 @@
         public function rules()
         {
             return [
+                'school_id'                    => 'required|min:1|exists:schools,id',
                 'name'                         => 'required|string',
                 'slug'                         => 'sometimes|string',
                 'year_initiated'               => 'sometimes|numeric|min:1800',
                 'yearly_outreach_participants' => 'sometimes|numeric',
                 'matriculants_per_class'       => 'sometimes|numeric',
                 'uses_emr'                     => 'required|boolean'
+            ];
+        }
+
+        public function messages()
+        {
+            return [
+
+              'school_id.exists' => 'Please choose a School'
             ];
         }
     }
