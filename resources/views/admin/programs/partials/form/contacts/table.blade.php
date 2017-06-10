@@ -20,6 +20,7 @@
                 <th>First</th>
                 <th>Last</th>
                 <th>Phone</th>
+                <th>Email</th>
                 <th></th>
             </tr>
             </thead>
@@ -29,6 +30,7 @@
                 <td>@{{ contact.first_name }}</td>
                 <td>@{{ contact.last_name }}</td>
                 <td>@{{ contact.phone }}</td>
+                <td>@{{ contact.email }}</td>
                 <td style="width: 85px;">
                     <a class="button is-small edit-button" @click="editContact(contact)">
                         <span class="icon is-small">

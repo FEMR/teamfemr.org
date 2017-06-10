@@ -24,6 +24,8 @@
         public function rules()
         {
             return [
+                'start_date'                  => 'required|date_format:Y-m-d',
+                'end_date'                    => 'required|date_format:Y-m-d',
                 'address'                     => 'required|string',
                 'address_ext'                 => 'sometimes|string',
                 'locality'                    => 'required|string',

@@ -16,6 +16,7 @@
             </p>
         </div>
         <gmap-map
+                ref="gmap"
                 :center="center"
                 :zoom="zoom"
                 :options="{ scrollwheel: false }"
@@ -39,7 +40,7 @@
     import Vue from 'vue';
     import EventBus from "../event-bus"
 
-    Vue.use(VueGoogleMaps, {
+    Vue.use( VueGoogleMaps, {
         load: {
             key: FEMR.googleMapsKey,
             libraries: 'places'
@@ -48,13 +49,13 @@
 
     export default {
 
-        props: [],
         data() {
 
             return {
 
                 center: { lat: 0.0, lng: 0.0 },
-                zoom: 2,
+                zoom: 14,
+                bounds: {},
                 scrollwheel: false,
                 description: '',
                 markers: []
@@ -62,26 +63,54 @@
         },
         methods: {
 
+            addLocation( latitude, longitude ) {
+
+                let latLng = new google.maps.LatLng( latitude, longitude);
+
+                this.markers = [{ position: latLng }];
+
+                this.center = latLng;
+                this.zoom = 14;
+                EventBus.$emit( 'g-resize' );
+
+//                this.markers.push(
+//                        {
+//                            position: latLng
+//                        }
+//                );
+
+//                this.bounds.extend( latLng );
+//                this.$refs.gmap.fitBounds( this.bounds );
+            },
             setPlace( place ) {
 
-                this.markers.push(
-                    {
-                        position: {
-
-                            lat: place.geometry.location.lat(),
-                            lng: place.geometry.location.lng()
-                        }
-                    }
-                );
-
-                this.center = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
-
-                // TODO - maybe use bounds here instead
-                this.zoom = 14;
+                this.addLocation( place.geometry.location.lat(), place.geometry.location.lng() );
 
                 // Fire event for other components to hook onto
-                EventBus.$emit( 'address_updated', place );
+                EventBus.$emit( 'femr_map.address_updated', place );
             }
+        },
+        mounted() {
+
+            EventBus.$on( 'femr_map.load', () => {
+
+//                this.bounds = new google.maps.LatLngBounds();
+
+
+            } );
+
+            EventBus.$on( 'femr_map.add_marker', ( latitude, longitude ) => {
+
+                console.log( "Add Marker On" );
+
+                this.addLocation( latitude, longitude );
+
+            } );
+
+            EventBus.$on( "locations.closeForm", () => {
+
+                this.description = '';
+            });
         }
     }
 
