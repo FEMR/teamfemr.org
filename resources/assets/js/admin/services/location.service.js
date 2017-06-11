@@ -14,34 +14,24 @@ let LocationService = (function(){
      * Creates a new Location entity
      *
      * @param programId
-     * @param address
-     * @param address_ext
-     * @param locality
-     * @param administrative_area_level_1
-     * @param administrative_area_level_2
-     * @param postal_code
-     * @param country
-     * @param latitude
-     * @param longitude
-     * @param start_date
-     * @param end_date
+     * @param location
      * @returns {*}
      */
-    let create = function( programId, address, address_ext, locality, administrative_area_level_1, administrative_area_level_2, postal_code, country, latitude, longitude, start_date, end_date ){
+    let create = function( programId, location ){
 
         return axios.post('/admin/programs/' + programId + '/locations', {
 
-            address: address,
-            address_ext: address_ext,
-            locality: locality,
-            administrative_area_level_1: administrative_area_level_1,
-            administrative_area_level_2: administrative_area_level_2,
-            postal_code: postal_code,
-            country: country,
-            latitude: latitude,
-            longitude: longitude,
-            start_date: start_date,
-            end_date: end_date
+            address: location.address,
+            address_ext: location.address_ext,
+            locality: location.locality,
+            administrative_area_level_1: location.administrative_area_level_1,
+            administrative_area_level_2: location.administrative_area_level_2,
+            postal_code: location.postal_code,
+            country: location.country,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            start_date: location.start_date,
+            end_date: location.end_date
         });
 
     };
@@ -50,35 +40,26 @@ let LocationService = (function(){
      * Update an existing Location entity
      *
      * @param programId
-     * @param locationId
-     * @param address
-     * @param address_ext
-     * @param locality
-     * @param administrative_area_level_1
-     * @param administrative_area_level_2
-     * @param postal_code
-     * @param country
-     * @param latitude
-     * @param longitude
-     * @param start_date
-     * @param end_date
+     * @param location
      * @returns {*}
      */
-    let update = function( programId, locationId, address, address_ext, locality, administrative_area_level_1, administrative_area_level_2, postal_code, country, latitude, longitude, start_date, end_date ){
+    let update = function( programId, location ){
 
-        return axios.put('/admin/programs/' + programId + '/locations/' + locationId, {
+        if( ! Number.isInteger( location.id ) ) return;
 
-            address: address,
-            address_ext: address_ext,
-            locality: locality,
-            administrative_area_level_1: administrative_area_level_1,
-            administrative_area_level_2: administrative_area_level_2,
-            postal_code: postal_code,
-            country: country,
-            latitude: latitude,
-            longitude: longitude,
-            start_date: start_date,
-            end_date: end_date
+        return axios.put('/admin/programs/' + programId + '/locations/' + location.id, {
+
+            address: location.address,
+            address_ext: location.address_ext,
+            locality: location.locality,
+            administrative_area_level_1: location.administrative_area_level_1,
+            administrative_area_level_2: location.administrative_area_level_2,
+            postal_code: location.postal_code,
+            country: location.country,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            start_date: location.start_date,
+            end_date: location.end_date
         })
     };
 

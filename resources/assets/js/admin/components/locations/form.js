@@ -1,6 +1,7 @@
 import EventBus from "../../event-bus";
-import LocationService from "../../services/location.service.js";
-import Errors from "../../errors.js";
+import LocationService from "../../services/location.service";
+import Errors from "../../errors";
+import Location from "../../models/location.class";
 
 export default {
 
@@ -13,19 +14,7 @@ export default {
             isLoading: false,
             isVisible: false,
             errors: new Errors(),
-
-            id: '',
-            address: '',
-            address_ext: '',
-            locality: '',
-            administrative_area_level_1: '',
-            administrative_area_level_2: '',
-            postal_code: '',
-            country: '',
-            latitude: '',
-            longitude: '',
-            start_date: '',
-            end_date: ''
+            location: new Location()
         }
     },
     methods : {
@@ -38,7 +27,7 @@ export default {
             if( this.id == '' ) {
 
                 // TODO - fix this monstrosity
-                LocationService.create( this.programId, this.address, this.address_ext, this.locality, this.administrative_area_level_1, this.administrative_area_level_2, this.postal_code, this.country, this.latitude, this.longitude, this.start_date, this.end_date )
+                LocationService.create( this.programId, this.location )
                     .then( ( response ) => {
 
                         this.hideForm();
@@ -55,7 +44,7 @@ export default {
             else {
 
                 // TODO - fix this monstrosity
-                LocationService.update( this.programId, this.id, this.address, this.address_ext, this.locality, this.administrative_area_level_1, this.administrative_area_level_2, this.postal_code, this.country, this.latitude, this.longitude, this.start_date, this.end_date )
+                LocationService.update( this.programId, this.location )
                     .then( ( response ) => {
 
                         this.hideForm();
@@ -103,68 +92,22 @@ export default {
         },
         getAddressFromPlace( place ) {
 
-            console.log(place);
+            console.log( this.location );
 
-            var components = {};
-            for (var i = 0; i < place.address_components.length; i++) {
-
-                var c = place.address_components[i];
-                components[c.types[0]] = c;
-            }
-
-            if ( components.hasOwnProperty('street_number') ) {
-
-                this.address = components.street_number.long_name + ' '
-            }
-
-            if ( components.hasOwnProperty('route') ){
-
-                this.address += components.route.long_name;
-            }
-
-            if ( components.hasOwnProperty('subpremise') ){
-
-                this.address_ext = components.subpremise.long_name;
-            }
-
-            if ( components.hasOwnProperty('locality') ){
-
-                this.locality = components.locality.long_name;
-            }
-
-            if ( components.hasOwnProperty('administrative_area_level_1') ){
-
-                this.administrative_area_level_1 = components.administrative_area_level_1.short_name;
-            }
-
-            if ( components.hasOwnProperty('postal_code') ){
-
-                this.postal_code = components.postal_code.long_name;
-            }
-
-            if ( components.hasOwnProperty('country') ){
-
-                this.country = components.country.long_name;
-            }
-
-            if ( place.hasOwnProperty('geometry') ){
-
-                this.latitude = place.geometry.location.lat().toFixed( 5 );
-                this.longitude = place.geometry.location.lng().toFixed( 5 );
-            }
+            this.location.populateFromPlace( place );
         }
 
     },
     computed: {
 
-        locations: function() {
+        locations: () => {
 
             return [
                 {
                     position: {
 
-                        lat: this.latitude,
-                        lng: this.longitude
+                        lat: this.location.latitude,
+                        lng: this.location.longitude
                     }
                 }
             ];
@@ -176,39 +119,17 @@ export default {
 
         EventBus.$on( "locations.editForm", ( newLocation ) => {
 
-            this.id = newLocation.id;
-            this.address = newLocation.address;
-            this.address_ext = newLocation.address_ext;
-            this.locality = newLocation.locality;
-            this.administrative_area_level_1 = newLocation.administrative_area_level_1;
-            this.administrative_area_level_2 = newLocation.administrative_area_level_2;
-            this.postal_code = newLocation.postal_code;
-            this.country = newLocation.country;
-            this.latitude = newLocation.latitude;
-            this.longitude = newLocation.longitude;
-            this.start_date = newLocation.start_date;
-            this.end_date = newLocation.end_date;
-
+            this.location.populate( newLocation );
+            
             this.showForm();
 
             // Add a marker for this location to the map
-            EventBus.$emit( 'femr_map.add_marker', this.latitude, this.longitude );
+            EventBus.$emit( 'femr_map.add_marker', this.location.latitude, this.location.longitude );
         });
 
         EventBus.$on( "locations.newForm", () => {
 
-            this.id = '';
-            this.address = '';
-            this.address_ext = '';
-            this.locality = '';
-            this.administrative_area_level_1 = '';
-            this.administrative_area_level_2 = '';
-            this.postal_code = '';
-            this.country = '';
-            this.latitude = '';
-            this.longitude = '';
-            this.start_date = '';
-            this.end_date = '';
+            this.location = new Location();
 
             this.showForm();
         });
