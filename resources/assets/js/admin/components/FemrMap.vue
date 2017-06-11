@@ -66,7 +66,7 @@
             resetMap(){
 
                 this.markers = [];
-                this.description = '';
+                this.description = ' ';
 
                 this.center = new google.maps.LatLng( 0.00, 0.00 );
                 this.zoom = 1;
@@ -79,8 +79,8 @@
 
                 this.center = latLng;
                 this.zoom = 14;
-                EventBus.$emit( 'g-resize' );
 
+                // TODO - this should component probably work with more than one marker -- fix this when needed
 //                this.markers.push(
 //                        {
 //                            position: latLng
