@@ -1,4 +1,38 @@
+.location-container{
+
+    overflow: hidden;
+}
+
 .location-modal{
+
+    /*
+
+        This modal has a GoogleMap and needs to be visible when initialized. Bulma
+          hides modals, so overriding the position to be off screen
+
+    */
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: auto;
+    right: 120%;
+
+    .modal-close{
+
+        display: none;
+    }
+
+    &.is-active{
+
+        right: 0;
+        left: 0;
+
+        .modal-close{
+
+            display: block;
+        }
+    }
 
     .modal-card{
 
