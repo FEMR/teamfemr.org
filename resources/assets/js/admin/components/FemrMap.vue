@@ -63,9 +63,17 @@
         },
         methods: {
 
+            resetMap(){
+
+                this.markers = [];
+                this.description = '';
+
+                this.center = new google.maps.LatLng( 0.00, 0.00 );
+                this.zoom = 1;
+            },
             addLocation( latitude, longitude ) {
 
-                let latLng = new google.maps.LatLng( latitude, longitude);
+                let latLng = new google.maps.LatLng( latitude, longitude );
 
                 this.markers = [{ position: latLng }];
 
@@ -92,24 +100,14 @@
         },
         mounted() {
 
-            EventBus.$on( 'femr_map.load', () => {
-
-//                this.bounds = new google.maps.LatLngBounds();
-
-
-            } );
-
             EventBus.$on( 'femr_map.add_marker', ( latitude, longitude ) => {
 
-                console.log( "Add Marker On" );
-
                 this.addLocation( latitude, longitude );
-
             } );
 
             EventBus.$on( "locations.closeForm", () => {
 
-                this.description = '';
+                this.resetMap();
             });
         }
     }

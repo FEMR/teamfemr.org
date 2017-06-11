@@ -191,8 +191,7 @@ export default {
 
             this.showForm();
 
-            console.log( "Add Marker Emit" );
-            EventBus.$emit( 'femr_map.load' );
+            // Add a marker for this location to the map
             EventBus.$emit( 'femr_map.add_marker', this.latitude, this.longitude );
         });
 
