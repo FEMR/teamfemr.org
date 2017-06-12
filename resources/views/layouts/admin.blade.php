@@ -51,7 +51,8 @@
             </div>
         </nav>
 
-        <div class="columns admin-panel">
+        <div class="container">
+            <div class="columns admin-panel">
             <div class="column is-12 admin-content">
 
                 {{-- Header Section --}}
@@ -88,6 +89,7 @@
                 </section>
 
             </div>
+        </div>
         </div>
     </div>
 
