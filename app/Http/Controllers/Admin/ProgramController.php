@@ -59,13 +59,7 @@
         public function store( ProgramRequest $request )
         {
             /** @var OutreachProgram $program */
-            $program = OutreachProgram::create( $request->except( 'school_id' ) );
-
-            if( $request->has( 'school_id' ) )
-            {
-                $school = School::findOrFail( $request->input( 'school_id' ) );
-                $program->school()->associate( $school );
-            }
+            $program = OutreachProgram::create( $request->all() );
 
             if( $request->has( 'school_classes' ) )
             {
@@ -77,7 +71,7 @@
                 $program->syncAdditionalFields( $request->input( 'additional_fields' ) );
             }
 
-            return redirect()->route( 'admin.programs.edit', [ $school->id, $program->id ] );
+            return redirect()->route( 'admin.programs.edit', [ $program->school_id, $program->id ] );
         }
 
         /**
@@ -99,14 +93,7 @@
          */
         public function update( School $school, OutreachProgram $program, ProgramRequest $request )
         {
-            $program->update( $request->except( 'school_id' ) );
-
-            if( $request->has( 'school_id' ) )
-            {
-                $school = School::findOrFail( $request->input( 'school_id' ) );
-                $program->school()->associate( $school );
-                $program->save();
-            }
+            $program->update( $request->all() );
 
             if( $request->has( 'school_classes' ) )
             {

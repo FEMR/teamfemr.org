@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OutreachProgram extends Model
 {
-    use SoftDeletes, HasSlug, FormAccessible, usesCriteria;
+    use SoftDeletes, HasSlug, FormAccessible, UsesCriteria;
 
     /**
      * The table associated with the model.
@@ -26,6 +26,7 @@ class OutreachProgram extends Model
      * @var array
      */
     protected $fillable = [
+        'school_id',
         'name',
         'slug',
         'year_initiated',
