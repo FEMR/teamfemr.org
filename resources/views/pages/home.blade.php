@@ -10,6 +10,9 @@
                 <h2 class="subtitle">
                     We are using open source technology to promote data driven communication in low resource settings.
                 </h2>
+
+                <a class="button is-success is-large">Donate</a>
+
             </div>
         </div>
     </section>
@@ -17,80 +20,186 @@
 
 
 @section('above-content')
-    <div id="map"></div>
+    <a name="search"></a>
+    <div class="map-container">
+        <div class="search">
+            <p>Search stuff will go here</p>
+        </div>
+        <div id="map"></div>
+    </div>
 @endsection
 
 
 @section('content')
-    <div class="tile is-ancestor">
-        <div class="tile is-vertical is-6">
-            <div class="tile is-parent is-vertical">
-                <article class="tile is-child box">
-                    <p class="title">Team fEMR!</p>
-                    <div class="content">
-                        <p>We are students, doctors, and engineers. More importantly we are volunteers helping to provide the best healthcare possible to people who are often without access to life's basic necessities.</p>
-                        <p><a href="./other/Annual_Report_2014_2015.pdf" class="button">First Annual Report</a></p>
-                        <img src="{{ asset('/images/screenshots/team_femr.png') }}" alt="Team fEMR">
-                    </div>
-                </article>
-                <article class="tile is-child box">
-                    <p class="title">Who is fEMR for?</p>
-                    <div class="content">
-                        <p>We have designed fEMR for transient medical teams who need a fast and easy way to record patient information. Most of our users work in settings with limited infrastructure.</p>
-                        <img src="/images/screenshots/who_is_femr_for.png" alt="Who is fEMR for">
-                    </div>
-                </article>
+
+    <section class="hero is-primary has-text-centered">
+        <div class="hero-body">
+            <div class="container">
+
+                <a name="about-femr"></a>
+
+                <h2 class="title">
+                    Team fEMR!
+                </h2>
+                <p class="subtitle">
+                    We are students, doctors, and engineers. More importantly we are volunteers<br />
+                    helping to provide the best healthcare possible to people who are often without access to life's basic necessities.
+                </p>
+
+                {{--<p><a href="./other/Annual_Report_2014_2015.pdf" class="button">First Annual Report</a></p>--}}
+                <img src="{{ asset('/images/screenshots/team_femr.png') }}" alt="Team fEMR">
             </div>
         </div>
-        <div class="tile is-parent is-vertical">
-            <article class="tile is-child box">
-                <p class="title">Open Source</p>
-                <div class="content">
-                    <p>fEMR is both free and open source. As a responsive web application, it can be used on any smart device.</p>
-                    <ul>
-                        <li>
-                            <a href="https://github.com/femr/femr" target="_blank">
-                                    <span class="icon">
-                                        <i class="fa fa-github"></i>
-                                    </span>
-                                Repository
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/team-femr" target="_blank" class="devButton" id="home_repoBtn">Mailing List</a>
-                        </li>
-                        <li>
-                            <a href="https://teamfemr.atlassian.net" target="_blank" class="devButton" id="jiraButton">
-                                Backlog</a>
-                        </li>
-                        <li>
-                            <a href="{{ route( 'pages.slack' ) }}" target="_blank" class="devButton" id="slackButton">
-                                <span class="icon">
-                                    <i class="fa fa-slack"></i>
-                                </span>
-                                Slack
-                            </a>
-                            - Join the fEMR discussion in our slack chat!
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="tile is-child box">
-                <div class="content">
-                    <p class="title">Demo</p>
-                    <p class="subtitle">Try out fEMR</p>
-                    <div class="content">
-                        <p>Check out our <a href="http://femr.teamfemr.org">development version of fEMR available for testing</a></p>
-                        <ul>
-                            <li><span id="username">Username: visitor</span></li>
-                            <li><span id="password">Password: femr1</span></li>
-                        </ul>
-                        <img src="/images/screenshots/demo.png" alt="fEMR Demo Screenshot">
+    </section>
+
+    <section class="hero has-text-centered">
+        <div class="hero-body">
+            <div class="container">
+                <a name="who-femr"></a>
+                <h2 class="title">
+                    Who is fEMR for?
+                </h2>
+                <p class="subtitle">
+                    We have designed fEMR for transient medical teams who need a fast and easy way to record patient information. Most of our users work in settings with limited infrastructure.
+                </p>
+
+                {{--<p><a href="./other/Annual_Report_2014_2015.pdf" class="button">First Annual Report</a></p>--}}
+                <img src="{{ asset('/images/screenshots/who_is_femr_for.png') }}" alt="Team fEMR">
+            </div>
+        </div>
+    </section>
+
+    <section class="hero is-info has-text-centered">
+        <div class="hero-body">
+            <div class="container">
+
+                <a name="open-source"></a>
+
+                <h2 class="title">
+                    Open Source
+                </h2>
+
+                <div class="columns">
+                    <div class="column">
+
+                        <div class="notification is-dark">
+
+                            <p class="subtitle">
+                                fEMR is both free and open source.
+                            </p>
+                            <p class="subtitle">
+                                As a responsive web application, it can be used on any smart device.
+                            </p>
+
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/femr/femr" target="_blank">
+                                        GitHub Repository
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/team-femr" target="_blank" class="devButton" id="home_repoBtn">Mailing List</a>
+                                </li>
+                                <li>
+                                    <a href="https://teamfemr.atlassian.net" target="_blank" class="devButton" id="jiraButton">
+                                        Backlog</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                    <div class="column">
+
+                        <div class="notification is-dark">
+
+                            <h3 class="title">
+                                Join our Slack
+                            </h3>
+
+                            <p class="subtitle">Enter your email below for an invite</p>
+                            <p class="button is-info is-large">FORM WILL GO HERE</p>
+                        </div>
+
                     </div>
                 </div>
-            </article>
+
+                {{--<img src="{{ asset('/images/screenshots/open_source.png') }}" alt="Team fEMR">--}}
+
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="hero is-primary has-text-centered">
+        <div class="hero-body">
+            <div class="container">
+
+                <a name="demo-femr"></a>
+
+                <h2 class="title">
+                    Demo
+                </h2>
+                <p class="subtitle">
+                    Try out fEMR
+                </p>
+
+                {{--<p><a href="./other/Annual_Report_2014_2015.pdf" class="button">First Annual Report</a></p>--}}
+                <img src="{{ asset('/images/screenshots/demo.png') }}" alt="Team fEMR">
+
+                <p>Check out our <a href="http://femr.teamfemr.org">development version of fEMR available for testing</a></p>
+                <ul>
+                    <li><span id="username">Username: visitor</span></li>
+                    <li><span id="password">Password: femr1</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container content">
+
+                <a name="news"></a>
+
+                <h2 class="title">
+                    News
+                </h2>
+
+
+                <p><a class="button is-success" href="./public/other/Annual_Report_2014_2015.pdf">First Annual Report</a></p>
+
+                <ul>
+                    <li>
+                        <a href="http://www.youtube.com/watch?v=Zppwhc2vHgo">
+                            Wayne State University promo campaign video featuring fEMR
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.improvewsu.org/Articles/tabid/90/ID/6/WSU-Students-Lead-Development-of-Electronic-Medical-Records-in-Haiti.aspx">
+                            Wayne State University, ImproveWSU.org, "WSU students lead development of electronic medical records in Haiti"
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.emrandehr.com/tag/emergency-ehr/">
+                            EMR & EHR Forum, Review by field expert, "fEMR targets pop-up clinics' needs"
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.clickondetroit.com/news/live-in-the-d/detroit-college-students-aim-to-help-haiti-earthquake-victims/24959282">
+                            Live in the D, WDIV Detroit, news segment, "Detroit college students aim to help Haiti earthquake victims"
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://prognosis.med.wayne.edu/article/wsu-computer-science-students-open-source-software-benefits-med-school-mission-trips">
+                            Wayne State University SOM Prognosis E-news, "WSU computer science students'     open source software benefits School of Medicine mission trips"
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 @endsection
 
 

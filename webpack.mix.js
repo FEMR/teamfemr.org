@@ -26,10 +26,10 @@ mix .js( 'resources/assets/js/app.js', 'public/js' )
     .js( 'resources/assets/js/admin/admin.js', 'public/js/admin' )
     .sass( 'resources/assets/sass/admin/admin.scss', 'public/css/admin' )
 
-    .version()
-    .browserSync({
-
-        reloadDelay: 2000,
-        notify: false,
-        proxy: 'local.teamfemr.org'
-    });
+    .version();
+    // .browserSync({
+    //
+    //     reloadDelay: 2000,
+    //     notify: false,
+    //     proxy: 'local.teamfemr.org'
+    // });
