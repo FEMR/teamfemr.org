@@ -53,6 +53,7 @@
     </div>
 </contacts-table>
 
+@push( 'after-container' )
 <contacts-form
         :program-id="{{ $program->id }}"
         inline-template
@@ -78,3 +79,4 @@
         </div>
     </div>
 </contacts-form>
+@endpush

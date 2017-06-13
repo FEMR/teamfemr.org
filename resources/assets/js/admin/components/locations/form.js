@@ -24,9 +24,8 @@ export default {
             this.isLoading = true;
 
             // Create
-            if( this.id == '' ) {
+            if( this.location.id == '' ) {
 
-                // TODO - fix this monstrosity
                 LocationService.create( this.programId, this.location )
                     .then( ( response ) => {
 
@@ -43,7 +42,6 @@ export default {
             // Edit
             else {
 
-                // TODO - fix this monstrosity
                 LocationService.update( this.programId, this.location )
                     .then( ( response ) => {
 

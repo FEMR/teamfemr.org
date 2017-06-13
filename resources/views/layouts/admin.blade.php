@@ -53,44 +53,47 @@
 
         <div class="container">
             <div class="columns admin-panel">
-            <div class="column is-12 admin-content">
+                <div class="column is-12 admin-content">
 
-                {{-- Header Section --}}
-                <section class="hero">
-                    <div class="hero-body">
+                    {{-- Header Section --}}
+                    <section class="hero">
+                        <div class="hero-body">
+                            <div class="wrapper">
+
+                                @yield( 'section-header' )
+
+                            </div>
+                        </div>
+                    </section>
+
+                    @include( 'admin.partials.message' )
+
+                    {{-- Section Menu --}}
+                    <section class="section section-menu">
                         <div class="wrapper">
 
-                            @yield( 'section-header' )
+                            @yield( 'section-menu' )
 
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                @include( 'admin.partials.message' )
+                    {{-- Main Content --}}
+                    <section class="section main-content">
+                        <div class="wrapper">
 
-                {{-- Section Menu --}}
-                <section class="section section-menu">
-                    <div class="wrapper">
+                            @include( 'admin.partials.errors-list' )
 
-                        @yield( 'section-menu' )
+                            @yield( 'section-content' )
 
-                    </div>
-                </section>
+                        </div>
+                    </section>
 
-                {{-- Main Content --}}
-                <section class="section main-content">
-                    <div class="wrapper">
-
-                        @include( 'admin.partials.errors-list' )
-
-                        @yield( 'section-content' )
-
-                    </div>
-                </section>
-
+                </div>
             </div>
         </div>
-        </div>
+
+        @stack( 'after-container' )
+
     </div>
 
     <footer class="footer">

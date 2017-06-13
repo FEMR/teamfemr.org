@@ -51,6 +51,7 @@
     </div>
 </papers-table>
 
+@push( 'after-container' )
 <papers-form
         :program-id="{{ $program->id }}"
         inline-template
@@ -76,3 +77,4 @@
         </div>
     </div>
 </papers-form>
+@endpush
