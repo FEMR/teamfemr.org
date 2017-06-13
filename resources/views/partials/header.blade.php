@@ -4,15 +4,19 @@
         <span class="nav-item">
             <img src="{{ asset('images/logo/logo_color_med.png') }}" alt="Team fEMR Logo">
         </span>
-        <a href="{{ route( 'pages.home' ) }}" class="nav-item {{ Route::currentRouteName() == 'pages.home' ? 'is-active' : '' }}">
-            Home
+        <a href="#search" class="nav-item">
+            Search
         </a>
-        <a href="{{ route( 'pages.news' ) }}" class="nav-item {{ Route::currentRouteName() == 'pages.news' ? 'is-active' : '' }}">
-            News
+        <a href="#about-femr" class="nav-item">
+            About
         </a>
 
-        <a href="{{ route( 'pages.emr' ) }}" class="nav-item {{ Route::currentRouteName() == 'pages.emr' ? 'is-active' : '' }}">
-            EMR
+        <a href="#open-source" class="nav-item">
+            Open Source
+        </a>
+
+        <a href="#news" class="nav-item">
+            News
         </a>
     </div>
 
@@ -29,9 +33,7 @@
     <!-- Add the modifier "is-active" to display it on mobile -->
     <div class="nav-right nav-menu">
 
-
-
-        <a href="{{ route( 'pages.slack' ) }}" class="nav-item {{ Route::currentRouteName() == 'pages.slack' ? 'is-active' : '' }}">
+        <a href="#slack" class="nav-item {{ Route::currentRouteName() == 'pages.slack' ? 'is-active' : '' }}">
           <span class="icon">
             <i class="fa fa-slack"></i>
           </span>
@@ -43,29 +45,29 @@
           </span>
         </a>
 
-        <span class="nav-item">
+        {{--<span class="nav-item">--}}
 
-          <a class="button is-primary">
-            <span class="icon">
-              <i class="fa fa-heart"></i>
-            </span>
-            <span>Donate</span>
-          </a>
+          {{--<a class="button is-primary">--}}
+            {{--<span class="icon">--}}
+              {{--<i class="fa fa-heart"></i>--}}
+            {{--</span>--}}
+            {{--<span>Donate</span>--}}
+          {{--</a>--}}
 
-        </span>
+        {{--</span>--}}
 
         @if (Auth::check())
-            <span class="nav-item">Welcome {{ Auth::user()->name }}</span>
+            {{--<span class="nav-item">Welcome {{ Auth::user()->name }}</span>--}}
             <span class="nav-item">
 
-              <a  class="button" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>
+              <a  class="button is-small" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>
 
             </span>
-            <span class="nav-item">
-                {!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}
-                <button class="button" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</button>
-                {!! Form::close() !!}
-            </span>
+            {{--<span class="nav-item">--}}
+                {{--{!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}--}}
+                {{--<button class="button" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</button>--}}
+                {{--{!! Form::close() !!}--}}
+            {{--</span>--}}
         @else
             <span class="nav-item"><a href="{{ url('/login') }}">Login</a></span>
             <span class="nav-item"><a href="{{ url('/register') }}">Register</a></span>

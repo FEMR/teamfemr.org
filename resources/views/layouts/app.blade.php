@@ -21,15 +21,7 @@
 
         @yield('above-content')
 
-        <div class="section">
-            <div class="container">
-                <div class="content">
-
-                    @yield('content')
-
-                </div>
-            </div>
-        </div>
+        @yield('content')
 
         @yield('below-content')
 

@@ -1,0 +1,23 @@
+.map-container{
+
+    position: relative;
+
+    .search{
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 300px;
+        z-index: 100;
+
+        background-color: rgba( 255, 255, 255, 0.6 );
+
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        text-align: center;
+
+    }
+}
