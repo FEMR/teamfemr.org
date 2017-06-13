@@ -32,7 +32,7 @@
 
 @section('content')
 
-    <section class="hero is-primary has-text-centered">
+    <section class="hero is-dark has-text-centered">
         <div class="hero-body">
             <div class="container">
 
@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <section class="hero is-info has-text-centered">
+    <section class="hero is-dark has-text-centered">
         <div class="hero-body">
             <div class="container">
 
@@ -80,7 +80,7 @@
                 </h2>
 
                 <div class="columns">
-                    <div class="column">
+                    <div class="column is-two-thirds">
 
                         <div class="notification is-dark">
 
@@ -117,7 +117,7 @@
                                 Join our Slack
                             </h3>
 
-                            <p class="subtitle">Enter your email below for an invite</p>
+                            <p class="subtitle">Enter your email for an invite</p>
                             <p class="button is-info is-large">FORM WILL GO HERE</p>
                         </div>
 
@@ -130,7 +130,7 @@
         </div>
     </section>
 
-    <section class="hero is-primary has-text-centered">
+    <section class="hero has-text-centered">
         <div class="hero-body">
             <div class="container">
 
@@ -140,13 +140,20 @@
                     Demo
                 </h2>
                 <p class="subtitle">
-                    Try out fEMR
+                    Check out our development version of fEMR available for testing
                 </p>
 
                 {{--<p><a href="./other/Annual_Report_2014_2015.pdf" class="button">First Annual Report</a></p>--}}
                 <img src="{{ asset('/images/screenshots/demo.png') }}" alt="Team fEMR">
 
-                <p>Check out our <a href="http://femr.teamfemr.org">development version of fEMR available for testing</a></p>
+                <p>
+                    <a href="http://demo.teamfemr.org" class="button is-info is-large" target="_blank">
+                        <span>Try out fEMR</span>
+                        <span class="icon">
+                          <i class="fa fa-external-link"></i>
+                        </span>
+                    </a>
+                </p>
                 <ul>
                     <li><span id="username">Username: visitor</span></li>
                     <li><span id="password">Password: femr1</span></li>
@@ -156,7 +163,7 @@
     </section>
 
 
-    <section class="hero">
+    <section class="hero is-dark">
         <div class="hero-body">
             <div class="container content">
 
@@ -169,7 +176,7 @@
 
                 <p><a class="button is-success" href="./public/other/Annual_Report_2014_2015.pdf">First Annual Report</a></p>
 
-                <ul>
+                <ul class="has-text-light">
                     <li>
                         <a href="http://www.youtube.com/watch?v=Zppwhc2vHgo">
                             Wayne State University promo campaign video featuring fEMR
