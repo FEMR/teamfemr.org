@@ -51,6 +51,7 @@
     </div>
 </locations-table>
 
+@push( 'after-container' )
 <locations-form
         :program-id="{{ $program->id }}"
         inline-template
@@ -90,3 +91,4 @@
         </div>
     </div>
 </locations-form>
+@endpush

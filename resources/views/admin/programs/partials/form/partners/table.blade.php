@@ -51,6 +51,7 @@
     </div>
 </partners-table>
 
+@push( 'after-container' )
 <partners-form
         :program-id="{{ $program->id }}"
         inline-template
@@ -76,3 +77,4 @@
         </div>
     </div>
 </partners-form>
+@endpush

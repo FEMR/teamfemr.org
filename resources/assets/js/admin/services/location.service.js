@@ -45,7 +45,7 @@ let LocationService = (function(){
      */
     let update = function( programId, location ){
 
-        if( ! Number.isInteger( location.id ) ) return;
+        // if( ! Number.isInteger( location.id ) ) return;
 
         return axios.put('/admin/programs/' + programId + '/locations/' + location.id, {
 
