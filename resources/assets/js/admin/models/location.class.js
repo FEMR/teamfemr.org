@@ -41,6 +41,17 @@ class Location {
             components[c.types[0]] = c;
         }
 
+        // Reset fields so previous info is not left behind
+        this.address = '';
+        this.address_ext = '';
+        this.locality = '';
+        this.administrative_area_level_1 = '';
+        this.administrative_area_level_2 = '';
+        this.postal_code = '';
+        this.country = '';
+        this.latitude = '';
+        this.longitude = '';
+
         if ( components.hasOwnProperty('street_number') ) {
 
             this.address = components.street_number.long_name + ' '

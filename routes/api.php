@@ -15,3 +15,10 @@
 //    Route::get('/user', function (Request $request) {
 //        return $request->user();
 //    })->middleware('auth:api');
+
+
+    Route::get( '/locations', function ( Request $request) {
+
+        return \FEMR\Data\Models\VisitedLocation::all();;
+
+    });
