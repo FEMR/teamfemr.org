@@ -1,0 +1,13 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: kevinzurek/femr, tag: "latest"}
+
+inputs:
+- name: git-teamfemr2-app
+- name: git-concourse-app
+
+run:
+  path: git-concourse-app/teamfemr2/task_deploy.sh

@@ -1,0 +1,29 @@
+---
+resources:
+- name: git-teamfemr2-app
+  type: git
+  source:
+    uri: https://github.com/femr/teamfemr2.git
+    branch: master
+
+- name: git-concourse-app
+  type: git
+  source:
+    uri: https://github.com/kevinzurek/teamfemr-concourse
+    branch: master
+
+jobs:
+- name: deploy-TeamfEMR
+  public: true
+  plan:
+  - get: git-concourse-app
+  - get: git-teamfemr2-app
+    trigger: true
+  - task: teamfemr2-deploy
+    file: git-concourse-app/teamfemr2/task_deploy.yml
+    params:
+      AWS_ACCESS_KEY_ID: {{aws_access_key_id}}
+      AWS_SECRET_ACCESS_KEY: {{aws_secret_access_key}}
+      AWS_DEFAULT_REGION: us-east-1
+      AWS_DEFAULT_OUTPUT: json
+
