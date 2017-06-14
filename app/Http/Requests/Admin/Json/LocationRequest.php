@@ -26,13 +26,13 @@
             return [
                 'start_date'                  => 'required|date_format:Y-m-d',
                 'end_date'                    => 'required|date_format:Y-m-d',
-                'address'                     => 'required|string',
+                'address'                     => 'sometimes|string',
                 'address_ext'                 => 'sometimes|string',
-                'locality'                    => 'required|string',
-                'administrative_area_level_1' => 'required|string',
+                'locality'                    => 'sometimes|string',
+                'administrative_area_level_1' => 'sometimes|string',
                 'administrative_area_level_2' => 'sometimes|string',
-                'postal_code'                 => 'required|string',
-                'country'                     => 'required|string',
+                'postal_code'                 => 'sometimes|string',
+                'country'                     => 'sometimes|string',
                 'latitude'                    => 'sometimes|numeric',
                 'longitude'                   => 'sometimes|numeric',
                 'notes'                       => 'sometimes|string'

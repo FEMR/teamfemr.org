@@ -15,18 +15,30 @@
 
     <body>
 
-        @include( 'partials.header' )
+        <div id="app">
+            @include( 'partials.header' )
 
-        @yield( 'hero' )
+            @yield( 'hero' )
 
-        @yield('above-content')
+            @yield('above-content')
 
-        @yield('content')
+            @yield('content')
 
-        @yield('below-content')
+            @yield('below-content')
 
-        @include( 'partials.footer' )
+            @include( 'partials.footer' )
+        </div>
 
+        <script>
+
+            var FEMR = {!! json_encode([
+
+            'csrfToken' => csrf_token(),
+            'googleMapsKey' => env( 'GMAPS_API_KEY' )
+
+            ]) !!};
+
+        </script>
         @stack('scripts-before')
         <script src="{{ mix('js/app.js') }}"></script>
         @stack('scripts-after')

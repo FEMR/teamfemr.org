@@ -80,7 +80,7 @@
                 this.center = latLng;
                 this.zoom = 14;
 
-                // TODO - this should component probably work with more than one marker -- fix this when needed
+                // TODO - this should probably work with more than one marker -- fix this when needed
 //                this.markers.push(
 //                        {
 //                            position: latLng

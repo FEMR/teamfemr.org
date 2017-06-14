@@ -17,7 +17,7 @@
 
             <thead>
             <tr>
-                <th>Address</th>
+                <th>Location</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th></th>
@@ -26,7 +26,7 @@
 
             <tbody>
             <tr v-for="location in locations">
-                <td>@{{ location.address }}</td>
+                <td>@{{ location.locality + ', ' + location.administrative_area_level_1 }} <br /> @{{ location.country }}</td>
                 <td>@{{ location.start_date }}</td>
                 <td>@{{ location.end_date }}</td>
                 <td style="width: 85px;">
