@@ -7,7 +7,6 @@ image_resource:
 
 inputs:
 - name: git-teamfemr2-app
-- name: git-concourse-app
 
 run:
-  path: git-concourse-app/teamfemr2/task_deploy.sh
+  path: git-teamfemr2-app/ci/teamfemr2/task_deploy.sh
