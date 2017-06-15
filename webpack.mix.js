@@ -20,11 +20,14 @@ mix.webpackConfig({
     // front end
 mix .js( 'resources/assets/js/app.js', 'public/js' )
     .sass( 'resources/assets/sass/app.scss', 'public/css' )
-    .copy( 'resources/assets/images', 'public/images', false )
+    .copyDirectory( 'resources/assets/images', 'public/images', false )
 
     // Admin
     .js( 'resources/assets/js/admin/admin.js', 'public/js/admin' )
     .sass( 'resources/assets/sass/admin/admin.scss', 'public/css/admin' )
+
+    // Move document files
+    .copyDirectory( 'resources/documents', 'public/documents' )
 
     .version();
     // .browserSync({
