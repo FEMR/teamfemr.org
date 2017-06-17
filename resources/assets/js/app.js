@@ -1,13 +1,17 @@
 ﻿require('./bootstrap');
 
-import * as VueGoogleMaps from 'vue2-google-maps';
 
+import * as VueGoogleMaps from 'vue2-google-maps';
 Vue.use( VueGoogleMaps, {
     load: {
         key: FEMR.googleMapsKey,
         libraries: 'places'
     }
 });
+
+
+import SlackInvite from './components/SlackInvite';
+Vue.component( 'slack-invite', SlackInvite );
 
 const app = new Vue({
 

@@ -17,8 +17,13 @@
 //    })->middleware('auth:api');
 
 
+    // TODO - improve this later
     Route::get( '/locations', function ( Request $request) {
 
-        return \FEMR\Data\Models\VisitedLocation::all();;
+        return \FEMR\Data\Models\VisitedLocation::all();
 
     });
+
+
+
+    Route::post( 'slack/invite', 'SlackController@invite' )->name( 'api.slack.invite' );

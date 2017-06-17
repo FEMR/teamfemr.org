@@ -1,6 +1,6 @@
 import EventBus from "../../event-bus";
 import LocationService from "../../services/location.service";
-import Errors from "../../errors";
+import Errors from "../../../shared/errors";
 import Location from "../../models/location.class";
 
 export default {
