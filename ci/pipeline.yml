@@ -8,7 +8,7 @@ resources:
 
 jobs:
 - name: deploy-TeamfEMR
-  public: true
+  public: false
   plan:
   - get: git-teamfemr2-app
     trigger: true
