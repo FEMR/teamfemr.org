@@ -1,6 +1,6 @@
 import EventBus from "../../event-bus";
 import ContactService from "../../services/contact.service.js";
-import Errors from "../../errors.js";
+import Errors from "../../../shared/errors.js";
 
 export default {
 

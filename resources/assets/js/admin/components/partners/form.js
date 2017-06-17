@@ -1,6 +1,6 @@
 import EventBus from "../../event-bus";
 import PartnerService from "../../services/partner.service.js";
-import Errors from "../../errors.js";
+import Errors from "../../../shared/errors.js";
 
 export default {
 

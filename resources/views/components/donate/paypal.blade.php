@@ -6,7 +6,7 @@
 
 
         <button type="submit" class="button is-success is-large">
-            <span class="icon">
+            <span class="icon is-small">
               <i class="fa fa-paypal"></i>
             </span>
             <span>Donate</span>

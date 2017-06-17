@@ -13,12 +13,7 @@
 
                 @include( 'components.donate.paypal' )
 
-                <button type="submit" class="button is-medium">
-                    <span class="icon">
-                      <i class="fa fa-slack"></i>
-                    </span>
-                    <span>Slack</span>
-                </button>
+                <slack-invite></slack-invite>
 
             </div>
         </div>
@@ -98,7 +93,7 @@
                 <a name="open-source"></a>
 
                 <div class="columns">
-                    <div class="column is-two-thirds">
+                    <div class="column is-half">
 
                         <div class="notification is-dark">
 
@@ -108,7 +103,8 @@
 
                             <p class="subtitle">
                                 fEMR is both free and open source. <br />
-                                As a responsive web application, it can be used on any smart device.
+                                As a responsive web application, it can <br />
+                                be used on any smart device.
                             </p>
 
                             <ul>
@@ -132,7 +128,7 @@
                         </div>
 
                     </div>
-                    <div class="column">
+                    <div class="column is-half">
 
                         <div class="notification is-dark">
 
@@ -166,7 +162,7 @@
                             fEMR Demo -
                             <a href="http://demo.teamfemr.org" class="button is-info is-medium" target="_blank">
                                 <span>Try out our latest build</span>
-                                <span class="icon">
+                                <span class="icon is-small">
                                   <i class="fa fa-external-link"></i>
                                 </span>
                             </a>
