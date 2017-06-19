@@ -7,16 +7,25 @@ use FEMR\Http\Requests\SlackRequest;
 class SlackController extends Controller
 {
     /**
+     * Sends a post to the Slack API inviting the user to join
+     *
+     * Note: This uses an "undocumented" Slack API method
+     *
+     * https://github.com/ErikKalkoken/slackApiDoc/blob/master/users.admin.invite.md
+     *
+     *
      * @param SlackRequest $request
      *
      * @return mixed
      */
     public function invite( SlackRequest $request )
     {
+
         $t = time();
 
         $url = 'https://femr.slack.com/api/users.admin.invite?t=' . $t;
         $fields = $request->all();
+        // TODO -- these need to be channel id -- not channel name. Figure out how to get the channel id
 //        $auto_join_channels = 'code,random,meetup';
 
         $fields['scope'] = 'admin+client';

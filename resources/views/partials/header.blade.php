@@ -1,9 +1,10 @@
 <nav class="nav has-shadow">
 
     <div class="nav-left">
-        <span class="nav-item">
+        <a href="/" class="nav-item">
             <img src="{{ asset('images/logo/logo_color_med.png') }}" alt="Team fEMR Logo">
-        </span>
+        </a>
+
         <a href="#search" class="nav-item">
             Search
         </a>
@@ -69,8 +70,8 @@
                 {{--{!! Form::close() !!}--}}
             {{--</span>--}}
         @else
-            <span class="nav-item"><a href="{{ url('/login') }}">Login</a></span>
-            <span class="nav-item"><a href="{{ url('/register') }}">Register</a></span>
+            {{--<span class="nav-item"><a href="{{ url('/login') }}">Login</a></span>--}}
+            {{--<span class="nav-item"><a href="{{ url('/register') }}">Register</a></span>--}}
         @endif
 
     </div>
