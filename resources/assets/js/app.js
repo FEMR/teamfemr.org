@@ -9,6 +9,8 @@ Vue.use( VueGoogleMaps, {
     }
 });
 
+import SlackModal from './components/SlackModal';
+Vue.component( 'slack-modal', SlackModal );
 
 import SlackInvite from './components/SlackInvite';
 Vue.component( 'slack-invite', SlackInvite );
@@ -36,27 +38,27 @@ const app = new Vue({
 
             console.log('the google map library has been loaded');
             this.bounds = new google.maps.LatLngBounds();
+
+            axios.get( 'api/locations' )
+                .then( ( response ) => {
+
+                    _.forEach( response.data, ( location ) => {
+
+                        let latLng = new google.maps.LatLng(location.latitude, location.longitude);
+                        this.markers.push(
+                            {
+                                position: latLng
+                            }
+                        );
+
+                        this.bounds.extend(latLng);
+                        this.$refs.gmap.fitBounds( this.bounds );
+                    });
+
+                    console.log( response.data );
+                })
+                .catch( ( error ) => { console.log(error); });
         });
-
-        axios.get( 'api/locations' )
-            .then( ( response ) => {
-
-                _.forEach( response.data, ( location ) => {
-
-                    let latLng = new google.maps.LatLng(location.latitude, location.longitude);
-                    this.markers.push(
-                        {
-                            position: latLng
-                        }
-                    );
-
-                    this.bounds.extend(latLng);
-                    this.$refs.gmap.fitBounds( this.bounds );
-                });
-
-                console.log( response.data );
-            })
-            .catch( ( error ) => { console.log(error); });
 
 
         // TODO - Do this better if this mobile menu is kept
