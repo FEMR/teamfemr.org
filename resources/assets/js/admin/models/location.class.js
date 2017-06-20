@@ -1,5 +1,29 @@
 class Location {
 
+    shortAddress() {
+
+        let address = '';
+
+        if( this.locality.length > 0 )
+        {
+            address += this.locality;
+        }
+
+        if( this.administrative_area_level_1.length > 0 )
+        {
+            if( address.length > 0 ) address += ', ';
+            
+            address += this.administrative_area_level_1;
+        }
+
+        if( this.country.length > 0 )
+        {
+            address += '<br />' + this.country;
+        }
+
+        return address;
+    }
+
     constructor() {
 
         this.id = '';

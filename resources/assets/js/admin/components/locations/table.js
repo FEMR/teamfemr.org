@@ -1,5 +1,6 @@
 import EventBus from "../../event-bus";
 import LocationService from "../../services/location.service.js";
+import Location from "../../models/location.class";
 
 export default {
 
@@ -19,7 +20,16 @@ export default {
             LocationService.index( this.programId )
                 .then( ( response ) => {
 
-                    this.locations = response.data;
+                    let locations = [];
+                    _.forEach( response.data, function( location_obj ) {
+
+                        let location = new Location();
+                        location.populate( location_obj );
+
+                        locations.push( location );
+                    });
+                    
+                    this.locations = locations;
                 })
                 .catch( ( error ) => { console.log(error); });
         },
