@@ -17,6 +17,21 @@
         </div>
 
         <div class="field">
+            <label class="label">Has Trips</label>
+            <div class="control">
+                <label class="radio">
+                    <input v-model="has_trips" name="has_trips" type="radio" value="1">
+                    Yes
+                </label>
+                <label class="radio">
+                    <input v-model="has_trips" name="has_trips" type="radio" value="0">
+                    No
+                </label>
+            </div>
+        </div>
+
+
+        <div class="field">
             <label class="label">Address</label>
             <p class="control">
                 <input v-model="address" name="address" type="text" class="input">

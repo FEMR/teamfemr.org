@@ -14,6 +14,21 @@
 {{--</div>--}}
 
 <div class="field">
+    <label class="label">Has Trips</label>
+    <div class="control">
+        <label class="radio">
+            {!! Form::radio( 'has_trips', 1, null ) !!}
+            Yes
+        </label>
+        <label class="radio">
+            {!! Form::radio( 'has_trips', 0, null ) !!}
+            {{--<input type="radio" name="member">--}}
+            No
+        </label>
+    </div>
+</div>
+
+<div class="field">
     <label class="label">Address</label>
     <p class="control">
         {!! Form::text( 'address', null, [ 'class' => 'input' ] ) !!}
