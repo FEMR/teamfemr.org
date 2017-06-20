@@ -9,11 +9,12 @@
     <h2 class="subtitle">
 
     </h2>
+
 @endsection
 
 
 @section('section-content')
 
-    <p>More stuff will be added here later</p>
+    <a href="{{ route( 'admin.programs.all' ) }}" class="button is-primary">Outreach Programs</a>
 
 @endsection

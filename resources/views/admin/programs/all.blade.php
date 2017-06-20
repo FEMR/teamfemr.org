@@ -35,9 +35,9 @@
                     <th></th>
                     <th>Name</th>
                     <th>School Name</th>
+                    <th>Visits</th>
                     <th>Year Initiated</th>
                     <th>Participants</th>
-                    <th>Matriculants per class</th>
                     <th>Uses EMR</th>
                 </tr>
             </thead>
@@ -51,6 +51,15 @@
                     </td>
                     <td>{{ $program->name }}</td>
                     <td>{{ $program->school->name }}</td>
+                    <td>
+                        @if( $program->visitedLocations->count() > 0 )
+                        <a href="{{ route( 'admin.programs.edit', [ $program->school_id, $program->id ] ) }}">
+                        @endif
+                            {{ $program->visitedLocations->count() }}
+                        @if( $program->visitedLocations->count() > 0 )
+                        </a>
+                        @endif
+                    </td>
                     <td>{{ $program->year_initiated }}</td>
                     <td>{{ $program->yearly_outreach_participants }}</td>
                     <td>{{ $program->matriculants_per_class }}</td>
