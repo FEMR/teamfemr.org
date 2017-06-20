@@ -25,6 +25,7 @@ class School extends Model
     protected $fillable = [
         'name',
         'slug',
+        'has_trips',
         'address',
         'address_ext',
         'locality',
@@ -45,6 +46,7 @@ class School extends Model
     protected $casts = [
         'name'                        => 'string',
         'slug'                        => 'string',
+        'has_trips'                   => 'boolean',
         'address'                     => 'string',
         'address_ext'                 => 'string',
         'locality'                    => 'string',
