@@ -21,7 +21,7 @@
 @endsection
 
 
-@section('above-content')
+@section('below-content')
     <a name="search"></a>
     <div class="map-container">
         {{--<div class="search">--}}

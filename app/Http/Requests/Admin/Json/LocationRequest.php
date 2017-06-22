@@ -24,15 +24,15 @@
         public function rules()
         {
             return [
-                'start_date'                  => 'required|date_format:Y-m-d',
-                'end_date'                    => 'required|date_format:Y-m-d',
+                'start_date'                  => 'sometimes|date_format:Y-m-d',
+                'end_date'                    => 'sometimes|date_format:Y-m-d',
                 'address'                     => 'sometimes|string',
                 'address_ext'                 => 'sometimes|string',
-                'locality'                    => 'sometimes|string',
+                'locality'                    => 'required|string',
                 'administrative_area_level_1' => 'sometimes|string',
                 'administrative_area_level_2' => 'sometimes|string',
                 'postal_code'                 => 'sometimes|string',
-                'country'                     => 'sometimes|string',
+                'country'                     => 'required|string',
                 'latitude'                    => 'sometimes|numeric',
                 'longitude'                   => 'sometimes|numeric',
                 'notes'                       => 'sometimes|string'
