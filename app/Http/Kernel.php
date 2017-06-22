@@ -51,6 +51,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'auth' => \FEMR\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \FEMR\Http\Middleware\RedirectIfAuthenticated::class,
