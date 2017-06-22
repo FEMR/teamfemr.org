@@ -34,6 +34,18 @@
     <!-- Add the modifier "is-active" to display it on mobile -->
     <div class="nav-right nav-menu">
 
+        <a href="#" class="nav-item">
+          <span class="icon">
+            <i class="fa fa-dollar"></i>
+          </span>
+        </a>
+
+        <a href="#" class="nav-item">
+          <span class="icon">
+            <i class="fa fa-facebook-f"></i>
+          </span>
+        </a>
+
         <a href="#slack" class="nav-item {{ Route::currentRouteName() == 'pages.slack' ? 'is-active' : '' }}">
           <span class="icon">
             <i class="fa fa-slack"></i>
