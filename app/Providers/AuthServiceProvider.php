@@ -4,6 +4,7 @@ namespace FEMR\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies($gate);
 
         //
+        // Cheaply gating the admin section to admin users
+        //  TODO - More involved roles and policies implemented later
+        //
+        Gate::define( 'view-admin', function( $user ){
+
+            return $user->is_admin;
+        });
     }
 }

@@ -4,7 +4,7 @@
     // Backend Routes
     //
 
-    Route::group([ 'middleware' =>  [ 'auth' ], 'namespace' => 'Admin', 'prefix' => 'admin' ], function () {
+    Route::group([ 'middleware' =>  [ 'auth', 'can:view-admin' ], 'namespace' => 'Admin', 'prefix' => 'admin' ], function () {
 
         // Controllers Within The "App\Http\Controllers\Admin" Namespace
 
