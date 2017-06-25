@@ -1,19 +1,17 @@
 @extends ('layouts.app')
 
 @section( 'hero' )
-    <section class="hero is-dark has-text-centered">
+    <section class="hero is-dark has-text-centered home-hero">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">
-                    A fast EMR solution for transient medical teams.
+                <h1 class="title is-spaced">
+                    We are Team fEMR!
                 </h1>
-                <h2 class="subtitle">
-                    We are using open source technology to promote data driven communication in low resource settings.
-                </h2>
+                <p>
+                    We created a fast EMR solution for transient medical teams by using open source technology to promote data driven communication in low resource settings.
+                </p>
 
                 @include( 'components.donate.paypal' )
-
-                <slack-modal></slack-modal>
 
             </div>
         </div>

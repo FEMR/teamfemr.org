@@ -6,13 +6,11 @@
 
             <div class="columns">
 
-                <div class="column is-8-tablet">
+                <div class="column">
 
                     <h2 class="title">
                         News
                     </h2>
-
-                    <p><a class="button is-success" href="{{ asset('/documents/Annual_Report_2014_2015.pdf') }}" target="_blank">First Annual Report</a></p>
 
                     <ul class="has-text-light">
                         <li>
@@ -41,12 +39,6 @@
                             </a>
                         </li>
                     </ul>
-                </div>
-
-                <div class="column has-centered-text">
-
-                    @include( 'components.donate.paypal' )
-
                 </div>
 
             </div>

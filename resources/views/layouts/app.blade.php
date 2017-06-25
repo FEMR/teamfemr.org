@@ -8,7 +8,7 @@
         <title>Team fEMR</title>
 
         @stack('styles-before')
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/front/app.css') }}" rel="stylesheet">
         @stack('styles-after')
 
     </head>
@@ -40,7 +40,7 @@
 
         </script>
         @stack('scripts-before')
-        <script src="{{ mix('js/app.js') }}"></script>
+        <script src="{{ mix('js/front/app.js') }}"></script>
         @stack('scripts-after')
 
     </body>

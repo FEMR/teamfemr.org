@@ -1,0 +1,20 @@
+$control-radius: 0;
+
+.button{
+
+    border: none;
+    border-radius: 0;
+}
+
+.femr-button{
+
+    background-color: $femrRed;
+    color: $darkWhite;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:hover{
+
+        color: $white;
+    }
+}

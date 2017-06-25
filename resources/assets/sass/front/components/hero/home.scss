@@ -1,0 +1,34 @@
+.home-hero{
+
+    background: $darkGrey url("/images/home-hero.png") top center no-repeat;
+    background-size: cover;
+
+    .donate-paypal{
+
+        .donate-button{
+
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            height: auto;
+            font-size: 1rem;
+        }
+    }
+
+    .container{
+
+        max-width: 450px;
+        margin: 0 auto;
+    }
+}
+
+
+@media only screen and ( min-width: $tablet ){
+
+    .home-hero{
+
+        .title{
+
+            font-size: 2.75rem;
+        }
+    }
+}

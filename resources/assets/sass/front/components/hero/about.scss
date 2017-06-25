@@ -1,0 +1,76 @@
+.about-hero{
+
+    text-align: center;
+
+    .title{
+
+        font-size: 1.4rem;
+
+        span{
+
+            font-weight: inherit;
+        }
+
+        br{
+
+            display: none;
+        }
+    }
+
+    p{
+
+        color: $lightGrey;
+    }
+
+    .doctor-students-img{
+
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and ( min-width: $tablet ){
+
+    .about-hero{
+
+        text-align: left;
+
+        .content-column{
+
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .content{
+
+            max-width: 520px;
+        }
+
+        .title{
+
+            br{
+
+                display: block;
+            }
+        }
+
+        p{
+
+        }
+
+        .image-column{
+
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            display: flex;
+        }
+
+        .doctor-students-img{
+
+            max-width: 100%;
+            margin: 0;
+        }
+    }
+}

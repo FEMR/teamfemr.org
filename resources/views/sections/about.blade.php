@@ -1,41 +1,40 @@
-<section class="hero is-half has-text-centered">
+<section class="hero about-hero">
     <div class="hero-body">
         <div class="container">
+            <a name="about"></a>
 
             <div class="columns">
-                <div class="column is-half">
 
-                    <a name="about-femr"></a>
+                <div class="column is-two-thirds content-column">
 
-                    <h2 class="title">
-                        Team fEMR!
-                    </h2>
-                    <p class="subtitle">
-                        We are students, doctors, and engineers. More importantly we are volunteers<br />
-                        helping to provide the best healthcare possible to people who are often without access to life's basic necessities.
-                    </p>
+                    <div class="content">
 
-                    {{--<p><a href="./other/Annual_Report_2014_2015.pdf" class="button">First Annual Report</a></p>--}}
-                    <img src="{{ asset('/images/screenshots/team_femr.png') }}" alt="Team fEMR">
+                        <h2 class="title is-spaced">
+                            We are students, doctors, and engineers
+                            <span class="is-block-desktop"> <span class="is-hidden-tablet">&ndash;</span> more importantly we are volunteers</span>
+                        </h2>
+                        <p>
+                            Our mission is to help to provide the best healthcare possible to people who are often without access to life's basic necessities.
+                        </p>
 
-                </div>
-                <div class="column is-half">
+                        <p>
+                            We have designed fEMR for transient medical teams who need a fast and easy way to
+                            record patient information. Most of our users work in settings with limited infrastructure.
+                        </p>
 
-                    <a name="who-femr"></a>
-                    <h2 class="title">
-                        Who is fEMR for?
-                    </h2>
-                    <p class="subtitle">
-                        We have designed fEMR for transient medical teams who need a fast and easy way to <br />
-                        record patient information. Most of our users work in settings with limited infrastructure.
-                    </p>
-
-                    {{--<p><a href="./other/Annual_Report_2014_2015.pdf" class="button">First Annual Report</a></p>--}}
-                    <img src="{{ asset('/images/screenshots/who_is_femr_for.png') }}" alt="Team fEMR">
+                    </div>
 
                 </div>
+
+                <div class="column image-column">
+
+                    <figure class="image doctor-students-img">
+                        <img src="{{ asset( "/images/about-img.png" ) }}" alt="Doctors and students using fEMR" />
+                    </figure>
+
+                </div>
+
             </div>
-
 
         </div>
     </div>

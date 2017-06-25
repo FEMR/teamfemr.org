@@ -1,0 +1,72 @@
+.main-nav {
+
+    height: 3.5rem;
+
+    & > .container{
+
+        min-height: 3.5rem;
+    }
+
+    .nav-item a,
+    a.nav-item{
+
+        color: $lightGrey;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+
+    .nav-item{
+
+        .donate-paypal{
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .logo{
+
+        flex-grow: 1;
+
+        img{
+
+            height: 2.75rem;
+            max-height: 100%;
+        }
+    }
+}
+
+@media only screen and ( min-width: $tablet ){
+
+    .main-nav {
+
+        height: 4.5rem;
+
+        & > .container{
+
+            min-height: 4.5rem;
+        }
+
+        .nav-item{
+
+            .donate-paypal{
+
+                margin-right: 0;
+                margin-left: 25px;
+            }
+        }
+
+        .logo{
+
+            flex-grow: 0;
+            display: flex;
+            justify-content: flex-start;
+
+            img{
+
+                height: 3.25rem;
+            }
+        }
+    }
+}
