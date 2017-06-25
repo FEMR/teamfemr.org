@@ -1,0 +1,163 @@
+.open-source-hero{
+
+    min-height: 270px;
+
+    .hero-body{
+
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .columns{
+
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .content-column{
+
+            color: $darkWhite;
+
+            a:not(.button){
+
+                text-decoration: none;
+
+                //span.icon{
+                //
+                //    display: block;
+                //    margin: 0 auto;
+                //}
+
+                &:hover{
+
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    .title{
+
+        font-size: 1.4rem;
+        color: $darkWhite;
+    }
+
+    .subtitle{
+
+        font-size: 1rem;
+        color: $darkWhite;
+    }
+
+    .slack-column{
+
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .slack-invite{
+
+        // bottom only shadow
+        // box-shadow: 0 12px 15px -4px rgba(0, 0, 0, 0.5);
+
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem 2rem 0;
+
+        border-bottom: 1px solid $darkWhite;
+
+        .success{
+
+            margin-top: -.75rem;
+            margin-bottom: .5rem;
+
+            .notification{
+
+                padding: .5rem 2rem .5rem 1rem !important;
+            }
+        }
+
+        .invite-form{
+
+            max-width: 300px;
+            margin: 0 auto 15px;
+        }
+
+    }
+
+}
+
+@media only screen and ( min-width: $tablet ){
+
+    .open-source-hero{
+
+        .container{
+
+            position: relative;
+        }
+
+        .content-column{
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding-left: 2rem;
+            padding-right: 2rem;
+
+            .title{
+
+                font-size: 1.6rem;
+            }
+
+            .column{
+
+                font-size: 0.9rem;
+
+                a{
+
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .slack-column{
+
+            min-height: 260px; // to try to prevent the flash when loading the slack vue component
+            width: 340px;
+            max-width: 340px;
+            margin: 0 20px;
+        }
+
+        .slack-invite{
+
+            width: 100%;
+            height: 100%;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+            border: 0;
+            box-shadow: 12px 0 15px -4px #2f2f2f, -12px 0 8px -4px #2f2f2f;
+
+            .invite-form{
+
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and ( min-width: $desktop ){
+
+    .open-source-hero {
+
+        .content-column {
+
+            padding-left: 5rem;
+            padding-right: 5rem;
+
+            .column{
+
+                font-size: 1.1rem;
+            }
+        }
+    }
+}

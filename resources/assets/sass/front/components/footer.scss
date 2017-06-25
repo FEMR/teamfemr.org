@@ -1,0 +1,56 @@
+.footer{
+
+    background: $darkGrey;
+    color: $white;
+    padding: 1rem 0;
+
+    p{
+        padding: 0.5rem 0.75rem;
+    }
+
+    a{
+
+        color: $darkWhite;
+        text-decoration: underline;
+
+        &:hover{
+
+            color: $white;
+        }
+    }
+
+    .column{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        padding: .5rem;
+    }
+
+    .logo{
+
+        img {
+
+            display: block;
+            width: 150px;
+        }
+    }
+}
+
+@media screen and ( min-width: $tablet ){
+
+    .footer{
+
+        .column{
+
+        }
+
+        .logo{
+
+            align-self: flex-end;
+        }
+    }
+}

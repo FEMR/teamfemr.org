@@ -1,0 +1,37 @@
+.top-bar{
+
+    background-color: $femrRed;
+    color: $white;
+
+    height: 2.5rem;
+
+    & > .container{
+
+        min-height: 2.5rem;
+    }
+
+    a{
+
+        color: $white;
+
+        .icon{
+
+            color: $darkWhite;
+        }
+
+        &:hover{
+
+            color: $white;
+            text-decoration: underline;
+        }
+    }
+
+    .nav-right{
+
+        a:hover{
+
+            text-decoration: none;
+        }
+    }
+
+}

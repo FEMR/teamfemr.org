@@ -1,13 +1,13 @@
 <template>
-    <div class="slack-invite">
+    <div class="slack-modal">
 
-        <div class="invite-form">
+        <div class="invite-form" v-show="isVisible">
 
             <div class="instructions" :show="! isSuccessful">
 
-                <h3>Join our Slack</h3>
+                <h3>Slack Registration</h3>
 
-                <p>Enter your email for an invite</p>
+                <p></p>
 
             </div>
 
@@ -60,6 +60,7 @@
                 </div>
 
             </form>
+
         </div>
 
     </div>
@@ -67,7 +68,7 @@
 
 <script type="text/babel">
 
-    import Errors from "../shared/errors";
+    import Errors from "../../shared/errors";
 
     export default {
 
@@ -76,6 +77,7 @@
 
             return {
 
+                isVisible: false,
                 isLoading: false,
                 isSuccessful: false,
                 errors: new Errors(),
@@ -87,6 +89,14 @@
         },
         methods: {
 
+            showForm() {
+
+                this.isLoading = false;
+                this.isSuccessful = false;
+                this.errors.clear();
+
+                this.isVisible = true;
+            },
 
             submitForm() {
 
@@ -113,6 +123,12 @@
                         this.isSuccessful = true;
                         this.isLoading = false;
 
+                        // Close window after 2 seconds
+                        setTimeout( () => {
+
+                            this.isVisible = false;
+
+                        }, 2000 );
                     })
                     .catch( ( errors ) => {
 
@@ -128,38 +144,46 @@
 
 <style scoped>
 
-    .slack-invite{
+    .slack-modal{
 
+        position: relative;
+        width: 450px;
+        margin: 15px auto;
 
+        z-index: 1000;
+        color: #333333;
     }
 
-    .slack-invite .invite-form{
+    .slack-modal .invite-form{
 
+        position: absolute;
+        top: 110%;
+        left: 0;
+
+        width: 100%;
+        padding: 15px;
+
+        background-color: #efefef;
         text-align: left;
     }
 
-    .slack-invite .invite-form label{
-
-        color: #ffffff;
-    }
-
-    .slack-invite .invite-form .submit-button{
+    .slack-modal .invite-form .submit-button{
 
         margin: 0 auto;
     }
 
-    .slack-invite .instructions{
+    .slack-modal .instructions{
 
         text-align: center;
         margin: 0 auto 10px;
     }
 
 
-    .slack-invite .instructions p{
+    .slack-modal .instructions p{
 
     }
 
-    .slack-invite .instructions h3{
+    .slack-modal .instructions h3{
 
         font-size: 1.4em;
         font-weight: bold;

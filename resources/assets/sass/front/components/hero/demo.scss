@@ -1,0 +1,40 @@
+.demo-hero{
+
+    .title{
+
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .credentials{
+
+        margin-bottom: 1.25rem;
+        color: $lightGrey;
+    }
+
+    .demo-button{
+
+        padding: 1.5rem 2rem;
+    }
+}
+
+@media only screen and ( min-width: $tablet ){
+
+    .demo-hero{
+
+        .title{
+
+
+        }
+
+        .credentials{
+
+
+        }
+
+        .demo-button{
+
+
+        }
+    }
+}
