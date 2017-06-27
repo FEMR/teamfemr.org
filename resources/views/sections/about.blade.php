@@ -1,7 +1,6 @@
 <section class="hero about-hero">
     <div class="hero-body">
-        <div class="container">
-            <a name="about"></a>
+        <div id="about" class="container">
 
             <div class="columns">
 

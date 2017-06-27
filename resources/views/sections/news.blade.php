@@ -1,8 +1,6 @@
 <section class="hero is-dark news-hero">
     <div class="hero-body">
-        <div class="container">
-
-            <a name="news"></a>
+        <div id="news" class="container">
 
             <div class="columns">
 

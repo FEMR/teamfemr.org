@@ -9,6 +9,24 @@ Vue.use( VueGoogleMaps, {
     }
 });
 
+var VueScrollTo = require('vue-scrollto');
+Vue.use(VueScrollTo, {
+    container: "body",
+    duration: 500,
+    easing: "ease",
+    offset: 0,
+    cancelable: true,
+    onDone: () => {
+
+        console.log( app );
+        console.log( VueScrollTo );
+
+        // TODO - handle this better
+        app.showTopButton();
+    },
+    onCancel: false
+});
+
 import SlackModal from './components/SlackModal';
 Vue.component( 'slack-modal', SlackModal );
 
@@ -22,6 +40,8 @@ const app = new Vue({
 
         return {
 
+            showTopLink: false,
+
             center: { lat: 0.0, lng: 0.0 },
             bounds: {},
             zoom: 2,
@@ -30,7 +50,20 @@ const app = new Vue({
     },
     methods: {
 
+        showTopButton(){
 
+            if( this.showTopLink == false ) {
+                
+                this.showTopLink = true;
+            }
+        },
+
+        goToTop() {
+
+            this.showTopLink = false;
+            VueScrollTo.scrollTo( '#top-bar' );
+
+        }
     },
     mounted(){
 
@@ -61,7 +94,7 @@ const app = new Vue({
         });
 
         window.addEventListener('resize', () => {
-            
+
             this.$refs.gmap.fitBounds( this.bounds );
         });
 
