@@ -60,6 +60,11 @@ const app = new Vue({
                 .catch( ( error ) => { console.log(error); });
         });
 
+        window.addEventListener('resize', () => {
+            
+            this.$refs.gmap.fitBounds( this.bounds );
+        });
+
 
         // TODO - Do this better if this mobile menu is kept
         let burger = document.querySelector('.nav-toggle');

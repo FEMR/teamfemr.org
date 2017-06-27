@@ -4,7 +4,8 @@
 
     .title{
 
-        font-size: 1.4rem;
+        font-size: 1.6rem;
+        margin-bottom: .5rem;
 
         span{
 
@@ -14,6 +15,12 @@
         br{
 
             display: none;
+        }
+
+        & + .subtitle{
+
+            font-size: 1.2rem;
+            margin-top: 0;
         }
     }
 
@@ -44,15 +51,17 @@
 
         .content{
 
-            max-width: 520px;
+            max-width: 600px;
         }
 
         .title{
 
-            br{
+            font-size: 1.8rem;
+        }
 
-                display: block;
-            }
+        .subtitle{
+
+            font-size: 1.6rem;
         }
 
         p{

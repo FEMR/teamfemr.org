@@ -9,17 +9,12 @@
 
                     <div class="content">
 
-                        <h2 class="title is-spaced">
+                        <h2 class="title">
                             We are students, doctors, and engineers
-                            <span class="is-block-desktop"> <span class="is-hidden-tablet">&ndash;</span> more importantly we are volunteers</span>
                         </h2>
-                        <p>
-                            Our mission is to help to provide the best healthcare possible to people who are often without access to life's basic necessities.
-                        </p>
 
                         <p>
-                            We have designed fEMR for transient medical teams who need a fast and easy way to
-                            record patient information. Most of our users work in settings with limited infrastructure.
+                            More importantly, we are volunteers. Our mission is to help to provide the best healthcare possible to people who are often without access to life's basic necessities.
                         </p>
 
                     </div>

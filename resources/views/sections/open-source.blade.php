@@ -25,6 +25,8 @@
                         it can be used on any smart device.
                     </p>
 
+                    <p class="no-space">Follow the development of fEMR</p>
+
                     <div class="columns">
                         <div class="column">
                             <a href="https://github.com/femr/femr" target="_blank">
