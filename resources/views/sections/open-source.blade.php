@@ -4,17 +4,13 @@
 
             <div class="columns">
 
-                <div class="column slack-column">
-
-                    <a name="slack"></a>
+                <div id="slack" class="column slack-column">
 
                     <slack-invite></slack-invite>
 
                 </div>
 
-                <div class="column content-column">
-
-                    <a name="open-source"></a>
+                <div id="open-source" class="column content-column">
 
                     <h2 class="title is-spaced">
                         fEMR is both free and open source

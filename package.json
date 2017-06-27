@@ -26,6 +26,7 @@
     "font-awesome": "^4.7.0",
     "select2": "^4.0.3",
     "vue-clickaway": "^2.1.0",
+    "vue-scrollto": "^2.7.0",
     "vuex": "^2.3.1"
   }
 }

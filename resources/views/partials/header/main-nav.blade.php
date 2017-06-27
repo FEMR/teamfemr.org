@@ -26,15 +26,15 @@
                 Home
             </a>
 
-            <a href="#about" class="nav-item">
+            <a href="#about" v-scroll-to="'#about'" class="nav-item">
                 About
             </a>
 
-            <a href="#open-source" class="nav-item">
+            <a href="#open-source" v-scroll-to="'#open-source'" class="nav-item">
                 Open Source
             </a>
 
-            <a href="#news" class="nav-item">
+            <a href="#news" v-scroll-to="'#news'"  class="nav-item">
                 News
             </a>
 

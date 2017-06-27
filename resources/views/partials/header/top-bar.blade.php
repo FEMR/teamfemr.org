@@ -1,4 +1,4 @@
-<nav class="top-bar nav">
+<nav id="top-bar" class="top-bar nav">
     <div class="container">
 
         <div class="nav-left is-hidden-mobile">
@@ -21,7 +21,7 @@
               </span>
             </a>
 
-            <a href="#slack" class="nav-item {{ Route::currentRouteName() == 'pages.slack' ? 'is-active' : '' }}">
+            <a href="#slack" v-scroll-to="'#slack'"  class="nav-item {{ Route::currentRouteName() == 'pages.slack' ? 'is-active' : '' }}">
               <span class="icon">
                 <i class="fa fa-slack"></i>
               </span>
@@ -56,4 +56,5 @@
 
     {{--<slack-modal></slack-modal>--}}
 
+    <a id="top-link" href="#" @click.prevent="goToTop()" v-show="showTopLink">Back to top</a>
 </nav>

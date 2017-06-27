@@ -1,8 +1,6 @@
 <section class="hero has-text-centered demo-hero">
     <div class="hero-body">
-        <div class="container">
-
-            <a name="demo"></a>
+        <div id="demo" class="container">
 
             <h2 class="title">Want to test fEMR yourself?</h2>
             <ul class="credentials">
