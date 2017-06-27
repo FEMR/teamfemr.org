@@ -5,7 +5,7 @@
         <div class="nav-left">
 
             <a href="/" class="nav-item logo">
-                <img src="{{ asset('images/logo/logo_color_wordless_med.png') }}" alt="Team fEMR Logo">
+                <img src="{{ asset('images/logo/logo_no_tagline.png') }}" alt="Team fEMR Logo">
             </a>
 
             <!-- This "nav-toggle" hamburger menu is only visible on mobile -->

@@ -1,0 +1,28 @@
+.news-hero{
+
+    color: $white;
+
+    background: $darkGrey url("/images/news-bg.png") top center no-repeat;
+    background-size: cover;
+
+    .title{
+
+        margin-bottom: 2rem;
+    }
+
+    .news-item{
+
+        .image{
+
+            margin-bottom: .5em;
+            background: $lightGrey;
+        }
+
+        .headline{
+
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: .9rem;
+        }
+    }
+}

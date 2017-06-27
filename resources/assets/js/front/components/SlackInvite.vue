@@ -130,7 +130,7 @@
 
     .slack-invite{
 
-        background-color: #363636;
+        background-color: #444444;
     }
 
     .slack-invite .instructions{

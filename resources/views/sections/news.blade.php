@@ -1,6 +1,6 @@
-<section class="hero is-dark">
+<section class="hero is-dark news-hero">
     <div class="hero-body">
-        <div class="container content">
+        <div class="container">
 
             <a name="news"></a>
 
@@ -9,36 +9,86 @@
                 <div class="column">
 
                     <h2 class="title">
-                        News
+                        Featured News
                     </h2>
 
-                    <ul class="has-text-light">
-                        <li>
-                            <a href="http://www.youtube.com/watch?v=Zppwhc2vHgo">
-                                Wayne State University promo campaign video featuring fEMR
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.improvewsu.org/Articles/tabid/90/ID/6/WSU-Students-Lead-Development-of-Electronic-Medical-Records-in-Haiti.aspx">
-                                Wayne State University, ImproveWSU.org, "WSU students lead development of electronic medical records in Haiti"
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.emrandehr.com/tag/emergency-ehr/">
-                                EMR & EHR Forum, Review by field expert, "fEMR targets pop-up clinics' needs"
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.clickondetroit.com/news/live-in-the-d/detroit-college-students-aim-to-help-haiti-earthquake-victims/24959282">
-                                Live in the D, WDIV Detroit, news segment, "Detroit college students aim to help Haiti earthquake victims"
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://prognosis.med.wayne.edu/article/wsu-computer-science-students-open-source-software-benefits-med-school-mission-trips">
-                                Wayne State University SOM Prognosis E-news, "WSU computer science students'     open source software benefits School of Medicine mission trips"
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="columns is-multiline news">
+
+                        <div class="column is-4-tablet news-item">
+
+                            <figure class="image is-16by9">
+                                <iframe src="https://www.youtube.com/embed/Zppwhc2vHgo" style="height: 100%; width: 100%; bottom: 0; left: 0; position: absolute; right: 0; top: 0;" frameborder="0" allowfullscreen></iframe>
+                            </figure>
+                            <h3 class="headline">
+                                <a href="http://www.youtube.com/watch?v=Zppwhc2vHgo" target="_blank">
+                                    Wayne State University promo campaign video featuring fEMR
+                                </a>
+                            </h3>
+
+                        </div>
+
+                        <div class="column is-4-tablet news-item">
+
+                            <figure class="image is-16by9">
+                                <a href="http://www.clickondetroit.com/news/live-in-the-d/detroit-college-students-aim-to-help-haiti-earthquake-victims/24959282" target="_blank">
+                                    <img src="{{ asset( "/images/news/femr-live-in-the-d.png" ) }}" alt="Doctors and students using fEMR" />
+                                </a>
+                            </figure>
+                            <h3 class="headline">
+                                <a href="http://www.clickondetroit.com/news/live-in-the-d/detroit-college-students-aim-to-help-haiti-earthquake-victims/24959282" target="_blank">
+                                    Live in the D, WDIV Detroit, news segment, "Detroit college students aim to help Haiti earthquake victims"
+                                </a>
+                            </h3>
+
+                        </div>
+
+                        <div class="column is-4-tablet news-item">
+
+                            <figure class="image is-16by9">
+                                <a href="http://www.emrandehr.com/tag/emergency-ehr/" target="_blank">
+                                    {{--<img src="{{ asset( "/images/logo/logo_color_wordless.png" ) }}" alt="Doctors and students using fEMR" />--}}
+                                </a>
+                            </figure>
+                            <h3 class="headline">
+                                <a href="http://www.emrandehr.com/tag/emergency-ehr/" target="_blank">
+                                    EMR & EHR Forum, Review by field expert, "fEMR targets pop-up clinics' needs"
+                                </a>
+                            </h3>
+
+                        </div>
+
+                        {{--<div class="column is-4-tablet news-item">--}}
+
+                            {{--<figure class="image is-16by9">--}}
+                                {{--<a href="http://www.improvewsu.org/Articles/tabid/90/ID/6/WSU-Students-Lead-Development-of-Electronic-Medical-Records-in-Haiti.aspx" target="_blank">--}}
+                                    {{--<img src="{{ asset( "/images/about-img.png" ) }}" alt="Doctors and students using fEMR" />--}}
+                                {{--</a>--}}
+                            {{--</figure>--}}
+                            {{--<h3 class="headline">--}}
+                                {{--<a href="http://www.improvewsu.org/Articles/tabid/90/ID/6/WSU-Students-Lead-Development-of-Electronic-Medical-Records-in-Haiti.aspx" target="_blank">--}}
+                                    {{--Wayne State University, ImproveWSU.org, "WSU students lead development of electronic medical records in Haiti"--}}
+                                {{--</a>--}}
+                            {{--</h3>--}}
+
+                        {{--</div>--}}
+
+                        <div class="column is-4-tablet news-item">
+
+                            <figure class="image is-16by9">
+                                <a href="https://www.med.wayne.edu/news/2013/04/11/wsu-computer-science-students-open-source-software-benefits-school-of-medicine-mission-trips/" target="_blank">
+                                    {{--<img src="{{ asset( "/images/logo/logo_no_tagline.png" ) }}" alt="Doctors and students using fEMR" />--}}
+                                </a>
+                            </figure>
+                            <h3 class="headline">
+                                <a href="https://www.med.wayne.edu/news/2013/04/11/wsu-computer-science-students-open-source-software-benefits-school-of-medicine-mission-trips/" target="_blank">
+                                    Wayne State University SOM Prognosis E-news, "WSU computer science students'     open source software benefits School of Medicine mission trips"
+                                </a>
+                            </h3>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
