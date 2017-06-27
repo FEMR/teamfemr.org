@@ -17,10 +17,7 @@ Vue.use(VueScrollTo, {
     offset: 0,
     cancelable: true,
     onDone: () => {
-
-        console.log( app );
-        console.log( VueScrollTo );
-
+        
         // TODO - handle this better
         app.showTopButton();
     },
@@ -52,16 +49,16 @@ const app = new Vue({
 
         showTopButton(){
 
-            if( this.showTopLink == false ) {
-                
-                this.showTopLink = true;
-            }
+            // if( this.showTopLink == false ) {
+            //
+            //     this.showTopLink = true;
+            // }
         },
 
         goToTop() {
 
-            this.showTopLink = false;
-            VueScrollTo.scrollTo( '#top-bar' );
+            // this.showTopLink = false;
+            // VueScrollTo.scrollTo( '#top-bar' );
 
         }
     },
