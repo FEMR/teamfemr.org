@@ -129,7 +129,7 @@
                                 <article class="media">
                                     <figure class="media-left">
                                         <p>
-                                            <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
+                                            <a href="{{ asset( 'documents/news/paradigm-for-short-term-medical-missions.pdf' ) }}" target="_blank">
                                                 <span class="icon">
                                                   <i class="fa fa-file-pdf-o"></i>
                                                 </span>
@@ -139,11 +139,10 @@
                                     <div class="media-content">
                                         <div class="content">
                                             <p>
-                                                <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
-                                                    <strong>Presented by Team fEMR at the Consortium of Universities for Global Health Conference</strong>
+                                                <a href="{{ asset( 'documents/news/paradigm-for-short-term-medical-missions.pdf' ) }}" target="_blank">
+                                                    <strong>A Novel Paradigm for short-term medical missions</strong>
                                                     <br>
-                                                    Electronic health records system as a catalyst for interinstitutional
-                                                    collaboration in international medical relief work
+                                                    Presented by Team fEMR at the Consortium of Universities for Global Health Conference - 2017
                                                 </a>
                                             </p>
                                         </div>
@@ -168,10 +167,36 @@
                                         <div class="content">
                                             <p>
                                                 <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
-                                                    <strong>Presented by Virginia Commonwealth University 2017</strong>
+                                                    <strong>Impact of Implementing an Electronic Medical Record on an International Medical Mission</strong>
                                                     <br>
-                                                    Impact of Implementing an Electronic Medical Record on an
-                                                    International Medical Mission
+                                                    Presented by Virginia Commonwealth University - 2017
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            </li>
+
+                            <li class="doc">
+
+                                <article class="media">
+                                    <figure class="media-left">
+                                        <p>
+                                            <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
+                                                <span class="icon">
+                                                  <i class="fa fa-file-pdf-o"></i>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
+                                                    <strong>Electronic health records system as a catalyst for interinstitutional collaboration in international medical relief work</strong>
+                                                    <br>
+                                                    Presented by Team fEMR at the Consortium of Universities for Global Health Conference - 2016
                                                 </a>
                                             </p>
                                         </div>
