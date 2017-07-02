@@ -5,7 +5,7 @@
 
             <div class="column">
 
-                <p>Copyright &copy; {{ date( 'Y' ) }} - Team fEMR <br class="is-hidden-desktop" /> Designed by <a href="#" target="_blank">Ciara Diamond</a></p>
+                <p>Copyright &copy; {{ date( 'Y' ) }} - Team fEMR <br class="is-hidden-desktop" /> Designed by <a href="https://www.ciaradiamond.com" target="_blank">Ciara Diamond</a></p>
 
             </div>
 
