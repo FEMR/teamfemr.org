@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="columns">
+
+    <div class="login-box">
+        <div class="columns">
         <div class="column is-half is-offset-one-quarter">
             <div class="card ">
                 <header class="card-header">
@@ -60,4 +62,6 @@
             </div>
         </div>
     </div>
+    </div>
+
 @endsection

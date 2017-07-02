@@ -10,6 +10,30 @@
         margin-bottom: 2rem;
     }
 
+    .docs{
+
+        color: $white;
+        margin-bottom: 2rem;
+
+        .doc{
+
+            margin-bottom: 1rem;
+        }
+
+        ul{
+
+            list-style: none;
+        }
+    }
+
+    .media-content{
+
+        .content {
+
+            color: $white;
+        }
+    }
+
     .news-item{
 
         max-width: 420px;
@@ -17,7 +41,7 @@
 
         .image{
 
-            margin-bottom: .5em;
+            margin-bottom: .5rem;
             background: $lightGrey;
         }
 
@@ -56,7 +80,18 @@
 
         .news-item{
 
-            width: 33.33333333%;
+            //width: 33.333333333%;
+        }
+    }
+}
+
+@media only screen and ( min-width: $desktop ){
+
+    .news-hero{
+
+        .news-item{
+
+            width: 25%;
         }
     }
 }
