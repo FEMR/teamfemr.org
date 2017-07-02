@@ -37,7 +37,7 @@
                 {{--<span class="nav-item">Welcome {{ Auth::user()->name }}</span>--}}
                 <span class="nav-item">
 
-                  <a  class="button is-small" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>
+                  <a  class="button is-info is-small" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>
 
                 </span>
                 {{--<span class="nav-item">--}}

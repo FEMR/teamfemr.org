@@ -6,13 +6,84 @@
 
                 <div class="column">
 
+                    {{--<h2 class="title">--}}
+                        {{--Published Presentations--}}
+                    {{--</h2>--}}
+
+                    {{--<div class="content docs">--}}
+
+                        {{--<ul>--}}
+
+                            {{--<li class="doc">--}}
+
+                                {{--<article class="media">--}}
+                                    {{--<figure class="media-left">--}}
+                                        {{--<p>--}}
+                                            {{--<a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">--}}
+                                                {{--<span class="icon">--}}
+                                                  {{--<i class="fa fa-file-pdf-o"></i>--}}
+                                                {{--</span>--}}
+                                            {{--</a>--}}
+                                        {{--</p>--}}
+                                    {{--</figure>--}}
+                                    {{--<div class="media-content">--}}
+                                        {{--<div class="content">--}}
+                                            {{--<p>--}}
+                                                {{--<strong>Presented by Team fEMR at the Consortium of Universities for Global Health Conference</strong>--}}
+                                                {{--<br>--}}
+                                                {{--Electronic health records system as a catalyst for interinstitutional--}}
+                                                {{--collaboration in international medical relief work--}}
+                                            {{--</p>--}}
+                                        {{--</div>--}}
+                                        {{--<nav class="level is-mobile">--}}
+                                            {{--<div class="level-left">--}}
+                                                {{--<a class="level-item">--}}
+                                                    {{--<span class="icon is-small"><i class="fa fa-download"></i></span>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--</nav>--}}
+                                    {{--</div>--}}
+                                {{--</article>--}}
+
+                            {{--</li>--}}
+
+                            {{--<li class="doc">--}}
+
+                                {{--<article class="media">--}}
+                                    {{--<figure class="media-left">--}}
+                                        {{--<p>--}}
+                                            {{--<a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">--}}
+                                                {{--<span class="icon">--}}
+                                                  {{--<i class="fa fa-file-pdf-o"></i>--}}
+                                                {{--</span>--}}
+                                            {{--</a>--}}
+                                        {{--</p>--}}
+                                    {{--</figure>--}}
+                                    {{--<div class="media-content">--}}
+                                        {{--<div class="content">--}}
+                                            {{--<p>--}}
+                                                {{--<strong>Presented by Team fEMR at the Consortium of Universities for Global Health Conference</strong>--}}
+                                                {{--<br>--}}
+                                                {{--Impact of Implementing an Electronic Medical Record on an--}}
+                                                {{--International Medical Mission--}}
+                                            {{--</p>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</article>--}}
+
+                            {{--</li>--}}
+
+                        {{--</ul>--}}
+
+                    {{--</div>--}}
+
                     <h2 class="title">
                         Featured News
                     </h2>
 
                     <div class="columns is-multiline news">
 
-                        <div class="column is-4-tablet news-item">
+                        <div class="column is-3-tablet news-item">
 
                             <figure class="image is-16by9">
                                 <iframe src="https://www.youtube.com/embed/Zppwhc2vHgo" style="height: 100%; width: 100%; bottom: 0; left: 0; position: absolute; right: 0; top: 0;" frameborder="0" allowfullscreen></iframe>
@@ -25,7 +96,7 @@
 
                         </div>
 
-                        <div class="column is-4-tablet news-item">
+                        <div class="column is-3-tablet news-item">
 
                             <figure class="image is-16by9">
                                 <a href="http://www.clickondetroit.com/news/live-in-the-d/detroit-college-students-aim-to-help-haiti-earthquake-victims/24959282" target="_blank">
@@ -40,11 +111,11 @@
 
                         </div>
 
-                        <div class="column is-4-tablet news-item">
+                        <div class="column is-3-tablet news-item">
 
                             <figure class="image is-16by9">
                                 <a href="http://www.emrandehr.com/tag/emergency-ehr/" target="_blank">
-                                    {{--<img src="{{ asset( "/images/logo/logo_color_wordless.png" ) }}" alt="Doctors and students using fEMR" />--}}
+                                    <img src="{{ asset( "/images/news/doctor.png" ) }}" alt="Doctors and students using fEMR" />
                                 </a>
                             </figure>
                             <h3 class="headline">
@@ -70,11 +141,11 @@
 
                         {{--</div>--}}
 
-                        <div class="column is-4-tablet news-item">
+                        <div class="column is-3-tablet news-item">
 
                             <figure class="image is-16by9">
                                 <a href="https://www.med.wayne.edu/news/2013/04/11/wsu-computer-science-students-open-source-software-benefits-school-of-medicine-mission-trips/" target="_blank">
-                                    {{--<img src="{{ asset( "/images/logo/logo_no_tagline.png" ) }}" alt="Doctors and students using fEMR" />--}}
+                                    <img src="{{ asset( "/images/news/sarah.png" ) }}" alt="Doctors and students using fEMR" />
                                 </a>
                             </figure>
                             <h3 class="headline">
@@ -86,37 +157,37 @@
                         </div>
 
 
-                        <div class="column is-4-tablet news-item">
+                        {{--<div class="column is-3-tablet news-item">--}}
 
-                            <figure class="image is-16by9">
-                                <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
+                            {{--<figure class="image is-16by9">--}}
+                                {{--<a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">--}}
                                     {{--<img src="{{ asset( "/images/logo/logo_no_tagline.png" ) }}" alt="Doctors and students using fEMR" />--}}
-                                </a>
-                            </figure>
-                            <h3 class="headline">
-                                <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
-                                    Electronic health records system as a catalyst for interinstitutional
-                                    collaboration in international medical relief work
-                                </a>
-                            </h3>
+                                {{--</a>--}}
+                            {{--</figure>--}}
+                            {{--<h3 class="headline">--}}
+                                {{--<a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">--}}
+                                    {{--Electronic health records system as a catalyst for interinstitutional--}}
+                                    {{--collaboration in international medical relief work--}}
+                                {{--</a>--}}
+                            {{--</h3>--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                        <div class="column is-4-tablet news-item">
+                        {{--<div class="column is-3-tablet news-item">--}}
 
-                            <figure class="image is-16by9">
-                                <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
+                            {{--<figure class="image is-16by9">--}}
+                                {{--<a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">--}}
                                     {{--<img src="{{ asset( "/images/logo/logo_no_tagline.png" ) }}" alt="Doctors and students using fEMR" />--}}
-                                </a>
-                            </figure>
-                            <h3 class="headline">
-                                <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
-                                    Impact of Implementing an Electronic Medical Record on an
-                                    International Medical Mission
-                                </a>
-                            </h3>
+                                {{--</a>--}}
+                            {{--</figure>--}}
+                            {{--<h3 class="headline">--}}
+                                {{--<a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">--}}
+                                    {{--Impact of Implementing an Electronic Medical Record on an--}}
+                                    {{--International Medical Mission--}}
+                                {{--</a>--}}
+                            {{--</h3>--}}
 
-                        </div>
+                        {{--</div>--}}
 
                     </div>
 
