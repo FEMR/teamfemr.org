@@ -6,77 +6,6 @@
 
                 <div class="column">
 
-                    {{--<h2 class="title">--}}
-                        {{--Published Presentations--}}
-                    {{--</h2>--}}
-
-                    {{--<div class="content docs">--}}
-
-                        {{--<ul>--}}
-
-                            {{--<li class="doc">--}}
-
-                                {{--<article class="media">--}}
-                                    {{--<figure class="media-left">--}}
-                                        {{--<p>--}}
-                                            {{--<a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">--}}
-                                                {{--<span class="icon">--}}
-                                                  {{--<i class="fa fa-file-pdf-o"></i>--}}
-                                                {{--</span>--}}
-                                            {{--</a>--}}
-                                        {{--</p>--}}
-                                    {{--</figure>--}}
-                                    {{--<div class="media-content">--}}
-                                        {{--<div class="content">--}}
-                                            {{--<p>--}}
-                                                {{--<strong>Presented by Team fEMR at the Consortium of Universities for Global Health Conference</strong>--}}
-                                                {{--<br>--}}
-                                                {{--Electronic health records system as a catalyst for interinstitutional--}}
-                                                {{--collaboration in international medical relief work--}}
-                                            {{--</p>--}}
-                                        {{--</div>--}}
-                                        {{--<nav class="level is-mobile">--}}
-                                            {{--<div class="level-left">--}}
-                                                {{--<a class="level-item">--}}
-                                                    {{--<span class="icon is-small"><i class="fa fa-download"></i></span>--}}
-                                                {{--</a>--}}
-                                            {{--</div>--}}
-                                        {{--</nav>--}}
-                                    {{--</div>--}}
-                                {{--</article>--}}
-
-                            {{--</li>--}}
-
-                            {{--<li class="doc">--}}
-
-                                {{--<article class="media">--}}
-                                    {{--<figure class="media-left">--}}
-                                        {{--<p>--}}
-                                            {{--<a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">--}}
-                                                {{--<span class="icon">--}}
-                                                  {{--<i class="fa fa-file-pdf-o"></i>--}}
-                                                {{--</span>--}}
-                                            {{--</a>--}}
-                                        {{--</p>--}}
-                                    {{--</figure>--}}
-                                    {{--<div class="media-content">--}}
-                                        {{--<div class="content">--}}
-                                            {{--<p>--}}
-                                                {{--<strong>Presented by Team fEMR at the Consortium of Universities for Global Health Conference</strong>--}}
-                                                {{--<br>--}}
-                                                {{--Impact of Implementing an Electronic Medical Record on an--}}
-                                                {{--International Medical Mission--}}
-                                            {{--</p>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</article>--}}
-
-                            {{--</li>--}}
-
-                        {{--</ul>--}}
-
-                    {{--</div>--}}
-
                     <h2 class="title">
                         Featured News
                     </h2>
@@ -190,6 +119,71 @@
                         {{--</div>--}}
 
                     </div>
+
+                    <div class="content docs">
+
+                        <ul>
+
+                            <li class="doc">
+
+                                <article class="media">
+                                    <figure class="media-left">
+                                        <p>
+                                            <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
+                                                <span class="icon">
+                                                  <i class="fa fa-file-pdf-o"></i>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
+                                                    <strong>Presented by Team fEMR at the Consortium of Universities for Global Health Conference</strong>
+                                                    <br>
+                                                    Electronic health records system as a catalyst for interinstitutional
+                                                    collaboration in international medical relief work
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            </li>
+
+                            <li class="doc">
+
+                                <article class="media">
+                                    <figure class="media-left">
+                                        <p>
+                                            <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
+                                                <span class="icon">
+                                                  <i class="fa fa-file-pdf-o"></i>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </figure>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
+                                                    <strong>Presented by Virginia Commonwealth University 2017</strong>
+                                                    <br>
+                                                    Impact of Implementing an Electronic Medical Record on an
+                                                    International Medical Mission
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
 
                 </div>
 
