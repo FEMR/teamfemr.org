@@ -85,6 +85,39 @@
 
                         </div>
 
+
+                        <div class="column is-4-tablet news-item">
+
+                            <figure class="image is-16by9">
+                                <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
+                                    {{--<img src="{{ asset( "/images/logo/logo_no_tagline.png" ) }}" alt="Doctors and students using fEMR" />--}}
+                                </a>
+                            </figure>
+                            <h3 class="headline">
+                                <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
+                                    Electronic health records system as a catalyst for interinstitutional
+                                    collaboration in international medical relief work
+                                </a>
+                            </h3>
+
+                        </div>
+
+                        <div class="column is-4-tablet news-item">
+
+                            <figure class="image is-16by9">
+                                <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
+                                    {{--<img src="{{ asset( "/images/logo/logo_no_tagline.png" ) }}" alt="Doctors and students using fEMR" />--}}
+                                </a>
+                            </figure>
+                            <h3 class="headline">
+                                <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
+                                    Impact of Implementing an Electronic Medical Record on an
+                                    International Medical Mission
+                                </a>
+                            </h3>
+
+                        </div>
+
                     </div>
 
                 </div>

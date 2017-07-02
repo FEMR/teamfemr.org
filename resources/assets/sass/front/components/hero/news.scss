@@ -12,6 +12,9 @@
 
     .news-item{
 
+        max-width: 420px;
+        margin: 0 auto;
+
         .image{
 
             margin-bottom: .5em;
@@ -23,6 +26,37 @@
             padding-left: 5px;
             padding-right: 5px;
             font-size: .9rem;
+        }
+    }
+}
+
+@media only screen and ( min-width: 620px ){
+
+    .news-hero{
+
+        .news{
+
+            display: flex;
+        }
+
+        .news-item{
+
+            max-width: none;
+            margin: 0;
+
+            flex: none;
+            width: 50%;
+        }
+    }
+}
+
+@media only screen and ( min-width: $tablet ){
+
+    .news-hero{
+
+        .news-item{
+
+            width: 33.33333333%;
         }
     }
 }
