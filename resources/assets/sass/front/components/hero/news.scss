@@ -13,7 +13,7 @@
     .docs{
 
         color: $white;
-        margin-bottom: 2rem;
+        margin: 3rem 0 2rem 0;
 
         .doc{
 
@@ -23,6 +23,7 @@
         ul{
 
             list-style: none;
+            margin-left: 0;
         }
     }
 
@@ -31,6 +32,11 @@
         .content {
 
             color: $white;
+
+            a strong{
+
+                text-decoration: underline;
+            }
         }
     }
 
