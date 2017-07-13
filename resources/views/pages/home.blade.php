@@ -8,7 +8,7 @@
                     Team fEMR
                 </h1>
                 <p>
-                    We created a fast, open-source EMR for transient medical teams to promote data driven communication in low resource settings.
+                    We created a fast, open-source EMR for transient medical teams in order to promote data driven communication in low resource settings.
                 </p>
 
                 @include( 'components.donate.paypal' )
