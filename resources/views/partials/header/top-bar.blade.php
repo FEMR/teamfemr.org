@@ -15,7 +15,7 @@
 
         <div class="nav-right">
 
-            <a href="#" class="nav-item">
+            <a class="nav-item" href="https://www.facebook.com/Team-Femr-1839194879645777/" target="_blank">
               <span class="icon">
                 <i class="fa fa-facebook-f"></i>
               </span>
