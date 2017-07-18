@@ -7,13 +7,26 @@ resources:
     branch: master
 
 jobs:
-- name: deploy-TeamfEMR
+- name: TeamfEMR2-stage
   public: false
   plan:
   - get: git-teamfemr2-app
     trigger: true
   - task: teamfemr2-deploy
     file: git-teamfemr2-app/ci/teamfemr2/task_deploy.yml
+    params:
+      AWS_ACCESS_KEY_ID: {{aws_access_key_id}}
+      AWS_SECRET_ACCESS_KEY: {{aws_secret_access_key}}
+      AWS_DEFAULT_REGION: us-east-1
+      AWS_DEFAULT_OUTPUT: json
+- name: TeamfEMR2-prod
+  public: false
+  plan:
+  - get: git-teamfemr2-app
+    trigger: false
+    passed: [TeamfEMR2-stage]
+  - task: teamfemr2-deploy-prod
+    file: git-teamfemr2-app/ci/teamfemr2/task_deploy_prod.yml
     params:
       AWS_ACCESS_KEY_ID: {{aws_access_key_id}}
       AWS_SECRET_ACCESS_KEY: {{aws_secret_access_key}}
