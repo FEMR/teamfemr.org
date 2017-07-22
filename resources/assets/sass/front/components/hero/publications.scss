@@ -1,0 +1,63 @@
+.publications-hero{
+
+
+    .title{
+
+        margin-bottom: 2rem;
+    }
+
+    .docs{
+
+        color: $white;
+        margin: 1rem 0 2rem 0;
+
+        .doc{
+
+            margin-bottom: 1rem;
+        }
+
+        ul{
+
+            list-style: none;
+            margin-left: 0
+        }
+    }
+
+    .media-content{
+
+        .content {
+
+            color: $white;
+
+            a strong{
+
+                text-decoration: underline;
+            }
+        }
+    }
+    
+}
+
+@media only screen and ( min-width: 620px ){
+
+    .publications-hero{
+
+
+    }
+}
+
+@media only screen and ( min-width: $tablet ){
+
+    .publications-hero{
+
+
+    }
+}
+
+@media only screen and ( min-width: $desktop ){
+
+    .publications-hero{
+
+        
+    }
+}

@@ -34,12 +34,12 @@
                 Open Source
             </a>
 
-            <a href="#news" v-scroll-to="'#news'"  class="nav-item">
-                News
+            <a href="#publications" v-scroll-to="'#publications'"  class="nav-item">
+                Publications
             </a>
 
-            <a class="nav-item is-hidden-tablet" href="http://demo.teamfemr.org"target="_blank">
-                fEMR Demo
+            <a href="#news" v-scroll-to="'#news'"  class="nav-item">
+                News
             </a>
 
             <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2014_2015.pdf') }}" target="_blank">

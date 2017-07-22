@@ -3,6 +3,12 @@
     background: $darkGrey url("/images/home-hero.png") top center no-repeat;
     background-size: cover;
 
+    .button-columns{
+
+        margin-top: 2rem;
+    }
+
+    // no longer present on page, but keeping styles just in case
     .donate-paypal{
 
         .donate-button{
@@ -11,6 +17,30 @@
             padding: 1rem 2rem;
             height: auto;
             font-size: 1rem;
+        }
+    }
+
+    .demo{
+
+        .credentials{
+
+            margin-top: .5rem;
+            margin-bottom: 1.25rem;
+            color: #efefef;
+            font-size: .85rem;
+        }
+
+        .demo-button{
+
+            padding: 1.5rem 2rem;
+        }
+    }
+
+    .publications{
+
+        .publications-button{
+
+            padding: 1.5rem 2rem;
         }
     }
 
