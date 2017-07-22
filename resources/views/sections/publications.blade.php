@@ -1,6 +1,6 @@
-<section class="hero has-text-centered publications-hero">
+<section class="hero has-text-centered publications-hero" id="publications" >
     <div class="hero-body">
-        <div id="publications" class="container">
+        <div class="container">
 
             <div class="content docs">
 

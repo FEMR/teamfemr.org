@@ -18,11 +18,11 @@
     background-color: $femrRed;
     color: $white;
 
-    height: 2.5rem;
+    height: 40px;
 
     & > .container{
 
-        min-height: 2.5rem;
+        min-height: 40px;
     }
 
     a{
@@ -49,4 +49,16 @@
         }
     }
 
+}
+
+@media only screen and ( min-width: $tablet ){
+
+    .top-bar{
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 99999;
+    }
 }
