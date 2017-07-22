@@ -39,13 +39,27 @@
 
 @media only screen and ( min-width: $tablet ){
 
+    body{
+
+        // 5.5rem for main nav + 2.5rem top bar
+        padding-top: 130px;
+
+    }
+
     .main-nav {
 
-        height: 5.5rem;
+        position: fixed;
+        top: 40px; // top bar
+        left: 0;
+        right: 0;
+        z-index: 99999;
+        box-shadow: 0 2px 3px rgba( 0, 0, 0, 0.4 );
+
+        height: 90px;
 
         & > .container{
 
-            min-height: 5.5rem;
+            min-height: 90px;
         }
 
         .nav-left{
