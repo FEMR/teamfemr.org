@@ -1,10 +1,10 @@
 .main-nav {
 
-    height: 3.5rem;
+    height: 4.5rem;
 
     & > .container{
 
-        min-height: 3.5rem;
+        min-height: 4.5rem;
     }
 
     .nav-item a,
@@ -31,7 +31,7 @@
 
         img{
 
-            height: 2.75rem;
+            height: 3.75rem;
             max-height: 100%;
         }
     }
@@ -41,11 +41,24 @@
 
     .main-nav {
 
-        height: 4.5rem;
+        height: 5.5rem;
 
         & > .container{
 
-            min-height: 4.5rem;
+            min-height: 5.5rem;
+        }
+
+        .nav-left{
+
+            // stop left side from taking up 50% of width
+            flex: 0 1 auto;
+        }
+
+        .nav-item a,
+        a.nav-item{
+
+            font-size: .8rem;
+            padding: 0.5rem;
         }
 
         .nav-item{
@@ -53,7 +66,6 @@
             .donate-paypal{
 
                 margin-right: 0;
-                margin-left: 25px;
             }
         }
 
@@ -65,7 +77,28 @@
 
             img{
 
-                height: 3.25rem;
+                height: 4.25rem;
+            }
+        }
+    }
+}
+
+@media only screen and ( min-width: 900px ){
+
+    .main-nav {
+
+        .nav-item a,
+        a.nav-item{
+
+            font-size: .9rem;
+            padding: 0.5rem 0.75rem;
+        }
+
+        .nav-item{
+
+            .donate-paypal{
+
+                margin-left: 25px;
             }
         }
     }

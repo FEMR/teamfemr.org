@@ -11,7 +11,33 @@
                     We created a fast, open-source EMR for transient medical teams in order to promote data driven communication in low resource settings.
                 </p>
 
-                @include( 'components.donate.paypal' )
+                <div class="columns button-columns">
+
+                    {{--<div class="column">--}}
+                        {{--<div class="publications">--}}
+
+                            {{--<a href="#publications" v-scroll-to="'#publications'"  class="button femr-button publications-button" >--}}
+                                {{--<span>Publications</span>--}}
+                            {{--</a>--}}
+
+                        {{--</div>--}}
+                    {{--</div>--}}
+
+                    <div class="column">
+                        <div class="demo">
+
+                            <a href="http://demo.teamfemr.org" class="button femr-button demo-button" target="_blank">
+                                <span>Try the demo</span>
+                            </a>
+                            <ul class="credentials">
+                                <li><span id="username">username: visitor</span></li>
+                                <li><span id="password">password: fEMR2016</span></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
         </div>
@@ -50,7 +76,7 @@
 
     @include( 'sections.open-source' )
 
-    @include( 'sections.demo' )
+    @include( 'sections.publications' )
 
     @include( 'sections.news' )
 

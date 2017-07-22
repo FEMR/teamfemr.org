@@ -15,7 +15,10 @@
                         <div class="column is-3-tablet news-item">
 
                             <figure class="image is-16by9">
-                                <iframe src="https://www.youtube.com/embed/Zppwhc2vHgo" style="height: 100%; width: 100%; bottom: 0; left: 0; position: absolute; right: 0; top: 0;" frameborder="0" allowfullscreen></iframe>
+                                <a href="http://www.youtube.com/watch?v=Zppwhc2vHgo" target="_blank">
+                                    <img src="{{ asset( "/images/news/wsu-promo.png" ) }}" alt="Doctors and students using fEMR" />
+                                </a>
+                                {{--<iframe src="https://www.youtube.com/embed/Zppwhc2vHgo" style="height: 100%; width: 100%; bottom: 0; left: 0; position: absolute; right: 0; top: 0;" frameborder="0" allowfullscreen></iframe>--}}
                             </figure>
                             <h3 class="headline">
                                 <a href="http://www.youtube.com/watch?v=Zppwhc2vHgo" target="_blank">
@@ -119,96 +122,6 @@
                         {{--</div>--}}
 
                     </div>
-
-                    <div class="content docs">
-
-                        <ul>
-
-                            <li class="doc">
-
-                                <article class="media">
-                                    <figure class="media-left">
-                                        <p>
-                                            <a href="{{ asset( 'documents/news/paradigm-for-short-term-medical-missions.pdf' ) }}" target="_blank">
-                                                <span class="icon">
-                                                  <i class="fa fa-file-pdf-o"></i>
-                                                </span>
-                                            </a>
-                                        </p>
-                                    </figure>
-                                    <div class="media-content">
-                                        <div class="content">
-                                            <p>
-                                                <a href="{{ asset( 'documents/news/paradigm-for-short-term-medical-missions.pdf' ) }}" target="_blank">
-                                                    <strong>A Novel Paradigm for short-term medical missions</strong>
-                                                    <br>
-                                                    Presented by Team fEMR at the Consortium of Universities for Global Health Conference - 2017
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </article>
-
-                            </li>
-
-                            <li class="doc">
-
-                                <article class="media">
-                                    <figure class="media-left">
-                                        <p>
-                                            <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
-                                                <span class="icon">
-                                                  <i class="fa fa-file-pdf-o"></i>
-                                                </span>
-                                            </a>
-                                        </p>
-                                    </figure>
-                                    <div class="media-content">
-                                        <div class="content">
-                                            <p>
-                                                <a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">
-                                                    <strong>Impact of Implementing an Electronic Medical Record on an International Medical Mission</strong>
-                                                    <br>
-                                                    Presented by Virginia Commonwealth University - 2017
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </article>
-
-                            </li>
-
-                            <li class="doc">
-
-                                <article class="media">
-                                    <figure class="media-left">
-                                        <p>
-                                            <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
-                                                <span class="icon">
-                                                  <i class="fa fa-file-pdf-o"></i>
-                                                </span>
-                                            </a>
-                                        </p>
-                                    </figure>
-                                    <div class="media-content">
-                                        <div class="content">
-                                            <p>
-                                                <a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">
-                                                    <strong>Electronic health records system as a catalyst for interinstitutional collaboration in international medical relief work</strong>
-                                                    <br>
-                                                    Presented by Team fEMR at the Consortium of Universities for Global Health Conference - 2016
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </article>
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-
 
                 </div>
 

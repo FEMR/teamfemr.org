@@ -3,13 +3,13 @@
 
         <div class="nav-left is-hidden-mobile">
 
-            <a class="nav-item" href="http://demo.teamfemr.org"target="_blank">
-                Demo fEMR
-            </a>
+            {{--<a class="nav-item" href="http://demo.teamfemr.org"target="_blank">--}}
+                {{--Demo fEMR--}}
+            {{--</a>--}}
 
-            <a class="nav-item" href="{{ asset('/documents/Annual_Report_2014_2015.pdf') }}" target="_blank">
-                Annual Report
-            </a>
+            {{--<a class="nav-item" href="{{ asset('/documents/Annual_Report_2014_2015.pdf') }}" target="_blank">--}}
+                {{--Annual Report--}}
+            {{--</a>--}}
 
         </div>
 

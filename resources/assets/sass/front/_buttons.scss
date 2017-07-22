@@ -16,5 +16,6 @@ $control-radius: 0;
     &:hover{
 
         color: $white;
+        background-color: darken( $femrRed, 4 );
     }
 }

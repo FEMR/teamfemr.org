@@ -27,14 +27,14 @@
                                 <span>GitHub</span>
                             </a>
                         </div>
-                        <div class="column">
-                            <a href="https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/team-femr" target="_blank" class="devButton" id="home_repoBtn">
-                                <span class="icon is-small">
-                                  <i class="fa fa-envelope"></i>
-                                </span>
-                                <span>Mailing List</span>
-                            </a>
-                        </div>
+                        {{--<div class="column">--}}
+                            {{--<a href="https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/team-femr" target="_blank" class="devButton" id="home_repoBtn">--}}
+                                {{--<span class="icon is-small">--}}
+                                  {{--<i class="fa fa-envelope"></i>--}}
+                                {{--</span>--}}
+                                {{--<span>Mailing List</span>--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
                         <div class="column">
                             <a href="https://teamfemr.atlassian.net" target="_blank" class="devButton" id="jiraButton">
                                 <span class="icon is-small">
