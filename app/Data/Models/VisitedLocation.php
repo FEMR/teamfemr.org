@@ -90,6 +90,6 @@ class VisitedLocation extends Model
      */
     public function outreachProgram()
     {
-        return $this->belongsTo( OutreachProgram::class, 'outreach_program_partner', 'partner_id', 'outreach_program_id' );
+        return $this->belongsTo( OutreachProgram::class );
     }
 }
