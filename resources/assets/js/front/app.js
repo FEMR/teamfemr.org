@@ -1,7 +1,7 @@
 ﻿require('./bootstrap');
 
-
 import * as VueGoogleMaps from 'vue2-google-maps';
+
 Vue.use( VueGoogleMaps, {
     load: {
         key: FEMR.googleMapsKey,
@@ -42,10 +42,61 @@ const app = new Vue({
             center: { lat: 0.0, lng: 0.0 },
             bounds: {},
             zoom: 2,
-            markers: []
+            locations: [],
+
+            infoContent: '',
+            infoWindowPos: {
+                lat: 0,
+                lng: 0
+            },
+            infoWinOpen: false,
+            currentMidx: null,
+            //optional: offset infowindow so it visually sits nicely on top of our marker
+            infoOptions: {
+                pixelOffset: {
+                    width: 0,
+                    height: -35
+                }
+            }
         }
     },
     methods: {
+
+        toggleInfoWindow( location, idx ) {
+
+            this.infoWindowPos = { lat: location.latitude, lng: location.longitude };
+            this.infoContent = `
+                <div class="map-info-window">
+                        <p>${ location.outreach_program.name }</p>
+                        <p v-if="location.outreach_program.school"><strong>School:</strong> ${ location.outreach_program.school.name }</p>
+                        <p>
+                            <strong>Location: </strong>
+                            ${ location.administrative_area_level_1 ? '<span class="city">' + location.administrative_area_level_1 + '</span>' : '' }
+                            ${ location.administrative_area_level_1 && location.country ? '<span class="sep">,</span>' : '' }
+                            ${ location.country ? '<span class="country">' + location.country + '</span>' : '' }
+                        </p>
+                        <p>
+                            <a
+                                    class="button femr-button"
+                                    href="/programs/${ location.outreach_program.slug }"
+                                    target="_blank"
+                                    style="margin: 10px auto; font-size: 0.8rem;"
+                            >
+                                More Info &raquo;
+                            </a>
+                        </p>
+                    </div>
+            `;
+            //check if its the same marker that was selected if yes toggle
+            if (this.currentMidx == idx) {
+                this.infoWinOpen = !this.infoWinOpen;
+            }
+            //if different marker set infowindow to open and reset current marker index
+            else {
+                this.infoWinOpen = true;
+                this.currentMidx = idx;
+            }
+        },
 
         showTopButton(){
 
@@ -75,11 +126,7 @@ const app = new Vue({
                     _.forEach( response.data, ( location ) => {
 
                         let latLng = new google.maps.LatLng(location.latitude, location.longitude);
-                        this.markers.push(
-                            {
-                                position: latLng
-                            }
-                        );
+                        this.locations.push( location );
 
                         this.bounds.extend(latLng);
                         this.$refs.gmap.fitBounds( this.bounds );

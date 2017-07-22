@@ -13,7 +13,9 @@ $control-radius: 0;
     font-weight: bold;
     text-transform: uppercase;
 
-    &:hover{
+    &:hover,
+    &:focus,
+    &:active{
 
         color: $white;
         background-color: darken( $femrRed, 4 );

@@ -20,7 +20,14 @@
     // TODO - improve this later
     Route::get( '/locations', function ( Request $request) {
 
-        return \FEMR\Data\Models\VisitedLocation::all();
+        return \FEMR\Data\Models\VisitedLocation::with([
+
+                    'outreachProgram.school',
+                    'outreachProgram.fields',
+                    'outreachProgram.papers',
+                    'outreachProgram.schoolClasses',
+                    'outreachProgram.partnerOrganizations'
+                ])->get();
 
     });
 
