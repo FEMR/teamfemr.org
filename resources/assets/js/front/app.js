@@ -64,8 +64,18 @@ const app = new Vue({
 
         toggleInfoWindow( location, idx ) {
 
-            this.infoWindowPos = { lat: location.latitude, lng: location.longitude };
-            this.infoContent = `
+            //check if its the same marker that was selected if yes toggle
+            if (this.currentMidx == idx) {
+                
+                this.infoWinOpen = !this.infoWinOpen;
+            }
+            //if different marker set infowindow to open and reset current marker index
+            else {
+
+                this.infoWinOpen = false;
+
+                this.infoWindowPos = { lat: location.latitude, lng: location.longitude };
+                this.infoContent = `
                 <div class="map-info-window">
                         <p>${ location.outreach_program.name }</p>
                         <p v-if="location.outreach_program.school"><strong>School:</strong> ${ location.outreach_program.school.name }</p>
@@ -75,6 +85,11 @@ const app = new Vue({
                             ${ location.administrative_area_level_1 && location.country ? '<span class="sep">,</span>' : '' }
                             ${ location.country ? '<span class="country">' + location.country + '</span>' : '' }
                         </p>
+                        <p><strong>Uses Emr:</strong> ${ location.outreach_program.uses_emr ? 'Yes' : 'No' }</p>
+                        <p><strong>Months of Travel:</strong> ${ location.outreach_program.year_initiated ? location.outreach_program.year_initiated : '' }</p>
+                        <p><strong>Initiated:</strong> ${ location.outreach_program.year_initiated ? location.outreach_program.year_initiated : '' }</p>
+                        <p><strong>Yearly Participants:</strong> ${ location.outreach_program.yearly_outreach_participants ? location.outreach_program.yearly_outreach_participants : '' }</p>
+                        <p><strong>Matriculants per class:</strong> ${ location.outreach_program.matriculants_per_class ? location.outreach_program.matriculants_per_class : '' }</p>
                         <p>
                             <a
                                     class="button femr-button"
@@ -87,15 +102,14 @@ const app = new Vue({
                         </p>
                     </div>
             `;
-            //check if its the same marker that was selected if yes toggle
-            if (this.currentMidx == idx) {
-                this.infoWinOpen = !this.infoWinOpen;
-            }
-            //if different marker set infowindow to open and reset current marker index
-            else {
-                this.infoWinOpen = true;
+
                 this.currentMidx = idx;
+
+                // Opening the window is how gmaps pulls the window into view.
+                // The delay is needed to trigger this. Maybe there is a better way?
+                setTimeout( () => { this.infoWinOpen = true; }, 10 );
             }
+
         },
 
         showTopButton(){
