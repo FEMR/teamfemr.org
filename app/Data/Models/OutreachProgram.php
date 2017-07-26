@@ -102,6 +102,17 @@ class OutreachProgram extends Model
     }
 
     /**
+     * @param $query
+     * @param $slug
+     *
+     * @return mixed
+     */
+    public function scopeSlug( $query, $slug )
+    {
+        return $query->where( 'slug', '=', $slug );
+    }
+
+    /**
      * @return mixed
      */
     public function formSchoolClassesAttribute()
