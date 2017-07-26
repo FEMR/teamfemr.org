@@ -1,19 +1,10 @@
-#top-link{
-
-    display: block;
+.top-bar{
 
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 1.3rem;
-    color: $white;
-    background-color: rgba( 0, 0, 0, 0.3 );
-    padding: 0.25rem;
-
-    z-index: 10000;
-}
-
-.top-bar{
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
 
     background-color: $femrRed;
     color: $white;
@@ -57,14 +48,16 @@
 
 }
 
-@media only screen and ( min-width: $tablet ){
+#top-link{
+    display: block;
 
-    .top-bar{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.3rem;
+    color: $white;
+    background-color: rgba( 0, 0, 0, 0.3 );
+    padding: 0.25rem;
 
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 99999;
-    }
+    z-index: 10000;
 }

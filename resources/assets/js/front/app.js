@@ -97,6 +97,8 @@ const app = new Vue({
 
 
         // TODO - Do this better if this mobile menu is kept
+
+        // Show mobile menu
         let burger = document.querySelector('.nav-toggle');
         let menu = document.querySelector('.nav-menu');
         burger.addEventListener('click', function() {
@@ -104,5 +106,26 @@ const app = new Vue({
             burger.classList.toggle('is-active');
             menu.classList.toggle('is-active');
         });
+
+        // hide mobile menu when item is clicked
+        let nav = document.querySelector('.nav-right');
+        let nav_items = document.querySelectorAll('a.nav-item');
+        console.log( nav_items );
+        _.forEach( nav_items, ( nav_item ) => {
+
+            nav_item.addEventListener('click', function() {
+
+                console.log( window.innerWidth );
+
+                // If is mobile
+                if( window.innerWidth <= 768 ) {
+
+                    burger.classList.remove('is-active');
+                    menu.classList.remove('is-active');
+                }
+            });
+        });
+
+
     }
 });
