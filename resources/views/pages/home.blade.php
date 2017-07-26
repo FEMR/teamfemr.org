@@ -59,8 +59,8 @@
                 class="map">
             <gmap-cluster :grid-size="40">
 
-                <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" :content="infoContent" @closeclick="infoWinOpen=false">
-                </gmap-info-window>
+                {{--<gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" :content="infoContent" @closeclick="infoWinOpen=false">--}}
+                {{--</gmap-info-window>--}}
 
                 <gmap-marker
                         :key="index"
@@ -68,7 +68,7 @@
                         :position="{ lat: m.latitude, lng: m.longitude }"
                         :clickable="true"
                         :draggable="false"
-                        @click="toggleInfoWindow(m,index)"
+                        {{--@click="toggleInfoWindow(m,index)"--}}
                         {{--@click="center={ lat: m.latitude, lng: m.longitude }"--}}
                 >
 
