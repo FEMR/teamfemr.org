@@ -26,13 +26,13 @@
 
         <div class="nav-right nav-menu">
 
-            @if( Route::currentRouteName() == 'pages.home' )
-            <a href="#top-bar" v-scroll-to="'#top-bar'" class="nav-item">
-            @else
-            <a href="/" class="nav-item">
-            @endif
-                Home
-            </a>
+            {{--@if( Route::currentRouteName() == 'pages.home' )--}}
+            {{--<a href="#top-bar" v-scroll-to="'#top-bar'" class="nav-item">--}}
+            {{--@else--}}
+            {{--<a href="/" class="nav-item">--}}
+            {{--@endif--}}
+                {{--Home--}}
+            {{--</a>--}}
 
             <a href="#about" v-scroll-to="'#about'" class="nav-item">
                 About
