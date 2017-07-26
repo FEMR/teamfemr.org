@@ -4,7 +4,11 @@
 
         <div class="nav-left">
 
+            @if( Route::currentRouteName() == 'pages.home' )
+            <a href="#top-bar" v-scroll-to="'#top-bar'" class="nav-item logo">
+            @else
             <a href="/" class="nav-item logo">
+            @endif
                 <img src="{{ asset('images/logo/logo_no_tagline.png') }}" alt="Team fEMR Logo">
             </a>
 
@@ -22,7 +26,11 @@
 
         <div class="nav-right nav-menu">
 
+            @if( Route::currentRouteName() == 'pages.home' )
+            <a href="#top-bar" v-scroll-to="'#top-bar'" class="nav-item">
+            @else
             <a href="/" class="nav-item">
+            @endif
                 Home
             </a>
 
