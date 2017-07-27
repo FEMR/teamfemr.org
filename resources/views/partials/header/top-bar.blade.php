@@ -40,28 +40,16 @@
               </span>
             </a>
 
-            @if (Auth::check())
-                {{--<span class="nav-item">Welcome {{ Auth::user()->name }}</span>--}}
+            @if( Auth::check() )
                 <span class="nav-item">
 
                   <a  class="button is-info is-small" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>
 
                 </span>
-                {{--<span class="nav-item">--}}
-                {{--{!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}--}}
-                {{--<button class="button" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</button>--}}
-                {{--{!! Form::close() !!}--}}
-                {{--</span>--}}
-            @else
-                {{--<span class="nav-item"><a href="{{ url('/login') }}">Login</a></span>--}}
-                {{--<span class="nav-item"><a href="{{ url('/register') }}">Register</a></span>--}}
             @endif
 
         </div>
 
     </div>
 
-    {{--<slack-modal></slack-modal>--}}
-
-    <a id="top-link" href="#" @click.prevent="goToTop()" v-show="showTopLink">Back to top</a>
 </nav>
