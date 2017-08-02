@@ -47,7 +47,7 @@
 
 @section('below-content')
     <a name="search"></a>
-    <f-map></f-map>
+    <femr-map></femr-map>
 @endsection
 
 

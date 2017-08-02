@@ -1,22 +1,22 @@
 <template>
     <gmap-info-window
-            :options="infoOptions"
-            :position="infoWindowPos"
-            :opened="infoWinOpen"
-            @closeclick="infoWinOpen=false"
+            :options="options"
+            :position="position"
+            :opened="opened"
+            @closeclick="opened=false"
     >
 
         <div class="map-info-window">
-            <p>{{ programName }}</p>
-            <p v-if="schoolName"><strong>School:</strong> {{ schoolName }}</p>
+            <p>{{ outreachProgram.name }}</p>
+            <p v-if="outreachProgram.school.name"><strong>School:</strong> {{ outreachProgram.school.name }}</p>
             <p>
                 <strong>Location: </strong>
-                <span class="state" v-if="state">{{ state }}</span>
-                <span class="sep" v-if="state && country">,</span>
-                <span class="country" v-if="country">{{ country }}</span>
+                <span class="state" v-if="outreachProgram.location.state">{{ outreachProgram.location.state }}</span>
+                <span class="sep" v-if="outreachProgram.location.state && outreachProgram.location.country">,</span>
+                <span class="country" v-if="outreachProgram.location.country">{{ outreachProgram.location.country }}</span>
             </p>
             <p>
-                <a :href="'/programs/' + slug" class="button femr-button" target="_blank">
+                <a :href="'/programs/' + outreachProgram.slug" class="button femr-button" target="_blank">
                     More Info &raquo;
                 </a>
             </p>
@@ -27,71 +27,63 @@
 
 <script type="text/babel">
 
+    import OutreachProgram from '../models/OutreachProgram';
+
     export default {
 
         data() {
 
             return {
 
-                // TODO -- name these variables like they weren't copy/pasted from a demo
+                outreachProgram: {},
 
-                programName: '',
-                schoolName: '',
-
-                state: '',
-                country: '',
-                slug: '',
-
-                infoContent: '',
-                infoWindowPos: {
+                opened: false,
+                content: '',
+                position: {
                     lat: 0,
                     lng: 0
                 },
-                infoWinOpen: false,
-                currentMidx: null,
-                //optional: offset infowindow so it visually sits nicely on top of our marker
-                infoOptions: {
+                marker_index: null,
+
+                // InfoWindow Options
+                // https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
+                options: {
+
                     pixelOffset: {
+
                         width: 0,
                         height: -35
                     }
                 }
             }
         },
-        mounted(){
+        created(){
 
-
+            this.outreachProgram = new OutreachProgram();
         },
         methods: {
 
-            toggleInfoWindow( location, idx ) {
+            toggle( location, clicked_index ) {
 
-                // Example Code kinda from:
-                // view-source:http://xkjyeah.github.io/vue-google-maps/infowindow.html
+                // TODO -- keep the outreachProgram objects cached in memory? -- is it worth it?
 
-                this.programName = location.outreach_program.name;
-                this.schoolName = location.outreach_program.school.name;
-                this.state = location.administrative_area_level_1;
-                this.country = location.country;
-                this.slug = location.outreach_program.slug;
+                this.outreachProgram.populateFromLocation( location );
 
-                //check if its the same marker that was selected if yes toggle
-                if (this.currentMidx == idx) {
+                // If the current marker is clicked, toggle the window
+                if( this.marker_index == clicked_index ) {
 
-                    this.infoWinOpen = !this.infoWinOpen;
+                    this.opened = ! this.opened;
                 }
-                //if different marker set infowindow to open and reset current marker index
+                // Different marker clicked
                 else {
 
-                    this.infoWinOpen = false;
-                    this.infoWindowPos = {lat: location.latitude, lng: location.longitude};
-                    this.currentMidx = idx;
+                    this.opened = false;
+                    this.position = { lat: location.latitude, lng: location.longitude };
+                    this.marker_index = clicked_index;
 
-                    // Opening the window is how gmaps pulls the window into view.
-                    // The delay is needed to trigger this. Maybe there is a better way?
-                    setTimeout(() => {
-                        this.infoWinOpen = true;
-                    }, 10);
+                    // Opening the info window is how gmaps pulls the window into view.
+                    // The delay is being used to trigger this. Maybe there is a better way?
+                    setTimeout(() => { this.opened = true; }, 10);
                 }
             }
         }
