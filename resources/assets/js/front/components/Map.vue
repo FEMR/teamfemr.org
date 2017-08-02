@@ -14,14 +14,13 @@
                 class="map">
             <gmap-cluster :grid-size="40">
 
-                <f-info-window ref="infoWindow"></f-info-window>
+                <femr-info-window ref="infoWindow"></femr-info-window>
                 <gmap-marker
                         :key="index"
                         v-for="(m, index) in locations"
                         :position="{ lat: m.latitude, lng: m.longitude }"
                         :clickable="true"
                         :draggable="false"
-                        :opened="false"
                         @click="toggleInfoWindow(m,index)"
                 >
                 </gmap-marker>
@@ -42,7 +41,7 @@
 
         components: {
 
-            'f-info-window': InfoWindow
+            'femr-info-window': InfoWindow
         },
         data() {
 
@@ -58,36 +57,61 @@
 
             toggleInfoWindow( location, idx ) {
 
-                this.$refs.infoWindow.toggleInfoWindow( location, idx );
-            }
-        },
-        mounted() {
+                console.log( location );
 
-            VueGoogleMaps.loaded.then( () => {
+                this.$refs.infoWindow.toggle( location, idx );
+            },
 
-                console.log('the google map library has been loaded');
+            initBounds() {
+
                 this.bounds = new google.maps.LatLngBounds();
+            },
+
+            fitBounds() {
+
+                if( ! _.isEmpty( this.bounds ) ) {
+
+                    this.$refs.gmap.fitBounds( this.bounds );
+                }
+            },
+
+            extendBounds( location ) {
+
+                let latLng = new google.maps.LatLng( location.latitude, location.longitude );
+                this.bounds.extend( latLng );
+
+                this.fitBounds();
+            },
+
+            getLocations() {
 
                 axios.get( 'api/locations' )
                         .then( ( response ) => {
 
                             _.forEach( response.data, ( location ) => {
 
-                                let latLng = new google.maps.LatLng(location.latitude, location.longitude);
                                 this.locations.push( location );
-
-                                this.bounds.extend(latLng);
-                                this.$refs.gmap.fitBounds( this.bounds );
+                                this.extendBounds( location );
                             });
 
                             console.log( response.data );
                         })
                         .catch( ( error ) => { console.log(error); });
+            }
+        },
+        mounted() {
+
+            VueGoogleMaps.loaded.then( () => {
+
+                console.log('Map Library Loaded');
+
+                this.initBounds();
+                this.getLocations();
             });
 
             window.addEventListener('resize', () => {
 
-                this.$refs.gmap.fitBounds( this.bounds );
+                this.fitBounds();
             });
         }
     }

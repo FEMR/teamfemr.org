@@ -23,7 +23,7 @@ import SlackInvite from './components/SlackInvite';
 Vue.component( 'slack-invite', SlackInvite );
 
 import Map from './components/Map';
-Vue.component( 'f-map', Map );
+Vue.component( 'femr-map', Map );
 
 const app = new Vue({
 
