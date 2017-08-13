@@ -4,16 +4,21 @@
 
         <div class="nav-left">
 
-            @if( Route::currentRouteName() == 'pages.home' )
-            <a href="#top-bar" v-scroll-to="'#top-bar'" class="nav-item logo">
-            @else
-            <a href="/" class="nav-item logo">
-            @endif
+            <a
+                @if( Route::currentRouteName() == 'pages.home' )
+                href="#top-bar"
+                v-scroll-to="'#top-bar'"
+                @else
+                href="/"
+                @endif
+
+                class="nav-item logo"
+            >
                 <img src="{{ asset('images/logo/logo_no_tagline.png') }}" alt="Team fEMR Logo">
             </a>
 
             <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-            <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
+            <!-- Toggle the "is-active" class on "nav-menu" -->
             <span class="nav-item">
                 <span class="nav-toggle">
                     <span></span>
@@ -34,19 +39,44 @@
                 {{--Home--}}
             {{--</a>--}}
 
-            <a href="{{ Route::currentRouteName() == 'pages.home' ? '#about' : '/#about' }}" v-scroll-to="'#about'" class="nav-item">
+
+            <a
+                href="/#about"
+                @if( Route::currentRouteName() == 'pages.home' )
+                v-scroll-to="'#about'"
+                @endif
+                class="nav-item"
+            >
                 About
             </a>
 
-            <a href="#open-source" v-scroll-to="'#open-source'" class="nav-item">
+            <a
+                href="/#open-source"
+                @if( Route::currentRouteName() == 'pages.home' )
+                v-scroll-to="'#open-source'"
+                @endif
+                class="nav-item"
+            >
                 Open Source
             </a>
 
-            <a href="#publications" v-scroll-to="'#publications'"  class="nav-item">
+            <a
+                href="/#publications"
+                @if( Route::currentRouteName() == 'pages.home' )
+                v-scroll-to="'#publications'"
+                @endif
+                class="nav-item"
+            >
                 Publications
             </a>
 
-            <a href="#news" v-scroll-to="'#news'"  class="nav-item">
+            <a
+                href="/#news"
+                @if( Route::currentRouteName() == 'pages.home' )
+                v-scroll-to="'#news'"
+                @endif
+                class="nav-item"
+            >
                 News
             </a>
 
