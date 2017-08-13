@@ -1,18 +1,13 @@
 <template>
     <div class="map-container">
 
-        <!--<div class="search">-->
-
-            <!--<p>Search stuff will go here</p>-->
-
-        <!--</div>-->
         <gmap-map
                 ref="gmap"
                 :center="center"
                 :zoom="zoom"
                 :options="{ scrollwheel: false }"
                 class="map">
-            <gmap-cluster :grid-size="40">
+            <gmap-cluster :grid-size="50">
 
                 <femr-info-window ref="infoWindow"></femr-info-window>
                 <gmap-marker
@@ -38,6 +33,8 @@
     import InfoWindow from './InfoWindow';
 
     export default {
+
+        props: [ 'programId' ],
 
         components: {
 
@@ -85,16 +82,15 @@
 
             getLocations() {
 
-                axios.get( 'api/locations' )
+                axios.get( '/api/programs/' + this.programId )
                         .then( ( response ) => {
 
-                            _.forEach( response.data, ( location ) => {
+                            _.forEach( response.data.visited_locations, ( location ) => {
 
                                 this.locations.push( location );
                                 this.extendBounds( location );
                             });
 
-                            console.log( response.data );
                         })
                         .catch( ( error ) => { console.log(error); });
             }

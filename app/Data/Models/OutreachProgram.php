@@ -102,6 +102,31 @@ class OutreachProgram extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getVisitedLocationsCenterAttribute(){
+
+        $center_lat = 0.0;
+        $center_lng = 0.0;
+        foreach( $this->visitedLocations as $location ){
+
+            $center_lat += $location->latitude;
+            $center_lng += $location->longitude;
+
+        };
+
+        $center_lat = $center_lat / $this->visitedLocations->count();
+        $center_lng = $center_lng / $this->visitedLocations->count();
+
+        return  json_encode([
+
+                'lat' => $center_lat,
+                'lng' => $center_lng
+
+            ]);
+    }
+
+    /**
      * @param $query
      * @param $slug
      *

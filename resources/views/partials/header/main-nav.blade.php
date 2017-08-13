@@ -34,7 +34,7 @@
                 {{--Home--}}
             {{--</a>--}}
 
-            <a href="#about" v-scroll-to="'#about'" class="nav-item">
+            <a href="{{ Route::currentRouteName() == 'pages.home' ? '#about' : '/#about' }}" v-scroll-to="'#about'" class="nav-item">
                 About
             </a>
 
