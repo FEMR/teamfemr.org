@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown-menu" v-on-clickaway="hideMenu">
+    <div class="femr-dropdown-menu" v-on-clickaway="hideMenu">
         <button class="button is-small" type="button" @click="toggleMenu">
             <span class="icon is-small">
               <i class="fa fa-caret-down"></i>
@@ -51,12 +51,13 @@
 
 <style scoped>
 
-    .dropdown-menu{
+    .femr-dropdown-menu{
 
         position: relative;
+        display: block;
     }
 
-    .dropdown-menu .dropdown {
+    .femr-dropdown-menu .dropdown {
 
         box-shadow: 0 0 8px #777;
         position: absolute;
@@ -66,7 +67,7 @@
         padding:  10px;
     }
 
-    .dropdown-menu .icon {
+    .femr-dropdown-menu .icon {
 
         margin-right: 5px;
     }

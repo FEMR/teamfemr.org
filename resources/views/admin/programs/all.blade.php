@@ -38,6 +38,7 @@
                     <th>Visits</th>
                     <th>Year Initiated</th>
                     <th>Participants</th>
+                    <th>Matriculants per class</th>
                     <th>Uses EMR</th>
                 </tr>
             </thead>
