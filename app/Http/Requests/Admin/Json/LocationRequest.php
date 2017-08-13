@@ -24,8 +24,8 @@
         public function rules()
         {
             return [
-                'start_date'                  => 'sometimes|date_format:Y-m-d',
-                'end_date'                    => 'sometimes|date_format:Y-m-d',
+                'start_date'                  => 'sometimes',
+                'end_date'                    => 'sometimes',
                 'address'                     => 'sometimes|string',
                 'address_ext'                 => 'sometimes|string',
                 'locality'                    => 'required|string',
@@ -37,5 +37,19 @@
                 'longitude'                   => 'sometimes|numeric',
                 'notes'                       => 'sometimes|string'
             ];
+        }
+
+        /**
+         * @return array|mixed
+         */
+        public function all()
+        {
+            $data = parent::all();
+
+            // make sure empty dates from the html5 date field are set to null
+            if( $data['start_date'] == '-0001-11-30' ) $data['start_date'] = null;
+            if( $data['end_date'] == '-0001-11-30' ) $data['end_date'] = null;
+
+            return $data;
         }
     }
