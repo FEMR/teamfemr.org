@@ -22,8 +22,11 @@ Vue.use(VueScrollTo, {
 import SlackInvite from './components/SlackInvite';
 Vue.component( 'slack-invite', SlackInvite );
 
-import Map from './components/Map';
-Vue.component( 'femr-map', Map );
+import FemrMap from './components/FemrMap';
+Vue.component( 'femr-map', FemrMap );
+
+import ProgramMap from './components/ProgramMap';
+Vue.component( 'program-map', ProgramMap );
 
 const app = new Vue({
 

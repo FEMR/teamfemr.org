@@ -15,6 +15,10 @@
                 <span class="sep" v-if="outreachProgram.location.state && outreachProgram.location.country">,</span>
                 <span class="country" v-if="outreachProgram.location.country">{{ outreachProgram.location.country }}</span>
             </p>
+            <p><strong>Yearly Outreach Participants:</strong> {{ outreachProgram.yearlyOutreachParticipants }}</p>
+            <p><strong>Matriculants/Class:</strong> {{ outreachProgram.matriculantsPerClass }}</p>
+            <p><strong>Year Initiated:</strong> {{ outreachProgram.yearInitiated }}</p>
+            <p><strong>Classes: </strong> {{ schoolClasses }}</p>
             <p>
                 <a :href="'/programs/' + outreachProgram.slug" class="button femr-button" target="_blank">
                     More Info &raquo;
@@ -55,6 +59,13 @@
                         height: -35
                     }
                 }
+            }
+        },
+        computed: {
+
+            schoolClasses: function(){
+
+                return _.join( this.outreachProgram.schoolClasses, ', ' );
             }
         },
         created(){

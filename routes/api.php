@@ -27,7 +27,23 @@
                     'outreachProgram.papers',
                     'outreachProgram.schoolClasses',
                     'outreachProgram.partnerOrganizations'
-                ])->get();
+                ])
+                ->get();
+
+    });
+
+    Route::get( '/programs/{program_id}', function ( $outreach_program_id, Request $request ) {
+        
+        return \FEMR\Data\Models\OutreachProgram::with([
+
+                   'visitedLocations',
+                   'school',
+                   'fields',
+                   'papers',
+                   'schoolClasses',
+                   'partnerOrganizations'
+               ])
+                ->find( $outreach_program_id );
 
     });
 
