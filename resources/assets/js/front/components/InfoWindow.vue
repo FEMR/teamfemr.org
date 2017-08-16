@@ -8,9 +8,9 @@
 
         <div class="map-info-window">
             <p>{{ outreachProgram.name }}</p>
-            <p v-if="outreachProgram.school.name"><strong>School:</strong> {{ outreachProgram.school.name }}</p>
             <p>
                 <strong>Location: </strong>
+                <span class="city" v-if="outreachProgram.location.city">{{ outreachProgram.location.city }}</span>
                 <span class="state" v-if="outreachProgram.location.state">{{ outreachProgram.location.state }}</span>
                 <span class="sep" v-if="outreachProgram.location.state && outreachProgram.location.country">,</span>
                 <span class="country" v-if="outreachProgram.location.country">{{ outreachProgram.location.country }}</span>

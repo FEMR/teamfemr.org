@@ -25,7 +25,7 @@
         {
             return [
                 'name'    => 'required|string',
-                'website' => 'required|string|url'
+                'website' => 'sometimes|url'
             ];
         }
     }

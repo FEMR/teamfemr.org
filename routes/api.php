@@ -22,7 +22,6 @@
 
         return \FEMR\Data\Models\VisitedLocation::with([
 
-                    'outreachProgram.school',
                     'outreachProgram.fields',
                     'outreachProgram.papers',
                     'outreachProgram.schoolClasses',
@@ -37,7 +36,6 @@
         return \FEMR\Data\Models\OutreachProgram::with([
 
                    'visitedLocations',
-                   'school',
                    'fields',
                    'papers',
                    'schoolClasses',

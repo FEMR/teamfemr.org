@@ -24,12 +24,13 @@
         public function rules()
         {
             return [
-                'school_id'                    => 'required|min:1|exists:schools,id',
+                'school_id'                    => 'sometimes|min:1|exists:schools,id',
                 'name'                         => 'required|string',
                 'slug'                         => 'sometimes|string',
                 'year_initiated'               => 'sometimes|numeric|min:1800',
-                'yearly_outreach_participants' => 'sometimes|numeric',
-                'matriculants_per_class'       => 'sometimes|numeric',
+                'yearly_outreach_participants' => 'sometimes|string',
+                'matriculants_per_class'       => 'sometimes|string',
+                'months_of_travel'             => 'sometimes|string',
                 'uses_emr'                     => 'required|boolean'
             ];
         }

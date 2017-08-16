@@ -26,13 +26,13 @@
             return [
 
                 'prefix'      => 'string|max:255',
-                'first_name'  => 'required|string|max:255',
+                'first_name'  => 'sometimes|string|max:255',
                 'middle_name' => 'string|max:255',
                 'last_name'   => 'string|max:255',
                 'suffix'      => 'string|max:255',
                 'title'       => 'string|max:255',
                 'phone'       => 'string|max:255',
-                'email'       => 'email',
+                'email'       => 'string',
                 'notes'       => 'string'
             ];
         }

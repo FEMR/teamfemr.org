@@ -12,11 +12,7 @@
 
             <a class="level-item"href="{{ route( 'admin.dashboard.index' ) }}">Dashboard</a>
             <span class="level-item separator">&gt</span>
-            <a class="level-item" href="{{ route( 'admin.schools.index' ) }}">Schools</a>
-            <span class="level-item separator">&gt</span>
-            <a class="level-item" href="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">{{ $school->name }}</a>
-            <span class="level-item separator">&gt</span>
-            <a class="level-item" href="{{ route( 'admin.programs.index', [ $school->id ] ) }}">Outreach Programs</a>
+            <a class="level-item" href="{{ route( 'admin.programs.index' ) }}">Outreach Programs</a>
             <span class="level-item separator">&gt</span>
             <span class="level-item">Archived</span>
 
@@ -33,7 +29,7 @@
 
 @section('section-content')
 
-    @if( $school->programs->count() > 0 )
+    @if( $programs->count() > 0 )
 
         <table class="table">
             <thead>
@@ -48,10 +44,10 @@
             </thead>
 
             <tbody>
-                @foreach( $school->programs as $program )
+                @foreach( $programs as $program )
                 <tr>
                     <td>
-                        {!! Form::open([ 'method' => 'post', 'route' => [ 'admin.programs.restore', $school->id, $program->id ] ]) !!}
+                        {!! Form::open([ 'method' => 'post', 'route' => [ 'admin.programs.restore', $program->id ] ]) !!}
                         <button type="submit" class="button is-small" title="restore">
                             <span class="icon is-small"><i class="fa fa-undo"></i></span>
                         </button>

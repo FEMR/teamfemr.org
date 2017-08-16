@@ -1,8 +1,8 @@
 <div class="tabs is-boxed">
     <ul>
 
-        <li class="{{ ( Route::currentRouteName() == 'admin.programs.all' ) ? 'is-active' : '' }}">
-            <a href="{{ route( 'admin.programs.all' ) }}">All Programs</a>
+        <li class="{{ ( Route::currentRouteName() == 'admin.programs.index' ) ? 'is-active' : '' }}">
+            <a href="{{ route( 'admin.programs.index' ) }}">All Programs</a>
         </li>
 
         @if( isset( $school ) )
@@ -11,8 +11,8 @@
         </li>
         @endif
 
-        <li class="{{ ( Route::currentRouteName() == 'admin.programs.all.create' ) ? 'is-active' : '' }}">
-            <a href="{{ route( 'admin.programs.all.create' ) }}">
+        <li class="{{ ( Route::currentRouteName() == 'admin.programs.create' ) ? 'is-active' : '' }}">
+            <a href="{{ route( 'admin.programs.create' ) }}">
                 <span class="icon is-small">
                   <i class="fa fa-plus"></i>
                 </span>

@@ -86,6 +86,36 @@ class VisitedLocation extends Model
     ];
 
     /**
+     * @param $start_date
+     */
+    public function setStartDateAttribute( $start_date )
+    {
+        if( empty( $start_date ) ) {
+
+            $this->attributes['start_date'] = null;
+        }
+        else {
+
+            $this->attributes['start_date'] = $start_date;
+        }
+    }
+
+    /**
+     * @param $start_date
+     */
+    public function setEndDateAttribute( $start_date )
+    {
+        if( empty( $start_date ) ) {
+
+            $this->attributes['end_date'] = null;
+        }
+        else {
+
+            $this->attributes['end_date'] = $start_date;
+        }
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function outreachProgram()

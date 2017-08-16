@@ -12,11 +12,7 @@
 
             <a class="level-item"href="{{ route( 'admin.dashboard.index' ) }}">Dashboard</a>
             <span class="level-item separator">&gt</span>
-            <a class="level-item" href="{{ route( 'admin.schools.index' ) }}">Schools</a>
-            <span class="level-item separator">&gt</span>
-            <a class="level-item" href="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">{{ $school->name }}</a>
-            <span class="level-item separator">&gt</span>
-            <a class="level-item" href="{{ route( 'admin.programs.index', [ $school->id ] ) }}">Outreach Programs</a>
+            <a class="level-item" href="{{ route( 'admin.programs.index' ) }}">Outreach Programs</a>
             <span class="level-item separator">&gt</span>
             <span class="level-item">Edit</span>
 
@@ -39,7 +35,7 @@
 
             <div class="notification ">
 
-                {!! Form::model( $program, [ 'method' => 'put', 'route' => [ 'admin.programs.update', $school->id, $program->id ] ]) !!}
+                {!! Form::model( $program, [ 'method' => 'put', 'route' => [ 'admin.programs.update', $program->id ] ]) !!}
 
                     @include( 'admin.programs.partials.form.base-fields' )
 
