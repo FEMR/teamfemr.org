@@ -29,7 +29,7 @@
                     <a href="{{ route( 'admin.schools.index' ) }}"  class="nav-item is-tab {{ str_contains( Route::currentRouteName(), 'admin.schools.' ) ? 'is-active' : '' }}">
                         Schools
                     </a>
-                    <a href="{{ route( 'admin.programs.all' ) }}" class="nav-item is-tab {{ str_contains( Route::currentRouteName(), 'admin.programs.' ) ? 'is-active' : '' }}">
+                    <a href="{{ route( 'admin.programs.index' ) }}" class="nav-item is-tab {{ str_contains( Route::currentRouteName(), 'admin.programs.' ) ? 'is-active' : '' }}">
                         Outreach Programs
                     </a>
 

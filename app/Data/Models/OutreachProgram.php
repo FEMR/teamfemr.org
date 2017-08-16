@@ -32,6 +32,7 @@ class OutreachProgram extends Model
         'year_initiated',
         'yearly_outreach_participants',
         'matriculants_per_class',
+        'months_of_travel',
         'uses_emr'
     ];
 
@@ -44,8 +45,9 @@ class OutreachProgram extends Model
         'name'                         => 'string',
         'slug'                         => 'string',
         'year_initiated'               => 'integer',
-        'yearly_outreach_participants' => 'integer',
-        'matriculants_per_class'       => 'integer',
+        'yearly_outreach_participants' => 'string',
+        'matriculants_per_class'       => 'string',
+        'months_of_travel'             => 'string',
         'uses_emr'                     => 'boolean'
     ];
 
@@ -148,10 +150,10 @@ class OutreachProgram extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function school()
-    {
-        return $this->belongsTo( School::class );
-    }
+//    public function school()
+//    {
+//        return $this->belongsTo( School::class );
+//    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -241,7 +243,7 @@ class OutreachProgram extends Model
             }
             else
             {
-                $existing = $this->schoolClasses()->where( 'name', '=', $class )->first();
+                $existing = SchoolClass::where( 'name', 'LIKE', $class )->first();
 
                 //
                 // Add school class and get id to sync

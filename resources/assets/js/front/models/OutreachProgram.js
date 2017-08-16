@@ -10,7 +10,7 @@ class OutreachProgram {
 
     reset() {
 
-        this.school = new School();
+        //this.school = new School();
         this.location = new Location();
         this.name = '';
         this.slug = '';
@@ -36,17 +36,18 @@ class OutreachProgram {
         this.name = location.outreach_program.name;
         this.slug = location.outreach_program.slug;
 
-        this.yearInitiated = location.outreach_program.yearInitiated;
-        this.yearlyOutreachParticipants = location.outreach_program.yearlyOutreachParticipants;
-        this.matriculantsPerClass = location.outreach_program.matriculantsPerClass;
+        this.yearInitiated = location.outreach_program.year_initiated;
+        this.yearlyOutreachParticipants = location.outreach_program.yearly_outreach_participants;
+        this.matriculantsPerClass = location.outreach_program.matriculants_per_class;
 
-        _.forEach( location.outreach_program.schoolClasses, (school_class ) => {
+        _.forEach( location.outreach_program.school_classes, (school_class ) => {
 
            this.schoolClasses.push( school_class.name );
         });
 
-        this.school.name = location.outreach_program.school.name;
+        //this.school.name = location.outreach_program.school.name;
 
+        this.location.city = location.locality;
         this.location.state = location.administrative_area_level_1;
         this.location.country = location.country;
     }

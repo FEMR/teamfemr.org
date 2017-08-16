@@ -24,9 +24,9 @@
         public function rules()
         {
             return [
-                'title'       => 'required|string',
-                'url'         => 'required|string|url',
-                'description' => 'required|string|max:65535'
+                'title'       => 'sometimes|string',
+                'url'         => 'sometimes|string|url',
+                'description' => 'sometimes|string|max:65535'
             ];
         }
     }

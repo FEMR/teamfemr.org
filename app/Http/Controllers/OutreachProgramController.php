@@ -16,7 +16,6 @@ class OutreachProgramController extends Controller
         $program = OutreachProgram::
                         slug( $program_slug )
                         ->with([
-                            'school',
                             'medias',
                             'contacts',
                             'schoolClasses',

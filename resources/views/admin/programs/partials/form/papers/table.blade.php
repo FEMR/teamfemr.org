@@ -18,17 +18,16 @@
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Url</th>
-                    <th>Description</th>
                     <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr v-for="paper in papers">
-                    <td>@{{ paper.title }}</td>
-                    <td>@{{ paper.url }}</td>
-                    <td>@{{ paper.description }}</td>
+                    <td>
+                        @{{ paper.title }}<br>
+                        @{{ paper.url }}
+                    </td>
                     <td style="width: 85px;">
                         <a class="button is-small edit-button" @click="editPaper(paper)">
                             <span class="icon is-small">

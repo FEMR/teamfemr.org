@@ -16,13 +16,12 @@ class CreateOutreachProgramsTable extends Migration
         Schema::create('outreach_programs', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('school_id')->unsigned();
-            $table->foreign('school_id')->references('id')->on('schools');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->integer('year_initiated')->nullable();
+            $table->text('year_initiated')->nullable();
             $table->integer('yearly_outreach_participants')->nullable();
             $table->integer('matriculants_per_class')->nullable();
+            $table->string('months_of_travel')->nullable();
             $table->boolean('uses_emr')->default(false);
             $table->timestamps();
             $table->softDeletes();

@@ -6,10 +6,10 @@ use FEMR\Data\Criteria\Criteria;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Class NewestFirstWithSchool
+ * Class NewestFirst
  * @package FEMR\Data\Criteria\OutreachProgram
  */
-class NewestFirstWithSchool implements Criteria
+class NewestFirst implements Criteria
 {
 
     /**
@@ -27,7 +27,7 @@ class NewestFirstWithSchool implements Criteria
      */
     public function apply( Builder $query )
     {
-        return $query->orderBy( 'created_at', 'desc' )->with( 'school' );
+        return $query->orderBy( 'created_at', 'desc' );
     }
 
 }

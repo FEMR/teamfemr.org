@@ -12,10 +12,6 @@
 
             <a class="level-item"href="{{ route( 'admin.dashboard.index' ) }}">Dashboard</a>
             <span class="level-item separator">&gt</span>
-            <a class="level-item" href="{{ route( 'admin.schools.index' ) }}">Schools</a>
-            <span class="level-item separator">&gt</span>
-            <a class="level-item" href="{{ route( 'admin.schools.edit', [ $school->id ] ) }}">{{ $school->name }}</a>
-            <span class="level-item separator">&gt</span>
             <span class="level-item">Outreach Programs</span>
 
         </div>
@@ -31,7 +27,7 @@
 
 @section('section-content')
 
-    @if( $school->programs->count() > 0 )
+    @if( $programs->count() > 0 )
 
         <table class="table">
             <thead>
@@ -46,7 +42,7 @@
             </thead>
 
             <tbody>
-                @foreach( $school->programs as $program )
+                @foreach( $programs as $program )
                 <tr>
 
                     <td>
@@ -66,7 +62,7 @@
 
     @else
 
-        <p>There are no programs, but you can <a href="{{ route( 'admin.programs.create', [ $school->id ] ) }}">add one</a> now.</p>
+        <p>There are no programs, but you can <a href="{{ route( 'admin.programs.create' ) }}">add one</a> now.</p>
 
     @endif
 

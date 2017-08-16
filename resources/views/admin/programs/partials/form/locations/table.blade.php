@@ -56,7 +56,7 @@
         :program-id="{{ $program->id }}"
         inline-template
         v-cloak>
-    <div class="location-container">
+    <div :class="{ 'location-container': true, 'is-active': isVisible }">
         <div :class="{ modal: true, 'location-modal': true, 'is-active': isVisible }">
             <div class="modal-background"></div>
             <div class="modal-card">

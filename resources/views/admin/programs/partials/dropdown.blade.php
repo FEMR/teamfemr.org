@@ -1,7 +1,7 @@
 <dropdown-menu v-cloak>
 
     <menu-item
-            link="{{ route( 'admin.programs.edit', [ $school->id, $program->id ] ) }}"
+            link="{{ route( 'admin.programs.edit', [ $program->id ] ) }}"
     >
         <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
         <span>Edit</span>
@@ -37,7 +37,7 @@
 
     <menu-form
             method="delete"
-            route="{{ route( 'admin.programs.destroy', [ $school->id, $program->id ] ) }}"
+            route="{{ route( 'admin.programs.destroy', [ $program->id ] ) }}"
             token="{{ csrf_token() }}"
     >
         <span class="icon"><i class="fa fa-trash"></i></span>

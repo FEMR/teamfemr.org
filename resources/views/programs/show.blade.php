@@ -6,13 +6,8 @@
 
             <section class="section">
                 <div class="container">
-                    <h1 class="title">{{ $program->name }}</h1>
 
-                    @if( $program->school )
-                    <h2 class="subtitle">
-                        {{ $program->school->name }}
-                    </h2>
-                    @endif
+                    <h1 class="title">{{ $program->name }}</h1>
 
                     <hr />
 
@@ -31,12 +26,14 @@
 
                                 <div class="other-fields">
                                     @foreach( \FEMR\Data\Models\OutreachProgram::$default_fields as $key => $title )
+                                    <div class="field">
 
                                         <p class="field-title"><strong>{{ $title }}</strong></p>
                                         <p>
                                             {{ isset( $program ) ? $program->getAdditionalFieldValue( $key ) : null }}
                                         </p>
 
+                                    </div>
                                     @endforeach
                                 </div>
 
@@ -62,11 +59,19 @@
                                                     <td>
                                                         @if( $location->administrative_area_level_1 )
                                                             <span class="city">
-                                                                {{  $location->administrative_area_level_1 }}
+                                                                {!!
+
+                                                                    ( $location->administrative_area_level_1 && $location->country )
+                                                                    ?
+                                                                    $location->administrative_area_level_1 . '<span class="sep">,</span>'
+                                                                    :
+                                                                    $location->administrative_area_level_1
+
+                                                                !!}
                                                             </span>
                                                         @endif
                                                         @if( $location->administrative_area_level_1 && $location->country )
-                                                            <span class="sep">,</span>
+
                                                         @endif
                                                         @if( $location->country )
                                                             <span class="country">{{ $location->country }}</span>
@@ -90,6 +95,7 @@
 
                                         <program-map program-id="{{ $program->id }}"></program-map>
 
+                                        <all-programs-modal></all-programs-modal>
                                 </div>
 
                             </div>
@@ -98,12 +104,13 @@
 
                         <div class="columns">
 
+                            @if( $program->papers->count() )
                             <div class="column">
 
                                 <div class="papers">
 
                                     <h4>Papers</h4>
-                                    <table class="table is-bordered">
+                                    <table class="table">
                                         <thead>
                                         <tr>
                                             <th>Title</th>
@@ -137,20 +144,20 @@
                                 </div>
 
                             </div>
+                            @endif
 
+                            @if( $program->contacts->count() )
                             <div class="column">
 
                                 <div class="contacts">
 
                                     <h4>Contacts</h4>
 
-                                    <table class="table is-bordered">
+                                    <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>Title</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
+                                            <th>Contact Info</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -158,17 +165,12 @@
                                             <tr>
                                                 <td>
                                                     {{ $contact->title }}
-                                                </td>
-                                                <td>
                                                     {{ $contact->first_name }} {{ $contact->last_name }}
                                                 </td>
                                                 <td>
-                                                    Sign-in in to view
-                                                    {{--{{ $paper->email }}--}}
-                                                </td>
-                                                <td>
-                                                    Sign-in in to view
-                                                    {{--{{ $paper->phone }}--}}
+                                                    {{ $contact->email }}
+                                                    <br />
+                                                    {{ $contact->phone }}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -178,30 +180,35 @@
                                 </div>
 
                             </div>
+                            @endif
 
+                            @if( $program->partnerOrganizations->count() )
                             <div class="column">
 
                                 <div class="partners">
 
                                     <h4>Partner Organizations</h4>
 
-                                    <table class="table is-bordered">
+                                    <table class="table">
                                         <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Website</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach( $program->partnerOrganizations as $partner )
                                             <tr>
                                                 <td>
-                                                    {{ $partner->name }}
-                                                </td>
-                                                <td>
+                                                    @if( ! empty( $partner->url ) )
                                                     <a href="{{ $partner->url }}">
-                                                        {{ $paper->phone }}
+                                                    @endif
+
+                                                        {{ $partner->name }}
+
+                                                    @if( ! empty( $partner->url ) )
                                                     </a>
+                                                    @endif
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -211,6 +218,7 @@
                                 </div>
 
                             </div>
+                            @endif
 
                         </div>
 
@@ -218,7 +226,6 @@
 
                 </div>
             </section>
-
 
         </div>
     </div>

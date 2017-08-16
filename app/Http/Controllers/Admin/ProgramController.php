@@ -2,10 +2,8 @@
 
     namespace FEMR\Http\Controllers\Admin;
 
-    use FEMR\Data\Criteria\OutreachProgram\NewestFirstWithSchool;
-    use FEMR\Data\Criteria\OutreachProgram\TrashedForSchool;
+    use FEMR\Data\Criteria\OutreachProgram\NewestFirst;
     use FEMR\Data\Models\OutreachProgram;
-    use FEMR\Data\Models\School;
     use FEMR\Http\Controllers\Controller;
     use FEMR\Http\Requests\Admin\ProgramRequest;
 
@@ -15,33 +13,22 @@
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function all()
+        public function index()
         {
-            $programs = OutreachProgram::applyCriteria( new NewestFirstWithSchool() )->paginate( 50 );
+            $programs = OutreachProgram::applyCriteria( new NewestFirst() )->paginate( 50 );
 
-            return view( 'admin.programs.all', [ 'programs' => $programs ] );
+            return view( 'admin.programs.index', [ 'programs' => $programs ] );
         }
 
         /**
-         * @param School $school
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function index( School $school )
-        {
-            return view( 'admin.programs.index', [ 'school' => $school ] );
-        }
-
-        /**
-         * @param School $school
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
-        public function archived( School $school )
+        public function archived()
         {
 
-            $programs = $school->programs()->onlyTrashed()->get();
-            $school->setRelation( 'programs', $programs );
+            $programs = OutreachProgram::onlyTrashed()->get();
 
-            return view( 'admin.programs.archived', [ 'school' => $school ] );
+            return view( 'admin.programs.archived', [ 'programs' => $programs ] );
         }
 
         /**
@@ -71,27 +58,25 @@
                 $program->syncAdditionalFields( $request->input( 'additional_fields' ) );
             }
 
-            return redirect()->route( 'admin.programs.edit', [ $program->school_id, $program->id ] );
+            return redirect()->route( 'admin.programs.edit', [ $program->id ] );
         }
 
         /**
-         * @param School $school
          * @param OutreachProgram $program
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function edit( School $school, OutreachProgram $program )
+        public function edit( OutreachProgram $program )
         {
             $program->load( 'schoolClasses' );
-            return view( 'admin.programs.edit', [ 'school' => $school, 'program' => $program ] );
+            return view( 'admin.programs.edit', [ 'program' => $program ] );
         }
 
         /**
-         * @param School $school
          * @param OutreachProgram $program
          * @param ProgramRequest $request
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function update( School $school, OutreachProgram $program, ProgramRequest $request )
+        public function update( OutreachProgram $program, ProgramRequest $request )
         {
             $program->update( $request->all() );
 
@@ -107,34 +92,31 @@
 
             session()->flash( 'message', [ 'type' => 'is-success', 'message' => 'Updated Successfully' ]);
 
-            return redirect()->route( 'admin.programs.edit', [ $school->id, $program->id ] );
+            return redirect()->route( 'admin.programs.edit', [ $program->id ] );
         }
 
         /**
-         * @param School $school
          * @param OutreachProgram $program
          * @return \Illuminate\Http\RedirectResponse
          * @throws \Exception
          */
-        public function destroy( School $school, OutreachProgram $program )
+        public function destroy( OutreachProgram $program )
         {
             $program->delete();
 
-            return redirect()->route( 'admin.programs.index', [ $school->id ]);
+            return redirect()->route( 'admin.programs.index' );
         }
 
         /**
-         * @param $school_id
          * @param $program_id
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function restore( $school_id, $program_id )
+        public function restore( $program_id )
         {
-            OutreachProgram::
-                applyCriteria( new TrashedForSchool( $school_id, $program_id ))
+            OutreachProgram::withTrashed()
                 ->findOrFail( $program_id )
                 ->restore();
 
-            return redirect()->route( 'admin.programs.index', [ $school_id ] );
+            return redirect()->route( 'admin.programs.index' );
         }
     }

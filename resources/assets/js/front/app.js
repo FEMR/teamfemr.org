@@ -28,6 +28,10 @@ Vue.component( 'femr-map', FemrMap );
 import ProgramMap from './components/ProgramMap';
 Vue.component( 'program-map', ProgramMap );
 
+import AllProgramsModal from './components/AllProgramsModal';
+Vue.component( 'all-programs-modal', AllProgramsModal );
+
+
 const app = new Vue({
 
     el: '#app',
