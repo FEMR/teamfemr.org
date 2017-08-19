@@ -80,6 +80,13 @@
                 News
             </a>
 
+            <a
+                    href="{{ route( 'programs.index' ) }}"
+                    class="nav-item"
+            >
+                Surveys
+            </a>
+
             <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2014_2015.pdf') }}" target="_blank">
                 Annual Report
             </a>

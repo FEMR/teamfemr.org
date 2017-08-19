@@ -71,7 +71,7 @@ class OutreachProgram extends Model
      */
     public static $default_fields = [
 
-        'other_participating_schools' => 'Other participating professional schools:',
+        'other-participating-schools' => 'Other participating professional schools:',
         'faculty-and-staffing'   => 'Faculty and staffing:',
         'application-process'    => 'Application process:',
         'program-elements'       => 'Program elements:',
