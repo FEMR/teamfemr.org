@@ -15,7 +15,7 @@
          */
         public function index()
         {
-            $programs = OutreachProgram::applyCriteria( new NewestFirst() )->paginate( 50 );
+            $programs = OutreachProgram::orderBy( 'name' )->paginate( 50 );
 
             return view( 'admin.programs.index', [ 'programs' => $programs ] );
         }

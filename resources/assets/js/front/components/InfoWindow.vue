@@ -7,7 +7,11 @@
     >
 
         <div class="map-info-window">
-            <p>{{ outreachProgram.name }}</p>
+            <p class="name">
+                <a :href="programPageUrl">
+                    {{ outreachProgram.name }}
+                </a>
+            </p>
             <p>
                 <strong>Location: </strong>
                 <span class="city" v-if="outreachProgram.location.city">{{ outreachProgram.location.city }}</span>
@@ -15,12 +19,11 @@
                 <span class="sep" v-if="outreachProgram.location.state && outreachProgram.location.country">,</span>
                 <span class="country" v-if="outreachProgram.location.country">{{ outreachProgram.location.country }}</span>
             </p>
-            <p><strong>Yearly Outreach Participants:</strong> {{ outreachProgram.yearlyOutreachParticipants }}</p>
+            <p><strong>Yearly Participants:</strong> {{ outreachProgram.yearlyOutreachParticipants }}</p>
             <p><strong>Matriculants/Class:</strong> {{ outreachProgram.matriculantsPerClass }}</p>
             <p><strong>Year Initiated:</strong> {{ outreachProgram.yearInitiated }}</p>
-            <p><strong>Classes: </strong> {{ schoolClasses }}</p>
             <p>
-                <a :href="'/programs/' + outreachProgram.slug" class="button femr-button" target="_blank">
+                <a :href="programPageUrl" class="button femr-button">
                     More Info &raquo;
                 </a>
             </p>
@@ -39,7 +42,7 @@
 
             return {
 
-                outreachProgram: {},
+                outreachProgram: new OutreachProgram(),
 
                 opened: false,
                 content: '',
@@ -63,14 +66,17 @@
         },
         computed: {
 
-            schoolClasses: function(){
+            programPageUrl() {
 
-                return _.join( this.outreachProgram.schoolClasses, ', ' );
+                if( this.outreachProgram ) {
+
+                    return '/programs/' + this.outreachProgram.slug;
+                }
+                else return '#';
             }
         },
         created(){
 
-            this.outreachProgram = new OutreachProgram();
         },
         methods: {
 
@@ -110,5 +116,29 @@
         font-size: 0.8rem;
     }
 
+    .map-info-window{
+
+        max-width: 350px;
+    }
+
+    .map-info-window p{
+
+        margin-bottom: 5px;
+    }
+
+    .map-info-window p strong{
+
+        font-weight: normal;
+    }
+
+    .map-info-window .name{
+
+        max-width: 300px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #2f2f2f;
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
 
 </style>

@@ -46,8 +46,9 @@
 
 
 @section('below-content')
-    <a name="search"></a>
-    <femr-map></femr-map>
+    <div id="map">
+        <femr-map></femr-map>
+    </div>
 @endsection
 
 

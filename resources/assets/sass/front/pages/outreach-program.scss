@@ -1,5 +1,11 @@
 .outreach-program{
 
+    .title{
+
+        font-size: 1.7rem;
+        color: $femrRed;
+    }
+
     .content{
 
         h4{
@@ -9,7 +15,6 @@
 
         p{
 
-            font-size: 0.9rem;
             margin-bottom: 8px;
         }
 
@@ -21,6 +26,7 @@
         .other-fields{
 
             margin: 20px 0;
+            border-top: 1px solid #efefef;
 
             .field-title{
 
@@ -29,7 +35,9 @@
 
             .field{
 
-                margin-bottom: 25px;
+                margin-bottom: 15px;
+                padding: 10px 0;
+                border-bottom: 1px solid #efefef;
             }
         }
 
@@ -47,6 +55,44 @@
                 border-bottom: none;
             }
         }
+
+        .info-columns{
+
+            .column{
+
+
+                ul{
+
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+
+                    li{
+
+                        list-style: none;
+                        margin: 0 0 10px;
+                        padding: 0 25px 0 0;
+                    }
+                }
+            }
+
+            .contacts{
+
+                .name{
+
+                    color: #000000;
+                }
+
+                .phone,
+                .email{
+
+                    display: block;
+                    font-weight: 300;
+                    font-size: 0.9rem;
+                }
+
+            }
+        }
     }
 
     .visited-locations{
@@ -60,6 +106,11 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+        }
+
+        .countries{
+
+            font-size: 0.9rem;
         }
     }
 }
