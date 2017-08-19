@@ -18,6 +18,22 @@
             margin-bottom: 8px;
         }
 
+        .map-column{
+
+            @media only screen and ( min-width: $tablet ) {
+
+                order: 2;
+            }
+        }
+
+        .info-column{
+
+            @media only screen and ( min-width: $tablet ) {
+
+                order: 1;
+            }
+        }
+
         .stat{
 
             margin-bottom: 2px;
@@ -76,6 +92,21 @@
                 }
             }
 
+            .papers{
+
+                ul{
+
+                    list-style: disc outside;
+                    margin-left: 2em;
+                    margin-top: 1em;
+
+                    li{
+
+                        list-style: disc;
+                    }
+                }
+            }
+
             .contacts{
 
                 .name{
@@ -89,6 +120,12 @@
                     display: block;
                     font-weight: 300;
                     font-size: 0.9rem;
+
+                    a{
+
+                        color: inherit;
+                        text-decoration: underline;
+                    }
                 }
 
             }

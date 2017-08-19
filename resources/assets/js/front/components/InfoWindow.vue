@@ -12,12 +12,8 @@
                     {{ outreachProgram.name }}
                 </a>
             </p>
-            <p>
-                <strong>Location: </strong>
-                <span class="city" v-if="outreachProgram.location.city">{{ outreachProgram.location.city }}</span>
-                <span class="state" v-if="outreachProgram.location.state">{{ outreachProgram.location.state }}</span>
-                <span class="sep" v-if="outreachProgram.location.state && outreachProgram.location.country">,</span>
-                <span class="country" v-if="outreachProgram.location.country">{{ outreachProgram.location.country }}</span>
+            <p class="city_state_country">
+                <span>{{ outreachProgram.location.city_state_country }}</span>
             </p>
             <p><strong>Yearly Participants:</strong> {{ outreachProgram.yearlyOutreachParticipants }}</p>
             <p><strong>Matriculants/Class:</strong> {{ outreachProgram.matriculantsPerClass }}</p>
@@ -83,8 +79,8 @@
             toggle( location, clicked_index ) {
 
                 // TODO -- keep the outreachProgram objects cached in memory? -- is it worth it?
+                this.outreachProgram.populateFromLocation(location);
 
-                this.outreachProgram.populateFromLocation( location );
 
                 // If the current marker is clicked, toggle the window
                 if( this.marker_index == clicked_index ) {
@@ -123,12 +119,19 @@
 
     .map-info-window p{
 
+        font-size: 0.9rem;
         margin-bottom: 5px;
     }
 
     .map-info-window p strong{
 
         font-weight: normal;
+    }
+
+    .map-info-window .city_state_country{
+
+        font-size: 1rem;
+        margin-bottom: 15px;
     }
 
     .map-info-window .name{

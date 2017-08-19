@@ -47,6 +47,7 @@ class OutreachProgram {
 
         //this.school.name = location.outreach_program.school.name;
 
+        this.location.city_state_country = location.city_state_country;
         this.location.city = location.locality;
         this.location.state = location.administrative_area_level_1;
         this.location.country = location.country;

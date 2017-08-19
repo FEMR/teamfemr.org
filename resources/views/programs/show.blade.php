@@ -14,7 +14,24 @@
 
                     <div class="columns">
 
-                        <div class="column is-7">
+                        <div class="column is-5 map-column">
+
+
+                            <div class="visited-locations">
+
+                                <h4>Visited Locations ({{ $program->visitedLocations->count() }})</h4>
+
+                                <p class="countries"><strong>Countries</strong>: {{ $program->visitedLocations->pluck( 'country' )->unique()->implode( ', ' ) }}</p>
+
+                                <program-map program-id="{{ $program->id }}"></program-map>
+
+                                <a class="button femr-button" href="/#map">View other programs</a>
+                                {{--<all-programs-modal></all-programs-modal>--}}
+
+                            </div>
+
+                        </div>
+                        <div class="column is-7 info-column">
 
                             <p class="stat months"><strong>Months of Travel:</strong> {{ $program->months_of_travel }}</p>
                             <p class="stat initiated"><strong>Year Initiated:</strong> {{ $program->year_initiated ? $program->year_initiated : '' }}</p>
@@ -40,23 +57,6 @@
 
                         </div>
 
-                        <div class="column is-5">
-
-
-                            <div class="visited-locations">
-
-                                <h4>Visited Locations ({{ $program->visitedLocations->count() }})</h4>
-
-                                <p class="countries"><strong>Countries</strong>: {{ $program->visitedLocations->pluck( 'country' )->unique()->implode( ', ' ) }}</p>
-
-                                <program-map program-id="{{ $program->id }}"></program-map>
-
-                                <a class="button femr-button" href="/#map">View other programs</a>
-                                {{--<all-programs-modal></all-programs-modal>--}}
-
-                            </div>
-
-                        </div>
 
                     </div>
 
@@ -95,8 +95,16 @@
                                     @foreach( $program->contacts as $contact )
                                         <li>
                                             <span class="name">{{ $contact->first_name }} {{ $contact->last_name }}</span>
+
+                                            @if( \Auth::check() )
                                             <span class="email">{{ $contact->email }}</span>
                                             <span class="phone">{{ $contact->phone }}</span>
+                                            @else
+                                            <span class="email">
+                                                <a href="/login">Login for contact info</a>
+                                            </span>
+                                            @endif
+
                                         </li>
                                     @endforeach
                                 </ul>

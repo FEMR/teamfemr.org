@@ -9,11 +9,18 @@
                 class="map">
             <gmap-cluster :grid-size="50">
 
-                <femr-info-window ref="infoWindow"></femr-info-window>
+                <gmap-info-window
+                        ref="infoWindow"
+                        :options="options"
+                        :position="position"
+                        :opened="opened"
+                        :content="content"
+                ></gmap-info-window>
                 <gmap-marker
                         :key="index"
                         v-for="(m, index) in locations"
                         :position="{ lat: m.latitude, lng: m.longitude }"
+                        :title="m.country"
                         :clickable="true"
                         :draggable="false"
                         @click="toggleInfoWindow(m,index)"
@@ -44,6 +51,25 @@
 
             return {
 
+                opened: false,
+                content: '',
+                position: {
+                    lat: 0,
+                    lng: 0
+                },
+                marker_index: null,
+
+                // InfoWindow Options
+                // https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
+                options: {
+
+                    pixelOffset: {
+
+                        width: 0,
+                        height: -35
+                    }
+                },
+
                 center: { lat: 0.0, lng: 0.0 },
                 bounds: {},
                 zoom: 2,
@@ -52,11 +78,25 @@
         },
         methods: {
 
-            toggleInfoWindow( location, idx ) {
+            toggleInfoWindow( location, clicked_index ) {
 
-                console.log( location );
+                // If the current marker is clicked, toggle the window
+                if( this.marker_index == clicked_index ) {
 
-                this.$refs.infoWindow.toggle( location, idx );
+                    this.opened = ! this.opened;
+                }
+                // Different marker clicked
+                else {
+
+                    this.opened = false;
+                    this.content = "<div style=\"padding-right: 10px; font-size: 1.1rem;\">" + location.city_state_country + "</div>";
+                    this.position = { lat: location.latitude, lng: location.longitude };
+                    this.marker_index = clicked_index;
+
+                    // Opening the info window is how gmaps pulls the window into view.
+                    // The delay is being used to trigger this. Maybe there is a better way?
+                    setTimeout(() => { this.opened = true; }, 10);
+                }
             },
 
             initBounds() {
