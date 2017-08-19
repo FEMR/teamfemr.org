@@ -7,6 +7,29 @@ use FEMR\Data\Models\OutreachProgram;
 class OutreachProgramController extends Controller
 {
     /**
+     * 
+     */
+    public function index()
+    {
+        $programs = OutreachProgram::orderBy( 'name' )
+                        ->with([
+                                  'medias',
+                                  'contacts',
+                                  'schoolClasses',
+                                  'visitedLocations' => function( $query )
+                                  {
+                                      $query->orderBy( 'country' );
+                                  },
+                                  'fields',
+                                  'papers',
+                                  'partnerOrganizations'
+                              ])
+                       ->get();
+        
+        return view( 'programs.index', [ 'programs' => $programs ]);
+    }
+
+    /**
      * @param $program_slug
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

@@ -6,6 +6,8 @@
         <section class="section">
             <div class="container">
 
+                <p class="back-button"><a class="button is-link" href="{{ route( 'programs.index' ) }}">&laquo; All Surveyed Programs</a></p>
+
                 <h1 class="title">{!! str_ireplace( '-', '- <br />', $program->name ) !!}</h1>
 
                 <hr />
@@ -24,9 +26,6 @@
                                 <p class="countries"><strong>Countries</strong>: {{ $program->visitedLocations->pluck( 'country' )->unique()->implode( ', ' ) }}</p>
 
                                 <program-map program-id="{{ $program->id }}"></program-map>
-
-                                <a class="button femr-button" href="/#map">View other programs</a>
-                                {{--<all-programs-modal></all-programs-modal>--}}
 
                             </div>
 
