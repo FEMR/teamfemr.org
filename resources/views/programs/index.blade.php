@@ -77,3 +77,9 @@
     </div>
 
 @endsection
+
+@section('below-content')
+    <div id="map">
+        <femr-map></femr-map>
+    </div>
+@endsection
