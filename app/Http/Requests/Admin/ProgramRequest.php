@@ -27,7 +27,7 @@
                 'school_id'                    => 'sometimes|min:1|exists:schools,id',
                 'name'                         => 'required|string',
                 'slug'                         => 'sometimes|string',
-                'year_initiated'               => 'sometimes|numeric|min:1800',
+                'year_initiated'               => 'sometimes|string',
                 'yearly_outreach_participants' => 'sometimes|string',
                 'matriculants_per_class'       => 'sometimes|string',
                 'months_of_travel'             => 'sometimes|string',

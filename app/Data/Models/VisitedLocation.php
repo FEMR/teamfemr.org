@@ -86,6 +86,16 @@ class VisitedLocation extends Model
     ];
 
     /**
+     * The attributes to append when returning json
+     *
+     * @var array
+     */
+    protected $appends = [
+
+      'city_state_country'
+    ];
+
+    /**
      * @param $start_date
      */
     public function setStartDateAttribute( $start_date )
@@ -113,6 +123,30 @@ class VisitedLocation extends Model
 
             $this->attributes['end_date'] = $start_date;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getCityCountryAttribute(){
+
+        $text = '';
+
+        // locality
+        if( $this->locality ){
+
+            $text .= $this->locality;
+        }
+
+        // country
+        if( $this->country ){
+
+            if( strlen( $text ) > 0 ) $text .= ', ';
+
+            $text .= $this->country;
+        }
+
+        return $text;
     }
 
     /**

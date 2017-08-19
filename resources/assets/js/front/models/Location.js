@@ -5,6 +5,7 @@ class Location {
         this.city ='';
         this.state = '';
         this.country = '';
+        this.city_country = '';
     }
 }
 

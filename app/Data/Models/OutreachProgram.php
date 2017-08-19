@@ -44,7 +44,7 @@ class OutreachProgram extends Model
     protected $casts = [
         'name'                         => 'string',
         'slug'                         => 'string',
-        'year_initiated'               => 'integer',
+        'year_initiated'               => 'string',
         'yearly_outreach_participants' => 'string',
         'matriculants_per_class'       => 'string',
         'months_of_travel'             => 'string',
@@ -71,12 +71,13 @@ class OutreachProgram extends Model
      */
     public static $default_fields = [
 
+        'other_participating_schools' => 'Other participating professional schools:',
         'faculty-and-staffing'   => 'Faculty and staffing:',
         'application-process'    => 'Application process:',
-        'program-elements'       => 'Program Elements:',
-        'financial-support'      => 'Financial Support:',
-        'faculty-time-alotted'   => 'Faculty Time Allotted:',
-        'administrative-support' => 'Administrative Support:'
+        'program-elements'       => 'Program elements:',
+        'financial-support'      => 'Financial support:',
+        'faculty-time-alotted'   => 'Faculty time allotted:',
+        'administrative-support' => 'Administrative support:'
     ];
 
     /**
