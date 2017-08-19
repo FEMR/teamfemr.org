@@ -1,6 +1,12 @@
 <template>
     <div class="map-container">
+        <!--<div class="header">-->
 
+            <!--<h2 class="title">Programs participating in International Medical Outreach</h2>-->
+
+            <!--<p>We are gathering data from programs...See the map below for some of the locations visited by the programs that participated in our survey</p>-->
+
+        <!--</div>-->
         <!--<div class="search">-->
 
             <!--<p>Search stuff will go here</p>-->
@@ -85,7 +91,7 @@
 
             getLocations() {
 
-                axios.get( 'api/locations' )
+                axios.get( '/api/locations' )
                         .then( ( response ) => {
 
                             _.forEach( response.data, ( location ) => {
@@ -99,7 +105,7 @@
                         .catch( ( error ) => { console.log(error); });
             }
         },
-        mounted() {
+        created() {
 
             VueGoogleMaps.loaded.then( () => {
 

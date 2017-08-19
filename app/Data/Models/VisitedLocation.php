@@ -116,6 +116,38 @@ class VisitedLocation extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getCityStateCountryAttribute(){
+
+        $text = '';
+
+        // locality
+        if( $this->locality ){
+
+            $text .= $this->locality;
+        }
+
+        // administrative_area_level_1 (state)
+        if( $this->administrative_area_level_1 ){
+
+            if( strlen( $text ) > 0 ) $text .= ', ';
+
+            $text .= $this->administrative_area_level_1;
+        }
+
+        // country
+        if( $this->country ){
+
+            if( strlen( $text ) > 0 ) $text .= ' ';
+
+            $text .= $this->country;
+        }
+
+        return $text;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function outreachProgram()

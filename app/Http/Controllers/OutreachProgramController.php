@@ -19,7 +19,10 @@ class OutreachProgramController extends Controller
                             'medias',
                             'contacts',
                             'schoolClasses',
-                            'visitedLocations',
+                            'visitedLocations' => function( $query )
+                                {
+                                    $query->orderBy( 'country' );
+                                },
                             'fields',
                             'papers',
                             'partnerOrganizations'
