@@ -1,17 +1,5 @@
 <template>
     <div class="map-container">
-        <!--<div class="header">-->
-
-            <!--<h2 class="title">Programs participating in International Medical Outreach</h2>-->
-
-            <!--<p>We are gathering data from programs...See the map below for some of the locations visited by the programs that participated in our survey</p>-->
-
-        <!--</div>-->
-        <!--<div class="search">-->
-
-            <!--<p>Search stuff will go here</p>-->
-
-        <!--</div>-->
         <gmap-map
                 ref="gmap"
                 :center="center"
@@ -23,8 +11,8 @@
                 <femr-info-window ref="infoWindow"></femr-info-window>
                 <gmap-marker
                         :key="index"
-                        v-for="(m, index) in locations"
-                        :position="{ lat: m.latitude, lng: m.longitude }"
+                        v-for="(m, index) in groupedLocations"
+                        :position="{ lat: m[0].latitude, lng: m[0].longitude }"
                         :clickable="true"
                         :draggable="false"
                         @click="toggleInfoWindow(m,index)"
@@ -59,13 +47,24 @@
                 locations: []
             }
         },
+        computed: {
+
+          groupedLocations: function(){
+
+            return _.groupBy( this.locations, ( location ) => {
+
+               return location.latitude + ', ' + location.longitude;
+            });
+          }
+
+        },
         methods: {
 
-            toggleInfoWindow( location, idx ) {
+            toggleInfoWindow( locations, idx ) {
 
-                console.log( location );
+                console.log( locations );
 
-                this.$refs.infoWindow.toggle( location, idx );
+                this.$refs.infoWindow.toggle( locations, idx );
             },
 
             initBounds() {
@@ -100,7 +99,7 @@
                                 this.extendBounds( location );
                             });
 
-                            console.log( response.data );
+                            //console.log( this.groupedLocations );
                         })
                         .catch( ( error ) => { console.log(error); });
             }
