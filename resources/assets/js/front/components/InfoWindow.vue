@@ -8,42 +8,54 @@
 
         <div :class="{ 'map-info-window': true, 'has-multiple': outreachPrograms.length > 1 }">
 
-            <div class="location" v-for="program in outreachPrograms">
-
-                <p
+            <div
+                class="program-nav"
+                v-if="outreachPrograms.length > 1 && navIsVisible"
+            >
+                <a
+                    href="#"
                     class="name"
-                    @click="showProgram( program )"
+                    v-for="program in outreachPrograms"
+                    @click.prevent="showProgram( program )"
                 >
+                    {{ program.name }} &raquo;
+                </a>
+            </div>
 
-                    <span
-                        class="icon is-small"
-                        v-if="outreachPrograms.length > 1"
-                    >
-                      <i :class="{ fa: true, 'fa-plus-square': !program.isVisible, 'fa-minus-square': program.isVisible }"></i>
-                    </span>
+            <div
+                class="location"
+                v-if="outreachPrograms.length === 1 || program.isVisible"
+                v-for="program in outreachPrograms"
+            >
 
+                <a
+                    href="#"
+                    class="back-button"
+                    @click.prevent="showNav()"
+                    v-if="outreachPrograms.length > 1"
+                >&laquo; Back</a>
+
+                <p class="name">
                     <a :href="program.programPageUrl()">
                         {{ program.name }}
                     </a>
                 </p>
 
-                <div class="program-info" v-if="outreachPrograms.length === 1 || program.isVisible">
+                <p class="city_state_country">
+                    <span>{{ program.location.city_state_country }}</span>
+                </p>
+                <p v-if="program.datesOfTravel.length"><strong>Dates of travel:</strong> {{ program.datesOfTravel }}</p>
+                <p v-if="program.schoolClasses.length"><strong>Class Involvement:</strong> {{ program.schoolClasses.join( ', ' ) }}</p>
+                <p v-if="program.partners.length"><strong>Partners:</strong> {{ program.partners.join( ', ' ) }}</p>
 
-                    <p class="city_state_country">
-                        <span>{{ program.location.city_state_country }}</span>
-                    </p>
-                    <p v-if="program.datesOfTravel.length"><strong>Dates of travel:</strong> {{ program.datesOfTravel }}</p>
-                    <p v-if="program.schoolClasses.length"><strong>Class Involvement:</strong> {{ program.schoolClasses.join( ', ' ) }}</p>
-                    <p v-if="program.partners.length"><strong>Partners:</strong> {{ program.partners.join( ', ' ) }}</p>
+                <p>
+                    <a :href="program.programPageUrl()" class="button femr-button">
+                        More Info &raquo;
+                    </a>
+                </p>
 
-                    <p>
-                        <a :href="program.programPageUrl()" class="button femr-button">
-                            More Info &raquo;
-                        </a>
-                    </p>
-
-                </div>
              </div>
+
         </div>
 
     </gmap-info-window>
@@ -61,6 +73,8 @@
 
                 // multiple programs can have a pin in the same location
                 outreachPrograms: [],
+
+                navIsVisible: true,
 
                 opened: false,
                 content: '',
@@ -139,6 +153,7 @@
                 if( program.isVisible ){
 
                     program.isVisible = false;
+                    this.navIsVisible = true;
                     return;
                 }
 
@@ -150,8 +165,17 @@
 
                 // open the chosen program
                 program.isVisible = true;
+                this.navIsVisible = false;
+            },
 
-                console.log( program );
+            showNav(){
+
+                // Close other open programs
+                _.forEach( this.outreachPrograms, ( p ) => {
+
+                    p.isVisible = false;
+                });
+                this.navIsVisible = true;
             }
         }
     }
@@ -193,47 +217,36 @@
         max-width: 300px;
         font-weight: bold;
         margin-bottom: 10px;
-        color: #2f2f2f;
+        color: #a1060f;
         font-size: 1.1rem;
         line-height: 1.3;
     }
 
-    .map-info-window.has-multiple{
-
-        max-width: 350px;
-    }
-
-    .map-info-window.has-multiple .location{
-
-        padding: 5px;
-        border: 1px solid #cccccc;
-        background-color: #efefef;
-
-        margin-bottom: 3px;
-    }
-
-    .map-info-window.has-multiple .name{
-
-        font-size: .9rem;
-        margin-bottom: 0;
-        background-color: #efefef;
-
-        cursor: pointer;
+    .map-info-window .program-nav{
 
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
-    .map-info-window.has-multiple .name .icon{
+    .map-info-window .program-nav a{
 
-        margin: 0 20px 0 10px;
+        cursor: pointer;
+        font-size: .9rem;
+        margin: 10px 0;
     }
 
+    .map-info-window.has-multiple{
 
-    .map-info-window.has-multiple .city_state_country{
+    }
 
-        margin-top: 15px;
+    .map-info-window.has-multiple .back-button{
+
+        display: block;
+        margin: 15px 0;
+        color: #3f3f3f;
+        font-size: 1rem;
     }
 
 </style>
