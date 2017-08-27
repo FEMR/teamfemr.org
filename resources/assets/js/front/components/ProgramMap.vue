@@ -74,7 +74,7 @@
 
                 center: { lat: 0.0, lng: 0.0 },
                 bounds: {},
-                zoom: 2,
+                zoom: 7,
                 locations: []
             }
         },
@@ -108,9 +108,16 @@
 
             fitBounds() {
 
-                if( ! _.isEmpty( this.bounds ) ) {
+                console.log( this.locations.length );
+
+                if( ! _.isEmpty( this.bounds ) && this.locations.length > 1 ) {
 
                     this.$refs.gmap.fitBounds( this.bounds );
+                }
+                else if( this.locations.length > 0 ) {
+
+                    console.log( "Single Location" );
+                    this.center = new google.maps.LatLng( this.locations[0].latitude, this.locations[0].longitude );
                 }
             },
 
@@ -118,8 +125,6 @@
 
                 let latLng = new google.maps.LatLng( location.latitude, location.longitude );
                 this.bounds.extend( latLng );
-
-                this.fitBounds();
             },
 
             getLocations() {
@@ -133,6 +138,7 @@
                                 this.extendBounds( location );
                             });
 
+                            this.fitBounds();
                         })
                         .catch( ( error ) => { console.log(error); });
             }
