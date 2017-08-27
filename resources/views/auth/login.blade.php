@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', [ 'content_wrapper_class' => 'login-wrapper' ])
 
 @section('content')
 
@@ -43,15 +43,19 @@
                                     </p>
                                 </div>
 
-                                <div class="field is-grouped">
+                                <div class="field is-grouped button-container">
 
                                     <p class="control">
                                         <button class="button is-primary">Submit</button>
                                     </p>
 
                                     <p class="control is-expanded forgot-password">
-                                        <a href="{{ url('/password/reset') }}">
+                                        <a href="{{ route( 'password.request' ) }}">
                                             Forgot password
+                                        </a>
+                                        <span class="sep">|</span>
+                                        <a href="{{ route('register') }}">
+                                            Register
                                         </a>
                                     </p>
 

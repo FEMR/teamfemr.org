@@ -32,7 +32,7 @@
                                 </div>
                                 @include('auth.components.form-errors', ['field' => 'email', 'type' => 'horizontal'])
 
-                                <div class="control is-horizontal">
+                                <div class="control is-horizontal button-container">
                                     <div class="control-label">
                                         <!-- spacer -->
                                     </div>

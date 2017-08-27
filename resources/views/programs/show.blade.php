@@ -1,4 +1,4 @@
-@extends( 'layouts.app' )
+@extends( 'layouts.app', [ 'content_wrapper_class' => 'has-top-spacing' ] )
 
 @section( 'content' )
     <div class="outreach-program">

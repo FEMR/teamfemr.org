@@ -25,7 +25,7 @@ class OutreachProgramController extends Controller
                                   'partnerOrganizations'
                               ])
                        ->get();
-        
+
         return view( 'programs.index', [ 'programs' => $programs ]);
     }
 
@@ -43,9 +43,9 @@ class OutreachProgramController extends Controller
                             'contacts',
                             'schoolClasses',
                             'visitedLocations' => function( $query )
-                                {
-                                    $query->orderBy( 'country' );
-                                },
+                            {
+                                $query->orderBy( 'country' );
+                            },
                             'fields',
                             'papers',
                             'partnerOrganizations'

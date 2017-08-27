@@ -1,7 +1,7 @@
 body{
 
     // 75px for main nav + 40 top bar
-    margin-top: 115px;
+    //margin-top: 115px;
 }
 
 .main-nav {
@@ -31,6 +31,13 @@ body{
 
     .nav-item{
 
+        text-align: left;
+
+        br {
+
+            display: none;
+        }
+
         .donate-paypal{
 
             margin-left: auto;
@@ -54,8 +61,8 @@ body{
 
     body{
 
-        // 5.5rem for main nav + 2.5rem top bar
-        margin-top: 150px;
+        // 90x for main nav + 40px top bar
+        //margin-top: 130px;
 
     }
 
@@ -110,9 +117,50 @@ body{
     }
 }
 
+@media only screen and ( min-width: $tablet ){
+
+    .main-nav {
+
+        .logo{
+
+            img{
+
+                height: 3rem;
+            }
+        }
+
+        .nav-item{
+
+            margin: 0 3px;
+            text-align: center;
+
+            br{
+
+                display: block;
+            }
+        }
+
+        .donate-paypal .donate-button{
+
+            font-size: .8rem;
+            height: 2.25rem;
+            padding-left: .75rem;
+            padding-right: .75rem;
+        }
+    }
+}
+
 @media only screen and ( min-width: 900px ){
 
     .main-nav {
+
+        .logo{
+
+            img{
+
+                height: 3.75rem;
+            }
+        }
 
         .nav-item a,
         a.nav-item{
@@ -121,12 +169,12 @@ body{
             padding: 0.5rem 0.75rem;
         }
 
-        .nav-item{
+        .donate-paypal .donate-button{
 
-            .donate-paypal{
-
-                margin-left: 25px;
-            }
+            font-size: .9rem;
+            height: 2.75rem;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
         }
     }
 }

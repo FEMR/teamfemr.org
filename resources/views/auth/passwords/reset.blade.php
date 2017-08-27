@@ -53,7 +53,7 @@
                                 </div>
                                 @include('auth.components.form-errors', ['field' => 'password-confirm', 'type' => 'horizontal'])
 
-                                <div class="control is-horizontal">
+                                <div class="control is-horizontal button-container">
                                     <div class="control-label">
                                         <!-- spacer -->
                                     </div>

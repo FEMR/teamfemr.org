@@ -6,6 +6,21 @@ $control-radius: 0;
     border-radius: 0;
 }
 
+.logout-button{
+
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    cursor: pointer;
+
+    &:hover{
+
+        text-decoration: underline;
+    }
+}
+
 .femr-button{
 
     background-color: $femrRed;

@@ -1,0 +1,60 @@
+.outreach-program {
+
+    .table {
+
+        th, td {
+
+            &.tablet-only {
+
+                display: none;
+            }
+        }
+    }
+}
+
+@media only screen and ( min-width: $tablet - 1 ) {
+
+    .outreach-program {
+
+        .table {
+
+            th, td {
+                font-size: 0.85rem;
+
+                &.tablet-only {
+
+                    display: table-cell;
+                }
+            }
+
+            .dropdown-menu {
+
+                width: 12rem;
+                left: -10rem;
+
+                &.partners{
+
+                    width: 15rem;
+                    left: -12rem;
+                }
+
+                ul {
+
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+
+                    li{
+
+                        margin-bottom: 0.75rem;
+
+                        &:last-child{
+
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

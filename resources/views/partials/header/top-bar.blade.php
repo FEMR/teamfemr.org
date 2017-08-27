@@ -41,11 +41,30 @@
             </a>
 
             @if( Auth::check() )
-                <span class="nav-item">
 
-                  <a  class="button is-info is-small" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>
+                {{--@if( Auth::user()->is_admin )--}}
+                {{--<span class="nav-item">--}}
+                  {{--<a  class="button is-info is-small" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>--}}
+                {{--</span>--}}
+                {{--@endif--}}
 
+                <span class="nav-item is-hidden-mobile logged-in-status">
+                    Welcome {{ Auth::user()->name }}
+                    |
+                    {!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}
+                        <button class="logout-button" href="{{ url('/logout') }}">Logout</button>
+                    {!! Form::close() !!}
                 </span>
+
+            @else
+                <a class="nav-item is-hidden-mobile" href="{{ route( 'register' ) }}">
+                    Register
+                </a>
+
+                <a class="nav-item is-hidden-mobile" href="{{ route( 'login' ) }}">
+                    Login
+                </a>
+
             @endif
 
         </div>

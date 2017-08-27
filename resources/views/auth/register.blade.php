@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', [ 'content_wrapper_class' => 'login-wrapper' ])
 
 @section('content')
 
@@ -8,11 +8,18 @@
             <div class="card ">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Register
+                        Sign Up
                     </p>
                 </header>
                 <div class="card-content">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+
+                    <p>Registering for an account will give you access to the advanced features of the site.</p>
+                    <ul>
+                        <li>View contact information</li>
+                        <li>Update your program's existing survey (coming soon)</li>
+                    </ul>
+
+                    <form class="login-form register-form" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
                         <div class="content">
@@ -49,11 +56,18 @@
                             </div>
                             @include('auth.components.form-errors', ['field' => 'password-confirm', 'type' => 'horizontal'])
 
-                            <div class="field">
+                            <div class="field is-grouped button-container">
 
                                 <p class="control">
                                     <button class="button is-primary">Register</button>
                                 </p>
+
+                                <p class="control is-expanded forgot-password">
+                                    <a href="{{ route( 'login' ) }}">
+                                        Already have an account?
+                                    </a>
+                                </p>
+
                             </div>
 
                         </div>

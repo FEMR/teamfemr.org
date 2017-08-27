@@ -16,15 +16,20 @@
     <body>
 
         <div id="app">
+
             @include( 'partials.header' )
 
-            @yield( 'hero' )
+            <div class="stretch-content {{ isset( $content_wrapper_class ) ? $content_wrapper_class : '' }}">
 
-            @yield('above-content')
+                @yield( 'hero' )
 
-            @yield('content')
+                @yield('above-content')
 
-            @yield('below-content')
+                @yield('content')
+
+                @yield('below-content')
+
+            </div>
 
             @include( 'partials.footer' )
         </div>
