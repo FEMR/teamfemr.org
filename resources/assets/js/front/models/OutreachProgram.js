@@ -14,12 +14,9 @@ class OutreachProgram {
         this.location = new Location();
         this.name = '';
         this.slug = '';
-
-        this.yearInitiated = '';
-        this.yearlyOutreachParticipants = '';
-        this.matriculantsPerClass = '';
-
+        this.datesOfTravel = '';
         this.schoolClasses = [];
+        this.partners = [];
     }
 
     /**
@@ -36,13 +33,16 @@ class OutreachProgram {
         this.name = location.outreach_program.name;
         this.slug = location.outreach_program.slug;
 
-        this.yearInitiated = location.outreach_program.year_initiated;
-        this.yearlyOutreachParticipants = location.outreach_program.yearly_outreach_participants;
-        this.matriculantsPerClass = location.outreach_program.matriculants_per_class;
+        this.datesOfTravel = location.outreach_program.months_of_travel;
 
-        _.forEach( location.outreach_program.school_classes, (school_class ) => {
+        _.forEach( location.outreach_program.school_classes, ( school_class ) => {
 
-           this.schoolClasses.push( school_class.name );
+            this.schoolClasses.push( school_class.name );
+        });
+
+        _.forEach( location.outreach_program.partner_organizations, ( partner ) => {
+
+            this.partners.push( partner.name );
         });
 
         //this.school.name = location.outreach_program.school.name;

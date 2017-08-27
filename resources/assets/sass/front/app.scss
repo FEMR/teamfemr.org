@@ -61,6 +61,41 @@ h4.title {
     }
 }
 
+body, html {
+
+    min-height: 100vh;
+}
+
+body{
+    overflow: auto;
+}
+
+#app{
+
+    // 75px for main nav + 40 top bar
+    padding-top: 115px;
+    min-height: 100vh;
+
+    @media only screen and ( min-width: $desktop ) {
+
+        // 90x for main nav + 40px top bar
+        padding-top: 130px;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    .stretch-content{
+
+        flex: 1;
+
+        &.has-top-spacing{
+
+            padding-top: 15px;
+        }
+    }
+}
+
 @import "buttons";
 
 @import "components/header/top-bar";

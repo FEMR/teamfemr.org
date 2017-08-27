@@ -1,4 +1,4 @@
-@extends( 'layouts.app' )
+@extends( 'layouts.app', [ 'content_wrapper_class' => 'has-top-spacing' ] )
 
 @section( 'content' )
     <div class="outreach-program">
@@ -6,19 +6,21 @@
         <section class="section">
             <div class="container">
 
-                <h1 class="title">Surveyed Outreach Programs</h1>
+                <h1 class="title">International Medical Outreach Programs</h1>
 
-                <p>Add some text here that talks about how these programs were surveyed -- writing is not my strong suit</p>
+                <hr />
 
                 <div class="content">
 
-                    <table class="table is-striped">
+                    <h3>University Programs</h3>
+                    <table class="table is-bordered">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Yearly Participants</th>
-                                <th>Months of Travel</th>
-                                <th>Visited Locations</th>
+                                <th class="tablet-only">Months of Travel</th>
+                                <th class="tablet-only">Class Involvement</th>
+                                <th class="tablet-only">Visited Locations</th>
+                                <th class="tablet-only">Partners</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -31,9 +33,9 @@
                                         {!! str_ireplace( '-', '- <br />', $program->name ) !!}
                                     </a>
                                 </td>
-                                <td>{{ $program->yearly_outreach_participants }}</td>
-                                <td>{{ $program->months_of_travel }}</td>
-                                <td>
+                                <td class="tablet-only">{{ $program->months_of_travel }}</td>
+                                <td class="tablet-only">{{ $program->schoolClasses->pluck( 'name' )->implode( ', ' ) }}</td>
+                                <td class="tablet-only">
 
                                     @if( $program->visitedLocations->count() )
                                     <div class="dropdown is-hoverable">
@@ -53,9 +55,34 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @else
-                                        0
                                     @endif
+                                </td>
+                                <td class="tablet-only">
+
+                                    @if( $program->partnerOrganizations->count() )
+                                        <div class="dropdown is-hoverable">
+                                            <div class="dropdown-trigger">
+                                                <a class="" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                                    <span>{{ $program->partnerOrganizations->count() }}</span>
+                                                    <span class="icon is-small">
+                                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                </span>
+                                                </a>
+                                            </div>
+                                            <div class="dropdown-menu partners" id="dropdown-menu4" role="menu">
+                                                <div class="dropdown-content">
+                                                    <div class="dropdown-item">
+                                                        <ul>
+                                                            @foreach( $program->partnerOrganizations as $partner )
+                                                                <li>{{ $partner->name }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
                                 </td>
                                 <td>
                                     <a href="{{ route( 'programs.show', [ $program->slug ] ) }}" class="button is-info is-small">

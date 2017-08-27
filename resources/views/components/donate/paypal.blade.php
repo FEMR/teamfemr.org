@@ -6,9 +6,9 @@
 
 
         <button type="submit" class="button femr-button donate-button">
-            <span class="icon is-small">
-              <i class="fa fa-paypal"></i>
-            </span>
+            {{--<span class="icon is-small">--}}
+              {{--<i class="fa fa-paypal"></i>--}}
+            {{--</span>--}}
             <span>Donate Now</span>
         </button>
 

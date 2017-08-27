@@ -15,6 +15,6 @@
 
 @section('section-content')
 
-    <a href="{{ route( 'admin.programs.all' ) }}" class="button is-primary">Outreach Programs</a>
+    <a href="{{ route( 'admin.programs.index' ) }}" class="button is-primary">Outreach Programs</a>
 
 @endsection

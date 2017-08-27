@@ -16,6 +16,15 @@
                             More importantly, we are volunteers. Our mission is to help to provide the best healthcare possible to people who are often without access to life's basic necessities.
                         </p>
 
+                        <p>&nbsp;</p>
+
+                        <p>
+                            <a class="button femr-button" href="{{ asset('/documents/Annual_Report_2014_2015.pdf') }}" target="_blank">
+                                2015 Annual Report
+                            </a>
+                        </p>
+
+
                     </div>
 
                 </div>

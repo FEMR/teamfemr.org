@@ -15,9 +15,9 @@
             <p class="city_state_country">
                 <span>{{ outreachProgram.location.city_state_country }}</span>
             </p>
-            <p><strong>Yearly Participants:</strong> {{ outreachProgram.yearlyOutreachParticipants }}</p>
-            <p><strong>Matriculants/Class:</strong> {{ outreachProgram.matriculantsPerClass }}</p>
-            <p><strong>Year Initiated:</strong> {{ outreachProgram.yearInitiated }}</p>
+            <p v-if="outreachProgram.datesOfTravel.length"><strong>Dates of travel:</strong> {{ outreachProgram.datesOfTravel }}</p>
+            <p v-if="outreachProgram.schoolClasses.length"><strong>Class Involvement:</strong> {{ outreachProgram.schoolClasses.join( ', ' ) }}</p>
+            <p v-if="outreachProgram.partners.length"><strong>Partners:</strong> {{ outreachProgram.partners.join( ', ' ) }}</p>
             <p>
                 <a :href="programPageUrl" class="button femr-button">
                     More Info &raquo;
@@ -62,6 +62,7 @@
         },
         computed: {
 
+            // TODO -- move this to the model
             programPageUrl() {
 
                 if( this.outreachProgram ) {
@@ -80,10 +81,10 @@
 
                 // TODO -- keep the outreachProgram objects cached in memory? -- is it worth it?
                 this.outreachProgram.populateFromLocation(location);
-
+                console.log( this.outreachProgram );
 
                 // If the current marker is clicked, toggle the window
-                if( this.marker_index == clicked_index ) {
+                if( this.marker_index === clicked_index ) {
 
                     this.opened = ! this.opened;
                 }

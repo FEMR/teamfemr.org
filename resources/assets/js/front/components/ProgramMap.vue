@@ -1,5 +1,5 @@
 <template>
-    <div class="map-container">
+    <div class="program-map-container">
 
         <gmap-map
                 ref="gmap"
@@ -63,6 +63,8 @@
                 // https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
                 options: {
 
+                    minZoom: 5,
+                    maxZoom: 15,
                     pixelOffset: {
 
                         width: 0,
@@ -81,7 +83,7 @@
             toggleInfoWindow( location, clicked_index ) {
 
                 // If the current marker is clicked, toggle the window
-                if( this.marker_index == clicked_index ) {
+                if( this.marker_index === clicked_index ) {
 
                     this.opened = ! this.opened;
                 }
@@ -154,8 +156,23 @@
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
+    .program-map-container{
 
+        margin-top: 25px;
+        width: 100%;
+        padding-top: 60%;
+        position: relative;
+
+        .map{
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
 
 </style>
