@@ -17,6 +17,7 @@ class OutreachProgram {
         this.datesOfTravel = '';
         this.schoolClasses = [];
         this.partners = [];
+        this.isVisible = false;
     }
 
     /**
@@ -52,7 +53,19 @@ class OutreachProgram {
         this.location.state = location.administrative_area_level_1;
         this.location.country = location.country;
     }
-    
+
+    /**
+     *
+     * @returns {*}
+     */
+    programPageUrl() {
+
+        if( this.slug.length > 0 ) {
+
+            return '/programs/' + this.slug;
+        }
+        else return '#';
+    }
 }
 
 export default OutreachProgram;
