@@ -50,7 +50,7 @@
                                         {!! nl2br( $program->getAdditionalFieldValue( $key ) ) !!}
                                     </p>
                                     @else
-                                    ---
+                                    <p>---</p>
                                     @endif
 
                                 </div>
