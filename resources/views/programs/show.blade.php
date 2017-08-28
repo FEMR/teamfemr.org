@@ -40,17 +40,20 @@
                             <p class="stat classes"><strong>Medical School Involvement:</strong> {{ $program->schoolClasses->pluck( 'name' )->implode( ', ' ) }}</p>
 
                             <div class="other-fields">
+
                                 @foreach( \FEMR\Data\Models\OutreachProgram::$default_fields as $key => $title )
+                                <div class="field">
+
+                                    <p class="field-title"><strong>{{ $title }}</strong></p>
                                     @if( $program->getAdditionalFieldValue( $key ) )
-                                    <div class="field">
-
-                                        <p class="field-title"><strong>{{ $title }}</strong></p>
-                                        <p>
-                                            {!! nl2br( $program->getAdditionalFieldValue( $key ) ) !!}
-                                        </p>
-
-                                    </div>
+                                    <p>
+                                        {!! nl2br( $program->getAdditionalFieldValue( $key ) ) !!}
+                                    </p>
+                                    @else
+                                    ---
                                     @endif
+
+                                </div>
                                 @endforeach
                             </div>
 
@@ -61,59 +64,64 @@
 
                     <div class="columns info-columns">
 
-                        @if( $program->papers->count() )
+
                         <div class="column">
 
                             <div class="papers">
 
                                 <h4>Papers</h4>
-                                <ul>
-
-                                    @foreach( $program->papers as $paper )
+                                    @if( $program->papers->count() )
+                                    <ul>
+                                        @foreach( $program->papers as $paper )
                                         <li>
                                             <a href="{{ $paper->url }}">
                                                 {{ $paper->title }}
                                             </a>
                                         </li>
-                                    @endforeach
-                                </ul>
+                                        @endforeach
+                                    </ul>
+                                    @else
+                                    ---
+                                    @endif
 
                             </div>
 
                         </div>
-                        @endif
 
-                        @if( $program->contacts->count() )
+
                         <div class="column">
 
                             <div class="contacts">
 
                                 <h4>Contacts</h4>
 
+                                @if( $program->contacts->count() )
                                 <ul>
                                     @foreach( $program->contacts as $contact )
-                                        <li>
-                                            <span class="name">{{ $contact->first_name }} {{ $contact->last_name }}</span>
+                                    <li>
+                                        <span class="name">{{ $contact->first_name }} {{ $contact->last_name }}</span>
 
-                                            @if( \Auth::check() )
-                                            <span class="email">{{ $contact->email }}</span>
-                                            <span class="phone">{{ $contact->phone }}</span>
-                                            @else
-                                            <span class="email">
-                                                <a href="/login">Login for contact info</a>
-                                            </span>
-                                            @endif
+                                        @if( \Auth::check() )
+                                        <span class="email">{{ $contact->email }}</span>
+                                        <span class="phone">{{ $contact->phone }}</span>
+                                        @else
+                                        <span class="email">
+                                            <a href="/login">Login for contact info</a>
+                                        </span>
+                                        @endif
 
-                                        </li>
+                                    </li>
                                     @endforeach
                                 </ul>
+                                @else
+                                ---
+                                @endif
 
                             </div>
 
                         </div>
-                        @endif
 
-                        @if( $program->partnerOrganizations->count() )
+
                         <div class="column">
 
                             <div class="partners">
@@ -121,6 +129,8 @@
                                 <h4>Partner Organizations</h4>
 
                                 <ul>
+                                @if( $program->partnerOrganizations->count() )
+
                                     @foreach( $program->partnerOrganizations as $partner )
                                         <li>
                                             <td>
@@ -137,12 +147,15 @@
                                             </td>
                                         </li>
                                     @endforeach
+
+                                @else
+                                ---
+                                @endif
                                 </ul>
 
                             </div>
 
                         </div>
-                        @endif
 
                     </div>
 
