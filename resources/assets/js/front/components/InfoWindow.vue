@@ -44,9 +44,9 @@
                 <p class="city_state_country">
                     <span>{{ program.location.city_state_country }}</span>
                 </p>
-                <p v-if="program.datesOfTravel.length"><strong>Dates of travel:</strong> {{ program.datesOfTravel }}</p>
-                <p v-if="program.schoolClasses.length"><strong>Class Involvement:</strong> {{ program.schoolClasses.join( ', ' ) }}</p>
-                <p v-if="program.partners.length"><strong>Partners:</strong> {{ program.partners.join( ', ' ) }}</p>
+                <p><strong>Dates of travel:</strong> {{ program.datesOfTravel }}</p>
+                <p><strong>Class Involvement:</strong> {{ program.schoolClasses.join( ', ' ) }}</p>
+                <p><strong>Partners:</strong> {{ program.partners.join( ', ' ) }}</p>
 
                 <p>
                     <a :href="program.programPageUrl()" class="button femr-button">
@@ -122,6 +122,13 @@
 
                     this.outreachPrograms.push( outreachProgram );
                 });
+
+                // make sure the nav is visible from prior states
+                if( this.outreachPrograms.length > 1 ) {
+
+                    this.navIsVisible = true;
+                }
+
 
                 let firstLocation = locations[0];
 
