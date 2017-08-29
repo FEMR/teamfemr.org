@@ -27,8 +27,11 @@
 
 <script type="text/babel">
 
-    import * as VueGoogleMaps from 'vue2-google-maps';
+    import store from 'store';
+    import expirePlugin from 'store/plugins/expire';
+    store.addPlugin(expirePlugin);
 
+    import * as VueGoogleMaps from 'vue2-google-maps';
     import InfoWindow from './InfoWindow';
 
     export default {
@@ -90,18 +93,35 @@
 
             getLocations() {
 
-                axios.get( '/api/locations' )
-                        .then( ( response ) => {
+                //
+                let cachedLocations = store.get( 'FEMR.locations' );
 
-                            _.forEach( response.data, ( location ) => {
+                if( cachedLocations ) {
 
-                                this.locations.push( location );
-                                this.extendBounds( location );
+                    console.log( "loaded from cache" );
+                    this.locations = cachedLocations;
+                }
+                // If no previous locations, get from aPI
+                else {
+
+                    axios.get('/api/locations')
+                        .then((response) => {
+
+                            _.forEach(response.data, (location) => {
+
+                                this.locations.push(location);
+                                this.extendBounds(location);
                             });
+
+                            // put the locations in local storage
+                            store.set('FEMR.locations', this.locations, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */);
 
                             //console.log( this.groupedLocations );
                         })
-                        .catch( ( error ) => { console.log(error); });
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
             }
         },
         created() {
