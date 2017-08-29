@@ -98,6 +98,36 @@
 
                 </div>
 
+
+                <div class="content" style="margin-top: 4rem;">
+
+                    <h2>How can I list my program here?</h2>
+
+                    <p>To add additional programs, please copy and paste the template below and email it to <a href="mailto:info@teamfemr.org">info@teamfemr.org</a></p>
+
+<copy-to-clipboard>
+Name of School + Title of Program:
+Initiated:
+Total number of matriculants per class:
+Medical school student class involvement (M1, M2, M3, M4):
+Other participating professional schools:
+Total participants in global health outreach per year:
+Locations visited [City/Village, Country]:
+Month(s) of travel:
+NGO/Partner organizations:
+Faculty and staffing:
+Application process:
+Program Elements:
+Financial Support:
+Faculty Time Allotted:
+Administrative Support:
+Contact Information:
+Recent papers:
+EMR used?:
+</copy-to-clipboard>
+
+                </div>
+
             </div>
         </section>
 

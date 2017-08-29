@@ -23,6 +23,7 @@
     "vue2-google-maps": "^0.7.5"
   },
   "dependencies": {
+    "clipboard": "^1.7.1",
     "font-awesome": "^4.7.0",
     "select2": "^4.0.3",
     "store": "^2.0.12",

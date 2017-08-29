@@ -19,18 +19,20 @@ Vue.use(VueScrollTo, {
     onCancel: false
 });
 
-import SlackInvite from './components/SlackInvite';
+import SlackInvite from './components/SlackInvite.vue';
 Vue.component( 'slack-invite', SlackInvite );
 
-import FemrMap from './components/FemrMap';
+import FemrMap from './components/FemrMap.vue';
 Vue.component( 'femr-map', FemrMap );
 
-import ProgramMap from './components/ProgramMap';
+import ProgramMap from './components/ProgramMap.vue';
 Vue.component( 'program-map', ProgramMap );
 
-import AllProgramsModal from './components/AllProgramsModal';
+import AllProgramsModal from './components/AllProgramsModal.vue';
 Vue.component( 'all-programs-modal', AllProgramsModal );
 
+import CopyToClipboard from './components/CopyToClipboard.vue';
+Vue.component( 'copy-to-clipboard', CopyToClipboard );
 
 const app = new Vue({
 
