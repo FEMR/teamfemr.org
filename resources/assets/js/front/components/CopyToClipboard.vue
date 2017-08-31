@@ -4,7 +4,7 @@
             <span class="icon is-small">
               <i class="fa fa-clipboard"></i>
             </span>
-            <span>Copy to Clipboard</span>
+            <span>Copy</span>
         </a>
         <pre id="survey-template"><slot></slot></pre>
     </div>
