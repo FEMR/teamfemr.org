@@ -1,5 +1,4 @@
 ﻿require('./bootstrap');
-
 import * as VueGoogleMaps from 'vue2-google-maps';
 
 Vue.use( VueGoogleMaps, {
@@ -9,8 +8,8 @@ Vue.use( VueGoogleMaps, {
     }
 });
 
-var VueScrollTo = require('vue-scrollto');
-Vue.use(VueScrollTo, {
+let VueScrollTo = require('vue-scrollto');
+Vue.use( VueScrollTo, {
     container: "body",
     duration: 500,
     easing: "ease",
@@ -19,20 +18,12 @@ Vue.use(VueScrollTo, {
     onCancel: false
 });
 
-import SlackInvite from './components/SlackInvite.vue';
-Vue.component( 'slack-invite', SlackInvite );
-
-import FemrMap from './components/FemrMap.vue';
-Vue.component( 'femr-map', FemrMap );
-
-import ProgramMap from './components/ProgramMap.vue';
-Vue.component( 'program-map', ProgramMap );
-
-import AllProgramsModal from './components/AllProgramsModal.vue';
-Vue.component( 'all-programs-modal', AllProgramsModal );
-
-import CopyToClipboard from './components/CopyToClipboard.vue';
-Vue.component( 'copy-to-clipboard', CopyToClipboard );
+Vue.component( 'slack-invite', require( './components/SlackInvite.vue' ) );
+Vue.component( 'femr-map', require( './components/FemrMap.vue' ) );
+Vue.component( 'program-map', require( './components/ProgramMap.vue' ) );
+Vue.component( 'all-programs-modal', require( './components/AllProgramsModal.vue' ) );
+Vue.component( 'copy-to-clipboard', require( './components/CopyToClipboard.vue' ) );
+Vue.component( 'survey', require( './components/Survey.vue' ) );
 
 const app = new Vue({
 
