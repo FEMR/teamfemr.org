@@ -1,0 +1,21 @@
+.field{
+
+    .icon{
+
+        &.is-success {
+
+            .fa {
+
+                color: $success;
+            }
+        }
+
+        &.is-danger {
+
+            .fa {
+
+                color: $danger;
+            }
+        }
+    }
+}
