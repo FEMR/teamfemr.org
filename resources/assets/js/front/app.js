@@ -8,6 +8,9 @@ Vue.use( VueGoogleMaps, {
     }
 });
 
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
 let VueScrollTo = require('vue-scrollto');
 Vue.use( VueScrollTo, {
     container: "body",
@@ -24,6 +27,9 @@ Vue.component( 'program-map', require( './components/ProgramMap.vue' ) );
 Vue.component( 'all-programs-modal', require( './components/AllProgramsModal.vue' ) );
 Vue.component( 'copy-to-clipboard', require( './components/CopyToClipboard.vue' ) );
 Vue.component( 'survey', require( './components/Survey.vue' ) );
+Vue.component( 'text-field', require( './components/fields/TextField.vue' ) );
+Vue.component( 'textarea-field', require( './components/fields/TextareaField.vue' ) );
+Vue.component( 'select-field', require( './components/fields/SelectField.vue' ) );
 
 const app = new Vue({
 
