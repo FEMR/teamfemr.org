@@ -15,6 +15,6 @@
         Route::get( '/programs/{program}', 'OutreachProgramController@show'  )->name( 'programs.show'  );
 
         // Surveys
-        Route::get(  '/surveys', 'SurveyController@index' )->name( 'surveys.index' );
-        Route::post( '/surveys', 'SurveyController@store' )->name( 'surveys.store' );
+        Route::get(  '/survey', 'SurveyController@index' )->name( 'surveys.index' );
+        Route::post( '/survey', 'SurveyController@store' )->name( 'surveys.store' );
     });
