@@ -1,6 +1,12 @@
 .field{
 
+    .label{
+
+        font-size: 0.9rem;
+    }
+
     .icon{
+
 
         &.is-success {
 
@@ -16,6 +22,18 @@
 
                 color: $danger;
             }
+        }
+    }
+}
+
+.select:not(.is-multiple){
+
+    &.is-success,
+    &.is-danger{
+
+        &::after{
+
+            display: none;
         }
     }
 }

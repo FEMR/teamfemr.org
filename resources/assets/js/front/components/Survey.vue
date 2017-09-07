@@ -1,92 +1,64 @@
 <template>
     <div>
 
-        <text-field :field="{ id: 'program_name', label: 'Program Name' }"></text-field>
-        <text-field :field="{ id: 'school_name', label: 'School Name' }"></text-field>
+        <div class="columns is-multiline">
 
-        <!--<div class="field">-->
-            <!--<label class="label">Email</label>-->
-            <!--<div class="control has-icons-left has-icons-right">-->
-                <!--<input class="input is-danger" type="email" placeholder="Email input" value="hello@">-->
-                <!--<span class="icon is-small is-left">-->
-                  <!--<i class="fa fa-envelope"></i>-->
-                <!--</span>-->
-                <!--<span class="icon is-small is-right">-->
-                  <!--<i class="fa fa-warning"></i>-->
-                <!--</span>-->
-            <!--</div>-->
-            <!--<p class="help is-danger">This email is invalid</p>-->
-        <!--</div>-->
+            <div class="column is-6">
 
-        <!--<div class="field">-->
-            <!--<label class="label">Subject</label>-->
-            <!--<div class="control">-->
-                <!--<div class="select">-->
-                    <!--<select>-->
-                        <!--<option>Select dropdown</option>-->
-                        <!--<option>With options</option>-->
-                    <!--</select>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+                <text-field
+                    v-model="schoolName"
+                    :def="fieldsDef.school_name"
+                ></text-field>
+                <text-field
+                    v-model="programName"
+                    :def="fieldsDef.program_name"
+                ></text-field>
+                <select-field
+                    v-model="usesEmr"
+                    :def="fieldsDef.uses_emr"
+                ></select-field>
 
-        <!--<div class="field">-->
-            <!--<label class="label">Message</label>-->
-            <!--<div class="control">-->
-                <!--<textarea class="textarea" placeholder="Textarea"></textarea>-->
-            <!--</div>-->
-        <!--</div>-->
+                <textarea-field
+                    v-model="otherSchools"
+                    :def="fieldsDef.other_schools"
+                ></textarea-field>
 
-        <!--<div class="field">-->
-            <!--<div class="control">-->
-                <!--<label class="checkbox">-->
-                    <!--<input type="checkbox">-->
-                    <!--I agree to the <a href="#">terms and conditions</a>-->
-                <!--</label>-->
-            <!--</div>-->
-        <!--</div>-->
+            </div>
 
-        <!--<div class="field">-->
-            <!--<div class="control">-->
-                <!--<label class="radio">-->
-                    <!--<input type="radio" name="question">-->
-                    <!--Yes-->
-                <!--</label>-->
-                <!--<label class="radio">-->
-                    <!--<input type="radio" name="question">-->
-                    <!--No-->
-                <!--</label>-->
-            <!--</div>-->
-        <!--</div>-->
+            <div class="column is-12">
 
-        <!--<div class="field is-grouped">-->
-            <!--<div class="control">-->
-                <!--<button class="button is-primary">Submit</button>-->
-            <!--</div>-->
-            <!--<div class="control">-->
-                <!--<button class="button is-link">Cancel</button>-->
-            <!--</div>-->
-        <!--</div>-->
+                <contacts :def="fieldsDef.contacts"></contacts>
+
+            </div>
+
+        </div>
 
     </div>
 </template>
 
 <script type="text/babel">
 
-    import TextField from './survey/TextField';
+    import SurveyFields from '../data/survey-fields';
+    import FormField from '../models/FormField';
+    import Contacts from './survey/Contacts';
 
     export default {
 
         components: {
 
-            'text-field': TextField
+            'contacts': Contacts
         },
 
         data() {
 
             return {
 
+                schoolName: '',
+                programName: '',
+                usesEmr: '',
+                otherSchools: '',
 
+                fieldsDef: {}
             }
         },
 
@@ -96,7 +68,29 @@
 
         created(){
 
+            _.forEach( SurveyFields.data, ( fieldJson, key ) => {
 
+                if( _.isArray( fieldJson ) ) {
+
+                    let subfield = {};
+                    _.forEach( fieldJson, ( json ) => {
+
+                        let field = new FormField( json );
+                        subfield[ field.name ] = field;
+                    });
+
+                    this.fieldsDef[ key ] = subfield;
+                }
+                else {
+
+                    this.fieldsDef[ key ] = new FormField( fieldJson );
+                }
+
+
+            } );
+
+
+            console.log( this.fieldsDef );
         }
     }
 

@@ -143,7 +143,7 @@
                         .catch( ( error ) => { console.log(error); });
             }
         },
-        mounted() {
+        created() {
 
             VueGoogleMaps.loaded.then( () => {
 
