@@ -18,6 +18,7 @@ class FormField {
         Object.assign( this, defaults, formJson );
 
     }
+
 }
 
 export default FormField;

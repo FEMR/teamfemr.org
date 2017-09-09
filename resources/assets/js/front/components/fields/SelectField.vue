@@ -40,8 +40,8 @@
 
             "def": {
 
-                type: Object,
-                default: new FormField()
+                type: FormField,
+                default: () => new FormField()
             },
             "value": {
 
@@ -104,7 +104,6 @@
 
         created(){
 
-            this.localValue = this.initialValue;
         }
     }
 

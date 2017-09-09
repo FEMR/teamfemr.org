@@ -77,7 +77,13 @@
 
     export default {
 
-        props: [ 'def' ],
+        props: {
+
+            "def": {
+
+                default: function () { return []; }
+            },
+        },
 
         data() {
 

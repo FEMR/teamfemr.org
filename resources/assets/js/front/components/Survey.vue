@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="columns is-multiline">
+        <div v-if="fieldsDefIsLoaded" class="columns is-multiline">
 
             <div class="column is-6">
 
@@ -33,12 +33,20 @@
 
         </div>
 
+        <div v-else>
+
+                <p class="loading">
+                    <span class="button is-text is-loading"></span>
+                    Building Form...
+                </p>
+
+        </div>
+
     </div>
 </template>
 
 <script type="text/babel">
 
-    import SurveyFields from '../data/survey-fields';
     import FormField from '../models/FormField';
     import Contacts from './survey/Contacts';
 
@@ -62,35 +70,50 @@
             }
         },
 
+        computed: {
+
+            fieldsDefIsLoaded() {
+
+                return ! _.isEmpty( this.fieldsDef );
+            }
+        },
+
         methods: {
 
         },
 
         created(){
 
-            _.forEach( SurveyFields.data, ( fieldJson, key ) => {
+            axios.get( '/api/survey/form' )
+                .then( ( response ) => {
 
-                if( _.isArray( fieldJson ) ) {
+                    let def = {};
+                    _.forEach( response.data.data, ( fieldJson, key ) => {
 
-                    let subfield = {};
-                    _.forEach( fieldJson, ( json ) => {
+                        console.log( fieldJson );
 
-                        let field = new FormField( json );
-                        subfield[ field.name ] = field;
-                    });
+                        if( _.isArray( fieldJson ) ) {
 
-                    this.fieldsDef[ key ] = subfield;
-                }
-                else {
+                            let subfield = {};
+                            _.forEach( fieldJson, ( json ) => {
 
-                    this.fieldsDef[ key ] = new FormField( fieldJson );
-                }
+                                let field = new FormField( json );
+                                subfield[ field.name ] = field;
+                            });
+
+                            def[ key ] = subfield;
+                        }
+                        else {
+
+                            def[ key ] = new FormField( fieldJson );
+                        }
 
 
-            } );
+                    } );
 
+                    this.fieldsDef = def;
+                });
 
-            console.log( this.fieldsDef );
         }
     }
 
@@ -98,4 +121,16 @@
 
 <style scoped>
 
+    .loading{
+
+        margin: 40px 0;
+
+        font-size: 1.3rem;
+        line-height: 36px;
+    }
+
+    .loading .is-loading{
+
+        margin-right: 15px;
+    }
 </style>
