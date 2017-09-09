@@ -1,10 +1,10 @@
 <template>
-    <section class="section survey-contacts">
+    <section class="section survey-papers">
         <div class="container">
-            <h3 class="title">Contacts</h3>
+            <h3 class="title">Papers</h3>
             <hr />
 
-            <div class="columns contact-row contact-headers">
+            <div class="columns paper-row paper-headers">
 
                 <div class="column" v-for="field in def">
                     <label class="label">{{ field.label }}</label>
@@ -15,14 +15,14 @@
                 </div>
             </div>
 
-            <div class="columns contact-row" v-for="(contact, idx) in contacts" :key="contact.id">
+            <div class="columns paper-row" v-for="(paper, idx) in papers" :key="paper.id">
 
                 <div class="column">
 
                     <text-field
-                        v-model="contact.name"
-                        :def="def.name"
-                        :initialValue="contact.name"
+                        v-model="paper.title"
+                        :def="def.title"
+                        :initialValue="paper.title"
                     ></text-field>
                 </div>
 
@@ -32,23 +32,23 @@
 
                 <div class="column">
                     <text-field
-                        v-model="contact.email"
-                        :def="def.email"
-                        :initialValue="contact.email"
+                        v-model="paper.url"
+                        :def="def.url"
+                        :initialValue="paper.url"
                     ></text-field>
                 </div>
 
                 <div class="column">
                     <text-field
-                        v-model="contact.phone"
-                        :def="def.phone"
-                        :initialValue="contact.phone"
+                        v-model="paper.description"
+                        :def="def.description"
+                        :initialValue="paper.description"
                     ></text-field>
                 </div>
 
                 <div class="column button-column">
 
-                    <a href="#"  class="delete-button" @click.prevent="deleteContact( idx )">
+                    <a href="#"  class="delete-button" @click.prevent="deletePaper( idx )">
                         <span class="icon is-small is-danger">
                           <i class="fa fa-minus-circle"></i>
                         </span>
@@ -58,7 +58,7 @@
 
             </div>
 
-            <a href="#" class="button is-primary" @click.prevent="addEmptyContact()">Add Contact</a>
+            <a href="#" class="button is-primary" @click.prevent="addEmptyPaper()">Add Paper</a>
         </div>
     </section>
 </template>
@@ -66,7 +66,7 @@
 
 <script type="text/babel">
 
-    import Contact from '../../models/Contact';
+    import Paper from '../../models/Paper';
 
     export default {
 
@@ -83,7 +83,7 @@
             return {
 
                 count: 0,
-                contacts: []
+                papers: []
             }
         },
 
@@ -94,47 +94,39 @@
 
             },
 
-            addEmptyContact(){
+            addEmptyPaper(){
 
-                let contact = new Contact();
+                let paper = new Paper();
 
                 // TODO -- how to handle this with create vs update
                 // this.count is necessary to give each row a unique id or vue will
                 //   reuse them and potentially leave behind validation errors
-                contact.id = ++this.count;
-                this.contacts.push( contact );
+                paper.id = ++this.count;
+                this.papers.push( paper );
             },
 
-            deleteContact( indexToDelete ) {
+            deletePaper( indexToDelete ) {
 
-                Vue.delete( this.contacts, indexToDelete );
+                Vue.delete( this.papers, indexToDelete );
 
-                if( this.contacts.length === 0 ) this.addEmptyContact();
+                if( this.papers.length === 0 ) this.addEmptyPaper();
             }
         },
 
         created(){
 
-            // sample contact
-            let contact = new Contact();
-            contact.id = 1;
-            contact.name = 'Test Contact';
-            contact.email = 'test@email.com';
-            contact.phone = '586-113-3435';
+            // sample paper
+            let paper = new Paper();
+            paper.id = 1;
+            paper.title = 'Test Paper';
+            paper.url = 'https://google.com';
+            paper.description = '';
 
-            this.contacts.push( contact );
+            this.papers.push( paper );
 
-            let contact2 = new Contact();
-            contact2.id = 2;
-            contact2.name = 'Test Contact 2';
-            contact2.email = 'test2@email.com';
-            contact2.phone = '586-654-2345';
-
-            this.contacts.push( contact2 );
-
-            // add a blank contact
-            this.count = this.contacts.length;
-            this.addEmptyContact();
+            // add a blank paper
+            this.count = this.papers.length;
+            this.addEmptyPaper();
         }
     }
 
@@ -142,7 +134,7 @@
 
 <style lang="scss" scopeds>
 
-    .contact-row {
+    .paper-row {
 
         .button-column {
 
@@ -170,7 +162,7 @@
         }
     }
 
-    .contact-headers{
+    .paper-headers{
 
         .column{
 

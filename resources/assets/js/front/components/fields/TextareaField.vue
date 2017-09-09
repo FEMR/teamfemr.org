@@ -101,7 +101,7 @@
 
         created(){
 
-            this.localValue = this.initialValue;
+            console.log( this.def );
         }
     }
 

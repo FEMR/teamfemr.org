@@ -13,21 +13,67 @@
                     v-model="programName"
                     :def="fieldsDef.program_name"
                 ></text-field>
+
                 <select-field
                     v-model="usesEmr"
                     :def="fieldsDef.uses_emr"
                 ></select-field>
 
+                <text-field
+                        v-model="yearInitiated"
+                        :def="fieldsDef.year_initiated"
+                ></text-field>
+
+                <text-field
+                        v-model="participantsPerYear"
+                        :def="fieldsDef.participants_per_year"
+                ></text-field>
+
+                <text-field
+                        v-model="matriculantsPerClass"
+                        :def="fieldsDef.matriculants_per_class"
+                ></text-field>
+
+                <text-field
+                        v-model="monthsOfTravel"
+                        :def="fieldsDef.months_of_travel"
+                ></text-field>
+
+                <!--<select-field-->
+                        <!--v-model="schoolClasses"-->
+                        <!--:def="fieldsDef.school_classes"-->
+                <!--&gt;</select-field>-->
+
                 <textarea-field
-                    v-model="otherSchools"
-                    :def="fieldsDef.other_schools"
+                        v-for="additionalDef in fieldsDef.additional_fields"
+                        :key="additionalDef.name"
+                        v-model="additionalFields[ additionalDef.name ]"
+                        :def="additionalDef"
                 ></textarea-field>
 
             </div>
 
             <div class="column is-12">
 
+                <locations :def="fieldsDef.locations"></locations>
+
+            </div>
+
+            <div class="column is-12">
+
+                <partners :def="fieldsDef.partners"></partners>
+
+            </div>
+
+            <div class="column is-12">
+
                 <contacts :def="fieldsDef.contacts"></contacts>
+
+            </div>
+
+            <div class="column is-12">
+
+                <papers :def="fieldsDef.papers"></papers>
 
             </div>
 
@@ -49,12 +95,18 @@
 
     import FormField from '../models/FormField';
     import Contacts from './survey/Contacts';
+    import Locations from './survey/Locations';
+    import Papers from './survey/Papers';
+    import Partners from './survey/Partners';
 
     export default {
 
         components: {
 
-            'contacts': Contacts
+            'contacts': Contacts,
+            'locations': Locations,
+            'papers': Papers,
+            'partners': Partners
         },
 
         data() {
@@ -64,7 +116,12 @@
                 schoolName: '',
                 programName: '',
                 usesEmr: '',
-                otherSchools: '',
+                yearInitiated: '',
+                participantsPerYear: '',
+                monthsOfTravel: '',
+                matriculantsPerClass: '',
+                schoolClasses: [],
+                additionalFields: {},
 
                 fieldsDef: {}
             }
@@ -112,8 +169,12 @@
                     } );
 
                     this.fieldsDef = def;
+
+                    console.log( "Field Def" );
+                    console.log( this.fieldsDef )
                 });
 
+            ;
         }
     }
 
