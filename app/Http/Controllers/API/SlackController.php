@@ -1,7 +1,8 @@
 <?php
 
-namespace FEMR\Http\Controllers;
+namespace FEMR\Http\Controllers\API;
 
+use FEMR\Http\Controllers\Controller;
 use FEMR\Http\Requests\SlackRequest;
 
 class SlackController extends Controller

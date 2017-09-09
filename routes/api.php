@@ -46,5 +46,6 @@
     });
 
 
+    Route::get(  '/survey/form', 'Survey\FormController@show' )->name( 'survey.form.show' );
 
-    Route::post( 'slack/invite', 'SlackController@invite' )->name( 'api.slack.invite' );
+    Route::post( '/slack/invite', 'SlackController@invite' )->name( 'api.slack.invite' );
