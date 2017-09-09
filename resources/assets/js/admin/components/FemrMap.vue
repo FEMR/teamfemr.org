@@ -37,7 +37,6 @@
 <script type="text/babel">
 
     import * as VueGoogleMaps from 'vue2-google-maps';
-    import Vue from 'vue';
     import EventBus from "../event-bus"
 
     Vue.use( VueGoogleMaps, {
