@@ -204,8 +204,6 @@
                     let def = {};
                     _.forEach( response.data.data, ( fieldJson, key ) => {
 
-                        console.log( fieldJson );
-
                         if( _.isArray( fieldJson ) ) {
 
                             let subfield = {};
@@ -226,9 +224,6 @@
                     } );
 
                     this.fieldsDef = def;
-
-                    console.log( "Field Def" );
-                    console.log( this.fieldsDef )
                 });
 
             ;

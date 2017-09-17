@@ -101,8 +101,6 @@
 
             papers: function( newPapers ) {
 
-                console.log( newPapers );
-
                 this.$emit( 'input', this.papers );
             }
         },

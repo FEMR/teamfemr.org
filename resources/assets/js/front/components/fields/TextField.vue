@@ -113,11 +113,8 @@
 
                 return ( this.isSuccess || this.isError ) && this.message.length > 0
             }
-        },
-
-        updated(){
-
         }
+
     }
 
 </script>
