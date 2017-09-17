@@ -30,6 +30,9 @@ Vue.component( 'survey', require( './components/Survey.vue' ) );
 Vue.component( 'text-field', require( './components/fields/TextField.vue' ) );
 Vue.component( 'textarea-field', require( './components/fields/TextareaField.vue' ) );
 Vue.component( 'select-field', require( './components/fields/SelectField.vue' ) );
+Vue.component( 'multi-select-field', require( './components/fields/MultiSelectField.vue' ) );
+
+
 
 const app = new Vue({
 

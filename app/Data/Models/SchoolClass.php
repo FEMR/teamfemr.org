@@ -2,12 +2,13 @@
 
 namespace FEMR\Data\Models;
 
+use FEMR\Data\Utilities\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SchoolClass extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasSlug;
 
     /**
      * The table associated with the model.
