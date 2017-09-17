@@ -113,7 +113,24 @@
 
     export default {
 
-        props: [ "def" ],
+        model: {
+
+            prop: 'locations',
+            event: 'input'
+        },
+
+        props: {
+
+            "locations": {
+
+                default: function () { return []; }
+            },
+
+            "def": {
+
+                default: function () { return []; }
+            }
+        },
 
         data() {
 
@@ -123,14 +140,18 @@
 
                 center: { lat: 0.0, lng: 0.0 },
                 bounds: {},
-                zoom: 2,
-                locations: []
+                zoom: 2
             }
         },
-        computed: {
 
+        watch: {
 
+            locations: function( newLocations ) {
+
+                this.$emit( 'input', newLocations );
+            }
         },
+
         methods: {
 
             editLocation( idx ){

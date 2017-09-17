@@ -70,20 +70,38 @@
 
     export default {
 
+        model: {
+
+            prop: 'contacts',
+            event: 'input'
+        },
+
         props: {
+
+            "contacts": {
+
+                default: function () { return []; }
+            },
 
             "def": {
 
                 default: function () { return []; }
-            },
+            }
         },
 
         data() {
 
             return {
 
-                count: 0,
-                contacts: []
+                count: 0
+            }
+        },
+
+        watch: {
+
+            contacts: function( newContacts ) {
+
+                this.$emit( 'input', newContacts );
             }
         },
 
@@ -115,22 +133,6 @@
 
         created(){
 
-            // sample contact
-            let contact = new Contact();
-            contact.id = 1;
-            contact.name = 'Test Contact';
-            contact.email = 'test@email.com';
-            contact.phone = '586-113-3435';
-
-            this.contacts.push( contact );
-
-            let contact2 = new Contact();
-            contact2.id = 2;
-            contact2.name = 'Test Contact 2';
-            contact2.email = 'test2@email.com';
-            contact2.phone = '586-654-2345';
-
-            this.contacts.push( contact2 );
 
             // add a blank contact
             this.count = this.contacts.length;

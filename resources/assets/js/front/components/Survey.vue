@@ -105,6 +105,11 @@
 
 <script type="text/babel">
 
+    import Contact from '../models/Contact';
+    import Partner from '../models/Partner';
+    import Location from '../models/Location';
+    import Paper from '../models/Paper';
+
     import FormField from '../models/FormField';
     import Contacts from './survey/Contacts';
     import Locations from './survey/Locations';
@@ -157,6 +162,41 @@
         },
 
         created(){
+
+            // sample paper
+            let paper = new Paper();
+            paper.id = 1;
+            paper.title = 'Test Paper';
+            paper.url = 'https://google.com';
+            paper.description = '';
+
+            this.papers.push( paper );
+
+            // sample partner
+            let partner = new Partner();
+            partner.id = 1;
+            partner.name = 'Test Partner';
+            partner.url = 'https://google.com';
+
+            this.partners.push( partner );
+
+            // sample contact
+            let contact = new Contact();
+            contact.id = 1;
+            contact.name = 'Test Contact';
+            contact.email = 'test@email.com';
+            contact.phone = '586-113-3435';
+
+            this.contacts.push( contact );
+
+            let contact2 = new Contact();
+            contact2.id = 2;
+            contact2.name = 'Test Contact 2';
+            contact2.email = 'test2@email.com';
+            contact2.phone = '586-654-2345';
+
+            this.contacts.push( contact2 );
+
 
             axios.get( '/api/survey/form' )
                 .then( ( response ) => {

@@ -63,20 +63,38 @@
 
     export default {
 
+        model: {
+
+            prop: 'partners',
+            event: 'input'
+        },
+
         props: {
+
+            "partners": {
+
+                default: function () { return []; }
+            },
 
             "def": {
 
                 default: function () { return []; }
-            },
+            }
         },
 
         data() {
 
             return {
 
-                count: 0,
-                partners: []
+                count: 0
+            }
+        },
+
+        watch: {
+
+            partners: function( newPartners ) {
+
+                this.$emit( 'input', newPartners );
             }
         },
 
@@ -107,14 +125,6 @@
         },
 
         created(){
-
-            // sample partner
-            let partner = new Partner();
-            partner.id = 1;
-            partner.name = 'Test Partner';
-            partner.url = 'https://google.com';
-
-            this.partners.push( partner );
 
             // add a blank partner
             this.count = this.partners.length;

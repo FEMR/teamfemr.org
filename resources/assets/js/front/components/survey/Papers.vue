@@ -70,7 +70,18 @@
 
     export default {
 
+        model: {
+
+            prop: 'papers',
+            event: 'input'
+        },
+
         props: {
+
+            "papers": {
+
+                default: function () { return []; }
+            },
 
             "def": {
 
@@ -82,8 +93,17 @@
 
             return {
 
-                count: 0,
-                papers: []
+                count: 0
+            }
+        },
+
+        watch: {
+
+            papers: function( newPapers ) {
+
+                console.log( newPapers );
+
+                this.$emit( 'input', this.papers );
             }
         },
 
@@ -113,16 +133,7 @@
             }
         },
 
-        created(){
-
-            // sample paper
-            let paper = new Paper();
-            paper.id = 1;
-            paper.title = 'Test Paper';
-            paper.url = 'https://google.com';
-            paper.description = '';
-
-            this.papers.push( paper );
+        mounted(){
 
             // add a blank paper
             this.count = this.papers.length;
