@@ -165,13 +165,9 @@
 
             addLocation( place ){
 
-                console.log( place );
-
                 let location = new Location();
                 location.populateFromPlace( place );
                 this.locations.push( location );
-
-                console.log( this.locations );
 
                 this.extendBounds( location.position.lat, location.position.lng );
                 this.fitBounds();
@@ -209,8 +205,6 @@
         created() {
 
             VueGoogleMaps.loaded.then( () => {
-
-                console.log('Map Library Loaded');
 
                 this.initBounds();
             });

@@ -90,10 +90,7 @@
 
             updateValue: function ( value ) {
 
-                console.log( value );
-
                 // cleanse/format value here if needed
-
                 this.$emit( 'input', value );
                 this.$emit( 'valueChanged', this.def.name, value )
             }

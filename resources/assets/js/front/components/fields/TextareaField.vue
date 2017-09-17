@@ -97,12 +97,8 @@
 
                 return ( this.isSuccess || this.isError ) && this.message.length > 0
             }
-        },
-
-        created(){
-
-            console.log( this.def );
         }
+
     }
 
 </script>
