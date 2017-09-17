@@ -37,3 +37,29 @@
         }
     }
 }
+
+@import "node_modules/vue-multiselect/dist/vue-multiselect.min";
+
+.multiselect__tags{
+
+    @extend select;
+
+    .multiselect__tag{
+
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+}
+
+.multiselect__select{
+
+    display: none;
+}
+
+.multiselect__input,
+.multiselect__single{
+
+
+    margin: 0;
+    height: 100%;
+}

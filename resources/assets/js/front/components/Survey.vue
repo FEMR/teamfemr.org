@@ -39,10 +39,10 @@
                         :def="fieldsDef.months_of_travel"
                 ></text-field>
 
-                <!--<select-field-->
-                        <!--v-model="schoolClasses"-->
-                        <!--:def="fieldsDef.school_classes"-->
-                <!--&gt;</select-field>-->
+                <multi-select-field
+                        v-model="schoolClasses"
+                        :def="fieldsDef.school_classes"
+                ></multi-select-field>
 
                 <textarea-field
                         v-for="additionalDef in fieldsDef.additional_fields"
@@ -55,25 +55,37 @@
 
             <div class="column is-12">
 
-                <locations :def="fieldsDef.locations"></locations>
+                <locations
+                        v-model="locations"
+                        :def="fieldsDef.locations">
+                </locations>
 
             </div>
 
             <div class="column is-12">
 
-                <partners :def="fieldsDef.partners"></partners>
+                <partners
+                        v-model="partners"
+                        :def="fieldsDef.partners">
+                </partners>
 
             </div>
 
             <div class="column is-12">
 
-                <contacts :def="fieldsDef.contacts"></contacts>
+                <contacts
+                        v-model="contacts"
+                        :def="fieldsDef.contacts">
+                </contacts>
 
             </div>
 
             <div class="column is-12">
 
-                <papers :def="fieldsDef.papers"></papers>
+                <papers
+                        v-model="papers"
+                        :def="fieldsDef.papers">
+                </papers>
 
             </div>
 
@@ -122,6 +134,11 @@
                 matriculantsPerClass: '',
                 schoolClasses: [],
                 additionalFields: {},
+
+                locations: [],
+                partners: [],
+                contacts: [],
+                papers: [],
 
                 fieldsDef: {}
             }

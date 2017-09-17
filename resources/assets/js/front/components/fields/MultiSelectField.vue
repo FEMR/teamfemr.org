@@ -1,24 +1,30 @@
 <template>
     <div class="field">
 
-        <label class="label" v-if="! def.hideLabel">{{ def.label }}</label>
+        <label class="label">{{ def.label }}</label>
 
-        <div :class="{ control: true, 'has-icons-right': true, 'has-icons-left': def.icon.length > 0 }">
+        <div class="control has-icons-right">
 
-            <input
-                :value="value"
-                :name="def.name"
-                :data-vv-as="def.label"
-                v-validate.initial="def.validators"
-                :class="{ 'input': true, 'is-success': isSuccess, 'is-danger': isError }"
-                type="text"
-                :placeholder="def.placeholder"
-                v-on:input="updateValue($event.target.value)"
-            >
-
-            <span :class="{ 'icon': true, 'is-small': true, 'is-left': true }">
-              <i :class="iconClasses"></i>
-            </span>
+            <div :class="{ select: true, 'is-fullwidth': def.isFullWidth, 'is-success': isSuccess, 'is-danger': isError }">
+                <multiselect
+                    :value="value"
+                    :name="def.name"
+                    :multiple="true"
+                    :taggable="true"
+                    @tag="addTag"
+                    tag-placeholder="Add this as new tag"
+                    placeholder="Search or add a tag"
+                    label="label"
+                    track-by="value"
+                    :data-vv-as="def.label"
+                    v-validate="def.validators"
+                    @input="updateValue"
+                    :options="localOptions"
+                >
+                    <!--<option v-if="def.placeholder.length > 0" value="" disabled>{{ def.placeholder }}</option>-->
+                    <!--<option v-for="( option, value ) in def.options" :value="value">{{ option }}</option>-->
+                </multiselect>
+            </div>
 
             <span :class="{ 'icon': true, 'is-small': true, 'is-right': true, 'is-success': isSuccess, 'is-danger': isError }">
               <i :class="{ 'fa': true, 'fa-check': isSuccess, 'fa-warning': isError }"></i>
@@ -33,7 +39,9 @@
 
 <script type="text/babel">
 
+
     import FormField from '../../models/FormField';
+    import Multiselect from 'vue-multiselect'
 
     export default {
 
@@ -46,23 +54,43 @@
             },
             "value": {
 
-                type: String,
-                default: '',
+                type: Array,
+                default: () => [],
                 required: true
             }
+        },
 
+        components:{
+
+            Multiselect
         },
 
         data() {
 
             return {
 
+                localValue: [],
+                localOptions: []
             }
         },
 
         methods: {
 
-            updateValue: function (value) {
+            addTag ( newTag ) {
+
+                const tag = {
+
+                    label: newTag,
+                    slug: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+                }
+
+                this.localOptions.push( tag );
+                this.value.push( tag );
+            },
+
+            updateValue: function ( value ) {
+
+                console.log( value );
 
                 // cleanse/format value here if needed
 
@@ -72,18 +100,6 @@
         },
 
         computed: {
-
-            iconClasses() {
-
-                let classes = { 'fa': true };
-
-                if( this.def.icon.length > 0 ) {
-
-                    classes[ this.def.icon ] = true;
-                }
-
-                return classes;
-            },
 
             valueHasChanged() {
 
@@ -115,8 +131,9 @@
             }
         },
 
-        updated(){
+        created() {
 
+            this.localOptions = this.def.options;
         }
     }
 

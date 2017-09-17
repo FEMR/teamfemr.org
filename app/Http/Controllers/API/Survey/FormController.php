@@ -3,6 +3,7 @@
 namespace FEMR\Http\Controllers\API\Survey;
 
 use FEMR\Data\Models\OutreachProgram;
+use FEMR\Data\Models\SchoolClass;
 use FEMR\Http\Controllers\Controller;
 
 class FormController extends Controller
@@ -66,7 +67,15 @@ class FormController extends Controller
 
                 "name"       => 'school_classes',
                 "label"      => 'Medical school student class involvement (M1, M2, M3, M4)',
-                "validators" => ''
+                "validators" => '',
+                'isFullWidth' => true,
+                "options"    =>  SchoolClass::select( 'name', 'slug' )
+                                            ->orderBy( 'name' )
+                                            ->get()
+                                            ->map( function( $class )
+                                            {
+                                                return [ 'label' => $class->name, 'value' => $class->slug ];
+                                            })
             ],
             "additional_fields" => [],
             "contacts" => [
