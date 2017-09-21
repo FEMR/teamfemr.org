@@ -6,7 +6,7 @@
         <section class="section">
             <div class="container">
 
-                <h1 class="title">Section</h1>
+                <h1 class="title">Survey</h1>
 
                 <hr>
 
