@@ -142,7 +142,7 @@
 
 </script>
 
-<style lang="scss" scopeds>
+<style lang="scss" scoped>
 
     .contact-row {
 
