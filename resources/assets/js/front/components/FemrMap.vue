@@ -136,7 +136,7 @@
 
             window.addEventListener('resize', () => {
 
-                this.fitBounds();
+                //this.fitBounds();
             });
         }
     }
