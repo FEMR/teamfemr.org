@@ -19,22 +19,29 @@
                         <p>&nbsp;</p>
 
                         <p>
-                            <a class="" href="{{ asset('/documents/Annual_Report_2014_2015.pdf') }}" target="_blank">
+                            <a class="" href="{{ asset('/documents/Annual_Report_2017.pdf') }}" target="_blank">
                                 <span class="icon is-small">
                                   <i class="fa fa-file-pdf-o"></i>
                                 </span>
-                                2015 Annual Report
+                                2017 Annual Report
                             </a>
                         </p>
                         <p>
-                            <a class="" href="{{ asset('/documents/Annual_Report_2015_2016.pdf') }}" target="_blank">
+                            <a class="" href="{{ asset('/documents/Annual_Report_2016.pdf') }}" target="_blank">
                                 <span class="icon is-small">
                                   <i class="fa fa-file-pdf-o"></i>
                                 </span>
                                 2016 Annual Report
                             </a>
                         </p>
-
+                        <p>
+                            <a class="" href="{{ asset('/documents/Annual_Report_2015.pdf') }}" target="_blank">
+                                <span class="icon is-small">
+                                  <i class="fa fa-file-pdf-o"></i>
+                                </span>
+                                2015 Annual Report
+                            </a>
+                        </p>
 
                     </div>
 
