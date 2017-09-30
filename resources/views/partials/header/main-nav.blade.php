@@ -75,8 +75,14 @@
                 International Med. <br > Outreach Programs
             </a>
 
-            <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2014_2015.pdf') }}" target="_blank">
-                Annual Report
+            <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2017.pdf') }}" target="_blank">
+                2017 Annual Report
+            </a>
+            <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2016.pdf') }}" target="_blank">
+                2016 Annual Report
+            </a>
+            <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2015.pdf') }}" target="_blank">
+                2015 Annual Report
             </a>
 
             @if( Auth::check() )
