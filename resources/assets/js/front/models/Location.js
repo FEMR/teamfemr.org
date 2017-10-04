@@ -15,7 +15,7 @@ class Location {
     populateFromPlace( place ){
 
         // do nothing is place does not have an address
-        if( ! _.has( place, 'address_components' ) ) return;
+        if( ! _.has( place, [ 'geometry', 'location' ] ) ) return;
 
         var components = {};
         for (var i = 0; i < place.address_components.length; i++) {
