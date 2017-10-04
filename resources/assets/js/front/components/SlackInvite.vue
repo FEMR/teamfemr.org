@@ -78,7 +78,7 @@
 
                 isLoading: false,
                 isSuccessful: false,
-                errors: new Errors(),
+                $errors: new Errors(),
 
                 email: '',
                 first_name: '',
@@ -116,7 +116,7 @@
                     })
                     .catch( ( errors ) => {
 
-                        this.errors.record( errors.response.data );
+                        this.$errors.record( errors.response.data );
                         this.isSuccessful = false;
                         this.isLoading = false;
                     });

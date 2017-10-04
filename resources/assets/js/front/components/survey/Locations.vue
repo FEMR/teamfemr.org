@@ -165,6 +165,9 @@
 
             addLocation( place ){
 
+                // don't add when no location data
+                if( ! _.has( place, [ 'geometry', 'location' ] ) ) return;
+
                 let location = new Location();
                 location.populateFromPlace( place );
                 this.locations.push( location );

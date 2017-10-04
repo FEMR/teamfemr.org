@@ -77,10 +77,20 @@
 
             fitBounds() {
 
-                if( ! _.isEmpty( this.bounds ) ) {
+                console.log( 'Fit Bounds' );
+                console.log( this.bounds );
+
+                if( ! _.isEmpty( this.bounds ) && this.locations.length > 1 ) {
 
                     this.$refs.gmap.fitBounds( this.bounds );
                 }
+                else if( this.locations.length > 0 ) {
+
+                    let location = this.locations[0];
+                    this.center = location.position;
+                    this.zoom = 7;
+                }
+
             },
 
             extendBounds( location ) {
@@ -134,9 +144,14 @@
                 this.getLocations();
             });
 
+
+
             window.addEventListener('resize', () => {
+                console.log( 'Resize' );
 
                 //this.fitBounds();
+                //_.throttle( this.fitBounds, 200 );
+
             });
         }
     }
