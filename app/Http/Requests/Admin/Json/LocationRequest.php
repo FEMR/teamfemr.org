@@ -40,11 +40,13 @@
         }
 
         /**
+         * @param null $keys
+         *
          * @return array|mixed
          */
-        public function all()
+        public function all( $keys = null )
         {
-            $data = parent::all();
+            $data = parent::all( $keys = null );
 
             // make sure empty dates from the html5 date field are set to null
             if( $data['start_date'] == '-0001-11-30' || $data['start_date'] == '0000-00-00' ) $data['start_date'] = null;

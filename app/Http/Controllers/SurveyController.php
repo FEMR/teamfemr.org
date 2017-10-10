@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class SurveyController extends Controller
 {
 
+    /**
+     * Show the survey
+     *
+     * @return [type] [description]
+     */
     public function index()
     {
         return view( 'surveys.index' );
@@ -15,8 +20,6 @@ class SurveyController extends Controller
 
     public function store( SurveyRequest $request )
     {
-        dd( $request );
-
         return redirect()->route( 'surveys.index' );
     }
 }

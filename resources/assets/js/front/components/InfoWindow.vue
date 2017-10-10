@@ -38,13 +38,16 @@
                 <p class="name">
                     <a :href="program.programPageUrl()">
                         {{ program.name }}
+                        <span v-if="program.schoolName.length > 0">
+                            <br /> - {{ program.schoolName }}
+                        </span>
                     </a>
                 </p>
 
                 <p class="city_state_country">
-                    <span>{{ program.location.city_state_country }}</span>
+                    <span>{{ program.firstLocationCityStateCountry() }}</span>
                 </p>
-                <p><strong>Dates of travel:</strong> {{ program.datesOfTravel }}</p>
+                <p><strong>Dates of travel:</strong> {{ program.monthsOfTravel }}</p>
                 <p><strong>Class Involvement:</strong> {{ program.schoolClasses.join( ', ' ) }}</p>
                 <p><strong>Partners:</strong> {{ program.partners.join( ', ' ) }}</p>
 

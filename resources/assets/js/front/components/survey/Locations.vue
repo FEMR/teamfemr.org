@@ -172,7 +172,7 @@
                 location.populateFromPlace( place );
                 this.locations.push( location );
 
-                this.extendBounds( location.position.lat, location.position.lng );
+                this.extendBounds( location.position );
                 this.fitBounds();
 
                 this.$refs.autocomplete.$el.value = '';
@@ -216,6 +216,11 @@
 
                 this.fitBounds();
             });
+
+        },
+        mounted() {
+
+            this.fitBounds();
         }
     }
 

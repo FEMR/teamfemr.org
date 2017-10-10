@@ -16,5 +16,4 @@
 
         // Surveys
         Route::get(  '/survey',      'SurveyController@index'     )->name( 'survey.index'     );
-        Route::post( '/survey',      'SurveyController@store'     )->name( 'survey.store'     );
     });

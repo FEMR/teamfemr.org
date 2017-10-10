@@ -20,9 +20,9 @@
                 <div class="column">
 
                     <text-field
-                        v-model="contact.name"
-                        :def="def.name"
-                        :initialValue="contact.name"
+                        v-model="contact.full_name"
+                        :def="def.full_name"
+                        :initialValue="contact.full_name"
                     ></text-field>
                 </div>
 
@@ -100,6 +100,11 @@
         watch: {
 
             contacts: function( newContacts ) {
+
+                if( this.contacts.length === 0 ) {
+
+                    this.contacts.push( new Contact() );
+                }
 
                 this.$emit( 'input', newContacts );
             }

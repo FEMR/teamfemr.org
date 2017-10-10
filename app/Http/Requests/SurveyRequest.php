@@ -3,6 +3,7 @@
 namespace FEMR\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SurveyRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class SurveyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,31 @@ class SurveyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
+            "name"                         => "required|string",
+            "school_name"                  => "string",
+            "uses_emr"                     => [
+                "required",
+                "boolean"
+            ],
+            "year_initiated"               => "string",
+            "yearly_outreach_participants" => "string",
+            "months_of_travel"             => "string",
+            "matriculants_per_class"       => "string"
         ];
+    }
+
+    public function survey(){
+
+        return $this->only([
+
+            "name",
+            "school_name",
+            "uses_emr",
+            "year_initiated",
+            "yearly_outreach_participants",
+            "months_of_travel",
+            "matriculants_per_class"
+        ]);
     }
 }
