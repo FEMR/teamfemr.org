@@ -101,6 +101,11 @@
 
             papers: function( newPapers ) {
 
+                if( this.papers.length === 0 ) {
+
+                    this.papers.push( new Paper() );
+                }
+
                 this.$emit( 'input', this.papers );
             }
         },

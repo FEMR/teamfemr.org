@@ -26,8 +26,8 @@ class OutreachProgram extends Model
      * @var array
      */
     protected $fillable = [
-        'school_id',
         'name',
+        'school_name',
         'slug',
         'year_initiated',
         'yearly_outreach_participants',
@@ -43,6 +43,7 @@ class OutreachProgram extends Model
      */
     protected $casts = [
         'name'                         => 'string',
+        'school_name'                  => 'string',
         'slug'                         => 'string',
         'year_initiated'               => 'string',
         'yearly_outreach_participants' => 'string',
@@ -275,6 +276,9 @@ class OutreachProgram extends Model
     {
         foreach( $additional_fields as $key => $value )
         {
+            // Don't add fields that are blank
+            if( strlen( trim( $value  ) ) === 0 ) continue;
+
             if( $this->fields->contains( 'key', $key ) )
             {
                 $this->fields()

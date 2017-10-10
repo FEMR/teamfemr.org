@@ -45,9 +45,9 @@ class FormController extends Controller
                 "label"      => 'Year Initiated',
                 "validators" => ''
             ],
-            "participants_per_year" => [
+            "yearly_outreach_participants" => [
 
-                "name"       => 'participants_per_year',
+                "name"       => 'yearly_outreach_participants',
                 "label"      => 'Total participants in global health outreach per year',
                 "validators" => ''
             ],
@@ -81,7 +81,7 @@ class FormController extends Controller
             "contacts" => [
 
                 [
-                    "name"       => 'name',
+                    "name"       => 'full_name=',
                     "label"      => 'Name',
                     "value"      => '',
                     "hideLabel"  => true,
@@ -149,7 +149,7 @@ class FormController extends Controller
                     "icon"       => 'fa-external-link'
                 ]
             ],
-            "locations" => [
+            "visited_locations" => [
                 [
                     "value"      => '',
                     "name"       => 'city',

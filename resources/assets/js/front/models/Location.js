@@ -7,9 +7,20 @@ class Location {
         this.city ='';
         this.state = '';
         this.country = '';
-        this.city_country = '';
+        this.city_state_country = '';
 
         this.position = {};
+    }
+
+    populate( json ) {
+
+        this.city_state_country = json.city_state_country;
+        this.city = json.locality;
+        this.state = json.administrative_area_level_1;
+        this.country = json.country;
+
+        this.position['lat'] = parseFloat( json.latitude );
+        this.position['lng'] = parseFloat( json.longitude );
     }
 
     populateFromPlace( place ){

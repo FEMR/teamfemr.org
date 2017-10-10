@@ -129,6 +129,7 @@
 
             getLocations() {
 
+                // TODO -- move to a service
                 axios.get( '/api/programs/' + this.programId )
                         .then( ( response ) => {
 

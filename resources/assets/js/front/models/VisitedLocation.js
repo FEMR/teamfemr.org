@@ -32,10 +32,16 @@ class VisitedLocation{
         this.locality = '';
         this.administrative_area_level_1 = '';
         this.administrative_area_level_2 = '';
+        this.city_state_country = '';
         this.postal_code = '';
         this.country = '';
-        this.latitude = '';
-        this.longitude = '';
+
+        this.position = {
+
+            lat: 0.00,
+            lng: 0.00
+        };
+
         this.start_date = '';
         this.end_date = '';
     }
@@ -48,10 +54,15 @@ class VisitedLocation{
         this.locality = location.locality;
         this.administrative_area_level_1 = location.administrative_area_level_1;
         this.administrative_area_level_2 = location.administrative_area_level_2;
+        this.city_state_country = location.city_state_country;
         this.postal_code = location.postal_code;
         this.country = location.country;
         this.latitude = location.latitude;
         this.longitude = location.longitude;
+
+        this.position.lat = location.latitude;
+        this.position.lng = location.longitude;
+
         this.start_date = location.start_date;
         this.end_date = location.end_date;
     }
@@ -113,8 +124,8 @@ class VisitedLocation{
 
         if ( place.hasOwnProperty('geometry') ){
 
-            this.latitude = place.geometry.location.lat().toFixed( 5 );
-            this.longitude = place.geometry.location.lng().toFixed( 5 );
+            this.position.lat = place.geometry.location.lat().toFixed( 5 );
+            this.position.lng = place.geometry.location.lng().toFixed( 5 );
         }
     }
 

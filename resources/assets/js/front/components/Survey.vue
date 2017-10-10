@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="survey-container">
 
         <div v-if="fieldsDefIsLoaded" class="columns is-multiline">
 
@@ -14,19 +14,30 @@
                     :def="fieldsDef.program_name"
                 ></text-field>
 
-                <select-field
-                    v-model="usesEmr"
-                    :def="fieldsDef.uses_emr"
-                ></select-field>
+                <div class="columns">
+
+                    <div class="column">
+
+                        <select-field
+                            v-model="usesEmr"
+                            :def="fieldsDef.uses_emr"
+                        ></select-field>
+
+                    </div>
+                    <div class="column">
+
+                        <text-field
+                                v-model="yearInitiated"
+                                :def="fieldsDef.year_initiated"
+                        ></text-field>
+
+                    </div>
+
+                </div>
 
                 <text-field
-                        v-model="yearInitiated"
-                        :def="fieldsDef.year_initiated"
-                ></text-field>
-
-                <text-field
-                        v-model="participantsPerYear"
-                        :def="fieldsDef.participants_per_year"
+                        v-model="yearlyOutreachParticipants"
+                        :def="fieldsDef.yearly_outreach_participants"
                 ></text-field>
 
                 <text-field
@@ -44,6 +55,11 @@
                         :def="fieldsDef.school_classes"
                 ></multi-select-field>
 
+
+            </div>
+
+            <div class="column is-6">
+
                 <textarea-field
                         v-for="additionalDef in fieldsDef.additional_fields"
                         :key="additionalDef.name"
@@ -56,8 +72,8 @@
             <div class="column is-12">
 
                 <locations
-                        v-model="locations"
-                        :def="fieldsDef.locations">
+                        v-model="visitedLocations"
+                        :def="fieldsDef.visited_locations">
                 </locations>
 
             </div>
@@ -89,6 +105,13 @@
 
             </div>
 
+            <button
+                :class="{ button:true, 'is-primary':true, 'is-loading': isSubmitting }"
+                @click="saveSurvey()"
+            >
+                Submit
+            </button>
+
         </div>
 
         <div v-else>
@@ -105,6 +128,8 @@
 
 <script type="text/babel">
 
+    import Survey from '../services/Survey';
+
     import Contact from '../models/Contact';
     import Partner from '../models/Partner';
     import Location from '../models/Location';
@@ -118,6 +143,15 @@
 
     export default {
 
+        props: {
+
+            program_id: {
+
+                type: Number,
+                default: undefined
+            }
+        },
+
         components: {
 
             'contacts': Contacts,
@@ -130,21 +164,25 @@
 
             return {
 
+                // TODO -- use this fields as an update/new flag
+                id: '',
+
                 schoolName: '',
                 programName: '',
                 usesEmr: '',
                 yearInitiated: '',
-                participantsPerYear: '',
+                yearlyOutreachParticipants: '',
                 monthsOfTravel: '',
                 matriculantsPerClass: '',
                 schoolClasses: [],
                 additionalFields: {},
 
-                locations: [],
+                visitedLocations: [],
                 partners: [],
                 contacts: [],
                 papers: [],
 
+                isSubmitting: false,
                 fieldsDef: {}
             }
         },
@@ -159,74 +197,70 @@
 
         methods: {
 
+            saveSurvey(){
+
+                let fields = {
+
+                    school_name: this.schoolName,
+                    name: this.programName,
+                    uses_emr: ( this.usesEmr === 'yes' ),
+                    year_initiated: this.yearInitiated,
+                    yearly_outreach_participants: this.yearlyOutreachParticipants,
+                    months_of_travel: this.monthsOfTravel,
+                    matriculants_per_class: this.matriculantsPerClass,
+                    school_classes: this.schoolClasses,
+                    additional_fields: this.additionalFields,
+
+                    // TODO - don't add empty nested fields
+                    locations: this.locations,
+                    partners: this.partners,
+                    contacts: this.contacts,
+                    papers: this.papers
+                };
+
+                console.log( fields );
+
+                Survey.save( fields, ( result ) => {
+
+                    console.log( result );
+                } );
+            },
+
+            updateSurvey() {
+
+                // TODO -- implement update
+            }
         },
 
         created(){
 
-            // sample paper
-            let paper = new Paper();
-            paper.id = 1;
-            paper.title = 'Test Paper';
-            paper.url = 'https://google.com';
-            paper.description = '';
+            // TODO -- handle both new surveys and updating existing surveys
 
-            this.papers.push( paper );
+            Survey.initialize( ( def ) => this.fieldsDef = def );
 
-            // sample partner
-            let partner = new Partner();
-            partner.id = 1;
-            partner.name = 'Test Partner';
-            partner.url = 'https://google.com';
+            if( this.program_id !== undefined ) {
 
-            this.partners.push( partner );
+                //Survey.get(this.program_id, ( program ) => this.populateFromProgram( program ) );
+                Survey.get( this.program_id, ( program ) => {
 
-            // sample contact
-            let contact = new Contact();
-            contact.id = 1;
-            contact.name = 'Test Contact';
-            contact.email = 'test@email.com';
-            contact.phone = '586-113-3435';
+                    console.log( program );
 
-            this.contacts.push( contact );
+                    this.programName = program.name;
+                    this.schoolName = program.schoolName;
+                    this.usesEmr = ( program.usesEmr ) ? 'yes' : 'no';
+                    this.yearInitiated = program.yearInitiated;
+                    this.yearlyOutreachParticipants = program.yearlyOutreachParticipants;
+                    this.monthsOfTravel = program.monthsOfTravel;
+                    this.matriculantsPerClass = program.matriculantsPerClass;
+                    this.schoolClasses = program.schoolClasses;
+                    this.additionalFields = program.additionalFields;
 
-            let contact2 = new Contact();
-            contact2.id = 2;
-            contact2.name = 'Test Contact 2';
-            contact2.email = 'test2@email.com';
-            contact2.phone = '586-654-2345';
-
-            this.contacts.push( contact2 );
-
-
-            axios.get( '/api/survey/form' )
-                .then( ( response ) => {
-
-                    let def = {};
-                    _.forEach( response.data.data, ( fieldJson, key ) => {
-
-                        if( _.isArray( fieldJson ) ) {
-
-                            let subfield = {};
-                            _.forEach( fieldJson, ( json ) => {
-
-                                let field = new FormField( json );
-                                subfield[ field.name ] = field;
-                            });
-
-                            def[ key ] = subfield;
-                        }
-                        else {
-
-                            def[ key ] = new FormField( fieldJson );
-                        }
-
-
-                    } );
-
-                    this.fieldsDef = def;
-                });
-
-            ;
+                    this.partners = program.partners;
+                    this.contacts = program.contacts;
+                    this.papers = program.papers;
+                    this.visitedLocations = program.visitedLocations;
+                } );
+            }
         }
     }
 
@@ -240,10 +274,11 @@
 
         font-size: 1.3rem;
         line-height: 36px;
+
+        .is-loading{
+
+            margin-right: 15px;
+        }
     }
 
-    .loading .is-loading{
-
-        margin-right: 15px;
-    }
 </style>

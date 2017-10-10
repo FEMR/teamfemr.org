@@ -114,6 +114,7 @@
                 // If no previous locations, get from aPI
                 else {
 
+                    // TODO -- move to a service
                     axios.get('/api/locations')
                         .then((response) => {
 
