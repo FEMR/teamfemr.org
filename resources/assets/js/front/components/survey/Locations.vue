@@ -30,6 +30,7 @@
                         <gmap-marker
                                 :key="index"
                                 v-for="(m, index) in locations"
+                                v-if="hasPosition(m)"
                                 :position="m.position"
                                 :clickable="true"
                                 :draggable="true"
@@ -139,7 +140,6 @@
                 autocompleteValue: '',
 
                 center: { lat: 0.0, lng: 0.0 },
-                bounds: {},
                 zoom: 2
             }
         },
@@ -153,11 +153,18 @@
                     this.locations.push( new Location() );
                 }
 
+                this.extendBounds();
+
                 this.$emit( 'input', newLocations );
             }
         },
 
         methods: {
+
+            hasPosition( m ) {
+
+              return ! _.isEmpty( m.position );
+            },
 
             editLocation( idx ){
 
@@ -175,38 +182,61 @@
 
                 let location = new Location();
                 location.populateFromPlace( place );
-                this.locations.push( location );
 
-                this.extendBounds( location.position );
-                this.fitBounds();
+                // Since the locations list will always contain at least a blank item
+                //   we need to detect when there is only a single blank item and
+                //   replace that blank item with a new populated Location
+                if( this.locations.length === 1 && _.isEmpty( this.locations[0].position ) )
+                {
+                    console.log( "Set location 0" );
+                    console.log( location );
+
+                    Vue.set( this.locations, 0, location );
+                }
+                else {
+
+                    this.locations.push( location );
+                }
 
                 this.$refs.autocomplete.$el.value = '';
 
             },
 
-            initBounds() {
+            extendBounds() {
 
-                this.bounds = new google.maps.LatLngBounds();
-            },
+                console.log( "checking bounds" );
 
-            fitBounds() {
+                if( this.locations.length > 1 ) {
 
-                if( ! _.isEmpty( this.bounds ) && this.locations.length > 1 ) {
+                    console.log( "Extend Bounds" );
+                    const bounds = new google.maps.LatLngBounds();
 
-                    this.$refs.gmap.fitBounds( this.bounds );
+                    _.forEach( this.locations, ( location ) => {
+
+                        //let latLng = new google.maps.LatLng( location.latitude, location.longitude );
+                        bounds.extend( location.position );
+                    });
+
+                    this.$refs.gmap.$mapObject.fitBounds( bounds );
                 }
                 else if( this.locations.length > 0 ) {
 
-                    let location = this.locations[0];
-                    this.center = location.position;
-                    this.zoom = 7;
+                    console.log( "Default Center" );
+                    const location = this.locations[0];
+                    if( this.hasPosition( location ) ) {
+
+                        this.center = location.position;
+                        this.zoom = 7;
+                    }
+                    else {
+
+                        console.log( "No markers" );
+
+                        this.center = { lat: 0.0, lng: 0.0 };
+                        this.zoom = 2
+                    }
                 }
-            },
 
-            extendBounds( latitude, longitude ) {
-
-                let latLng = new google.maps.LatLng( latitude, longitude );
-                this.bounds.extend( latLng );
             },
 
         },
@@ -214,49 +244,36 @@
 
             VueGoogleMaps.loaded.then( () => {
 
-                this.initBounds();
             });
 
             window.addEventListener('resize', () => {
 
-                this.fitBounds();
+                this.extendBounds();
             });
 
-        },
-        mounted() {
-
-            this.fitBounds();
         }
     }
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
-    .locations-map-container{
+    .locations-map-container .map {
 
-        .map {
-
-            width: 100%;
-            height: 300px;
-        }
+        width: 100%;
+        height: 300px;
     }
 
-    .location-row {
+    .location-row .button-column {
 
-        .button-column {
-            width: 25px;
-            flex: 0 auto;
-        }
+        width: 25px;
+        flex: 0 auto;
     }
 
-    .location-headers{
+    .location-headers .column{
 
-        .column{
-
-            padding: 0.5rem 0.75rem 0;
-            margin-bottom: -0.5rem;
-        }
+        padding: 0.5rem 0.75rem 0;
+        margin-bottom: -0.5rem;
     }
 
 </style>
