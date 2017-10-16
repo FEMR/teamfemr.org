@@ -15,6 +15,60 @@
                         <article class="media">
                             <figure class="media-left">
                                 <p>
+                                    <a href="{{ asset( 'documents/presentations/LSU-Epidemiology-2017.pdf' ) }}" target="_blank">
+                                                <span class="icon">
+                                                  <i class="fa fa-file-pdf-o"></i>
+                                                </span>
+                                    </a>
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <a href="{{ asset( 'documents/presentations/LSU-Epidemiology-2017.pdf' ) }}" target="_blank">
+                                            <strong>Epidemiology of Diseases in the Peruvian Andes</strong>
+                                            <br>
+                                            Presented by researchers from Louisiana State University and Healing Peru at the 2017 Global Health Workshop hosted by the American Academy of Family Physicians
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+                    </li>
+
+                    <li class="doc">
+
+                        <article class="media">
+                            <figure class="media-left">
+                                <p>
+                                    <a href="{{ asset( 'documents/presentations/LSU-Implementing-EMR-2017.pdf' ) }}" target="_blank">
+                                                <span class="icon">
+                                                  <i class="fa fa-file-pdf-o"></i>
+                                                </span>
+                                    </a>
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <a href="{{ asset( 'documents/presentations/LSU-Implementing-EMR-2017.pdf' ) }}" target="_blank">
+                                            <strong>Implementing Fast Electronic Medical Record in the Rural Area of Cusco, Peru</strong>
+                                            <br>
+                                            Presented by researchers from Louisiana State University and Healing Peru at the 2017 Global Health Workshop hosted by the American Academy of Family Physicians
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+                    </li>
+
+                    <li class="doc">
+
+                        <article class="media">
+                            <figure class="media-left">
+                                <p>
                                     <a href="{{ asset( 'documents/news/paradigm-for-short-term-medical-missions.pdf' ) }}" target="_blank">
                                                 <span class="icon">
                                                   <i class="fa fa-file-pdf-o"></i>
