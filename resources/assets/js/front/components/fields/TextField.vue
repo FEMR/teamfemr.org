@@ -3,7 +3,7 @@
 
         <label class="label" v-if="! def.hideLabel">{{ def.label }}</label>
 
-        <div :class="{ control: true, 'has-icons-right': true, 'has-icons-left': def.icon.length > 0 }">
+        <div :class="{ control: true, 'has-icons-right': hasRightIcon, 'has-icons-left': hasLeftIcon }">
 
             <input
                 :value="value"
@@ -16,11 +16,11 @@
                 v-on:input="updateValue($event.target.value)"
             >
 
-            <span :class="{ 'icon': true, 'is-small': true, 'is-left': true }">
+            <span v-if="hasLeftIcon" :class="{ 'icon': true, 'is-small': true, 'is-left': true }">
               <i :class="iconClasses"></i>
             </span>
 
-            <span :class="{ 'icon': true, 'is-small': true, 'is-right': true, 'is-success': isSuccess, 'is-danger': isError }">
+            <span v-if="hasRightIcon" :class="{ 'icon': true, 'is-small': true, 'is-right': true, 'is-success': isSuccess, 'is-danger': isError }">
               <i :class="{ 'fa': true, 'fa-check': isSuccess, 'fa-warning': isError }"></i>
             </span>
 
@@ -83,6 +83,16 @@
                 }
 
                 return classes;
+            },
+
+            hasLeftIcon() {
+
+                return this.def.icon.length > 0;
+            },
+
+            hasRightIcon() {
+
+                return this.isError || this.isSuccess;
             },
 
             valueHasChanged() {

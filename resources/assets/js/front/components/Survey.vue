@@ -145,7 +145,7 @@
 
         props: {
 
-            program_id: {
+            programId: {
 
                 type: Number,
                 default: undefined
@@ -263,9 +263,9 @@
 
             Survey.initialize( ( def ) => this.fieldsDef = def );
 
-            if( this.program_id !== undefined ) {
+            if( this.programId !== undefined ) {
 
-                Survey.get( this.program_id, ( program ) => {
+                Survey.get( this.programId, ( program ) => {
 
                     this.id = program.id;
 
