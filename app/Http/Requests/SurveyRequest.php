@@ -2,8 +2,9 @@
 
 namespace FEMR\Http\Requests;
 
+use FEMR\Data\Models\OutreachProgram;
+use FEMR\Data\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class SurveyRequest extends FormRequest
 {
@@ -26,16 +27,19 @@ class SurveyRequest extends FormRequest
     {
         return [
 
-            "name"                         => "required|string",
-            "school_name"                  => "string",
-            "uses_emr"                     => [
+            "name" => [
+                "required",
+                "string"
+            ],
+            "school_name" => "string",
+            "uses_emr" => [
                 "required",
                 "boolean"
             ],
-            "year_initiated"               => "string",
+            "year_initiated" => "string",
             "yearly_outreach_participants" => "string",
-            "months_of_travel"             => "string",
-            "matriculants_per_class"       => "string"
+            "months_of_travel" => "string",
+            "matriculants_per_class" => "string"
         ];
     }
 

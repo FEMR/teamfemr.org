@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="columns contact-row" v-for="(contact, idx) in contacts" :key="contact.id">
+            <div class="columns contact-row" v-for="(contact, idx) in contacts" :key="contact.uniqueId">
 
                 <div class="column">
 
@@ -120,11 +120,6 @@
             addEmptyContact(){
 
                 let contact = new Contact();
-
-                // TODO -- how to handle this with create vs update
-                // this.count is necessary to give each row a unique id or vue will
-                //   reuse them and potentially leave behind validation errors
-                contact.id = ++this.count;
                 this.contacts.push( contact );
             },
 

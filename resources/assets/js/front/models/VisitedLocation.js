@@ -26,6 +26,8 @@ class VisitedLocation{
 
     constructor() {
 
+        this.uniqueId = _.uniqueId();
+
         this.id = '';
         this.address = '';
         this.address_ext = '';
@@ -125,7 +127,7 @@ class VisitedLocation{
         if ( place.hasOwnProperty('geometry') ){
 
             this.position.lat = place.geometry.location.lat().toFixed( 5 );
-            this.position.lng = place.geometry.location.lng().toFixed( 5 );
+            this.position.longitude = place.geometry.location.lng().toFixed( 5 );
         }
     }
 

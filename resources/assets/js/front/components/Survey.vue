@@ -107,7 +107,7 @@
 
             <button
                 :class="{ button:true, 'is-primary':true, 'is-loading': isSubmitting }"
-                @click="saveSurvey()"
+                @click="saveClicked()"
             >
                 Submit
             </button>
@@ -134,8 +134,8 @@
     import Partner from '../models/Partner';
     import Location from '../models/Location';
     import Paper from '../models/Paper';
-
     import FormField from '../models/FormField';
+
     import Contacts from './survey/Contacts';
     import Locations from './survey/Locations';
     import Papers from './survey/Papers';
@@ -189,17 +189,14 @@
 
         computed: {
 
-            fieldsDefIsLoaded() {
+            fieldsDefIsLoaded: function() {
 
                 return ! _.isEmpty( this.fieldsDef );
-            }
-        },
+            },
 
-        methods: {
+            postFields: function() {
 
-            saveSurvey(){
-
-                let fields = {
+                return {
 
                     school_name: this.schoolName,
                     name: this.programName,
@@ -211,39 +208,66 @@
                     school_classes: this.schoolClasses,
                     additional_fields: this.additionalFields,
 
-                    // TODO - don't add empty nested fields
-                    locations: this.locations,
-                    partners: this.partners,
-                    contacts: this.contacts,
-                    papers: this.papers
-                };
+                    visited_locations: this.filterEmptyObjects(this.visitedLocations),
+                    partners: this.filterEmptyObjects(this.partners),
+                    contacts: this.filterEmptyObjects(this.contacts),
+                    papers: this.filterEmptyObjects(this.papers)
+                }
+            }
+        },
 
-                console.log( fields );
+        methods: {
 
-                Survey.save( fields, ( result ) => {
+            filterEmptyObjects( items ) {
+
+                return _.filter( items, ( item ) => _.some( item, ( field ) => ! _.isEmpty( field ) ) );
+            },
+
+            saveClicked() {
+
+                this.isSubmitting = true;
+
+                if( Number.isInteger( this.id ) ) {
+
+                    this.updateSurvey();
+                }
+                else {
+
+                    this.createSurvey();
+                }
+
+            },
+
+            createSurvey(){
+
+                Survey.create( this.postFields, ( result ) => {
 
                     console.log( result );
+                    this.isSubmitting = false;
                 } );
             },
 
             updateSurvey() {
 
-                // TODO -- implement update
+                console.log( this.postFields );
+
+                Survey.update( this.id, this.postFields, ( result ) => {
+
+                    console.log( result );
+                    this.isSubmitting = false;
+                } );
             }
         },
 
         created(){
 
-            // TODO -- handle both new surveys and updating existing surveys
-
             Survey.initialize( ( def ) => this.fieldsDef = def );
 
             if( this.program_id !== undefined ) {
 
-                //Survey.get(this.program_id, ( program ) => this.populateFromProgram( program ) );
                 Survey.get( this.program_id, ( program ) => {
 
-                    console.log( program );
+                    this.id = program.id;
 
                     this.programName = program.name;
                     this.schoolName = program.schoolName;
@@ -266,7 +290,7 @@
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
     .loading{
 

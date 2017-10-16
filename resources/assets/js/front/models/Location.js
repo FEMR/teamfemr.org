@@ -2,10 +2,11 @@ class Location {
 
     constructor() {
 
-        this.id = '';
+        this.uniqueId = _.uniqueId();;
 
-        this.city ='';
-        this.state = '';
+        this.id = '';
+        this.locality ='';
+        this.administrative_area_level_1 = '';
         this.country = '';
         this.city_state_country = '';
 
@@ -14,9 +15,10 @@ class Location {
 
     populate( json ) {
 
+        this.id = json.id;
         this.city_state_country = json.city_state_country;
-        this.city = json.locality;
-        this.state = json.administrative_area_level_1;
+        this.locality = json.locality;
+        this.administrative_area_level_1 = json.administrative_area_level_1;
         this.country = json.country;
 
         this.position['lat'] = parseFloat( json.latitude );
@@ -36,25 +38,20 @@ class Location {
         }
 
         // Reset fields so previous info is not left behind
-        this.city = ''; // locality
-        this.state = ''; // administrative_area_level_1
+        this.locality = ''; // city
+        this.administrative_area_level_1 = ''; // state
         this.country = '';
         this.position = {};
-
-        if ( place.hasOwnProperty('id') ){
-
-            this.id = place.id;
-        }
 
 
         if ( components.hasOwnProperty('locality') ){
 
-            this.city = components.locality.long_name;
+            this.locality = components.locality.long_name;
         }
 
         if ( components.hasOwnProperty('administrative_area_level_1') ){
 
-            this.state = components.administrative_area_level_1.short_name;
+            this.administrative_area_level_1 = components.administrative_area_level_1.short_name;
         }
 
         if ( components.hasOwnProperty('country') ){

@@ -13,6 +13,7 @@ class OutreachProgram {
     reset() {
 
         //this.school = new School();
+        this.id = '';
 
         this.name = '';
         this.slug = '';
@@ -36,6 +37,7 @@ class OutreachProgram {
 
         console.log( json );
 
+        this.id = json.id;
         this.name = json.name;
         this.slug = json.slug;
         this.schoolName = json.school_name;
@@ -123,7 +125,7 @@ class OutreachProgram {
 
         //this.school.name = location.outreach_program.school.name;
 
-        let newLoc = new Location();
+        let newLoc = new VisitedLocation();
         newLoc.populate( location );
         this.visitedLocations.push( newLoc );
 

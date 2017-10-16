@@ -2,6 +2,8 @@ class Partner{
 
     constructor() {
 
+        this.uniqueId = _.uniqueId();;
+
         this.id = '';
         this.name = '';
         this.slug ='';

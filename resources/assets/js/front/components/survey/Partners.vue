@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="columns partner-row" v-for="(partner, idx) in partners" :key="partner.id">
+            <div class="columns partner-row" v-for="(partner, idx) in partners" :key="partner.uniqueId">
 
                 <div class="column">
 
@@ -94,6 +94,11 @@
 
             partners: function( newPartners ) {
 
+                if( this.partners.length === 0 ) {
+
+                    this.partners.push( new Partner() );
+                }
+
                 this.$emit( 'input', newPartners );
             }
         },
@@ -108,11 +113,6 @@
             addEmptyPartner(){
 
                 let partner = new Partner();
-
-                // TODO -- how to handle this with create vs update
-                // this.count is necessary to give each row a unique id or vue will
-                //   reuse them and potentially leave behind validation errors
-                partner.id = ++this.count;
                 this.partners.push( partner );
             },
 

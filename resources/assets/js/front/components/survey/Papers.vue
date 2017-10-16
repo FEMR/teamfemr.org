@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="columns paper-row" v-for="(paper, idx) in papers" :key="paper.id">
+            <div class="columns paper-row" v-for="(paper, idx) in papers" :key="paper.uniqueId">
 
                 <div class="column">
 
@@ -120,11 +120,6 @@
             addEmptyPaper(){
 
                 let paper = new Paper();
-
-                // TODO -- how to handle this with create vs update
-                // this.count is necessary to give each row a unique id or vue will
-                //   reuse them and potentially leave behind validation errors
-                paper.id = ++this.count;
                 this.papers.push( paper );
             },
 

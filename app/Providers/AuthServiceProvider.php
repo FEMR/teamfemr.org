@@ -35,5 +35,11 @@ class AuthServiceProvider extends ServiceProvider
 
             return $user->is_admin;
         });
+
+        // To update a survey, a user must be assigned to that survey or be an admin
+        Gate::define( 'update-survey', function ( $user, $survey ) {
+
+            return ( $survey->users->contains( $user->id ) || $user->is_admin );
+        });
     }
 }
