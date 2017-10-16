@@ -59,7 +59,7 @@ class VisitedLocation extends Model
      *
      * @var string
      */
-    protected $dateFormat = 'Y-m-d';
+    //protected $dateFormat = 'Y-m-d';
 
     /**
      * The attributes that should not be encoded to json

@@ -27,6 +27,7 @@ class Contact extends Model
         'middle_name',
         'last_name',
         'suffix',
+        'full_name',
         'title',
         'phone',
         'email',

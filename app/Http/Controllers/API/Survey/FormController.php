@@ -152,7 +152,7 @@ class FormController extends Controller
             "visited_locations" => [
                 [
                     "value"      => '',
-                    "name"       => 'city',
+                    "name"       => 'locality',
                     "label"      => 'City',
                     "hideLabel"  => true,
                     "validators" => '',
@@ -160,7 +160,7 @@ class FormController extends Controller
                 ],
                 [
                     "value"      => '',
-                    "name"       => 'state',
+                    "name"       => 'administrative_area_level_1',
                     "label"      => 'State',
                     "hideLabel"  => true,
                     "validators" => '',

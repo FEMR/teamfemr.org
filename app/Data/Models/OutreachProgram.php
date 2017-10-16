@@ -42,14 +42,14 @@ class OutreachProgram extends Model
      * @var array
      */
     protected $casts = [
-        'name'                         => 'string',
-        'school_name'                  => 'string',
-        'slug'                         => 'string',
-        'year_initiated'               => 'string',
+        'name' => 'string',
+        'school_name' => 'string',
+        'slug' => 'string',
+        'year_initiated' => 'string',
         'yearly_outreach_participants' => 'string',
-        'matriculants_per_class'       => 'string',
-        'months_of_travel'             => 'string',
-        'uses_emr'                     => 'boolean'
+        'matriculants_per_class' => 'string',
+        'months_of_travel' => 'string',
+        'uses_emr' => 'boolean'
     ];
 
     /**
@@ -73,11 +73,11 @@ class OutreachProgram extends Model
     public static $default_fields = [
 
         'other-participating-schools' => 'Other participating professional schools:',
-        'faculty-and-staffing'   => 'Faculty and staffing:',
-        'application-process'    => 'Application process:',
-        'program-elements'       => 'Program elements:',
-        'financial-support'      => 'Financial support:',
-        'faculty-time-alotted'   => 'Faculty time allotted:',
+        'faculty-and-staffing' => 'Faculty and staffing:',
+        'application-process' => 'Application process:',
+        'program-elements' => 'Program elements:',
+        'financial-support' => 'Financial support:',
+        'faculty-time-alotted' => 'Faculty time allotted:',
         'administrative-support' => 'Administrative support:'
     ];
 
@@ -85,20 +85,19 @@ class OutreachProgram extends Model
      * Grabs a value by $key from the fields relationship
      *
      * @param $key
+     *
      * @return null
      */
     public function getAdditionalFieldValue( $key )
     {
-        if( $this->fields->count() > 0 )
-        {
-            $field = $this->fields->filter( function( $item ) use ( $key )
-                {
+        if ( $this->fields->count() > 0 ) {
+            $field = $this->fields->filter(
+                function ( $item ) use ( $key ) {
                     return $item->key === $key;
-                })
-                ->first();
+                } )
+                                  ->first();
 
-            if( $field )
-            {
+            if ( $field ) {
                 return $field->value;
             }
         }
@@ -108,11 +107,12 @@ class OutreachProgram extends Model
     /**
      * @return string
      */
-    public function getVisitedLocationsCenterAttribute(){
+    public function getVisitedLocationsCenterAttribute()
+    {
 
         $center_lat = 0.0;
         $center_lng = 0.0;
-        foreach( $this->visitedLocations as $location ){
+        foreach ( $this->visitedLocations as $location ) {
 
             $center_lat += $location->latitude;
             $center_lng += $location->longitude;
@@ -122,12 +122,13 @@ class OutreachProgram extends Model
         $center_lat = $center_lat / $this->visitedLocations->count();
         $center_lng = $center_lng / $this->visitedLocations->count();
 
-        return  json_encode([
+        return json_encode(
+            [
 
                 'lat' => $center_lat,
                 'lng' => $center_lng
 
-            ]);
+            ] );
     }
 
     /**
@@ -139,6 +140,29 @@ class OutreachProgram extends Model
     public function scopeSlug( $query, $slug )
     {
         return $query->where( 'slug', '=', $slug );
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeWithAll( $query )
+    {
+        return $query->with(
+            [
+                'medias',
+                'contacts',
+                'schoolClasses',
+                'visitedLocations' => function ( $query ) {
+
+                    $query->orderBy( 'country' );
+                },
+                'fields',
+                'papers',
+                'partnerOrganizations'
+            ]
+        );
     }
 
     /**
@@ -230,33 +254,141 @@ class OutreachProgram extends Model
     }
 
     /**
+     * @param array $additional_fields
+     *
+     * @return $this
+     */
+    public function syncAdditionalFields( $additional_fields = [] )
+    {
+        if( ! is_array( $additional_fields ) ) return $this;
+
+        foreach ( $additional_fields as $key => $value ) {
+            // Don't add fields that are blank
+            if ( strlen( trim( $value ) ) === 0 ) continue;
+
+            if ( $this->fields->contains( 'key', $key ) ) {
+                $this->fields()
+                     ->where( 'key', '=', $key )
+                     ->update( [ 'value' => $value ] );
+            }
+            else {
+                $this->fields()
+                     ->create(
+                         [
+                             'name' => OutreachProgram::$default_fields[$key],
+                             'key' => $key,
+                             'value' => $value
+                         ] );
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array $contacts
+     *
+     * @return $this
+     */
+    public function syncContacts( $contacts = [] )
+    {
+        if( ! is_array( $contacts ) ) return $this;
+
+        // get existing contacts
+        $existing_ids = $this->contacts->pluck( 'id' );
+
+        foreach( $contacts as $contact )
+        {
+            if( isset( $contact['id'] ) && ! empty( $contact['id'] ) )
+            {
+                // remove encountered contacts from existing_ids
+                $existing_ids = $existing_ids->filter( function( $value, $key ) use( $contact )
+                {
+                    return $value !== intval( $contact['id'] );
+                });
+
+                $this->contacts()
+                    ->findOrFail( $contact['id'] )
+                    ->update( $contact );
+            }
+            else
+            {
+                $this->contacts()->create( $contact );
+            }
+        }
+
+        // remove existing ids not encountered in $contacts
+        $this->contacts()->detach( $existing_ids );
+
+        return $this;
+    }
+
+    /**
+     * @param array $papers
+     *
+     * @return $this
+     */
+    public function syncPapers( $papers = [] )
+    {
+        if( ! is_array( $papers ) ) return $this;
+
+        // get existing papers
+        $existing_ids = $this->papers->pluck( 'id' );
+
+        foreach( $papers as $paper )
+        {
+            if( isset( $paper['id'] ) && ! empty( $paper['id'] ) )
+            {
+                // remove encountered papers from existing_ids
+                $existing_ids = $existing_ids->filter( function( $value, $key ) use( $paper )
+                {
+                   return $value !== intval( $paper['id'] );
+                });
+
+                $this->papers()
+                     ->findOrFail( $paper['id'] )
+                     ->update( $paper );
+            }
+            else
+            {
+                $this->papers()->create( $paper );
+            }
+        }
+
+        // remove existing ids not encountered in $papers
+        foreach( $existing_ids as $to_delete )
+        {
+            $this->papers()->findOrFail( $to_delete )->delete();
+        }
+
+        return $this;
+    }
+
+    /**
      * @param array $school_classes
+     *
      * @return $this
      */
     public function syncSchoolClasses( $school_classes = [] )
     {
+        if( ! is_array( $school_classes ) ) return $this;
         $classes_to_sync = [];
 
-        foreach( $school_classes as $class )
-        {
-            if( is_numeric( $class ) )
-            {
+        foreach ( $school_classes as $class ) {
+            if ( is_numeric( $class ) ) {
                 $classes_to_sync[] = $class;
             }
-            else
-            {
+            else {
                 $existing = SchoolClass::where( 'name', 'LIKE', $class )->first();
 
                 //
                 // Add school class and get id to sync
                 //
-                if( is_null( $existing ) )
-                {
-                    $new = $this->schoolClasses()->create([ 'name' => $class ]);
+                if ( is_null( $existing ) ) {
+                    $new = $this->schoolClasses()->create( [ 'name' => $class ] );
                     $classes_to_sync[] = $new->id;
                 }
-                else
-                {
+                else {
                     $classes_to_sync[] = $existing->id;
                 }
 
@@ -269,31 +401,79 @@ class OutreachProgram extends Model
     }
 
     /**
-     * @param array $additional_fields
+     * @param array $partners
+     *
      * @return $this
      */
-    public function syncAdditionalFields( $additional_fields = [] )
+    public function syncPartnerOrganizations( $partners = [] )
     {
-        foreach( $additional_fields as $key => $value )
-        {
-            // Don't add fields that are blank
-            if( strlen( trim( $value  ) ) === 0 ) continue;
+        if( ! is_array( $partners ) ) return $this;
 
-            if( $this->fields->contains( 'key', $key ) )
+        // get existing partners
+        $existing_ids = $this->partnerOrganizations->pluck( 'id' );
+
+        foreach( $partners as $partner )
+        {
+            if( isset( $partner['id'] ) && ! empty( $partner['id'] ) )
             {
-                $this->fields()
-                    ->where( 'key', '=', $key )
-                    ->update([ 'value' => $value ]);
+                // remove encountered papers from existing_ids
+                $existing_ids = $existing_ids->filter( function( $value, $key ) use( $partner )
+                {
+                    return $value !== intval( $partner['id'] );
+                });
+
+                $this->partnerOrganizations()
+                     ->findOrFail( $partner['id'] )
+                     ->update( $partner );
             }
             else
             {
-                $this->fields()
-                    ->create([
-                        'name'   => OutreachProgram::$default_fields[ $key ],
-                        'key'    => $key,
-                        'value' => $value
-                    ]);
+                $this->partnerOrganizations()->create( $partner );
             }
+        }
+
+        // remove existing ids not encountered in $partners
+        $this->partnerOrganizations()->detach( $existing_ids );
+
+        return $this;
+    }
+
+    /**
+     * @param array $visited_locations
+     *
+     * @return $this
+     */
+    public function syncVisitedLocations( $visited_locations = [] )
+    {
+        if( ! is_array( $visited_locations ) ) return $this;
+
+        // get existing locations
+        $existing_ids = $this->visitedLocations->pluck( 'id' );
+
+        foreach( $visited_locations as $location )
+        {
+            if( isset( $location['id'] ) && ! empty( $location->id ) )
+            {
+                // remove encountered papers from existing_ids
+                $existing_ids = $existing_ids->filter( function( $value, $key ) use( $location )
+                {
+                    return $value !== intval( $location['id'] );
+                });
+
+                $this->visitedLocations()
+                     ->findOrFail( $location->id )
+                     ->update( $location );
+            }
+            else
+            {
+                $this->visitedLocations()->create( $location );
+            }
+        }
+
+        // remove existing ids not encountered in $visited_locations
+        foreach( $existing_ids as $to_delete )
+        {
+            $this->visitedLocations()->findOrFail( $to_delete )->delete();
         }
 
         return $this;

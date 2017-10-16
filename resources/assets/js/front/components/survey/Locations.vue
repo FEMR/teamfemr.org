@@ -53,14 +53,14 @@
                             </div>
                         </div>
 
-                        <div v-for="( location, idx ) in locations" :key="location.id" class="columns location-row">
+                        <div v-for="( location, idx ) in locations" :key="location.uniqueId" class="columns location-row">
 
                             <div class="column">
 
                                 <text-field
-                                        v-model="location.city"
-                                        :def="def.city"
-                                        :initialValue="location.city"
+                                        v-model="location.locality"
+                                        :def="def.locality"
+                                        :initialValue="location.locality"
                                 ></text-field>
 
                             </div>
@@ -68,9 +68,9 @@
                             <div class="column">
 
                                 <text-field
-                                        v-model="location.state"
-                                        :def="def.state"
-                                        :initialValue="location.state"
+                                        v-model="location.administrative_area_level_1"
+                                        :def="def.administrative_area_level_1"
+                                        :initialValue="location.administrative_area_level_1"
                                 ></text-field>
 
                             </div>
@@ -147,6 +147,11 @@
         watch: {
 
             locations: function( newLocations ) {
+
+                if( this.locations.length === 0 ) {
+
+                    this.locations.push( new Location() );
+                }
 
                 this.$emit( 'input', newLocations );
             }

@@ -2,6 +2,7 @@ class Contact{
 
     constructor() {
 
+        this.uniqueId = _.uniqueId();;
         this.id = '';
         this.full_name = '';
         this.phone = '';

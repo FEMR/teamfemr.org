@@ -39,12 +39,12 @@
 
         props: {
 
-            "def": {
+            def: {
 
                 type: FormField,
                 default: () => new FormField()
             },
-            "value": {
+            value: {
 
                 type: String,
                 default: '',

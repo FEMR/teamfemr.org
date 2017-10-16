@@ -2,6 +2,8 @@ class Paper{
 
     constructor() {
 
+        this.uniqueId = _.uniqueId();
+
         this.id = '';
         this.title = '';
         this.url = '';

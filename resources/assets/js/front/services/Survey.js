@@ -41,15 +41,24 @@ class Survey {
 
                 // TODO -- handle error?
                 let program = new OutreachProgram();
-                program.populate( result.data );
+                program.populate( result.data.data );
 
                 callback( program );
             });
     }
 
-    static save( fields, callback ) {
+    static create( fields, callback ) {
 
         axios.post( '/api/survey', fields )
+            .then( function( result ) {
+
+                callback( result );
+            });
+    }
+
+    static update( id, fields, callback ) {
+
+        axios.put( '/api/survey/' + id, fields )
             .then( function( result ) {
 
                 callback( result );
