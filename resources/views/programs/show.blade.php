@@ -8,6 +8,12 @@
 
                 <p class="back-button"><a class="button is-link" href="{{ route( 'programs.index' ) }}">&laquo; All Surveyed Programs</a></p>
 
+                @if( ! is_null( $user ) && $user->can( 'update-survey', $program ) )
+                <a href="{{ route( 'survey.edit', [ $program->id ] ) }}" class="button is-success is-small pull-right">
+                    Edit
+                </a>
+                @endif
+
                 <h1 class="title">{!! str_ireplace( '-', '- <br />', $program->name ) !!}</h1>
 
                 <hr />

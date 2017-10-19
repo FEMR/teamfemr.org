@@ -26,7 +26,9 @@ class OutreachProgramController extends Controller
                               ])
                        ->get();
 
-        return view( 'programs.index', [ 'programs' => $programs ]);
+        $user = \Auth::user();
+
+        return view( 'programs.index', [ 'programs' => $programs, 'user' => $user ]);
     }
 
     /**
@@ -52,6 +54,8 @@ class OutreachProgramController extends Controller
                         ])
                         ->firstOrFail();
 
-        return view( 'programs.show', [ 'program' => $program ] );
+        $user = \Auth::user();
+
+        return view( 'programs.show', [ 'program' => $program, 'user' => $user ] );
     }
 }

@@ -2,8 +2,7 @@
 
 namespace FEMR\Http\Controllers;
 
-use FEMR\Http\Requests\SurveyRequest;
-use Illuminate\Http\Request;
+use FEMR\Data\Models\OutreachProgram;
 
 class SurveyController extends Controller
 {
@@ -11,15 +10,25 @@ class SurveyController extends Controller
     /**
      * Show the survey
      *
-     * @return [type] [description]
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function create()
     {
-        return view( 'surveys.index' );
+        $user = \Auth::user();
+
+        return view( 'surveys.create', [ 'user' => $user ] );
     }
 
-    public function store( SurveyRequest $request )
+    /**
+     * @param $program_id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit( $program_id )
     {
-        return redirect()->route( 'surveys.index' );
+        $program = OutreachProgram::findOrFail( $program_id );
+        $user = \Auth::user();
+
+        return view( 'surveys.edit', [ 'program' => $program, 'user' => $user ] );
     }
 }

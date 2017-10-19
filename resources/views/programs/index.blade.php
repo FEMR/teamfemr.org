@@ -88,6 +88,13 @@
                                     <a href="{{ route( 'programs.show', [ $program->slug ] ) }}" class="button is-info is-small">
                                         Full Survey
                                     </a>
+
+                                    @if( ! is_null( $user ) && $user->can( 'update-survey', $program ) )
+                                    <a href="{{ route( 'survey.edit', [ $program->id ] ) }}" class="button is-success is-small edit-survey">
+                                        Edit
+                                    </a>
+                                    @endif
+
                                 </td>
                             </tr>
                             @endforeach

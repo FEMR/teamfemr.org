@@ -1,116 +1,121 @@
 <template>
     <div class="survey-container">
 
-        <div v-if="fieldsDefIsLoaded" class="columns is-multiline">
+        <div v-if="fieldsDefIsLoaded">
 
-            <div class="column is-6">
+            <div class="columns is-multiline extra-space">
 
-                <text-field
-                    v-model="schoolName"
-                    :def="fieldsDef.school_name"
-                ></text-field>
-                <text-field
-                    v-model="programName"
-                    :def="fieldsDef.program_name"
-                ></text-field>
+                <div class="column is-6">
 
-                <div class="columns">
+                    <text-field
+                        v-model="schoolName"
+                        :def="fieldsDef.school_name"
+                    ></text-field>
 
-                    <div class="column">
+                    <text-field
+                        v-model="programName"
+                        :def="fieldsDef.program_name"
+                    ></text-field>
 
-                        <select-field
-                            v-model="usesEmr"
-                            :def="fieldsDef.uses_emr"
-                        ></select-field>
+                    <select-field
+                        v-model="usesEmr"
+                        :def="fieldsDef.uses_emr"
+                    ></select-field>
 
-                    </div>
-                    <div class="column">
-
-                        <text-field
-                                v-model="yearInitiated"
-                                :def="fieldsDef.year_initiated"
-                        ></text-field>
-
-                    </div>
+                    <text-field
+                            v-model="yearInitiated"
+                            :def="fieldsDef.year_initiated"
+                    ></text-field>
 
                 </div>
 
-                <text-field
-                        v-model="yearlyOutreachParticipants"
-                        :def="fieldsDef.yearly_outreach_participants"
-                ></text-field>
+                <div class="column is-6">
 
-                <text-field
-                        v-model="matriculantsPerClass"
-                        :def="fieldsDef.matriculants_per_class"
-                ></text-field>
+                    <text-field
+                            v-model="yearlyOutreachParticipants"
+                            :def="fieldsDef.yearly_outreach_participants"
+                    ></text-field>
 
-                <text-field
-                        v-model="monthsOfTravel"
-                        :def="fieldsDef.months_of_travel"
-                ></text-field>
+                    <text-field
+                            v-model="matriculantsPerClass"
+                            :def="fieldsDef.matriculants_per_class"
+                    ></text-field>
 
-                <multi-select-field
-                        v-model="schoolClasses"
-                        :def="fieldsDef.school_classes"
-                ></multi-select-field>
+                    <text-field
+                            v-model="monthsOfTravel"
+                            :def="fieldsDef.months_of_travel"
+                    ></text-field>
 
+                    <multi-select-field
+                            v-model="schoolClasses"
+                            :def="fieldsDef.school_classes"
+                    ></multi-select-field>
+
+
+                </div>
+
+                <div class="column is-6 additional-field"
+                     v-for="additionalDef in fieldsDef.additional_fields">
+
+                    <textarea-field
+                            :key="additionalDef.name"
+                            v-model="additionalFields[ additionalDef.name ]"
+                            :def="additionalDef"
+                    ></textarea-field>
+
+                </div>
+            </div>
+
+            <div class="columns is-multiline">
+
+                <div class="column is-12">
+
+                    <locations
+                            v-model="visitedLocations"
+                            :def="fieldsDef.visited_locations">
+                    </locations>
+
+                </div>
+
+                <div class="column is-12">
+
+                    <partners
+                            v-model="partners"
+                            :def="fieldsDef.partners">
+                    </partners>
+
+                </div>
+
+                <div class="column is-12">
+
+                    <contacts
+                            v-model="contacts"
+                            :def="fieldsDef.contacts">
+                    </contacts>
+
+                </div>
+
+                <div class="column is-12">
+
+                    <papers
+                            v-model="papers"
+                            :def="fieldsDef.papers">
+                    </papers>
+
+                </div>
 
             </div>
 
-            <div class="column is-6">
+            <div class="button-container">
 
-                <textarea-field
-                        v-for="additionalDef in fieldsDef.additional_fields"
-                        :key="additionalDef.name"
-                        v-model="additionalFields[ additionalDef.name ]"
-                        :def="additionalDef"
-                ></textarea-field>
-
-            </div>
-
-            <div class="column is-12">
-
-                <locations
-                        v-model="visitedLocations"
-                        :def="fieldsDef.visited_locations">
-                </locations>
+                <button
+                    :class="{ button:true, 'femr-button': true, 'is-loading': isSubmitting }"
+                    @click="saveClicked()"
+                >
+                    Submit
+                </button>
 
             </div>
-
-            <div class="column is-12">
-
-                <partners
-                        v-model="partners"
-                        :def="fieldsDef.partners">
-                </partners>
-
-            </div>
-
-            <div class="column is-12">
-
-                <contacts
-                        v-model="contacts"
-                        :def="fieldsDef.contacts">
-                </contacts>
-
-            </div>
-
-            <div class="column is-12">
-
-                <papers
-                        v-model="papers"
-                        :def="fieldsDef.papers">
-                </papers>
-
-            </div>
-
-            <button
-                :class="{ button:true, 'is-primary':true, 'is-loading': isSubmitting }"
-                @click="saveClicked()"
-            >
-                Submit
-            </button>
 
         </div>
 
@@ -220,7 +225,8 @@
 
             filterEmptyObjects( items ) {
 
-                return _.filter( items, ( item ) => _.some( item, ( field ) => ! _.isEmpty( field ) ) );
+                // `uniqueId` will always have a value, so ignore it when checking for all empty fields
+                return _.filter( items, ( item ) => _.some( item, ( field, key ) =>  ! _.isEmpty( field ) && key !== 'uniqueId' ) );
             },
 
             saveClicked() {
