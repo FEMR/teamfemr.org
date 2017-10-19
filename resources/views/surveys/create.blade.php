@@ -10,7 +10,7 @@
 
                 <hr>
 
-                <survey :program-id="1"></survey>
+                <survey></survey>
 
             </div>
         </section>

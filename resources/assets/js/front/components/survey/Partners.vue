@@ -4,7 +4,7 @@
             <h3 class="title">NGO/Partner organizations</h3>
             <hr />
 
-            <div class="columns partner-row partner-headers">
+            <div class="columns section-row partner-row partner-headers">
 
                 <div class="column" v-for="field in def">
                     <label class="label">{{ field.label }}</label>
@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="columns partner-row" v-for="(partner, idx) in partners" :key="partner.uniqueId">
+            <div class="columns section-row partner-row" v-for="(partner, idx) in partners" :key="partner.uniqueId">
 
                 <div class="column">
 
@@ -51,7 +51,12 @@
 
             </div>
 
-            <a href="#" class="button is-primary" @click.prevent="addEmptyPartner()">Add Partner</a>
+            <a href="#" class="button is-primary is-small" @click.prevent="addEmptyPartner()">
+                <span class="icon is-small">
+                  <i class="fa fa-plus"></i>
+                </span>
+                <span>Add Partner</span>
+            </a>
         </div>
     </section>
 </template>
@@ -136,41 +141,6 @@
 
 <style lang="scss" scopeds>
 
-    .partner-row {
 
-        .button-column {
-
-            width: 25px;
-            flex: 0 auto;
-        }
-
-        .label{
-
-            padding: 0;
-            margin: 0;
-        }
-
-        .delete-button {
-
-            display: block;
-            margin: 5px 0;
-        }
-
-        .columns {
-
-            .column {
-                padding: 0.5rem 0.25rem;
-            }
-        }
-    }
-
-    .partner-headers{
-
-        .column{
-
-            padding: 0.5rem 0.75rem 0;
-            margin-bottom: -0.5rem;
-        }
-    }
 
 </style>

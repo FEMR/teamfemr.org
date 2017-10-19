@@ -4,7 +4,7 @@
             <h3 class="title">Contacts</h3>
             <hr />
 
-            <div class="columns contact-row contact-headers">
+            <div class="columns section-row contact-row contact-headers">
 
                 <div class="column" v-for="field in def">
                     <label class="label">{{ field.label }}</label>
@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="columns contact-row" v-for="(contact, idx) in contacts" :key="contact.uniqueId">
+            <div class="columns section-row contact-row" v-for="(contact, idx) in contacts" :key="contact.uniqueId">
 
                 <div class="column">
 
@@ -58,7 +58,12 @@
 
             </div>
 
-            <a href="#" class="button is-primary" @click.prevent="addEmptyContact()">Add Contact</a>
+            <a href="#" class="button is-primary is-small" @click.prevent="addEmptyContact()">
+                <span class="icon is-small">
+                  <i class="fa fa-plus"></i>
+                </span>
+                <span>Add Contact</span>
+            </a>
         </div>
     </section>
 </template>
@@ -144,41 +149,5 @@
 
 <style lang="scss" scoped>
 
-    .contact-row {
-
-        .button-column {
-
-            width: 25px;
-            flex: 0 auto;
-        }
-
-        .label{
-
-            padding: 0;
-            margin: 0;
-        }
-
-        .delete-button {
-
-            display: block;
-            margin: 5px 0;
-        }
-
-        .columns {
-
-            .column {
-                padding: 0.5rem 0.25rem;
-            }
-        }
-    }
-
-    .contact-headers{
-
-        .column{
-
-            padding: 0.5rem 0.75rem 0;
-            margin-bottom: -0.5rem;
-        }
-    }
 
 </style>

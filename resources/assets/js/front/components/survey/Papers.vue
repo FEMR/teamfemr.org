@@ -4,7 +4,7 @@
             <h3 class="title">Papers</h3>
             <hr />
 
-            <div class="columns paper-row paper-headers">
+            <div class="columns section-row paper-row paper-headers">
 
                 <div class="column" v-for="field in def">
                     <label class="label">{{ field.label }}</label>
@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="columns paper-row" v-for="(paper, idx) in papers" :key="paper.uniqueId">
+            <div class="columns section-row paper-row" v-for="(paper, idx) in papers" :key="paper.uniqueId">
 
                 <div class="column">
 
@@ -58,7 +58,12 @@
 
             </div>
 
-            <a href="#" class="button is-primary" @click.prevent="addEmptyPaper()">Add Paper</a>
+            <a href="#" class="button is-primary is-small" @click.prevent="addEmptyPaper()">
+                <span class="icon is-small">
+                  <i class="fa fa-plus"></i>
+                </span>
+                <span>Add Paper</span>
+            </a>
         </div>
     </section>
 </template>
@@ -141,43 +146,7 @@
 
 </script>
 
-<style lang="scss" scopeds>
+<style lang="scss" scoped>
 
-    .paper-row {
-
-        .button-column {
-
-            width: 25px;
-            flex: 0 auto;
-        }
-
-        .label{
-
-            padding: 0;
-            margin: 0;
-        }
-
-        .delete-button {
-
-            display: block;
-            margin: 5px 0;
-        }
-
-        .columns {
-
-            .column {
-                padding: 0.5rem 0.25rem;
-            }
-        }
-    }
-
-    .paper-headers{
-
-        .column{
-
-            padding: 0.5rem 0.75rem 0;
-            margin-bottom: -0.5rem;
-        }
-    }
 
 </style>

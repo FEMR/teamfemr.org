@@ -43,7 +43,7 @@
 
                     <div class="form">
 
-                        <div class="columns location-row location-headers">
+                        <div class="columns section-row location-row location-headers">
 
                             <div class="column" v-for="field in def">
                                 <label class="label">{{ field.label }}</label>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
 
-                        <div v-for="( location, idx ) in locations" :key="location.uniqueId" class="columns location-row">
+                        <div v-for="( location, idx ) in locations" :key="location.uniqueId" class="columns section-row location-row">
 
                             <div class="column">
 
@@ -264,16 +264,9 @@
         height: 300px;
     }
 
-    .location-row .button-column {
+    .locations-map-container .input {
 
-        width: 25px;
-        flex: 0 auto;
-    }
-
-    .location-headers .column{
-
-        padding: 0.5rem 0.75rem 0;
-        margin-bottom: -0.5rem;
+        margin-bottom: 5px;
     }
 
 </style>

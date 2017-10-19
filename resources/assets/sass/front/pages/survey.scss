@@ -1,15 +1,153 @@
-.survey-container .field{
+.survey-container {
 
-    padding: 0 30px 0 0.75rem;
+    //padding: 1rem 1.5rem;
+    //background-color: $darkWhite;
 
-    .label,
-    .label:not(:last-child) {
+    .is-primary{
 
-        margin-bottom: 3px;
+        background-color: #3f3f3f;
+
+        &:hover{
+
+            background-color: #000000;
+        }
+    }
+
+    .femr-button{
+
+        min-width: 160px;
+        height: 3rem;
+        text-transform: none;
+    }
+
+    .columns.extra-space {
+
+        .column {
+
+            &:nth-child( odd ) {
+
+                padding-right: 1.5rem;
+            }
+
+            &:nth-child( even ) {
+
+                padding-left: 1.5rem;
+            }
+        }
+    }
+
+    .column.additional-field {
+
+        margin: 1.25rem 0;
+
+        .textarea:not([rows]){
+
+            min-height: 160px;
+        }
+    }
+
+    .container{
+
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form{
+
+        padding: 0 0.75rem;
+    }
+
+    .section{
+
+        padding: 0;
+        margin-bottom: 2.5rem;
+
+        hr {
+
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        .title{
+
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .field {
+
+        &:not(:last-child) {
+
+            margin-bottom: 1.75rem;
+        }
+
+        .label,
+        .label:not(:last-child) {
+            margin-bottom: 3px;
+        }
+    }
+
+    .section-row{
+
+        margin-bottom: 0;
+
+        .button-column {
+
+            width: 30px;
+            padding: 0 5px 0 0;
+            flex: 0 auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .label{
+
+            padding: 0;
+            margin: 0;
+        }
+
+        .delete-button {
+
+            display: block;
+            margin: 5px 0;
+        }
+
+        .columns {
+
+            .column {
+                padding: 0.5rem 0.25rem;
+            }
+        }
+    }
+
+    .section-headers{
+
+        .column{
+
+            padding: 0.5rem 0.75rem 0;
+            margin-bottom: -0.5rem;
+        }
+    }
+
+    .button-container{
+
+        border-top: 1px solid #DDDBDC;
+
+        padding: 1.5rem 0;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
     }
 }
 
 .survey{
 
+    .back-button{
 
+        margin: 0 0 1rem;
+    }
 }

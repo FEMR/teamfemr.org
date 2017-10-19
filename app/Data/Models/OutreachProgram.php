@@ -21,6 +21,13 @@ class OutreachProgram extends Model
     protected $table = 'outreach_programs';
 
     /**
+     * Always eager load these relationships
+     *
+     * @var array
+     */
+    protected $with = [ 'users' ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
