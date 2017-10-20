@@ -135,12 +135,6 @@
 
     import Survey from '../services/Survey';
 
-    import Contact from '../models/Contact';
-    import Partner from '../models/Partner';
-    import Location from '../models/Location';
-    import Paper from '../models/Paper';
-    import FormField from '../models/FormField';
-
     import Contacts from './survey/Contacts';
     import Locations from './survey/Locations';
     import Papers from './survey/Papers';
