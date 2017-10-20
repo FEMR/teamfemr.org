@@ -3,16 +3,18 @@
 namespace FEMR\Http\Controllers\API;
 
 use FEMR\Http\Controllers\Controller;
-use FEMR\Data\Models\City;
+use FEMR\Data\Models\OutreachProgram;
 
-class CityController extends Controller
+class OutreachProgramController extends Controller
 {
 
     /**
+     * @param $outreach_program_id
+     *
      * @return mixed
      */
-    public function random()
+    public function show( $outreach_program_id )
     {
-        return City::orderByRaw( 'RAND()' )->take( 100 )->get();
+        return OutreachProgram::withAll()->findOrFail( $outreach_program_id );
     }
 }

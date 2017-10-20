@@ -461,7 +461,7 @@ class OutreachProgram extends Model
         {
             if( isset( $location['id'] ) && ! empty( $location->id ) )
             {
-                // remove encountered papers from existing_ids
+                // remove encountered locations from existing_ids
                 $existing_ids = $existing_ids->filter( function( $value, $key ) use( $location )
                 {
                     return $value !== intval( $location['id'] );
