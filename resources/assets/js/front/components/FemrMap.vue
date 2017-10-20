@@ -12,7 +12,7 @@
                 <gmap-marker
                         :key="index"
                         v-for="(m, index) in groupedLocations"
-                        :position="{ lat: m[0].latitude, lng: m[0].longitude }"
+                        :position="m[0].position"
                         :clickable="true"
                         :draggable="false"
                         @click="toggleInfoWindow(m,index)"
@@ -33,6 +33,7 @@
 
     import * as VueGoogleMaps from 'vue2-google-maps';
     import InfoWindow from './InfoWindow';
+    import VisitedLocation from '../models/VisitedLocation';
 
     export default {
 
@@ -40,16 +41,25 @@
 
             'femr-info-window': InfoWindow
         },
+
         data() {
 
             return {
 
                 center: { lat: 0.0, lng: 0.0 },
-                bounds: {},
                 zoom: 2,
                 locations: []
             }
         },
+
+        watch: {
+
+            locations: function( newLocations ) {
+
+                this.extendBounds();
+            }
+        },
+
         computed: {
 
           groupedLocations: function(){
@@ -61,6 +71,7 @@
           }
 
         },
+
         methods: {
 
             toggleInfoWindow( locations, idx ) {
@@ -70,35 +81,14 @@
                 this.$refs.infoWindow.toggle( locations, idx );
             },
 
-            initBounds() {
+            extendBounds() {
 
-                this.bounds = new google.maps.LatLngBounds();
-            },
+                const bounds = new google.maps.LatLngBounds();
+                _.forEach( this.locations, ( location ) => {
 
-            fitBounds() {
-
-                console.log( 'Fit Bounds' );
-                console.log( this.bounds );
-
-                if( ! _.isEmpty( this.bounds ) && this.locations.length > 1 ) {
-
-                    this.$refs.gmap.fitBounds( this.bounds );
-                }
-                else if( this.locations.length > 0 ) {
-
-                    let location = this.locations[0];
-                    this.center = location.position;
-                    this.zoom = 7;
-                }
-
-            },
-
-            extendBounds( location ) {
-
-                let latLng = new google.maps.LatLng( location.latitude, location.longitude );
-                this.bounds.extend( latLng );
-
-                this.fitBounds();
+                    bounds.extend( location.position );
+                });
+                this.$refs.gmap.$mapObject.fitBounds( bounds );
             },
 
             getLocations() {
@@ -118,11 +108,15 @@
                     axios.get('/api/locations')
                         .then((response) => {
 
-                            _.forEach(response.data, (location) => {
+                            this.locations = [];
+                            _.forEach( response.data, ( location ) => {
 
-                                this.locations.push(location);
-                                this.extendBounds(location);
+                                let newLoc = new VisitedLocation();
+                                newLoc.populate( location );
+                                this.locations.push( newLoc );
                             });
+
+                            console.log( this.locations );
 
                             // put the locations in local storage
                             store.set('FEMR.locations', this.locations, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */);
@@ -141,18 +135,15 @@
 
                 console.log('Map Library Loaded');
 
-                this.initBounds();
                 this.getLocations();
             });
 
 
 
             window.addEventListener('resize', () => {
+
                 console.log( 'Resize' );
-
-                //this.fitBounds();
-                //_.throttle( this.fitBounds, 200 );
-
+                this.extendBounds();
             });
         }
     }
