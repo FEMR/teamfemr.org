@@ -4,7 +4,7 @@ namespace FEMR\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SlackRequest extends FormRequest
+class SlackInviteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -3,9 +3,9 @@
 namespace FEMR\Http\Controllers\API;
 
 use FEMR\Http\Controllers\Controller;
-use FEMR\Http\Requests\SlackRequest;
+use FEMR\Http\Requests\SlackInviteRequest;
 
-class SlackController extends Controller
+class SlackInviteController extends Controller
 {
     /**
      * Sends a post to the Slack API inviting the user to join
@@ -15,11 +15,11 @@ class SlackController extends Controller
      * https://github.com/ErikKalkoken/slackApiDoc/blob/master/users.admin.invite.md
      *
      *
-     * @param SlackRequest $request
+     * @param SlackInviteRequest $request
      *
      * @return mixed
      */
-    public function invite( SlackRequest $request )
+    public function create( SlackInviteRequest $request )
     {
 
         $t = time();

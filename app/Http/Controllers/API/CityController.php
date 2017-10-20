@@ -1,6 +1,6 @@
 <?php
 
-namespace FEMR\Http\Controllers\Json;
+namespace FEMR\Http\Controllers\API;
 
 use FEMR\Http\Controllers\Controller;
 use FEMR\Data\Models\City;
