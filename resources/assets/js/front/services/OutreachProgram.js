@@ -10,12 +10,20 @@ class OutreachProgram {
     static index( callback ) {
 
         const CACHE_KEY = 'FEMR.programs';
-        let cachedLocations = store.get( CACHE_KEY );
+        let cachedPrograms = store.get( CACHE_KEY );
 
-        if( cachedLocations ) {
+        if( cachedPrograms ) {
 
             console.log( "loaded from cache" );
-            this.locations = cachedLocations;
+
+            let programs = [];
+            _.forEach( cachedPrograms, ( program_json ) => {
+
+                let program = _.assignIn( new OutreachProgramModel, program_json );
+                programs.push( program );
+            });
+
+            callback( programs );
         }
         else {
 
@@ -24,7 +32,7 @@ class OutreachProgram {
 
                     let programs = [];
 
-                    _.forEach( response.data, ( program_json ) => {
+                    _.forEach( response.data.data, ( program_json ) => {
 
                         let program = new OutreachProgramModel();
                         program.populate( program_json );
@@ -32,7 +40,7 @@ class OutreachProgram {
                     });
 
                     // put the locations in local storage
-                    //store.set( CACHE_KEY, programs, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */);
+                    store.set( CACHE_KEY, programs, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */);
 
                     callback( programs ) ;
                 })

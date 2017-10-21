@@ -57,6 +57,11 @@ class Survey {
 
     static create( fields, successCB, errorCB = ()=>{} ) {
 
+        if( FEMR.userToken  !== 'guest' ) {
+
+            fields[ 'api_token' ] = FEMR.userToken;
+        }
+
         axios.post( '/api/survey', fields )
             .then( function( result ) {
 
@@ -73,6 +78,11 @@ class Survey {
     }
 
     static update( id, fields, successCB, errorCB = ()=>{} ) {
+
+        if( FEMR.userToken  !== 'guest' ) {
+
+            fields[ 'api_token' ] = FEMR.userToken;
+        }
 
         axios.put( '/api/survey/' + id, fields )
             .then( function( result ) {

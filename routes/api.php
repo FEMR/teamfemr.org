@@ -22,6 +22,6 @@
     Route::post( '/survey',              'SurveyController@store'     )->name( 'survey.store'     );
     Route::get(  '/survey/form',         'Survey\FormController@show' )->name( 'survey.form.show' );
     Route::get(  '/survey/{survey_id}',  'SurveyController@show'      )->name( 'survey.show'      );
-    Route::put(  '/survey/{survey_id}',  'SurveyController@update'    )->name( 'survey.update'    ); // TODO add this -- ->middleware( 'can:update-survey' );
+    Route::put(  '/survey/{survey_id}',  'SurveyController@update'    )->name( 'survey.update'    )->middleware( 'auth:api' );
 
-    Route::post( '/slack/invite',       'SlackController@create'      )->name( 'api.slack.invite' );
+    Route::post( '/slack/invite',       'SlackInviteController@create'      )->name( 'api.slack.invite' );

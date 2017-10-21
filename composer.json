@@ -26,6 +26,9 @@
         "classmap": [
             "database"
         ],
+        "files": [
+            "helpers/user.php"
+        ],
         "psr-4": {
             "FEMR\\": "app/"
         }
