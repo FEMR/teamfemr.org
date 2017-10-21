@@ -1,6 +1,6 @@
 <?php
 
-namespace FEMR\Http\Requests;
+namespace FEMR\Http\Requests\API;
 
 use FEMR\Data\Models\OutreachProgram;
 use FEMR\Data\Models\User;

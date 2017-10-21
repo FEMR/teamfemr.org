@@ -3,7 +3,7 @@ import OutreachProgram from '../models/OutreachProgram';
 
 class Survey {
 
-    static initialize( callback ) {
+    static initialize( successCB, errorCB = ()=>{} ) {
 
         return axios.get( '/api/survey/form' )
             .then( ( response ) => {
@@ -30,11 +30,15 @@ class Survey {
 
                 } );
 
-                callback( def );
+                successCB( def );
+            })
+            .catch( ( error ) => {
+
+                errorCB( error )
             });
     }
 
-    static get( program_id, callback ) {
+    static get( program_id, successCB, errorCB = ()=>{} ) {
 
         axios.get( '/api/survey/' + program_id )
             .then( function( result ) {
@@ -43,25 +47,44 @@ class Survey {
                 let program = new OutreachProgram();
                 program.populate( result.data.data );
 
-                callback( program );
+                successCB( program );
+            })
+            .catch( ( error ) => {
+
+                errorCB( error )
             });
     }
 
-    static create( fields, callback ) {
+    static create( fields, successCB, errorCB = ()=>{} ) {
 
         axios.post( '/api/survey', fields )
             .then( function( result ) {
 
-                callback( result );
+                let program = new OutreachProgram();
+                program.populate( result.data.data );
+
+                successCB( program );
+            })
+            .catch( ( error ) => {
+
+                console.log( error );
+                errorCB( error )
             });
     }
 
-    static update( id, fields, callback ) {
+    static update( id, fields, successCB, errorCB = ()=>{} ) {
 
         axios.put( '/api/survey/' + id, fields )
             .then( function( result ) {
 
-                callback( result );
+                let program = new OutreachProgram();
+                program.populate( result.data.data );
+
+                successCB( program );
+            })
+            .catch( ( error ) => {
+
+                errorCB( error )
             });
     }
 }
