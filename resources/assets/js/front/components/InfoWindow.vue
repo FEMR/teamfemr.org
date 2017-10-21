@@ -48,8 +48,8 @@
                     <span>{{ program.firstLocationCityStateCountry() }}</span>
                 </p>
                 <p><strong>Dates of travel:</strong> {{ program.monthsOfTravel }}</p>
-                <p><strong>Class Involvement:</strong> {{ program.schoolClasses.join( ', ' ) }}</p>
-                <p><strong>Partners:</strong> {{ program.partners.join( ', ' ) }}</p>
+                <p><strong>Class Involvement:</strong> {{ ( program.schoolClasses.length > 0 ) ? program.schoolClassesList() : '--' }}</p>
+                <p><strong>Partners:</strong> {{ ( program.partners.length > 0 ) ? program.partnersList() : '--' }}</p>
 
                 <p>
                     <a :href="program.programPageUrl()" class="button femr-button">
@@ -99,31 +99,23 @@
                 }
             }
         },
+
         computed: {
 
 
         },
-        created(){
 
-        },
         methods: {
 
-            /**
-             *
-             *
-             */
-            toggle( locations, clicked_index ) {
+            toggle( programs, clicked_index ) {
+
+                console.log( programs );
+                console.log( clicked_index );
 
                 this.outreachPrograms = [];
+                _.forEach( programs, ( program ) => {
 
-                _.forEach( locations, ( location ) => {
-
-                    // TODO -- keep the outreachProgram objects cached in memory? -- is it worth it?
-                    let outreachProgram = new OutreachProgram();
-                    outreachProgram.populateFromLocation(location);
-                    console.log( outreachProgram );
-
-                    this.outreachPrograms.push( outreachProgram );
+                    this.outreachPrograms.push( program );
                 });
 
                 // make sure the nav is visible from prior states
@@ -131,9 +123,6 @@
 
                     this.navIsVisible = true;
                 }
-
-
-                let firstLocation = locations[0];
 
                 // If the current marker is clicked, toggle the window
                 if( this.marker_index === clicked_index ) {
@@ -143,13 +132,23 @@
                 // Different marker clicked
                 else {
 
-                    this.opened = false;
-                    this.position = { lat: firstLocation.latitude, lng: firstLocation.longitude };
-                    this.marker_index = clicked_index;
+                    console.log( this.outreachPrograms );
+                    let firstLocation = _.first( _.get( _.first( this.outreachPrograms ), 'visitedLocations' ) );
 
-                    // Opening the info window is how gmaps pulls the window into view.
-                    // The delay is being used to trigger this. Maybe there is a better way?
-                    setTimeout(() => { this.opened = true; }, 10);
+                    if( firstLocation !== undefined ) {
+
+                        console.log( firstLocation );
+
+                        this.opened = false;
+                        this.position = {lat: firstLocation.latitude, lng: firstLocation.longitude};
+                        this.marker_index = clicked_index;
+
+                        // Opening the info window is how gmaps pulls the window into view.
+                        // The delay is being used to trigger this. Maybe there is a better way?
+                        setTimeout(() => {
+                            this.opened = true;
+                        }, 10);
+                    }
                 }
             },
 

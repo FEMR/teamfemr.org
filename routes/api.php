@@ -16,8 +16,7 @@
 //        return $request->user();
 //    })->middleware('auth:api');
 
-    Route::get( '/locations',             'VisitedLocationController@index' );
-
+    Route::get( '/programs/',             'OutreachProgramController@index' );
     Route::get( '/programs/{program_id}', 'OutreachProgramController@show'  );
 
     Route::post( '/survey',              'SurveyController@store'     )->name( 'survey.store'     );

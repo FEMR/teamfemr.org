@@ -11,11 +11,11 @@
                 <femr-info-window ref="infoWindow"></femr-info-window>
                 <gmap-marker
                         :key="index"
-                        v-for="(m, index) in groupedLocations"
+                        v-for="( m, index ) in groupedLocations"
                         :position="m[0].position"
                         :clickable="true"
                         :draggable="false"
-                        @click="toggleInfoWindow(m,index)"
+                        @click="toggleInfoWindow( m, index )"
                 >
                 </gmap-marker>
 
@@ -27,13 +27,10 @@
 
 <script type="text/babel">
 
-    import store from 'store';
-    import expirePlugin from 'store/plugins/expire';
-    store.addPlugin(expirePlugin);
-
     import * as VueGoogleMaps from 'vue2-google-maps';
     import InfoWindow from './InfoWindow';
     import VisitedLocation from '../models/VisitedLocation';
+    import OutreachProgram from '../services/OutreachProgram';
 
     export default {
 
@@ -48,7 +45,7 @@
 
                 center: { lat: 0.0, lng: 0.0 },
                 zoom: 2,
-                locations: []
+                programs: []
             }
         },
 
@@ -56,19 +53,29 @@
 
             locations: function( newLocations ) {
 
+                console.log( 'Locations Changed' );
                 this.extendBounds();
             }
         },
 
         computed: {
 
-          groupedLocations: function(){
+            groupedLocations: function(){
 
-            return _.groupBy( this.locations, ( location ) => {
+                // get the locations from each program into 1 array
+                const locations = _.transform( this.programs, ( accumulator, program ) => {
 
-               return location.latitude + ', ' + location.longitude;
-            });
-          }
+                    accumulator =  _.merge( accumulator, program.visitedLocations );
+                    return true;
+
+                }, [] );
+
+                // group by the lat/lng coords to handle overlapping pins
+                return _.groupBy( locations, ( location ) => {
+
+                   return location.latitude + ', ' + location.longitude;
+                });
+            }
 
         },
 
@@ -76,57 +83,53 @@
 
             toggleInfoWindow( locations, idx ) {
 
-                console.log( locations );
+                // get the clicked on locations
+                const locationIds = _.map( locations, 'id' );
 
-                this.$refs.infoWindow.toggle( locations, idx );
+                // find the programs for the locations
+                let programs = _.transform( this.programs, ( result, program ) => {
+
+                    let newProgram = _.cloneDeep( program );
+
+                    // filter the locations to those that were clicked on
+                    const filtered_locations = _.filter( newProgram.visitedLocations, ( location ) => {
+
+                        return _.includes( locationIds, location.id );
+                    } );
+
+                    // only keep programs with matching locations
+                    if( filtered_locations.length > 0 ) {
+
+                        newProgram.visitedLocations = filtered_locations;
+                        result.push( newProgram );
+                    }
+                    return true;
+
+                }, [] )
+
+                // send the programs to show to the infoWindow
+                this.$refs.infoWindow.toggle( programs, idx );
             },
 
             extendBounds() {
 
-                const bounds = new google.maps.LatLngBounds();
-                _.forEach( this.locations, ( location ) => {
+                console.log( "Extend Bounds" );
 
-                    bounds.extend( location.position );
+                const bounds = new google.maps.LatLngBounds();
+                _.forEach( this.programs, ( program ) => {
+
+                    _.forEach( program.visitedLocations, ( location ) => {
+
+                        bounds.extend( location.position );
+                    })
                 });
                 this.$refs.gmap.$mapObject.fitBounds( bounds );
+
             },
 
             getLocations() {
 
-                //
-                let cachedLocations = store.get( 'FEMR.locations' );
-
-                if( cachedLocations ) {
-
-                    console.log( "loaded from cache" );
-                    this.locations = cachedLocations;
-                }
-                // If no previous locations, get from aPI
-                else {
-
-                    // TODO -- move to a service
-                    axios.get('/api/locations')
-                        .then((response) => {
-
-                            this.locations = [];
-                            _.forEach( response.data, ( location ) => {
-
-                                let newLoc = new VisitedLocation();
-                                newLoc.populate( location );
-                                this.locations.push( newLoc );
-                            });
-
-                            console.log( this.locations );
-
-                            // put the locations in local storage
-                            store.set('FEMR.locations', this.locations, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */);
-
-                            //console.log( this.groupedLocations );
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                }
+                OutreachProgram.index( ( programs ) => this.programs = programs );
             }
         },
         created() {
@@ -135,16 +138,11 @@
 
                 console.log('Map Library Loaded');
 
+                window.addEventListener('resize', _.debounce( this.extendBounds, 500, {}, false ) );
+
                 this.getLocations();
             });
 
-
-
-            window.addEventListener('resize', () => {
-
-                console.log( 'Resize' );
-                this.extendBounds();
-            });
         }
     }
 

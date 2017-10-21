@@ -12,7 +12,6 @@ class OutreachProgram {
 
     reset() {
 
-        //this.school = new School();
         this.id = '';
 
         this.name = '';
@@ -34,8 +33,6 @@ class OutreachProgram {
     }
 
     populate( json ) {
-
-        console.log( json );
 
         this.id = json.id;
         this.name = json.name;
@@ -97,38 +94,14 @@ class OutreachProgram {
         });
     }
 
-    /**
-     * Location has outreachProgram and school attached from API
-     * - TODO - rethink how the data is returned, might be better to match structure to what the front end is expecting
-     *      - location.outreachProgram vs. outreachProgram.location
-     *
-     * @param location
-     */
-    populateFromLocation( location ) {
+    schoolClassesList() {
 
-        this.reset();
+        return this.schoolClasses.map( item => item.label ).join( ', ' );
+    }
 
-        this.name = location.outreach_program.name;
-        this.slug = location.outreach_program.slug;
+    partnersList() {
 
-        this.monthsOfTravel = location.outreach_program.months_of_travel;
-
-        _.forEach( location.outreach_program.school_classes, ( school_class ) => {
-
-            this.schoolClasses.push( school_class.name );
-        });
-
-        _.forEach( location.outreach_program.partner_organizations, ( partner ) => {
-
-            this.partners.push( partner.name );
-        });
-
-        //this.school.name = location.outreach_program.school.name;
-
-        let newLoc = new VisitedLocation();
-        newLoc.populate( location );
-        this.visitedLocations.push( newLoc );
-
+        return this.partners.map( item => item.name ).join( ', ' );
     }
 
     firstLocationCityStateCountry() {
@@ -141,10 +114,6 @@ class OutreachProgram {
         return '';
     }
 
-    /**
-     *
-     * @returns {*}
-     */
     programPageUrl() {
 
         if( this.slug.length > 0 ) {
