@@ -151,4 +151,4 @@ class VisitedLocation{
     }
 }
 
-export default VisitedLocation
+export default VisitedLocation;
