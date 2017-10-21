@@ -38,8 +38,9 @@
 
             var FEMR = {!! json_encode([
 
-            'csrfToken' => csrf_token(),
-            'googleMapsKey' => env( 'GMAPS_API_KEY' )
+                'userToken' => user_token(),
+                'csrfToken' => csrf_token(),
+                'googleMapsKey' => env( 'GMAPS_API_KEY' )
 
             ]) !!};
 

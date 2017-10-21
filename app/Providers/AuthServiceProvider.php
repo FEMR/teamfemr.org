@@ -2,6 +2,7 @@
 
 namespace FEMR\Providers;
 
+use Illuminate\Auth\TokenGuard;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -39,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         // To update a survey, a user must be assigned to that survey or be an admin
         Gate::define( 'update-survey', function ( $user, $survey ) {
 
-            return ( $survey->users->contains( $user->id ) || $user->is_admin );
+            return ( $survey->users->pluck( 'id' )->contains( $user->id ) || $user->is_admin );
         });
     }
 }

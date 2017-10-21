@@ -7,6 +7,7 @@ use FEMR\Data\Models\User;
 use FEMR\Http\Controllers\Controller;
 use FEMR\Http\Requests\API\SurveyRequest;
 use FEMR\Http\Resources\OutreachProgramResource;
+use Illuminate\Auth\AuthenticationException;
 
 class SurveyController extends Controller
 {
@@ -40,13 +41,13 @@ class SurveyController extends Controller
                 ->syncPartnerOrganizations( $request->input( 'partners' ) );
 
         // If being created by a non-admin user, attach user to survey
-        if( \Auth::check() ) {
+        if( \Auth::guard('api')->check() ) {
 
             /** @var User $user */
-            $user = \Auth::user();
+            $user = \Auth::guard('api')->user();
             if( ! $user->is_admin ) {
 
-                $program->users->attach( $user );
+                $program->users()->attach( $user );
             }
         }
 
@@ -58,11 +59,19 @@ class SurveyController extends Controller
      * @param SurveyRequest $request
      *
      * @return OutreachProgramResource
+     * @throws AuthenticationException
      */
     public function update( $survey_id, SurveyRequest $request )
     {
         /** @var OutreachProgram $program */
         $program = OutreachProgram::findOrFail( $survey_id );
+
+        /** @var User $user */
+        $user = \Auth::guard('api')->user();
+        if( ! $user->can( 'update-survey', $program ) )
+        {
+            throw new AuthenticationException( );
+        }
 
         $program->update( $request->survey() );
 

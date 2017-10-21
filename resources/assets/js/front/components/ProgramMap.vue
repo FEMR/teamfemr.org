@@ -133,7 +133,7 @@
                 axios.get( '/api/programs/' + this.programId )
                         .then( ( response ) => {
 
-                            _.forEach( response.data.visited_locations, ( location ) => {
+                            _.forEach( response.data.data.visited_locations, ( location ) => {
 
                                 this.locations.push( location );
                                 this.extendBounds( location );
