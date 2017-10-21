@@ -12,6 +12,7 @@
                 v-validate.initial="def.validators"
                 :class="{ 'input': true, 'is-success': isSuccess, 'is-danger': isError }"
                 type="text"
+                :readonly="readonly"
                 :placeholder="def.placeholder"
                 v-on:input="updateValue($event.target.value)"
             >
@@ -49,6 +50,11 @@
                 type: String,
                 default: '',
                 required: true
+            },
+            readonly: {
+
+                type: Boolean,
+                default: false
             }
 
         },

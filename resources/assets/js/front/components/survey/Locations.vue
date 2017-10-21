@@ -62,6 +62,7 @@
                                         v-model="location.locality"
                                         :def="def.locality"
                                         :initialValue="location.locality"
+                                        :readonly="true"
                                 ></text-field>
 
                             </div>
@@ -72,6 +73,7 @@
                                         v-model="location.administrative_area_level_1"
                                         :def="def.administrative_area_level_1"
                                         :initialValue="location.administrative_area_level_1"
+                                        :readonly="true"
                                 ></text-field>
 
                             </div>
@@ -82,6 +84,7 @@
                                         v-model="location.country"
                                         :def="def.country"
                                         :initialValue="location.country"
+                                        :readonly="true"
                                 ></text-field>
 
                             </div>

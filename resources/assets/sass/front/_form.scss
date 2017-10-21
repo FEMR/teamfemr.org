@@ -26,6 +26,17 @@
     }
 }
 
+.input, .textarea{
+
+    box-shadow: none;
+    border-color: #cfcfcf;
+}
+
+.select select{
+
+    border-color: #cfcfcf;
+}
+
 .select:not(.is-multiple){
 
     &.is-success,
