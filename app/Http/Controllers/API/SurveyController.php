@@ -3,8 +3,9 @@
 namespace FEMR\Http\Controllers\API;
 
 use FEMR\Data\Models\OutreachProgram;
+use FEMR\Data\Models\User;
 use FEMR\Http\Controllers\Controller;
-use FEMR\Http\Requests\SurveyRequest;
+use FEMR\Http\Requests\API\SurveyRequest;
 use FEMR\Http\Resources\OutreachProgramResource;
 
 class SurveyController extends Controller
@@ -38,6 +39,16 @@ class SurveyController extends Controller
                 ->syncPapers( $request->input( 'papers' ) )
                 ->syncPartnerOrganizations( $request->input( 'partners' ) );
 
+        // If being created by a non-admin user, attach user to survey
+        if( \Auth::check() ) {
+
+            /** @var User $user */
+            $user = \Auth::user();
+            if( ! $user->is_admin ) {
+
+                $program->users->attach( $user );
+            }
+        }
 
         return new OutreachProgramResource( $program );
     }
@@ -50,8 +61,6 @@ class SurveyController extends Controller
      */
     public function update( $survey_id, SurveyRequest $request )
     {
-        // TODO -- handle removing of existing entities
-
         /** @var OutreachProgram $program */
         $program = OutreachProgram::findOrFail( $survey_id );
 

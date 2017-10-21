@@ -3,7 +3,7 @@
 namespace FEMR\Http\Controllers\API;
 
 use FEMR\Http\Controllers\Controller;
-use FEMR\Http\Requests\SlackInviteRequest;
+use FEMR\Http\Requests\API\SlackInviteRequest;
 
 class SlackInviteController extends Controller
 {

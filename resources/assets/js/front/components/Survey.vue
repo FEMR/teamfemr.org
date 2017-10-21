@@ -223,6 +223,26 @@
                 return _.filter( items, ( item ) => _.some( item, ( field, key ) =>  ! _.isEmpty( field ) && key !== 'uniqueId' ) );
             },
 
+            setLocalData( program ) {
+
+                this.id = program.id;
+
+                this.programName = program.name;
+                this.schoolName = program.schoolName;
+                this.usesEmr = ( program.usesEmr ) ? 'yes' : 'no';
+                this.yearInitiated = program.yearInitiated;
+                this.yearlyOutreachParticipants = program.yearlyOutreachParticipants;
+                this.monthsOfTravel = program.monthsOfTravel;
+                this.matriculantsPerClass = program.matriculantsPerClass;
+                this.schoolClasses = program.schoolClasses;
+                this.additionalFields = program.additionalFields;
+
+                this.partners = program.partners;
+                this.contacts = program.contacts;
+                this.papers = program.papers;
+                this.visitedLocations = program.visitedLocations;
+            },
+
             saveClicked() {
 
                 this.isSubmitting = true;
@@ -240,22 +260,30 @@
 
             createSurvey(){
 
-                Survey.create( this.postFields, ( result ) => {
+                Survey.create( this.postFields, ( program ) => {
 
-                    console.log( result );
+                    console.log( "Create Finished" );
+                    console.log( program );
+
+                    this.setLocalData( program );
                     this.isSubmitting = false;
-                } );
+
+                }, ( error ) => this.isSubmitting = false );
             },
 
             updateSurvey() {
 
                 console.log( this.postFields );
 
-                Survey.update( this.id, this.postFields, ( result ) => {
+                Survey.update( this.id, this.postFields, ( program ) => {
 
-                    console.log( result );
+                    console.log( "Update Finished" );
+                    console.log( program );
+
+                    this.setLocalData( program );
                     this.isSubmitting = false;
-                } );
+
+                }, ( error ) => this.isSubmitting = false );
             }
         },
 
@@ -265,25 +293,7 @@
 
             if( this.programId !== undefined ) {
 
-                Survey.get( this.programId, ( program ) => {
-
-                    this.id = program.id;
-
-                    this.programName = program.name;
-                    this.schoolName = program.schoolName;
-                    this.usesEmr = ( program.usesEmr ) ? 'yes' : 'no';
-                    this.yearInitiated = program.yearInitiated;
-                    this.yearlyOutreachParticipants = program.yearlyOutreachParticipants;
-                    this.monthsOfTravel = program.monthsOfTravel;
-                    this.matriculantsPerClass = program.matriculantsPerClass;
-                    this.schoolClasses = program.schoolClasses;
-                    this.additionalFields = program.additionalFields;
-
-                    this.partners = program.partners;
-                    this.contacts = program.contacts;
-                    this.papers = program.papers;
-                    this.visitedLocations = program.visitedLocations;
-                } );
+                Survey.get( this.programId, program => this.setLocalData( program ) );
             }
         }
     }

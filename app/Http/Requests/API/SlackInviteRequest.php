@@ -1,6 +1,6 @@
 <?php
 
-namespace FEMR\Http\Requests;
+namespace FEMR\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
 
