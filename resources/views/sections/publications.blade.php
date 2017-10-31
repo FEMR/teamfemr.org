@@ -15,6 +15,33 @@
                         <article class="media">
                             <figure class="media-left">
                                 <p>
+                                    <a href="{{ asset( 'documents/presentations/HFHS-2017.pdf' ) }}" target="_blank">
+                                                <span class="icon">
+                                                  <i class="fa fa-file-pdf-o"></i>
+                                                </span>
+                                    </a>
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <a href="{{ asset( 'documents/presentations/HFHS-2017.pdf' ) }}" target="_blank">
+                                            <strong>Implementation of Electronic Medical Records in Disaster Relief Training</strong>
+                                            <br>
+                                            Presented at Henry Ford Health System’s 2017 Global Health Symposium by Team fEMR
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+                    </li>
+
+                    <li class="doc">
+
+                        <article class="media">
+                            <figure class="media-left">
+                                <p>
                                     <a href="{{ asset( 'documents/presentations/LSU-Epidemiology-2017.pdf' ) }}" target="_blank">
                                                 <span class="icon">
                                                   <i class="fa fa-file-pdf-o"></i>
