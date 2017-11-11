@@ -7,11 +7,11 @@
 
             <input
                 :value="value"
+                :type="def.type"
                 :name="def.name"
                 :data-vv-as="def.label"
                 v-validate.initial="def.validators"
                 :class="{ 'input': true, 'is-success': isSuccess, 'is-danger': isError }"
-                type="text"
                 :readonly="readonly"
                 :placeholder="def.placeholder"
                 v-on:input="updateValue($event.target.value)"

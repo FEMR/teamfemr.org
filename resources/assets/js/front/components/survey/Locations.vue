@@ -6,7 +6,7 @@
             <hr />
 
             <div class="columns">
-                <div class="column map-column">
+                <div class="column is-7 map-column">
 
                     <p class="control">
 
@@ -43,63 +43,44 @@
 
                     <div class="form">
 
-                        <div class="columns section-row location-row location-headers">
+                        <table class="table is-striped location-table" v-if="locations.length > 0">
+                            <thead>
+                                <tr>
+                                    <th v-for="field in def">
+                                        {{ field.label }}
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="( location, idx ) in locations" :key="location.uniqueId" >
+                                    <td>
+                                        {{ location.locality }}
+                                        <!--<input type="hidden" name="def.locality.name" v-model="location.locality" />-->
+                                    </td>
+                                    <td>
+                                        {{ location.administrative_area_level_1 }}
+                                        <!--<input type="hidden" name="def.administrative_area_level_1.name" v-model="location.administrative_area_level_1" />-->
+                                    </td>
+                                    <td>
+                                        {{ location.country }}
+                                        <!--<input type="hidden" name="def.country.name" v-model="location.country" />-->
+                                    </td>
+                                    <td>
+                                        <a href="#"  class="delete-button" @click.prevent="removeLocation( idx )">
+                                            <span class="icon is-small is-danger">
+                                              <i class="fa fa-minus-circle"></i>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div v-else>
 
-                            <div class="column" v-for="field in def">
-                                <label class="label">{{ field.label }}</label>
-                            </div>
+                            <p style="text-align: center;">Enter some locations <br /> using the map </p>
 
-                            <div class="column button-column">
-
-                            </div>
                         </div>
-
-                        <div v-for="( location, idx ) in locations" :key="location.uniqueId" class="columns section-row location-row">
-
-                            <div class="column">
-
-                                <text-field
-                                        v-model="location.locality"
-                                        :def="def.locality"
-                                        :initialValue="location.locality"
-                                        :readonly="true"
-                                ></text-field>
-
-                            </div>
-
-                            <div class="column">
-
-                                <text-field
-                                        v-model="location.administrative_area_level_1"
-                                        :def="def.administrative_area_level_1"
-                                        :initialValue="location.administrative_area_level_1"
-                                        :readonly="true"
-                                ></text-field>
-
-                            </div>
-
-                            <div class="column">
-
-                                <text-field
-                                        v-model="location.country"
-                                        :def="def.country"
-                                        :initialValue="location.country"
-                                        :readonly="true"
-                                ></text-field>
-
-                            </div>
-
-                            <div class="column button-column">
-
-                                <a href="#"  class="delete-button" @click.prevent="removeLocation( idx )">
-                                <span class="icon is-small is-danger">
-                                  <i class="fa fa-minus-circle"></i>
-                                </span>
-                                </a>
-
-                            </div>
-
-                    </div>
 
                     </div>
 
@@ -253,19 +234,34 @@
         //flex: 1;
     }
 
+    .locations-map-container .form{
+
+        padding: 0;
+    }
+
+    @media only screen and ( max-width: 767px ) {
+
+        .locations-map-container .form{
+
+            padding: 20px 0;
+        }
+    }
+
     .locations-map-container .input {
 
         margin-bottom: 5px;
     }
 
-    /*
-    .map-column {
+    .location-table th,
+    .location-table td{
 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: stretch;
+        width: 100%;
+        font-size: 0.9rem;
     }
-    */
+
+    .locations-map-container .column{
+
+        padding: 0 5px;
+    }
 
 </style>

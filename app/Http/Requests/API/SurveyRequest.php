@@ -38,7 +38,7 @@ class SurveyRequest extends FormRequest
             ],
             "year_initiated" => "string",
             "yearly_outreach_participants" => "string",
-            "months_of_travel" => "string",
+            "months_of_travel" => "array",
             "matriculants_per_class" => "string"
         ];
     }
@@ -53,7 +53,8 @@ class SurveyRequest extends FormRequest
             "year_initiated",
             "yearly_outreach_participants",
             "months_of_travel",
-            "matriculants_per_class"
+            "matriculants_per_class",
+            "comments"
         ]);
     }
 }

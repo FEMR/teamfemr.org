@@ -1,10 +1,10 @@
 <template>
     <section class="section survey-partners">
         <div class="container">
-            <h3 class="title">NGO/Partner organizations</h3>
+            <h3 class="title">NGO/In Country Partners</h3>
             <hr />
 
-            <div class="columns section-row partner-row partner-headers">
+            <div class="columns section-row partner-row partner-headers desktop-only">
 
                 <div class="column" v-for="field in def">
                     <label class="label">{{ field.label }}</label>
@@ -19,11 +19,14 @@
 
                 <div class="column">
 
-                    <text-field
+                    <label class="label mobile-only">{{ def.name.label }}</label>
+                    <multi-select-field
                             v-model="partner.name"
                             :def="def.name"
+                            :multiple="false"
+                            :show-label="false"
                             :initialValue="partner.name"
-                    ></text-field>
+                    ></multi-select-field>
                 </div>
 
                 <!--<div class="column">-->
@@ -31,20 +34,31 @@
                 <!--</div>-->
 
                 <div class="column">
+
+
+                    <label class="label mobile-only">{{ def.url.label }}</label>
                     <text-field
                             v-model="partner.url"
                             :def="def.url"
                             :initialValue="partner.url"
                     ></text-field>
+
                 </div>
 
 
                 <div class="column button-column">
 
-                    <a href="#"  class="delete-button" @click.prevent="deletePartner( idx )">
+                    <a href="#"  class="delete-button desktop-only" @click.prevent="deletePartner( idx )">
                         <span class="icon is-small is-danger">
                           <i class="fa fa-minus-circle"></i>
                         </span>
+                    </a>
+
+                    <a href="#" class="button is-danger is-small delete-button mobile-only" @click.prevent="deletePartner( idx )">
+                        <span class="icon is-small">
+                          <i class="fa fa-minus"></i>
+                        </span>
+                        <span>Remove Partner</span>
                     </a>
 
                 </div>
@@ -141,6 +155,14 @@
 
 <style lang="scss" scopeds>
 
+    .survey-container .partner-row{
 
+        margin-bottom: 35px;
+    }
+
+    .survey-container .partner-headers{
+
+        margin-bottom: 0;
+    }
 
 </style>
