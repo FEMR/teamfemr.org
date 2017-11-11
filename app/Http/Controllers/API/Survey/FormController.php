@@ -3,12 +3,12 @@
 namespace FEMR\Http\Controllers\API\Survey;
 
 use FEMR\Data\Models\OutreachProgram;
+use FEMR\Data\Models\PartnerOrganization;
 use FEMR\Data\Models\SchoolClass;
 use FEMR\Http\Controllers\Controller;
 
 class FormController extends Controller
 {
-
 
     public function show()
     {
@@ -18,7 +18,7 @@ class FormController extends Controller
 
                 "name"       => 'program_name',
                 "label"      => 'Title of Program',
-                "validators" => ''
+                "validators" => 'required'
             ],
             "school_name" => [
 
@@ -36,40 +36,57 @@ class FormController extends Controller
 
                     "yes" => 'Yes',
                     "no"  => 'No'
-                ],
-                "isFullWidth" => true
+                ]
             ],
             "year_initiated" => [
 
                 "name"       => 'year_initiated',
                 "label"      => 'Year Initiated',
-                "validators" => ''
+                "type"       => 'tel',
+                "validators" => 'max_value:' . date('Y')
             ],
             "yearly_outreach_participants" => [
 
                 "name"       => 'yearly_outreach_participants',
                 "label"      => 'Total participants in global health outreach per year',
-                "validators" => ''
+                "type"       => 'tel',
+                "validators" => 'min_value:0'
             ],
             "months_of_travel" => [
 
                 "name"       => 'months_of_travel',
-                "label"      => 'Month(s) of Travel',
-                "validators" => ''
+                "label"      => 'Month(s) of Travel (Select all that apply)',
+                "isFullWidth" => true,
+                "options" => [
+
+                    [ 'label' => 'January',   'value' => 'January'   ],
+                    [ 'label' => 'February',  'value' => 'February'  ],
+                    [ 'label' => 'March',     'value' => 'March'     ],
+                    [ 'label' => 'April',     'value' => 'April'     ],
+                    [ 'label' => 'May',       'value' => 'May'       ],
+                    [ 'label' => 'June',      'value' => 'June'      ],
+                    [ 'label' => 'July',      'value' => 'July'      ],
+                    [ 'label' => 'August',    'value' => 'August'    ],
+                    [ 'label' => 'September', 'value' => 'September' ],
+                    [ 'label' => 'October',   'value' => 'October'   ],
+                    [ 'label' => 'November',  'value' => 'November'  ],
+                    [ 'label' => 'December',  'value' => 'December'  ]
+                ]
             ],
             "matriculants_per_class" => [
 
                 "name"       => 'matriculants_per_class',
                 "label"      => 'Total number of matriculants per class',
+                "type"       => 'tel',
                 "validators" => ''
             ],
             "school_classes" => [
 
-                "name"       => 'school_classes',
-                "label"      => 'Medical school student class involvement (M1, M2, M3, M4)',
-                "validators" => '',
+                "name"        => 'school_classes',
+                "label"       => 'Medical school student class involvement (Select all that apply)',
+                "validators"  => '',
                 'isFullWidth' => true,
-                "options"    =>  SchoolClass::select( 'name', 'slug' )
+                "options"     =>  SchoolClass::select( 'name', 'slug' )
                                             ->orderBy( 'name' )
                                             ->get()
                                             ->map( function( $class )
@@ -77,11 +94,18 @@ class FormController extends Controller
                                                 return [ 'label' => $class->name, 'value' => $class->slug ];
                                             })
             ],
+            "comments" => [
+
+                "name"       => 'comments',
+                "label"      => 'Notes/Comments',
+                "type"       => 'text',
+                "validators" => ''
+            ],
             "additional_fields" => [],
             "contacts" => [
 
                 [
-                    "name"       => 'full_name=',
+                    "name"       => 'full_name',
                     "label"      => 'Name',
                     "value"      => '',
                     "hideLabel"  => true,
@@ -91,6 +115,7 @@ class FormController extends Controller
                 [
                     "value"      => '',
                     "name"       => 'email',
+                    "type"       => 'email',
                     "label"      => 'Email (Optional)',
                     "hideLabel"  => true,
                     "validators" => 'email',
@@ -99,6 +124,7 @@ class FormController extends Controller
                 [
                     "value"      => '',
                     "name"       => 'phone',
+                    "type"       => 'tel',
                     "label"      => 'Phone (Optional)',
                     "hideLabel"  => true,
                     "validators" => '',
@@ -133,12 +159,20 @@ class FormController extends Controller
             ],
             "partners" => [
                 [
-                    "value"      => '',
-                    "name"       => 'name',
-                    "label"      => 'Name',
-                    "hideLabel"  => true,
-                    "validators" => '',
-                    "icon"       => 'fa-hospital-o'
+                    "value"       => '',
+                    "name"        => 'name',
+                    "label"       => 'Name',
+                    "hideLabel"   => true,
+                    "validators"  => '',
+                    "icon"        => 'fa-hospital-o',
+                    "isFullWidth" => true,
+                    'options'     => PartnerOrganization::select( 'name', 'slug' )
+                                                       ->orderBy( 'name' )
+                                                       ->get()
+                                                       ->map( function( $class )
+                                                       {
+                                                           return [ 'label' => $class->name, 'value' => $class->slug ];
+                                                       })
                 ],
                 [
                     "value"      => '',

@@ -36,7 +36,7 @@
 
         <script>
 
-            var FEMR = {!! json_encode([
+            window.FEMR = {!! json_encode([
 
                 'userToken' => user_token(),
                 'csrfToken' => csrf_token(),

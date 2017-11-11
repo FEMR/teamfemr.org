@@ -1,5 +1,6 @@
 .survey-container {
 
+    padding: 0.75rem;
     //padding: 1rem 1.5rem;
     //background-color: $darkWhite;
 
@@ -15,9 +16,19 @@
 
     .femr-button{
 
-        min-width: 160px;
+        display: block;
+        width: 100%;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
         height: 3rem;
         text-transform: none;
+    }
+
+    .survey-status .femr-button{
+
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .columns.extra-space {
@@ -26,12 +37,12 @@
 
             &:nth-child( odd ) {
 
-                padding-right: 1.5rem;
+                padding-right: 2.5rem;
             }
 
             &:nth-child( even ) {
 
-                padding-left: 1.5rem;
+                padding-left: 2.5rem;
             }
         }
     }
@@ -88,20 +99,36 @@
         }
     }
 
+    @media only screen and ( max-width: 767px ) {
+
+        .add-button{
+
+            width: 100%;
+        }
+    }
+
     .section-row{
 
         margin-bottom: 0;
 
         .button-column {
 
-            width: 30px;
-            padding: 0 5px 0 0;
-            flex: 0 auto;
+            padding: 0 5px;
+            text-align: center;
+        }
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        @media only screen and ( min-width: 768px ) {
+
+            .button-column {
+                width: 30px;
+                padding: 0 5px 0 0;
+                flex: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
         }
 
         .label{
@@ -112,7 +139,6 @@
 
         .delete-button {
 
-            display: block;
             margin: 5px 0;
         }
 
@@ -133,11 +159,13 @@
         }
     }
 
+    .survey-status{
+
+        padding: 15px;
+        background-color: #cfcfcf;
+    }
+
     .button-container{
-
-        border-top: 1px solid #DDDBDC;
-
-        padding: 1.5rem 0;
 
         display: flex;
         flex-direction: row;

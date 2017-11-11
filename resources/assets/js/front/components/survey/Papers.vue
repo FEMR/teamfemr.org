@@ -4,7 +4,7 @@
             <h3 class="title">Papers</h3>
             <hr />
 
-            <div class="columns section-row paper-row paper-headers">
+            <div class="columns section-row paper-row paper-headers desktop-only">
 
                 <div class="column" v-for="field in def">
                     <label class="label">{{ field.label }}</label>
@@ -19,6 +19,7 @@
 
                 <div class="column">
 
+                    <label class="label mobile-only">{{ def.title.label }}</label>
                     <text-field
                         v-model="paper.title"
                         :def="def.title"
@@ -31,27 +32,41 @@
                 <!--</div>-->
 
                 <div class="column">
+
+                    <label class="label mobile-only">{{ def.url.label }}</label>
                     <text-field
                         v-model="paper.url"
                         :def="def.url"
                         :initialValue="paper.url"
                     ></text-field>
+
                 </div>
 
                 <div class="column">
+
+
+                    <label class="label mobile-only">{{ def.description.label }}</label>
                     <text-field
                         v-model="paper.description"
                         :def="def.description"
                         :initialValue="paper.description"
                     ></text-field>
+
                 </div>
 
                 <div class="column button-column">
 
-                    <a href="#"  class="delete-button" @click.prevent="deletePaper( idx )">
+                    <a href="#"  class="delete-button desktop-only" @click.prevent="deletePaper( idx )">
                         <span class="icon is-small is-danger">
                           <i class="fa fa-minus-circle"></i>
                         </span>
+                    </a>
+
+                    <a href="#" class="button is-danger is-small delete-button mobile-only" @click.prevent="deletePaper( idx )">
+                        <span class="icon is-small">
+                          <i class="fa fa-minus"></i>
+                        </span>
+                        <span>Remove Paper</span>
                     </a>
 
                 </div>
@@ -148,5 +163,14 @@
 
 <style lang="scss" scoped>
 
+    .survey-container .paper-row{
+
+        margin-bottom: 35px;
+    }
+
+    .survey-container .paper-headers{
+
+        margin-bottom: 0;
+    }
 
 </style>

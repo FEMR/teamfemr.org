@@ -3,128 +3,170 @@
 
         <div v-if="fieldsDefIsLoaded">
 
-            <div class="columns is-multiline extra-space">
+            <div class="columns questions-container">
 
-                <div class="column is-6">
+                <div id="survey-questions" class="column is-8">
+                    <div class="columns is-multiline">
 
-                    <text-field
-                        v-model="schoolName"
-                        :def="fieldsDef.school_name"
-                    ></text-field>
+                        <div class="column is-10 section">
 
-                    <text-field
-                        v-model="programName"
-                        :def="fieldsDef.program_name"
-                    ></text-field>
+                            <text-field
+                                v-model="schoolName"
+                                class="school_name"
+                                :def="fieldsDef.school_name"
+                            ></text-field>
 
-                    <select-field
-                        v-model="usesEmr"
-                        :def="fieldsDef.uses_emr"
-                    ></select-field>
+                            <text-field
+                                v-model="programName"
+                                class="program_name"
+                                :def="fieldsDef.program_name"
+                            ></text-field>
 
-                    <text-field
-                            v-model="yearInitiated"
-                            :def="fieldsDef.year_initiated"
-                    ></text-field>
+                            <select-field
+                                v-model="usesEmr"
+                                class="uses_emr"
+                                :def="fieldsDef.uses_emr"
+                            ></select-field>
 
+                            <text-field
+                                v-model="yearInitiated"
+                                class="year_initiated"
+                                :def="fieldsDef.year_initiated"
+                            ></text-field>
+
+                            <text-field
+                                v-model="yearlyOutreachParticipants"
+                                class="yearly_outreach_participants"
+                                :def="fieldsDef.yearly_outreach_participants"
+                            ></text-field>
+
+                            <text-field
+                                v-model="matriculantsPerClass"
+                                class="matriclants_per_class"
+                                :def="fieldsDef.matriculants_per_class"
+                            ></text-field>
+
+                            <multi-select-field
+                                v-model="monthsOfTravel"
+                                class="months_of_travel"
+                                :def="fieldsDef.months_of_travel"
+                            ></multi-select-field>
+
+                            <multi-select-field
+                                v-model="schoolClasses"
+                                class="school_classes"
+                                :def="fieldsDef.school_classes"
+                            ></multi-select-field>
+
+                        </div>
+
+                        <div class="column is-10 section">
+                            <textarea-field
+                                v-for="additionalDef in fieldsDef.additional_fields"
+                                :key="additionalDef.name"
+                                v-model="additionalFields[ additionalDef.name ]"
+                                class="additionalDef.name"
+                                :def="additionalDef"
+                            ></textarea-field>
+                        </div>
+
+                        <div class="column is-12 custom-section">
+
+                            <locations
+                                v-model="visitedLocations"
+                                class="visited_locations"
+                                :def="fieldsDef.visited_locations"
+                            ></locations>
+
+                            <partners
+                                v-model="partners"
+                                class="partners"
+                                :def="fieldsDef.partners"
+                            ></partners>
+
+                            <contacts
+                                v-model="contacts"
+                                class="contacts"
+                                :def="fieldsDef.contacts"
+                            ></contacts>
+
+                            <papers
+                                v-model="papers"
+                                class="papers"
+                                :def="fieldsDef.papers"
+                            ></papers>
+
+                            <div class="section">
+
+                                <textarea-field
+                                        v-model="comments"
+                                        class="comments"
+                                        :def="fieldsDef.comments"
+                                ></textarea-field>
+
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="column is-6">
-
-                    <text-field
-                            v-model="yearlyOutreachParticipants"
-                            :def="fieldsDef.yearly_outreach_participants"
-                    ></text-field>
-
-                    <text-field
-                            v-model="matriculantsPerClass"
-                            :def="fieldsDef.matriculants_per_class"
-                    ></text-field>
-
-                    <text-field
-                            v-model="monthsOfTravel"
-                            :def="fieldsDef.months_of_travel"
-                    ></text-field>
-
-                    <multi-select-field
-                            v-model="schoolClasses"
-                            :def="fieldsDef.school_classes"
-                    ></multi-select-field>
-
-
-                </div>
-
-                <div class="column is-6 additional-field"
-                     v-for="additionalDef in fieldsDef.additional_fields">
-
-                    <textarea-field
-                            :key="additionalDef.name"
-                            v-model="additionalFields[ additionalDef.name ]"
-                            :def="additionalDef"
-                    ></textarea-field>
-
-                </div>
-            </div>
-
-            <div class="columns is-multiline">
-
-                <div class="column is-12">
-
-                    <locations
-                            v-model="visitedLocations"
-                            :def="fieldsDef.visited_locations">
-                    </locations>
-
-                </div>
-
-                <div class="column is-12">
-
-                    <partners
-                            v-model="partners"
-                            :def="fieldsDef.partners">
-                    </partners>
-
-                </div>
-
-                <div class="column is-12">
-
-                    <contacts
-                            v-model="contacts"
-                            :def="fieldsDef.contacts">
-                    </contacts>
-
-                </div>
-
-                <div class="column is-12">
-
-                    <papers
-                            v-model="papers"
-                            :def="fieldsDef.papers">
-                    </papers>
-
-                </div>
-
-            </div>
-
-            <div class="button-container">
-
-                <button
-                    :class="{ button:true, 'femr-button': true, 'is-loading': isSubmitting }"
-                    @click="saveClicked()"
+                <div
+                    v-if="windowWidth> 768"
+                    class="column is-4"
                 >
-                    Submit
-                </button>
+                    <div
+                            class="status-container"
+                            ref="status-container"
+                    >
+                        <affix
+                                class="survey-status"
+                                ref="survey-status"
+                                :style="{ width: statusWidth }"
+                                relative-element-selector="#survey-questions"
+                                :offset="{ top: 140, bottom: 40 }"
+                                :enabled="windowWidth > 768"
+                                v-on:affixtop="statusWidth = 'auto'"
+                                v-on:affixtbottom="statusWidth = 'auto'"
+                        >
+
+                            <!--<p>Completed: {{ completedQuestions }} / {{ totalQuestions }}</p>-->
+                            <!--<progress class="progress is-success" value="60" max="100">60%</progress>-->
+
+                            <div class="button-container sticky">
+
+                                <button
+                                        :class="{ button:true, 'femr-button': true, 'is-loading': isSubmitting }"
+                                        @click="saveClicked()"
+                                >
+                                    Save
+                                </button>
+
+                            </div>
+
+                        </affix>
+                    </div>
+                </div>
+
 
             </div>
+
+            <button
+                v-if="windowWidth <= 768"
+                :class="{ button:true, 'femr-button': true, 'is-loading': isSubmitting }"
+                @click="saveClicked()"
+            >
+                Save
+            </button>
 
         </div>
 
         <div v-else>
 
-                <p class="loading">
-                    <span class="button is-text is-loading"></span>
-                    Building Form...
-                </p>
+            <p class="loading">
+                <span class="button is-text is-loading"></span>
+                Building Form...
+            </p>
 
         </div>
 
@@ -171,22 +213,75 @@
                 usesEmr: '',
                 yearInitiated: '',
                 yearlyOutreachParticipants: '',
-                monthsOfTravel: '',
+                monthsOfTravel: [],
                 matriculantsPerClass: '',
                 schoolClasses: [],
                 additionalFields: {},
-
+                comments: '',
                 visitedLocations: [],
                 partners: [],
                 contacts: [],
                 papers: [],
 
                 isSubmitting: false,
-                fieldsDef: {}
+                fieldsDef: {},
+
+                windowWidth: 0,
+                statusWidth: 'auto'
             }
         },
 
         computed: {
+
+            fieldKeys: function() {
+
+
+            },
+
+            isDesktop: function() {
+
+                return this.windowWidth >= 768;
+            },
+
+            // TODO -- implement later
+//            totalQuestions: function() {
+//
+//                let total = _.keys( this.fieldsDef ).length - 1;
+//                total += _.keys( this.fieldsDef['additional_fields'] ).length;
+//
+//                return total;
+//
+//            },
+//
+//            completedQuestions: function() {
+//
+//                if( ! this.fieldsDefIsLoaded ) return 0;
+//
+//                let count = 0;
+//                _.forEach( _.keys( this.fieldsDef ), ( key ) => {
+//
+//                   if( _.has( this._data, key ) ){
+//
+//                       if( _.isArray( this._data[key] ) ) {
+//
+//                           if( this._data[key].length > 0 && ! _.isEmpty( this._data[key][0] ) )
+//                           {
+//                               count++;
+//                           }
+//                       }
+//                       else
+//                       {
+//                           if( ! _.isEmpty( this._data[ key ] ) ) {
+//                               count++;
+//                           }
+//                       }
+//
+//                   }
+//
+//                });
+//
+//                return count;
+//            },
 
             fieldsDefIsLoaded: function() {
 
@@ -206,7 +301,7 @@
                     matriculants_per_class: this.matriculantsPerClass,
                     school_classes: this.schoolClasses,
                     additional_fields: this.additionalFields,
-
+                    comments: this.comments,
                     visited_locations: this.filterEmptyObjects(this.visitedLocations),
                     partners: this.filterEmptyObjects(this.partners),
                     contacts: this.filterEmptyObjects(this.contacts),
@@ -216,6 +311,20 @@
         },
 
         methods: {
+
+            setWindowWidth() {
+
+                this.windowWidth = window.innerWidth;
+            },
+
+            statusAffixed() {
+
+                if( this.isDesktop ) {
+
+                    let width = this.$refs['status-container'].clientWidth;
+                    this.statusWidth = ( width ) ? width + 'px' : 'auto';
+                }
+            },
 
             filterEmptyObjects( items ) {
 
@@ -236,7 +345,7 @@
                 this.matriculantsPerClass = program.matriculantsPerClass;
                 this.schoolClasses = program.schoolClasses;
                 this.additionalFields = program.additionalFields;
-
+                this.comments = program.comments;
                 this.partners = program.partners;
                 this.contacts = program.contacts;
                 this.papers = program.papers;
@@ -295,12 +404,35 @@
 
                 Survey.get( this.programId, program => this.setLocalData( program ) );
             }
+
+            window.addEventListener('resize', _.debounce( this.setWindowWidth, 500, {}, false ) );
+            this.setWindowWidth();
+        },
+
+        updated(){
+
+            _.throttle( this.statusAffixed, 500 )();
         }
+
     }
 
 </script>
 
 <style lang="scss" scoped>
+
+    .section{
+
+        background-color: #efefef;
+        border: 1px solid #cfcfcf;
+        padding: 20px;
+        margin-bottom: 35px;
+    }
+
+    .custom-section {
+
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+    }
 
     .loading{
 

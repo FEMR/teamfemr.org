@@ -8,6 +8,9 @@ Vue.use( VueGoogleMaps, {
     }
 });
 
+var Affix = require('vue-affix');
+Vue.use(Affix);
+
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 

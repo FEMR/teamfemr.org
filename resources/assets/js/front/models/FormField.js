@@ -5,6 +5,7 @@ class FormField {
         let defaults = {
 
             name: '',
+            type: 'text',
             label: '',
             value: '',
             icon: '',

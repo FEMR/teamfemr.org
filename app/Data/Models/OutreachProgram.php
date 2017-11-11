@@ -40,7 +40,8 @@ class OutreachProgram extends Model
         'yearly_outreach_participants',
         'matriculants_per_class',
         'months_of_travel',
-        'uses_emr'
+        'uses_emr',
+        'comments'
     ];
 
     /**
@@ -56,7 +57,8 @@ class OutreachProgram extends Model
         'yearly_outreach_participants' => 'string',
         'matriculants_per_class' => 'string',
         'months_of_travel' => 'string',
-        'uses_emr' => 'boolean'
+        'uses_emr' => 'boolean',
+        'comments' => 'string'
     ];
 
     /**
@@ -109,6 +111,15 @@ class OutreachProgram extends Model
             }
         }
         return null;
+    }
+
+    /**
+     * @param array $months
+     */
+    public function setMonthsOfTravelAttribute( $months = [] )
+    {
+        // TODO - handle this more appropriately?
+        $this->attributes['months_of_travel'] = implode( ",", $months );
     }
 
     /**

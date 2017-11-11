@@ -29,6 +29,8 @@ class OutreachProgram {
         this.papers = [];
         this.visitedLocations = [];
 
+        this.comments = '';
+
         this.isVisible = false;
     }
 
@@ -43,6 +45,8 @@ class OutreachProgram {
         this.yearInitiated = json.year_initiated;
         this.yearlyOutreachParticipants = json.yearly_outreach_participants;
         this.monthsOfTravel = json.months_of_travel;
+
+        this.comments = json.comments;
 
         this.additionalFields = {};
         _.forEach( json.fields, ( field ) => {

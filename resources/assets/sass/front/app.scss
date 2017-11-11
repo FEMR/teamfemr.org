@@ -18,6 +18,24 @@
     }
 }
 
+.desktop-only{
+
+    display: none;
+}
+
+@media only screen and ( min-width: 768px ) {
+
+    .desktop-only {
+
+        display: block;
+    }
+
+    .mobile-only {
+
+        display: none;
+    }
+}
+
 h1.title,
 h2.title,
 h3.title,

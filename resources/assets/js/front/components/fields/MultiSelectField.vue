@@ -1,7 +1,7 @@
 <template>
     <div class="field">
 
-        <label class="label">{{ def.label }}</label>
+        <label class="label" v-if="showLabel">{{ def.label }}</label>
 
         <div class="control has-icons-right">
 
@@ -9,11 +9,11 @@
                 <multiselect
                     :value="value"
                     :name="def.name"
-                    :multiple="true"
+                    :multiple="multiple"
                     :taggable="true"
                     @tag="addTag"
-                    tag-placeholder="Add this as new tag"
-                    placeholder="Search or add a tag"
+                    tag-placeholder="Add this as new item"
+                    placeholder="Type to search or add new"
                     label="label"
                     track-by="value"
                     :data-vv-as="def.label"
@@ -54,9 +54,17 @@
             },
             "value": {
 
-                type: Array,
-                default: () => [],
                 required: true
+            },
+            "multiple": {
+
+                type: Boolean,
+                default: () => true
+            },
+            "showLabel": {
+
+                type: Boolean,
+                default: () => true
             }
         },
 
@@ -137,7 +145,6 @@
 </script>
 
 <style scoped>
-
 
 
 </style>
