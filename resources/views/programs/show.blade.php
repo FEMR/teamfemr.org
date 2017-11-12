@@ -38,7 +38,7 @@
                         </div>
                         <div class="column is-7 info-column">
 
-                            <p class="stat months"><strong>Months of Travel:</strong> {{ $program->months_of_travel }}</p>
+                            <p class="stat months"><strong>Months of Travel:</strong> {{ $program->months_of_travel_string }}</p>
                             <p class="stat initiated"><strong>Year Initiated:</strong> {{ $program->year_initiated ? $program->year_initiated : '' }}</p>
                             <p class="stat yearly_participants"><strong>Total Yearly Outreach Participants:</strong> {{ $program->yearly_outreach_participants ? $program->yearly_outreach_participants : '' }}</p>
                             <p class="stat matriculants"><strong>Matriculants per class:</strong> {{ $program->matriculants_per_class ? $program->matriculants_per_class : '' }}</p>

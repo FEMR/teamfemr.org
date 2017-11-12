@@ -22,14 +22,12 @@ class OutreachProgram {
         this.yearInitiated = '';
         this.yearlyOutreachParticipants = '';
         this.monthsOfTravel = '';
-
+        this.comments = '';
         this.schoolClasses = [];
         this.contacts = [];
         this.partners = [];
         this.papers = [];
         this.visitedLocations = [];
-
-        this.comments = '';
 
         this.isVisible = false;
     }
@@ -39,28 +37,39 @@ class OutreachProgram {
         this.id = json.id;
         this.name = json.name;
         this.slug = json.slug;
-        this.schoolName = json.school_name;
-        this.usesEmr = json.uses_emr;
-        this.matriculantsPerClass = json.matriculants_per_class;
-        this.yearInitiated = json.year_initiated;
-        this.yearlyOutreachParticipants = json.yearly_outreach_participants;
-        this.monthsOfTravel = json.months_of_travel;
-
+        this.schoolName = json.schoolName;
+        this.usesEmr = json.usesEmr;
+        this.matriculantsPerClass = json.matriculantsPerClass;
+        this.yearInitiated = json.yearInitiated;
+        this.yearlyOutreachParticipants = json.yearlyOutreachParticipants;
         this.comments = json.comments;
 
         this.additionalFields = {};
-        _.forEach( json.fields, ( field ) => {
+        _.forEach( json.additionalFields, ( field ) => {
 
            this.additionalFields[ field.key ] = field.value;
         });
 
-        _.forEach( json.school_classes, ( school_class ) => {
+        //this.monthsOfTravel = json.monthsOfTravel;
+        this.monthsOfTravel = [];
+        _.forEach( json.monthsOfTravel, ( month ) => {
+
+            // this is matched up to what the MultiSelectField in the survey wants
+            this.monthsOfTravel.push( {
+
+                label: month,
+                value: month
+            });
+        });
+
+        this.schoolClasses = [];
+        _.forEach( json.schoolClasses, ( schoolClass ) => {
 
             // this is matched up to what the MultiSelectField in the survey wants
             this.schoolClasses.push( {
 
-                label: school_class.name,
-                value: school_class.slug
+                label: schoolClass.name,
+                value: schoolClass.slug
             });
         });
 
@@ -72,7 +81,7 @@ class OutreachProgram {
             this.contacts.push( newContact );
         });
 
-        _.forEach( json.partner_organizations, ( partner ) => {
+        _.forEach( json.partnerOrganizations, ( partner ) => {
 
             let newPartner = new Partner();
             newPartner.populate( partner );
@@ -80,7 +89,7 @@ class OutreachProgram {
             this.partners.push( newPartner );
         });
 
-        _.forEach( json.visited_locations, ( location ) => {
+        _.forEach( json.visitedLocations, ( location ) => {
 
             let newLoc = new VisitedLocation();
             newLoc.populate( location );
@@ -88,7 +97,6 @@ class OutreachProgram {
             this.visitedLocations.push( newLoc );
         });
 
-        // TODO -- make models for this
         _.forEach( json.papers, ( paper ) => {
 
             let newPaper = new Paper();
@@ -112,7 +120,7 @@ class OutreachProgram {
 
         if( this.visitedLocations.length > 0 ) {
 
-            return this.visitedLocations[0].city_state_country;
+            return this.visitedLocations[0].cityStateCountry;
         }
 
         return '';

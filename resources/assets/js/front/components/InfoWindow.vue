@@ -85,7 +85,7 @@
                     lat: 0,
                     lng: 0
                 },
-                marker_index: null,
+                markerIndex: null,
 
                 // InfoWindow Options
                 // https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
@@ -107,10 +107,10 @@
 
         methods: {
 
-            toggle( programs, clicked_index ) {
+            toggle( programs, clickedIndex ) {
 
                 console.log( programs );
-                console.log( clicked_index );
+                console.log( clickedIndex );
 
                 this.outreachPrograms = [];
                 _.forEach( programs, ( program ) => {
@@ -125,7 +125,7 @@
                 }
 
                 // If the current marker is clicked, toggle the window
-                if( this.marker_index === clicked_index ) {
+                if( this.markerIndex === clickedIndex ) {
 
                     this.opened = ! this.opened;
                 }
@@ -141,7 +141,7 @@
 
                         this.opened = false;
                         this.position = {lat: firstLocation.latitude, lng: firstLocation.longitude};
-                        this.marker_index = clicked_index;
+                        this.markerIndex = clickedIndex;
 
                         // Opening the info window is how gmaps pulls the window into view.
                         // The delay is being used to trigger this. Maybe there is a better way?

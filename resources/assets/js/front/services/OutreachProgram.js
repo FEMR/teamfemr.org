@@ -4,7 +4,6 @@ store.addPlugin(expirePlugin);
 
 import { default as OutreachProgramModel } from '../models/OutreachProgram';
 
-
 class OutreachProgram {
 
     static index( callback ) {
@@ -17,9 +16,9 @@ class OutreachProgram {
             console.log( "loaded from cache" );
 
             let programs = [];
-            _.forEach( cachedPrograms, ( program_json ) => {
+            _.forEach( cachedPrograms, ( programJson ) => {
 
-                let program = _.assignIn( new OutreachProgramModel, program_json );
+                let program = _.assignIn( new OutreachProgramModel, programJson );
                 programs.push( program );
             });
 
@@ -32,15 +31,15 @@ class OutreachProgram {
 
                     let programs = [];
 
-                    _.forEach( response.data.data, ( program_json ) => {
+                    _.forEach( response.data.data, ( programJson ) => {
 
                         let program = new OutreachProgramModel();
-                        program.populate( program_json );
+                        program.populate( programJson );
                         programs.push( program );
                     });
 
                     // put the locations in local storage
-                    store.set( CACHE_KEY, programs, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */);
+                    store.set( CACHE_KEY, programs, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */ );
 
                     callback( programs ) ;
                 })

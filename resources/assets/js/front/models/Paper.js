@@ -17,6 +17,17 @@ class Paper{
         this.url = json.url;
         this.description = json.description;
     }
+
+    post() {
+
+        return {
+
+            "id": this.id,
+            "title": this.title,
+            "url": this.url,
+            "description": this.description,
+        }
+    }
 }
 
 export default Paper;

@@ -11,12 +11,12 @@ class VisitedLocation{
 
         this.id = '';
         this.address = '';
-        this.address_ext = '';
+        this.addressExt = '';
         this.locality = '';
-        this.administrative_area_level_1 = '';
-        this.administrative_area_level_2 = '';
-        this.city_state_country = '';
-        this.postal_code = '';
+        this.administrativeAreaLevel1 = '';
+        this.administrativeAreaLevel2 = '';
+        this.cityStateCountry = '';
+        this.postalCode = '';
         this.country = '';
 
         this.latitude = 0.0;
@@ -26,24 +26,19 @@ class VisitedLocation{
             lat: 0.0,
             lng: 0.0
         };
-
-        this.start_date = '';
-        this.end_date = '';
     }
 
     populate( location ){
 
         this.id = location.id;
         this.address = location.address;
-        this.address_ext = location.address_ext;
+        this.addressExt = location.addressExt;
         this.locality = location.locality;
-        this.administrative_area_level_1 = location.administrative_area_level_1;
-        this.administrative_area_level_2 = location.administrative_area_level_2;
-        this.city_state_country = location.city_state_country;
-        this.postal_code = location.postal_code;
+        this.administrativeAreaLevel1 = location.administrativeAreaLevel1;
+        this.administrativeAreaLevel2 = location.administrativeAreaLevel2;
+        this.cityStateCountry = location.cityStateCountry;
+        this.postalCode = location.postalCode;
         this.country = location.country;
-        this.latitude = location.latitude;
-        this.longitude = location.longitude;
 
         this.latitude = parseFloat( location.latitude );
         this.longitude = parseFloat( location.longitude );
@@ -53,9 +48,6 @@ class VisitedLocation{
             lat: this.latitude,
             lng: this.longitude
         };
-
-        this.start_date = location.start_date;
-        this.end_date = location.end_date;
     }
 
     populateFromPlace( place ){
@@ -85,7 +77,7 @@ class VisitedLocation{
 
         if ( _.has( components, 'subpremise' ) ){
 
-            this.address_ext = components.subpremise.long_name;
+            this.addressExt = components.subpremise.long_name;
         }
 
         if ( _.has( components, 'locality' ) ){
@@ -95,12 +87,12 @@ class VisitedLocation{
 
         if ( _.has( components, 'administrative_area_level_1' ) ){
 
-            this.administrative_area_level_1 = components.administrative_area_level_1.short_name;
+            this.administrativeAreaLevel1 = components.administrative_area_level_1.short_name;
         }
 
         if ( _.has( components, 'postal_code' ) ){
 
-            this.postal_code = components.postal_code.long_name;
+            this.postalCode = components.postal_code.long_name;
         }
 
         if ( _.has( components, 'country' ) ){
@@ -121,6 +113,23 @@ class VisitedLocation{
         }
     }
 
+    post() {
+
+        return {
+
+            "id": this.id,
+            "address": this.address || "",
+            "address_ext": this.addressExt || "",
+            "locality": this.locality || "",
+            "administrative_area_level_1": this.administrativeAreaLevel1 || "",
+            "administrative_area_level_2": this.administrativeAreaLevel2 || "",
+            "postal_code": this.postalCode || "",
+            "country": this.country || "",
+            "latitude": this.latitude || "",
+            "longitude": this.longitude || ""
+        }
+    }
+
     hasPosition( m ) {
 
         return ( this.latitude !== 0.0 ) && ( this.longitude !== 0.0 );
@@ -135,11 +144,11 @@ class VisitedLocation{
             address += this.locality;
         }
 
-        if( this.administrative_area_level_1.length > 0 )
+        if( this.administrativeAreaLevel1.length > 0 )
         {
             if( address.length > 0 ) address += ', ';
 
-            address += this.administrative_area_level_1;
+            address += this.administrativeAreaLevel1;
         }
 
         if( this.country.length > 0 )

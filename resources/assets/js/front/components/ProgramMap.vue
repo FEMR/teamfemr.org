@@ -57,7 +57,7 @@
                     lat: 0,
                     lng: 0
                 },
-                marker_index: null,
+                markerIndex: null,
 
                 // InfoWindow Options
                 // https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
@@ -80,10 +80,10 @@
         },
         methods: {
 
-            toggleInfoWindow( location, clicked_index ) {
+            toggleInfoWindow( location, clickedIndex ) {
 
                 // If the current marker is clicked, toggle the window
-                if( this.marker_index === clicked_index ) {
+                if( this.markerIndex === clickedIndex ) {
 
                     this.opened = ! this.opened;
                 }
@@ -91,9 +91,9 @@
                 else {
 
                     this.opened = false;
-                    this.content = "<div style=\"padding-right: 10px; font-size: 1.1rem;\">" + location.city_state_country + "</div>";
+                    this.content = "<div style=\"padding-right: 10px; font-size: 1.1rem;\">" + location.cityStateCountry + "</div>";
                     this.position = { lat: location.latitude, lng: location.longitude };
-                    this.marker_index = clicked_index;
+                    this.markerIndex = clickedIndex;
 
                     // Opening the info window is how gmaps pulls the window into view.
                     // The delay is being used to trigger this. Maybe there is a better way?
@@ -133,7 +133,7 @@
                 axios.get( '/api/programs/' + this.programId )
                         .then( ( response ) => {
 
-                            _.forEach( response.data.data.visited_locations, ( location ) => {
+                            _.forEach( response.data.data.visitedLocations, ( location ) => {
 
                                 this.locations.push( location );
                                 this.extendBounds( location );

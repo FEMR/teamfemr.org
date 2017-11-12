@@ -92,15 +92,15 @@
                     let newProgram = _.cloneDeep( program );
 
                     // filter the locations to those that were clicked on
-                    const filtered_locations = _.filter( newProgram.visitedLocations, ( location ) => {
+                    const filteredLocations = _.filter( newProgram.visitedLocations, ( location ) => {
 
                         return _.includes( locationIds, location.id );
                     } );
 
                     // only keep programs with matching locations
-                    if( filtered_locations.length > 0 ) {
+                    if( filteredLocations.length > 0 ) {
 
-                        newProgram.visitedLocations = filtered_locations;
+                        newProgram.visitedLocations = filteredLocations;
                         result.push( newProgram );
                     }
                     return true;

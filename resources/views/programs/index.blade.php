@@ -33,7 +33,7 @@
                                         {!! str_ireplace( '-', '- <br />', $program->name ) !!}
                                     </a>
                                 </td>
-                                <td class="tablet-only">{{ $program->months_of_travel }}</td>
+                                <td class="tablet-only">{{ $program->months_of_travel_string }}</td>
                                 <td class="tablet-only">{{ $program->schoolClasses->pluck( 'name' )->implode( ', ' ) }}</td>
                                 <td class="tablet-only">
 

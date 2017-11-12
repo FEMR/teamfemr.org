@@ -5,8 +5,8 @@
             <h3 class="title">Visited Locations</h3>
             <hr />
 
-            <div class="columns">
-                <div class="column is-7 map-column">
+            <div class="columns is-multiline">
+                <div class="column is-12 map-column">
 
                     <p class="control">
 
@@ -39,7 +39,7 @@
                     </gmap-map>
 
                 </div>
-                <div class="column">
+                <div class="column is-12">
 
                     <div class="form">
 
@@ -56,15 +56,12 @@
                                 <tr v-for="( location, idx ) in locations" :key="location.uniqueId" >
                                     <td>
                                         {{ location.locality }}
-                                        <!--<input type="hidden" name="def.locality.name" v-model="location.locality" />-->
                                     </td>
                                     <td>
-                                        {{ location.administrative_area_level_1 }}
-                                        <!--<input type="hidden" name="def.administrative_area_level_1.name" v-model="location.administrative_area_level_1" />-->
+                                        {{ location.administrativeAreaLevel1 }}
                                     </td>
                                     <td>
                                         {{ location.country }}
-                                        <!--<input type="hidden" name="def.country.name" v-model="location.country" />-->
                                     </td>
                                     <td>
                                         <a href="#"  class="delete-button" @click.prevent="removeLocation( idx )">
@@ -78,7 +75,7 @@
                         </table>
                         <div v-else>
 
-                            <p style="text-align: center;">Enter some locations <br /> using the map </p>
+                            <p style="text-align: center;">Enter some locations using the map </p>
 
                         </div>
 
@@ -212,12 +209,12 @@
 
             VueGoogleMaps.loaded.then( () => {
 
+                window.addEventListener('resize', () => {
+
+                    this.extendBounds();
+                });
             });
 
-            window.addEventListener('resize', () => {
-
-                this.extendBounds();
-            });
 
         }
     }

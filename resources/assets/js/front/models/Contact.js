@@ -1,30 +1,37 @@
 class Contact{
 
-    constructor() {
+    constructor( json ) {
 
-        this.uniqueId = _.uniqueId();;
-        this.id = '';
-        this.full_name = '';
-        this.phone = '';
-        this.email = '';
+
     }
 
      populate( json ) {
 
          this.id = json.id;
 
-         if( json.full_name.length > 0 ) {
+         if( json.fullName.length > 0 ) {
 
-             this.full_name = json.full_name;
+             this.fullName = json.fullName;
          }
          else {
 
-             this.full_name = json.first_name + ' ' + json.last_name;
+             this.fullName = json.firstName + ' ' + json.lastName;
          }
 
          this.phone = json.phone;
          this.email = json.email;
      }
+
+    post() {
+
+        return {
+
+            "id": this.id,
+            "full_name": this.fullName,
+            "phone": this.phone,
+            "email": this.email,
+        }
+    }
 }
 
 export default Contact;

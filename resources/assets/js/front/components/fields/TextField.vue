@@ -6,12 +6,13 @@
         <div :class="{ control: true, 'has-icons-right': hasRightIcon, 'has-icons-left': hasLeftIcon }">
 
             <input
+                ref="field"
                 :value="value"
                 :type="def.type"
                 :name="def.name"
+                :class="{ 'input': true, 'is-success': isSuccess, 'is-danger': isError }"
                 :data-vv-as="def.label"
                 v-validate.initial="def.validators"
-                :class="{ 'input': true, 'is-success': isSuccess, 'is-danger': isError }"
                 :readonly="readonly"
                 :placeholder="def.placeholder"
                 v-on:input="updateValue($event.target.value)"
@@ -40,18 +41,18 @@
 
         props: {
 
-            def: {
+            "def": {
 
                 type: FormField,
                 default: () => new FormField()
             },
-            value: {
+            "value": {
 
                 type: String,
                 default: '',
                 required: true
             },
-            readonly: {
+            "readonly": {
 
                 type: Boolean,
                 default: false
@@ -129,6 +130,22 @@
 
                 return ( this.isSuccess || this.isError ) && this.message.length > 0
             }
+        },
+
+        created() {
+
+            // Fires when parent triggers validateAll
+            this.$parent.$on( 'validate', ( key ) => {
+
+                if( key === this.def.name ) {
+
+                    this.$validator.flag( this.def.name, {
+                        touched: true,
+                        dirty: true,
+                        pristine: false
+                    });
+                }
+            });
         }
 
     }
