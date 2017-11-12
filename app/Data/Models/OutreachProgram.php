@@ -119,7 +119,36 @@ class OutreachProgram extends Model
     public function setMonthsOfTravelAttribute( $months = [] )
     {
         // TODO - handle this more appropriately?
-        $this->attributes['months_of_travel'] = implode( ",", $months );
+        if( is_array( $months ) )
+        {
+            $this->attributes['months_of_travel'] = implode( ",", $months );
+        }
+        else
+        {
+            $this->attributes['months_of_travel'] = $months;
+        }
+
+    }
+
+    /**
+     * @return array
+     */
+    public function getMonthsOfTravelAttribute()
+    {
+        // TODO - handle this more appropriately?
+        if( strlen( $this->attributes['months_of_travel'] ) > 0 ) {
+
+            return explode( ",", $this->attributes['months_of_travel'] );
+        }
+        else return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getMonthsOfTravelStringAttribute()
+    {
+        return $this->attributes['months_of_travel'];
     }
 
     /**
@@ -393,6 +422,7 @@ class OutreachProgram extends Model
         $classes_to_sync = [];
 
         foreach ( $school_classes as $class ) {
+
             if ( is_numeric( $class ) ) {
                 $classes_to_sync[] = $class;
             }
@@ -409,7 +439,6 @@ class OutreachProgram extends Model
                 else {
                     $classes_to_sync[] = $existing->id;
                 }
-
             }
         }
 

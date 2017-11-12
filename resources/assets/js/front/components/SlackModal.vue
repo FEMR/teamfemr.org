@@ -33,7 +33,7 @@
                         <div class="field">
                             <label class="label">First Name</label>
                             <p class="control">
-                                <input class="input" type="text" placeholder="Optional" v-model="first_name" />
+                                <input class="input" type="text" placeholder="Optional" v-model="firstName" />
                             </p>
                             <p class="help is-danger" v-if="errors.has('first_name')">{{ errors.get('first_name') }}</p>
                         </div>
@@ -45,7 +45,7 @@
                         <div class="field">
                             <label class="label">Last Name</label>
                             <p class="control">
-                                <input class="input" type="text" placeholder="Optional" v-model="last_name" />
+                                <input class="input" type="text" placeholder="Optional" v-model="lastName" />
                             </p>
                             <p class="help is-danger" v-if="errors.has('last_name')">{{ errors.get('last_name') }}</p>
                         </div>
@@ -83,8 +83,8 @@
                 errors: new Errors(),
 
                 email: '',
-                first_name: '',
-                last_name: ''
+                firstName: '',
+                lastName: ''
             }
         },
         methods: {
@@ -105,8 +105,8 @@
                 axios.post('/api/slack/invite', {
 
                         email: this.email,
-                        first_name: this.first_name,
-                        last_name: this.last_name
+                        first_name: this.firstName,
+                        last_name: this.lastName
                     })
                     .then( ( response ) => {
 
@@ -117,8 +117,8 @@
                         console.log(response);
 
                         this.email = '';
-                        this.first_name = '';
-                        this.last_name = '';
+                        this.firstName = '';
+                        this.lastName = '';
 
                         this.isSuccessful = true;
                         this.isLoading = false;

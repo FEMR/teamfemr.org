@@ -5,6 +5,7 @@
 
         <div class="control has-icons-right">
 
+
             <textarea
                 :value="value"
                 :name="def.name"
@@ -97,6 +98,22 @@
 
                 return ( this.isSuccess || this.isError ) && this.message.length > 0
             }
+        },
+
+        created() {
+
+            // Fires when parent triggers validateAll
+            this.$parent.$on( 'validate', ( key ) => {
+
+                if( key === this.def.name ) {
+
+                    this.$validator.flag( this.def.name, {
+                        touched: true,
+                        dirty: true,
+                        pristine: false
+                    });
+                }
+            });
         }
 
     }

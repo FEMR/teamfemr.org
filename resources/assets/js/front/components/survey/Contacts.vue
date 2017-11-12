@@ -19,11 +19,11 @@
 
                 <div class="column">
 
-                    <label class="label mobile-only">{{ def.full_name.label }}</label>
+                    <label class="label mobile-only">{{ def.fullName.label }}</label>
                     <text-field
-                        v-model="contact.full_name"
-                        :def="def.full_name"
-                        :initialValue="contact.full_name"
+                        v-model="contact.fullName"
+                        :def="def.fullName"
+                        :initialValue="contact.fullName"
                     ></text-field>
 
                 </div>

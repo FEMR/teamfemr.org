@@ -27,7 +27,6 @@ class Survey {
                         def[ key ] = new FormField( fieldJson );
                     }
 
-
                 } );
 
                 successCB( def );
@@ -38,12 +37,11 @@ class Survey {
             });
     }
 
-    static get( program_id, successCB, errorCB = ()=>{} ) {
+    static get( programId, successCB, errorCB = ()=>{} ) {
 
-        axios.get( '/api/survey/' + program_id )
+        axios.get( '/api/survey/' + programId )
             .then( function( result ) {
 
-                // TODO -- handle error?
                 let program = new OutreachProgram();
                 program.populate( result.data.data );
 

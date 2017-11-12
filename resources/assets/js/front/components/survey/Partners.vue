@@ -21,11 +21,11 @@
 
                     <label class="label mobile-only">{{ def.name.label }}</label>
                     <multi-select-field
-                            v-model="partner.name"
-                            :def="def.name"
-                            :multiple="false"
-                            :show-label="false"
-                            :initialValue="partner.name"
+                        v-model="partner.selectedPartner"
+                        :def="def.name"
+                        :multiple="false"
+                        :show-label="false"
+                        :initialValue="partner.name"
                     ></multi-select-field>
                 </div>
 

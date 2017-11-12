@@ -13,56 +13,56 @@
                             <text-field
                                 v-model="schoolName"
                                 class="school_name"
-                                :def="fieldsDef.school_name"
+                                :def="fieldsDef.schoolName"
                             ></text-field>
 
                             <text-field
-                                v-model="programName"
-                                class="program_name"
-                                :def="fieldsDef.program_name"
+                                v-model="name"
+                                class="name"
+                                :def="fieldsDef.name"
                             ></text-field>
 
                             <select-field
                                 v-model="usesEmr"
                                 class="uses_emr"
-                                :def="fieldsDef.uses_emr"
+                                :def="fieldsDef.usesEmr"
                             ></select-field>
 
                             <text-field
                                 v-model="yearInitiated"
                                 class="year_initiated"
-                                :def="fieldsDef.year_initiated"
+                                :def="fieldsDef.yearInitiated"
                             ></text-field>
 
                             <text-field
                                 v-model="yearlyOutreachParticipants"
                                 class="yearly_outreach_participants"
-                                :def="fieldsDef.yearly_outreach_participants"
+                                :def="fieldsDef.yearlyOutreachParticipants"
                             ></text-field>
 
                             <text-field
                                 v-model="matriculantsPerClass"
                                 class="matriclants_per_class"
-                                :def="fieldsDef.matriculants_per_class"
+                                :def="fieldsDef.matriculantsPerClass"
                             ></text-field>
 
                             <multi-select-field
                                 v-model="monthsOfTravel"
                                 class="months_of_travel"
-                                :def="fieldsDef.months_of_travel"
+                                :def="fieldsDef.monthsOfTravel"
                             ></multi-select-field>
 
                             <multi-select-field
                                 v-model="schoolClasses"
                                 class="school_classes"
-                                :def="fieldsDef.school_classes"
+                                :def="fieldsDef.schoolClasses"
                             ></multi-select-field>
 
                         </div>
 
                         <div class="column is-10 section">
                             <textarea-field
-                                v-for="additionalDef in fieldsDef.additional_fields"
+                                v-for="additionalDef in fieldsDef.additionalFields"
                                 :key="additionalDef.name"
                                 v-model="additionalFields[ additionalDef.name ]"
                                 class="additionalDef.name"
@@ -75,7 +75,7 @@
                             <locations
                                 v-model="visitedLocations"
                                 class="visited_locations"
-                                :def="fieldsDef.visited_locations"
+                                :def="fieldsDef.visitedLocations"
                             ></locations>
 
                             <partners
@@ -99,9 +99,9 @@
                             <div class="section">
 
                                 <textarea-field
-                                        v-model="comments"
-                                        class="comments"
-                                        :def="fieldsDef.comments"
+                                    v-model="comments"
+                                    class="comments"
+                                    :def="fieldsDef.comments"
                                 ></textarea-field>
 
                             </div>
@@ -116,28 +116,42 @@
                     class="column is-4"
                 >
                     <div
-                            class="status-container"
-                            ref="status-container"
+                        class="status-container"
+                        ref="status-container"
                     >
                         <affix
-                                class="survey-status"
-                                ref="survey-status"
-                                :style="{ width: statusWidth }"
-                                relative-element-selector="#survey-questions"
-                                :offset="{ top: 140, bottom: 40 }"
-                                :enabled="windowWidth > 768"
-                                v-on:affixtop="statusWidth = 'auto'"
-                                v-on:affixtbottom="statusWidth = 'auto'"
+                            class="survey-status"
+                            ref="survey-status"
+                            :style="{ width: statusWidth }"
+                            relative-element-selector="#survey-questions"
+                            :offset="{ top: 140, bottom: 40 }"
+                            :enabled="windowWidth > 768"
+                            v-on:affixtop="statusWidth = 'auto'"
+                            v-on:affixtbottom="statusWidth = 'auto'"
                         >
 
-                            <!--<p>Completed: {{ completedQuestions }} / {{ totalQuestions }}</p>-->
-                            <!--<progress class="progress is-success" value="60" max="100">60%</progress>-->
+                            <div class="message is-danger" v-if="errors.any()">
+                                <div class="message-header">
+                                    <p>Error</p>
+                                    <button class="delete" aria-label="delete"></button>
+                                </div>
+                                <div class="message-body">
+
+                                    <ul>
+                                        <li v-for="error in errors.all()">{{ error }}</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                            <p>Completed: 6 / 10</p>
+                            <progress class="progress is-success" value="60" max="100">60%</progress>
 
                             <div class="button-container sticky">
 
                                 <button
-                                        :class="{ button:true, 'femr-button': true, 'is-loading': isSubmitting }"
-                                        @click="saveClicked()"
+                                    :class="{ button: true, 'femr-button': true, 'is-loading': isSubmitting }"
+                                    @click="saveClicked()"
                                 >
                                     Save
                                 </button>
@@ -209,7 +223,7 @@
                 id: '',
 
                 schoolName: '',
-                programName: '',
+                name: '',
                 usesEmr: '',
                 yearInitiated: '',
                 yearlyOutreachParticipants: '',
@@ -222,7 +236,6 @@
                 partners: [],
                 contacts: [],
                 papers: [],
-
                 isSubmitting: false,
                 fieldsDef: {},
 
@@ -293,20 +306,21 @@
                 return {
 
                     school_name: this.schoolName,
-                    name: this.programName,
-                    uses_emr: ( this.usesEmr === 'yes' ),
+                    name: this.name,
+                    uses_emr: ( this.usesEmr === 'yes' ) ,
                     year_initiated: this.yearInitiated,
                     yearly_outreach_participants: this.yearlyOutreachParticipants,
-                    months_of_travel: this.monthsOfTravel,
+                    months_of_travel: _.map( this.monthsOfTravel, ( m ) => m.value ),
                     matriculants_per_class: this.matriculantsPerClass,
-                    school_classes: this.schoolClasses,
+                    school_classes: _.map( this.schoolClasses, ( c ) => c.value ),
                     additional_fields: this.additionalFields,
                     comments: this.comments,
-                    visited_locations: this.filterEmptyObjects(this.visitedLocations),
-                    partners: this.filterEmptyObjects(this.partners),
-                    contacts: this.filterEmptyObjects(this.contacts),
-                    papers: this.filterEmptyObjects(this.papers)
+                    visited_locations: this.filterEmptyObjects( _.map( this.visitedLocations, ( l ) => l.post() ) ),
+                    partners: this.filterEmptyObjects( _.map( this.partners, ( p ) => p.post() ) ),
+                    contacts: this.filterEmptyObjects( _.map( this.contacts, ( c ) => c.post() ) ),
+                    papers: this.filterEmptyObjects( _.map( this.papers, ( p ) => p.post() ) )
                 }
+
             }
         },
 
@@ -336,7 +350,7 @@
 
                 this.id = program.id;
 
-                this.programName = program.name;
+                this.name = program.name;
                 this.schoolName = program.schoolName;
                 this.usesEmr = ( program.usesEmr ) ? 'yes' : 'no';
                 this.yearInitiated = program.yearInitiated;
@@ -356,14 +370,28 @@
 
                 this.isSubmitting = true;
 
-                if( Number.isInteger( this.id ) ) {
+                // if all fields are valid, then update/create, else show errors
+                this.$validator.validateAll( this.postFields ).then( ( result ) => {
 
-                    this.updateSurvey();
-                }
-                else {
+                    if( result ) {
 
-                    this.createSurvey();
-                }
+                        if( Number.isInteger( this.id ) ) {
+
+                            this.updateSurvey();
+                        }
+                        else {
+
+                            this.createSurvey();
+                        }
+                    }
+                    else {
+
+                        // trigger validation on the child elements
+                        _.forEach( this.errors.collect(), ( error, key ) => this.$emit( 'validate', key ) );
+                        this.isSubmitting = false;
+                    }
+
+                });
 
             },
 
@@ -398,7 +426,20 @@
 
         created(){
 
-            Survey.initialize( ( def ) => this.fieldsDef = def );
+            Survey.initialize( ( def ) => {
+
+                this.fieldsDef = def;
+
+                // TODO - this needs to be much better - will not validate additional fields
+                _.forEach( this.fieldsDef, ( def ) => {
+
+                    if( def.validators.length > 0 ) {
+
+                        this.$validator.attach(def.name, def.validators, { alias: def.label });
+                    }
+                });
+
+            } );
 
             if( this.programId !== undefined ) {
 

@@ -8,11 +8,11 @@ Vue.use( VueGoogleMaps, {
     }
 });
 
-var Affix = require('vue-affix');
+let Affix = require('vue-affix');
 Vue.use(Affix);
 
 import VeeValidate from 'vee-validate';
-Vue.use(VeeValidate);
+Vue.use( VeeValidate, { inject: true } );
 
 let VueScrollTo = require('vue-scrollto');
 Vue.use( VueScrollTo, {
@@ -27,15 +27,12 @@ Vue.use( VueScrollTo, {
 Vue.component( 'slack-invite', require( './components/SlackInvite.vue' ) );
 Vue.component( 'femr-map', require( './components/FemrMap.vue' ) );
 Vue.component( 'program-map', require( './components/ProgramMap.vue' ) );
-Vue.component( 'all-programs-modal', require( './components/AllProgramsModal.vue' ) );
 Vue.component( 'copy-to-clipboard', require( './components/CopyToClipboard.vue' ) );
 Vue.component( 'survey', require( './components/Survey.vue' ) );
 Vue.component( 'text-field', require( './components/fields/TextField.vue' ) );
 Vue.component( 'textarea-field', require( './components/fields/TextareaField.vue' ) );
 Vue.component( 'select-field', require( './components/fields/SelectField.vue' ) );
 Vue.component( 'multi-select-field', require( './components/fields/MultiSelectField.vue' ) );
-
-
 
 const app = new Vue({
 

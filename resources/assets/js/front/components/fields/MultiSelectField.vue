@@ -6,6 +6,8 @@
         <div class="control has-icons-right">
 
             <div :class="{ select: true, 'is-fullwidth': def.isFullWidth, 'is-success': isSuccess, 'is-danger': isError }">
+
+
                 <multiselect
                     :value="value"
                     :name="def.name"
@@ -139,6 +141,19 @@
         created() {
 
             this.localOptions = this.def.options;
+
+            // Fires when parent triggers validateAll
+            this.$parent.$on( 'validate', ( key ) => {
+
+                if( key === this.def.name ) {
+
+                    this.$validator.flag( this.def.name, {
+                        touched: true,
+                        dirty: true,
+                        pristine: false
+                    });
+                }
+            });
         }
     }
 

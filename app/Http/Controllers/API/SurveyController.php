@@ -82,6 +82,7 @@ class SurveyController extends Controller
                 ->syncPapers( $request->input( 'papers' ) )
                 ->syncPartnerOrganizations( $request->input( 'partners' ) );
 
+        $program->load( 'schoolClasses', 'fields', 'visitedLocations', 'contacts', 'papers', 'partnerOrganizations' );
 
         return new OutreachProgramResource( $program );
     }

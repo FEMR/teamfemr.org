@@ -14,21 +14,21 @@ class FormController extends Controller
     {
         $fields = [
 
-            "program_name" => [
+            "name" => [
 
-                "name"       => 'program_name',
+                "name"       => 'name',
                 "label"      => 'Title of Program',
                 "validators" => 'required'
             ],
-            "school_name" => [
+            "schoolName" => [
 
-                "name"       => 'school_name',
+                "name"       => 'schoolName',
                 "label"      => 'Name of School',
                 "validators" => ''
             ],
-            "uses_emr" => [
+            "usesEmr" => [
 
-                "name"        => 'uses_emr',
+                "name"        => 'usesEmr',
                 "label"       => 'Do you use an emr?',
                 "placeholder" => 'Please select',
                 "validators"  => 'required',
@@ -38,23 +38,23 @@ class FormController extends Controller
                     "no"  => 'No'
                 ]
             ],
-            "year_initiated" => [
+            "yearInitiated" => [
 
-                "name"       => 'year_initiated',
+                "name"       => 'yearInitiated',
                 "label"      => 'Year Initiated',
                 "type"       => 'tel',
                 "validators" => 'max_value:' . date('Y')
             ],
-            "yearly_outreach_participants" => [
+            "yearlyOutreachParticipants" => [
 
-                "name"       => 'yearly_outreach_participants',
+                "name"       => 'yearlyOutreachParticipants',
                 "label"      => 'Total participants in global health outreach per year',
                 "type"       => 'tel',
                 "validators" => 'min_value:0'
             ],
-            "months_of_travel" => [
+            "monthsOfTravel" => [
 
-                "name"       => 'months_of_travel',
+                "name"       => 'monthsOfTravel',
                 "label"      => 'Month(s) of Travel (Select all that apply)',
                 "isFullWidth" => true,
                 "options" => [
@@ -73,16 +73,16 @@ class FormController extends Controller
                     [ 'label' => 'December',  'value' => 'December'  ]
                 ]
             ],
-            "matriculants_per_class" => [
+            "matriculantsPerClass" => [
 
-                "name"       => 'matriculants_per_class',
+                "name"       => 'matriculantsPerClass',
                 "label"      => 'Total number of matriculants per class',
                 "type"       => 'tel',
-                "validators" => ''
+                "validators" => 'min_value:0'
             ],
-            "school_classes" => [
+            "schoolClasses" => [
 
-                "name"        => 'school_classes',
+                "name"        => 'schoolClasses',
                 "label"       => 'Medical school student class involvement (Select all that apply)',
                 "validators"  => '',
                 'isFullWidth' => true,
@@ -101,11 +101,11 @@ class FormController extends Controller
                 "type"       => 'text',
                 "validators" => ''
             ],
-            "additional_fields" => [],
+            "additionalFields" => [],
             "contacts" => [
 
                 [
-                    "name"       => 'full_name',
+                    "name"       => 'fullName',
                     "label"      => 'Name',
                     "value"      => '',
                     "hideLabel"  => true,
@@ -183,7 +183,7 @@ class FormController extends Controller
                     "icon"       => 'fa-external-link'
                 ]
             ],
-            "visited_locations" => [
+            "visitedLocations" => [
                 [
                     "value"      => '',
                     "name"       => 'locality',
@@ -194,7 +194,7 @@ class FormController extends Controller
                 ],
                 [
                     "value"      => '',
-                    "name"       => 'administrative_area_level_1',
+                    "name"       => 'administrativeAreaLevel1',
                     "label"      => 'State',
                     "hideLabel"  => true,
                     "validators" => '',
@@ -213,7 +213,7 @@ class FormController extends Controller
 
         foreach( OutreachProgram::$default_fields as $name => $label ){
 
-            $fields['additional_fields'][] = [
+            $fields['additionalFields'][] = [
 
                 "name"       => $name,
                 "label"      => $label,

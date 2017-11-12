@@ -7,7 +7,7 @@
 
                 <h3 class="title">Join our Slack</h3>
 
-                <p class="subtitle">for real-time converstaion with Team fEMR</p>
+                <p class="subtitle">for real-time conversation with Team fEMR</p>
 
             </div>
 
@@ -33,7 +33,7 @@
                         <!--<div class="field">-->
                             <!--<label class="label">First Name</label>-->
                             <!--<p class="control">-->
-                                <!--<input class="input" type="text" placeholder="Optional" v-model="first_name" />-->
+                                <!--<input class="input" type="text" placeholder="Optional" v-model="firstName" />-->
                             <!--</p>-->
                             <!--<p class="help is-danger" v-if="errors.has('first_name')">{{ errors.get('first_name') }}</p>-->
                         <!--</div>-->
@@ -45,7 +45,7 @@
                         <!--<div class="field">-->
                             <!--<label class="label">Last Name</label>-->
                             <!--<p class="control">-->
-                                <!--<input class="input" type="text" placeholder="Optional" v-model="last_name" />-->
+                                <!--<input class="input" type="text" placeholder="Optional" v-model="lastName" />-->
                             <!--</p>-->
                             <!--<p class="help is-danger" v-if="errors.has('last_name')">{{ errors.get('last_name') }}</p>-->
                         <!--</div>-->
@@ -72,19 +72,21 @@
     export default {
 
         props: [ 'link' ],
+
         data() {
 
             return {
 
                 isLoading: false,
                 isSuccessful: false,
-                $errors: new Errors(),
+                $errors: '',
 
                 email: '',
-                first_name: '',
-                last_name: ''
+                firstName: '',
+                lastName: ''
             }
         },
+
         methods: {
 
 
@@ -92,11 +94,11 @@
 
                 this.isLoading = true;
 
-                axios.post('/api/slack/invite', {
+                axios.post( '/api/slack/invite', {
 
                         email: this.email,
-                        first_name: this.first_name,
-                        last_name: this.last_name
+                        first_name: this.firstName,
+                        last_name: this.lastName
                     })
                     .then( ( response ) => {
 
@@ -104,11 +106,9 @@
                         // Maybe message to send email requesting invite as a fallback?
                         //if( response.ok == true )
 
-                        console.log(response);
-
                         this.email = '';
-                        this.first_name = '';
-                        this.last_name = '';
+                        this.firstName = '';
+                        this.lastName = '';
 
                         this.isSuccessful = true;
                         this.isLoading = false;
@@ -116,11 +116,16 @@
                     })
                     .catch( ( errors ) => {
 
-                        this.$errors.record( errors.response.data );
+                        //this.$errors.record( errors.response.data );
                         this.isSuccessful = false;
                         this.isLoading = false;
                     });
             }
+        },
+
+        created() {
+
+            //this.$errors = new Errors();
         }
     }
 
