@@ -4,6 +4,15 @@
             <h3 class="title">NGO/In Country Partners</h3>
             <hr />
 
+            <!--<p>Existing</p>-->
+            <!--<multi-select-field-->
+                    <!--v-on:valueChanged="partnerChanged"-->
+                    <!--:value="partners"-->
+                    <!--:def="def.name"-->
+                    <!--label="name"-->
+                    <!--:show-label="false"-->
+            <!--&gt;</multi-select-field>-->
+
             <div class="columns section-row partner-row partner-headers desktop-only">
 
                 <div class="column" v-for="field in def">
@@ -20,13 +29,28 @@
                 <div class="column">
 
                     <label class="label mobile-only">{{ def.name.label }}</label>
+
                     <multi-select-field
-                        v-model="partner.selectedPartner"
+                        v-if="!Number.isInteger(partner.id)"
+                        v-on:valueAdded="partnerAdded"
+                        :index="idx"
                         :def="def.name"
+                        :value="partner"
+                        label="name"
+                        track-by="uniqueId"
+                        :taggable="true"
                         :multiple="false"
                         :show-label="false"
-                        :initialValue="partner.name"
                     ></multi-select-field>
+
+                    <text-field
+                        v-else
+                        :def="def.name"
+                        :value="partner.name"
+                        :initialValue="partner.name"
+                        :disabled="Number.isInteger(partner.id)"
+                    ></text-field>
+
                 </div>
 
                 <!--<div class="column">-->
@@ -36,11 +60,12 @@
                 <div class="column">
 
 
-                    <label class="label mobile-only">{{ def.url.label }}</label>
+                    <label class="label mobile-only">{{ def.website.label }}</label>
                     <text-field
-                            v-model="partner.url"
-                            :def="def.url"
-                            :initialValue="partner.url"
+                        v-model="partner.website"
+                        :def="def.website"
+                        :initialValue="partner.website"
+                        :disabled="Number.isInteger( partner.id )"
                     ></text-field>
 
                 </div>
@@ -140,6 +165,20 @@
                 Vue.delete( this.partners, indexToDelete );
 
                 if( this.partners.length === 0 ) this.addEmptyPartner();
+            },
+
+            partnerAdded( { name, value, index } ) {
+
+                console.log( index );
+                console.log( name );
+                console.log( value );
+
+                let partner = this.partners[index];
+                partner.name = value.label;
+                partner.slug = value.slug;
+                console.log( partner );
+
+                this.$set( this.partners, index, partner );
             }
         },
 
@@ -155,9 +194,12 @@
 
 <style lang="scss" scopeds>
 
-    .survey-container .partner-row{
+    @media only screen and ( max-width: 767px ) {
 
-        margin-bottom: 35px;
+        .survey-container .partner-row {
+
+            margin-bottom: 35px;
+        }
     }
 
     .survey-container .partner-headers{

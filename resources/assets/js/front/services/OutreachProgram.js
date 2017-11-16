@@ -21,7 +21,6 @@ class OutreachProgram {
                 let program = _.assignIn( new OutreachProgramModel, programJson );
                 programs.push( program );
             });
-
             callback( programs );
         }
         else {

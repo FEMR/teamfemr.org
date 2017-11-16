@@ -166,18 +166,13 @@ class FormController extends Controller
                     "validators"  => '',
                     "icon"        => 'fa-hospital-o',
                     "isFullWidth" => true,
-                    'options'     => PartnerOrganization::select( 'name', 'slug' )
-                                                       ->orderBy( 'name' )
+                    'options'     => PartnerOrganization::orderBy( 'name' )
                                                        ->get()
-                                                       ->map( function( $class )
-                                                       {
-                                                           return [ 'label' => $class->name, 'value' => $class->slug ];
-                                                       })
                 ],
                 [
                     "value"      => '',
-                    "name"       => 'url',
-                    "label"      => 'Url (Optional)',
+                    "name"       => 'website',
+                    "label"      => 'Website (Optional)',
                     "hideLabel"  => true,
                     "validators" => 'url',
                     "icon"       => 'fa-external-link'

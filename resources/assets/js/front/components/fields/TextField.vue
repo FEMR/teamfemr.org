@@ -14,6 +14,7 @@
                 :data-vv-as="def.label"
                 v-validate.initial="def.validators"
                 :readonly="readonly"
+                :disabled="disabled"
                 :placeholder="def.placeholder"
                 v-on:input="updateValue($event.target.value)"
             >
@@ -53,6 +54,11 @@
                 required: true
             },
             "readonly": {
+
+                type: Boolean,
+                default: false
+            },
+            "disabled": {
 
                 type: Boolean,
                 default: false
@@ -113,7 +119,7 @@
 
             isSuccess() {
 
-                return this.valueHasChanged && ! this.errors.has( this.def.name );
+                return this.valueHasChanged && _.toLength( this.localValue ) > 0 && ! this.errors.has( this.def.name );
             },
 
             isError() {
@@ -154,6 +160,10 @@
 
 <style scoped>
 
+    .input[disabled] {
+
+        border-color: #cfcfcf;
+    }
 
 
 </style>

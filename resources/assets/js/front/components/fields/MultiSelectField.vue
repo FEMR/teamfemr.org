@@ -5,19 +5,18 @@
 
         <div class="control has-icons-right">
 
-            <div :class="{ select: true, 'is-fullwidth': def.isFullWidth, 'is-success': isSuccess, 'is-danger': isError }">
+            <div :class="{ 'is-fullwidth': def.isFullWidth, 'is-success': isSuccess, 'is-danger': isError }">
 
-
-                <multiselect
-                    :value="value"
+                <v-select
+                    v-model="localValue"
                     :name="def.name"
                     :multiple="multiple"
-                    :taggable="true"
+                    :taggable="taggable"
                     @tag="addTag"
                     tag-placeholder="Add this as new item"
                     placeholder="Type to search or add new"
-                    label="label"
-                    track-by="value"
+                    :label="label"
+                    :track-by="trackBy"
                     :data-vv-as="def.label"
                     v-validate="def.validators"
                     @input="updateValue"
@@ -25,7 +24,7 @@
                 >
                     <!--<option v-if="def.placeholder.length > 0" value="" disabled>{{ def.placeholder }}</option>-->
                     <!--<option v-for="( option, value ) in def.options" :value="value">{{ option }}</option>-->
-                </multiselect>
+                </v-select>
             </div>
 
             <span :class="{ 'icon': true, 'is-small': true, 'is-right': true, 'is-success': isSuccess, 'is-danger': isError }">
@@ -41,9 +40,9 @@
 
 <script type="text/babel">
 
-
     import FormField from '../../models/FormField';
     import Multiselect from 'vue-multiselect'
+    import vSelect from "vue-select"
 
     export default {
 
@@ -54,14 +53,25 @@
                 type: FormField,
                 default: () => new FormField()
             },
-            "value": {
-
-                required: true
-            },
+            "value": {},
+            "index": {},
             "multiple": {
 
                 type: Boolean,
                 default: () => true
+            },
+            "taggable": {
+
+                type: Boolean,
+                default: () => false
+            },
+            "label": {
+
+                default: "label"
+            },
+            "trackBy": {
+
+                default: 'value'
             },
             "showLabel": {
 
@@ -72,14 +82,29 @@
 
         components:{
 
-            Multiselect
+            vSelect
+        },
+
+        watch: {
+
+            value: {
+
+                handler: function( newValue ) {
+
+                    console.log( "New Value" );
+                    console.log( newValue );
+
+                    this.localValue = newValue;
+                },
+                deep: true
+            }
         },
 
         data() {
 
             return {
 
-                localValue: [],
+                localValue: '',
                 localOptions: []
             }
         },
@@ -90,19 +115,26 @@
 
                 const tag = {
 
+                    id: _.uniqueId(),
+                    value: _.slugify( newTag ) + Math.floor((Math.random() * 10000000)),
                     label: newTag,
-                    slug: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
-                }
+                    name: newTag,
+                    slug: _.slugify( newTag )
+                };
 
                 this.localOptions.push( tag );
-                this.value.push( tag );
+                this.localValue = tag;
+
+                this.$emit( 'valueAdded', { index: this.index, name: this.def.name, value: tag } )
             },
 
             updateValue: function ( value ) {
 
+                console.log( value );
+
                 // cleanse/format value here if needed
                 this.$emit( 'input', value );
-                this.$emit( 'valueChanged', this.def.name, value )
+                this.$emit( 'valueChanged', { index: this.index, name: this.def.name, value: value } )
             }
         },
 
@@ -119,7 +151,7 @@
 
             isSuccess() {
 
-                return this.valueHasChanged && ! this.errors.has( this.def.name );
+                return this.valueHasChanged && _.toLength( this.localValue ) > 0 &&! this.errors.has( this.def.name );
             },
 
             isError() {
@@ -161,5 +193,10 @@
 
 <style scoped>
 
+    .is-fullwidth,
+    .v-select{
+
+        width: 100%;
+    }
 
 </style>

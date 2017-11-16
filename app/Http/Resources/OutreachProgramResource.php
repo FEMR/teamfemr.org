@@ -52,7 +52,7 @@ class OutreachProgramResource extends Resource
                     'id' => $contact->id,
                     'firstName' => $contact->first_name,
                     'lastName' => $contact->last_name,
-                    'fullName' => $contact->fullName,
+                    'fullName' => $contact->full_name,
                     'phone' => $contact->phone,
                     'email' => $contact->email
                 ];

@@ -25,12 +25,14 @@
   "dependencies": {
     "clipboard": "^1.7.1",
     "font-awesome": "^4.7.0",
+    "lodash-addons": "^1.0.1",
     "select2": "^4.0.3",
     "store": "^2.0.12",
     "vee-validate": "^2.0.0-rc.14",
     "vue-clickaway": "^2.1.0",
     "vue-multiselect": "^2.0.2",
     "vue-scrollto": "^2.7.0",
+    "vue-select": "github:sagalbot/vue-select",
     "vuex": "^2.3.1"
   }
 }

@@ -5,74 +5,72 @@
             <h3 class="title">Visited Locations</h3>
             <hr />
 
-            <div class="columns is-multiline">
-                <div class="column is-12 map-column">
+            <div class="map-container">
+                <div class="columns is-gapless">
+                    <div class="column is-7 map-column">
 
-                    <p class="control">
+                        <p class="control">
 
-                        <gmap-autocomplete
-                                ref="autocomplete"
-                                v-model="autocompleteValue"
-                                class="input"
-                                placeholder="Enter at a city and country"
-                                @place_changed="addLocation"
-                                @keyup.enter.prevent>
-                        </gmap-autocomplete>
+                            <gmap-autocomplete
+                                    ref="autocomplete"
+                                    v-model="autocompleteValue"
+                                    class="input"
+                                    placeholder="Enter at a city and country"
+                                    @place_changed="addLocation"
+                                    @keyup.enter.prevent>
+                            </gmap-autocomplete>
 
-                    </p>
+                        </p>
 
-                    <gmap-map
-                            ref="gmap"
-                            :center="center"
-                            :zoom="zoom"
-                            :options="{ scrollwheel: false }"
-                            class="map">
-                        <gmap-marker
-                                :key="index"
-                                v-for="(m, index) in locations"
-                                v-if="m.hasPosition()"
-                                :position="m.position"
-                                :clickable="true"
-                                :draggable="true"
-                                @click="center=m.position">
-                        </gmap-marker>
-                    </gmap-map>
 
-                </div>
-                <div class="column is-12">
+                            <gmap-map
+                                ref="gmap"
+                                :center="center"
+                                :zoom="zoom"
+                                :options="{ scrollwheel: false }"
+                                class="map">
+                                <gmap-marker
+                                        :key="index"
+                                        v-for="(m, index) in locations"
+                                        v-if="m.hasPosition()"
+                                        :position="m.position"
+                                        :clickable="true"
+                                        :draggable="true"
+                                        @click="center=m.position">
+                                </gmap-marker>
+                            </gmap-map>
 
-                    <div class="form">
+                    </div>
+                    <div class="column is-5 form-column">
 
-                        <table class="table is-striped location-table" v-if="locations.length > 0">
-                            <thead>
-                                <tr>
-                                    <th v-for="field in def">
-                                        {{ field.label }}
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="( location, idx ) in locations" :key="location.uniqueId" >
-                                    <td>
-                                        {{ location.locality }}
-                                    </td>
-                                    <td>
-                                        {{ location.administrativeAreaLevel1 }}
-                                    </td>
-                                    <td>
-                                        {{ location.country }}
-                                    </td>
-                                    <td>
-                                        <a href="#"  class="delete-button" @click.prevent="removeLocation( idx )">
-                                            <span class="icon is-small is-danger">
-                                              <i class="fa fa-minus-circle"></i>
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="form" v-if="locations.length > 0">
+
+                            <table class="table is-narrow location-table">
+                                <thead>
+                                    <tr>
+                                        <th v-for="field in def">
+                                            {{ field.label }}
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="( location, idx ) in locations" :key="location.uniqueId" >
+                                        <td>{{ location.locality }}</td>
+                                        <td>{{ location.administrativeAreaLevel1 }}</td>
+                                        <td>{{ location.country }}</td>
+                                        <td>
+                                            <a href="#"  class="delete-button" @click.prevent="removeLocation( idx )">
+                                                <span class="icon is-small is-danger">
+                                                  <i class="fa fa-minus-circle"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
                         <div v-else>
 
                             <p style="text-align: center;">Enter some locations using the map </p>
@@ -80,7 +78,6 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
 
@@ -121,7 +118,8 @@
                 autocompleteValue: '',
 
                 center: { lat: 0.0, lng: 0.0 },
-                zoom: 2
+                zoom: 2,
+                googleIsLoaded: false
             }
         },
 
@@ -129,12 +127,15 @@
 
             locations: function( newLocations ) {
 
-                if( this.locations.length === 0 ) {
+//                if( this.locations.length === 0 ) {
+//
+//                    this.locations.push( new VisitedLocation() );
+//                }
 
-                    this.locations.push( new VisitedLocation() );
+                if( this.googleIsLoaded ) {
+
+                    this.extendBounds();
                 }
-
-                this.extendBounds();
 
                 this.$emit( 'input', newLocations );
             }
@@ -209,6 +210,8 @@
 
             VueGoogleMaps.loaded.then( () => {
 
+                this.googleIsLoaded = true;
+
                 window.addEventListener('resize', () => {
 
                     this.extendBounds();
@@ -223,6 +226,11 @@
 
 <style scoped>
 
+    .map-container{
+
+        margin: 0 -1.5rem -1.5rem;
+    }
+
     .locations-map-container .map {
 
         width: 100%;
@@ -231,16 +239,26 @@
         //flex: 1;
     }
 
-    .locations-map-container .form{
+    .map-column .control{
+
+        padding: 0 0.75rem;
+    }
+
+    .form-column {
+
+    }
+
+    .form{
 
         padding: 0;
+        background-color: #f7f7f7;
     }
 
     @media only screen and ( max-width: 767px ) {
 
         .locations-map-container .form{
 
-            padding: 20px 0;
+            /*padding: 20px 0;*/
         }
     }
 
@@ -249,16 +267,22 @@
         margin-bottom: 5px;
     }
 
+    .table{
+
+        background-color: #f7f7f7;
+    }
+
     .location-table th,
     .location-table td{
 
         width: 100%;
         font-size: 0.9rem;
+        color: #2f2f2f;
     }
 
     .locations-map-container .column{
 
-        padding: 0 5px;
+        /*padding: 0 5px;*/
     }
 
 </style>
