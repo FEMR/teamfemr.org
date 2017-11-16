@@ -163,9 +163,12 @@
 
 <style lang="scss" scoped>
 
-    .survey-container .paper-row{
+    @media only screen and ( max-width: 767px ) {
 
-        margin-bottom: 35px;
+        .survey-container .paper-row {
+
+            margin-bottom: 35px;
+        }
     }
 
     .survey-container .paper-headers{

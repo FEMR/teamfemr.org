@@ -163,9 +163,12 @@
 
 <style lang="scss" scoped>
 
-    .survey-container .contact-row{
+    @media only screen and ( max-width: 767px ) {
 
-        margin-bottom: 35px;
+        .survey-container .contact-row {
+
+            margin-bottom: 35px;
+        }
     }
 
     .survey-container .contact-headers{

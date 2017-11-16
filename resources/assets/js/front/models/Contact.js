@@ -1,8 +1,12 @@
 class Contact{
 
-    constructor( json ) {
+    constructor() {
 
-
+        this.uniqueId = _.uniqueId();
+        this.id = '';
+        this.fullName = '';
+        this.phone = '';
+        this.email = '';
     }
 
      populate( json ) {
@@ -21,17 +25,6 @@ class Contact{
          this.phone = json.phone;
          this.email = json.email;
      }
-
-    post() {
-
-        return {
-
-            "id": this.id,
-            "full_name": this.fullName,
-            "phone": this.phone,
-            "email": this.email,
-        }
-    }
 }
 
 export default Contact;

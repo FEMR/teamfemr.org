@@ -144,8 +144,8 @@
                                 </div>
                             </div>
 
-                            <p>Completed: 6 / 10</p>
-                            <progress class="progress is-success" value="60" max="100">60%</progress>
+                            <p>Completed: {{ completedQuestions }} / {{ totalQuestions }}</p>
+                            <progress class="progress is-success" :value="completedQuestions" :max="totalQuestions">{{ parseInt( completedQuestions / totalQuestions ) }}%</progress>
 
                             <div class="button-container sticky">
 
@@ -188,6 +188,10 @@
 </template>
 
 <script type="text/babel">
+
+    import store from 'store';
+    import expirePlugin from 'store/plugins/expire';
+    store.addPlugin(expirePlugin);
 
     import Survey from '../services/Survey';
 
@@ -257,44 +261,57 @@
             },
 
             // TODO -- implement later
-//            totalQuestions: function() {
-//
-//                let total = _.keys( this.fieldsDef ).length - 1;
-//                total += _.keys( this.fieldsDef['additional_fields'] ).length;
-//
-//                return total;
-//
-//            },
-//
-//            completedQuestions: function() {
-//
-//                if( ! this.fieldsDefIsLoaded ) return 0;
-//
-//                let count = 0;
-//                _.forEach( _.keys( this.fieldsDef ), ( key ) => {
-//
-//                   if( _.has( this._data, key ) ){
-//
-//                       if( _.isArray( this._data[key] ) ) {
-//
-//                           if( this._data[key].length > 0 && ! _.isEmpty( this._data[key][0] ) )
-//                           {
-//                               count++;
-//                           }
-//                       }
-//                       else
-//                       {
-//                           if( ! _.isEmpty( this._data[ key ] ) ) {
-//                               count++;
-//                           }
-//                       }
-//
-//                   }
-//
-//                });
-//
-//                return count;
-//            },
+            totalQuestions: function() {
+
+                let total = _.keys( this.fieldsDef ).length - 1;
+                total += _.keys( this.fieldsDef['additionalFields'] ).length;
+
+                return total;
+
+            },
+
+            completedQuestions: function() {
+
+                // TODO -- handle additional fields
+
+                if( ! this.fieldsDefIsLoaded ) return 0;
+
+                let count = 0;
+                _.forEach( _.keys( this.fieldsDef ), ( key ) => {
+
+                    if( key === 'additionalFields' ) {
+
+                        _.forEach( this.fieldsDef.additionalFields, (field, additionalKey) => {
+
+                            if( ! _.isEmpty( this._data['additionalFields'][ additionalKey ] ) ) {
+                                count++;
+                            }
+                        });
+                        return true;
+                    }
+
+                    if( _.has( this._data, key ) ){
+
+                        if( _.isArray( this._data[key] ) ) {
+
+                            if( ( this.filterEmptyObjects( this._data[key] ) ).length > 0 )
+                            {
+                               count++;
+                            }
+                        }
+                        else
+                        {
+                            if( ! _.isEmpty( this._data[ key ] ) ) {
+                               count++;
+                            }
+                        }
+
+                    }
+
+                });
+
+                return count;
+            },
 
             fieldsDefIsLoaded: function() {
 
@@ -463,10 +480,17 @@
 
     .section{
 
-        background-color: #efefef;
-        border: 1px solid #cfcfcf;
-        padding: 20px;
+        background-color: #f7f7f7;
+        /*border: 1px solid #cfcfcf;*/
+        padding: 1.5rem;
         margin-bottom: 35px;
+    }
+
+    .survey-status{
+
+        padding: 15px;
+        background-color: #f7f7f7;
+        /*border: 1px solid #cfcfcf;*/
     }
 
     .custom-section {
@@ -486,6 +510,10 @@
 
             margin-right: 15px;
         }
+    }
+
+    .progress::-webkit-progress-value {
+        transition: width 0.3s ease;
     }
 
 </style>

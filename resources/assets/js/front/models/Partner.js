@@ -8,7 +8,7 @@ class Partner{
         this.id = '';
         this.name = '';
         this.slug ='';
-        this.url = '';
+        this.website = '';
     }
 
     populate( json ) {

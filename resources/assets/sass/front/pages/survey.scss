@@ -1,5 +1,29 @@
 .survey-container {
 
+    // Fix for bulma icons overlaying z-index
+    .control.has-icons-left .icon,
+    .control.has-icons-right .icon{
+        z-index: auto;
+    }
+
+    .v-select.searchable {
+
+        .dropdown-toggle {
+
+            width: 100%;
+            background-color: #ffffff;
+        }
+    }
+
+    .is-success,
+    .is-error{
+
+        .open-indicator{
+
+            display: none;
+        }
+    }
+
     padding: 0.75rem;
     //padding: 1rem 1.5rem;
     //background-color: $darkWhite;
@@ -157,12 +181,6 @@
             padding: 0.5rem 0.75rem 0;
             margin-bottom: -0.5rem;
         }
-    }
-
-    .survey-status{
-
-        padding: 15px;
-        background-color: #cfcfcf;
     }
 
     .button-container{
