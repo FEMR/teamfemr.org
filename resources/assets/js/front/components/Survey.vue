@@ -363,6 +363,7 @@
 
                 return {
 
+                    id: this.id,
                     schoolName: this.schoolName,
                     name: this.name,
                     usesEmr: ( this.usesEmr === 'yes' ) ,
@@ -481,6 +482,8 @@
 
                     this.setLocalData( program );
                     this.isSubmitting = false;
+
+                    store.remove( CACHE_KEY );
 
                 }, ( error ) => this.isSubmitting = false );
             },
