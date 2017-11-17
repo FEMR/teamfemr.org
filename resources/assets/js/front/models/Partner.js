@@ -26,7 +26,7 @@ class Partner{
         return {
 
             "id": this.id,
-            "name": _.isEmpty( this.name ) ? this.name : _.get( this.selectedPartner, "value" ),
+            "name": this.name,
             "slug": this.slug,
             "website": this.website,
         }

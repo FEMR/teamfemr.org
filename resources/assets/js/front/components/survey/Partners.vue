@@ -4,15 +4,6 @@
             <h3 class="title">NGO/In Country Partners</h3>
             <hr />
 
-            <!--<p>Existing</p>-->
-            <!--<multi-select-field-->
-                    <!--v-on:valueChanged="partnerChanged"-->
-                    <!--:value="partners"-->
-                    <!--:def="def.name"-->
-                    <!--label="name"-->
-                    <!--:show-label="false"-->
-            <!--&gt;</multi-select-field>-->
-
             <div class="columns section-row partner-row partner-headers desktop-only">
 
                 <div class="column" v-for="field in def">
@@ -52,12 +43,7 @@
 
                 </div>
 
-                <!--<div class="column">-->
-                <!--<text-def :def="{ name: 'last name', label: 'Last Name', validators: '', icon: 'fa-user' }"></text-def>-->
-                <!--</div>-->
-
                 <div class="column">
-
 
                     <label class="label mobile-only">{{ def.website.label }}</label>
                     <text-field
@@ -68,7 +54,6 @@
                     ></text-field>
 
                 </div>
-
 
                 <div class="column button-column">
 
