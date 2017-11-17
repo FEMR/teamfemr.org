@@ -22,6 +22,10 @@ window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 
+// append the api_token as a param to every request by default
+window.axios.defaults.params = {};
+window.axios.defaults.params['api_token'] = window.FEMR.userToken;
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

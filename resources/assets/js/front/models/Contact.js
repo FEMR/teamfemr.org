@@ -36,6 +36,17 @@ class Contact{
             "email": this.email,
         }
     }
+
+    store() {
+
+        return {
+
+            "id": this.id,
+            "fullName": this.fullName,
+            "phone": this.phone,
+            "email": this.email,
+        }
+    }
 }
 
 export default Contact;

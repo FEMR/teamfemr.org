@@ -32,6 +32,18 @@ class Partner{
         }
     }
 
+    store() {
+
+        return {
+
+            "id": this.id,
+            "name": this.name,
+            "slug": this.slug,
+            "website": this.website,
+        }
+    }
+
+
     isUpdate() {
 
         return _.isInteger( this.id );

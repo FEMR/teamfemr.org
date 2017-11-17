@@ -153,11 +153,6 @@
 
             partnerChanged( { index, name, value } ) {
 
-                console.log( "partnerChanged" );
-                console.log( index );
-                console.log( name );
-                console.log( value );
-
                 let partner = this.partners[index];
                 _.assign( partner, value );
 

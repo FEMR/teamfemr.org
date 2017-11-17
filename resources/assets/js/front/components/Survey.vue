@@ -14,48 +14,56 @@
                                 v-model="schoolName"
                                 class="school_name"
                                 :def="fieldsDef.schoolName"
+                                @input="dataUpdated()"
                             ></text-field>
 
                             <text-field
                                 v-model="name"
                                 class="name"
                                 :def="fieldsDef.name"
+                                @input="dataUpdated()"
                             ></text-field>
 
                             <select-field
                                 v-model="usesEmr"
                                 class="uses_emr"
                                 :def="fieldsDef.usesEmr"
+                                @input="dataUpdated()"
                             ></select-field>
 
                             <text-field
                                 v-model="yearInitiated"
                                 class="year_initiated"
                                 :def="fieldsDef.yearInitiated"
+                                @input="dataUpdated()"
                             ></text-field>
 
                             <text-field
                                 v-model="yearlyOutreachParticipants"
                                 class="yearly_outreach_participants"
                                 :def="fieldsDef.yearlyOutreachParticipants"
+                                @input="dataUpdated()"
                             ></text-field>
 
                             <text-field
                                 v-model="matriculantsPerClass"
                                 class="matriclants_per_class"
                                 :def="fieldsDef.matriculantsPerClass"
+                                @input="dataUpdated()"
                             ></text-field>
 
                             <multi-select-field
                                 v-model="monthsOfTravel"
                                 class="months_of_travel"
                                 :def="fieldsDef.monthsOfTravel"
+                                @input="dataUpdated()"
                             ></multi-select-field>
 
                             <multi-select-field
                                 v-model="schoolClasses"
                                 class="school_classes"
                                 :def="fieldsDef.schoolClasses"
+                                @input="dataUpdated()"
                             ></multi-select-field>
 
                         </div>
@@ -67,6 +75,7 @@
                                 v-model="additionalFields[ additionalDef.name ]"
                                 class="additionalDef.name"
                                 :def="additionalDef"
+                                @input="dataUpdated()"
                             ></textarea-field>
                         </div>
 
@@ -76,24 +85,28 @@
                                 v-model="visitedLocations"
                                 class="visited_locations"
                                 :def="fieldsDef.visitedLocations"
+                                @input="dataUpdated()"
                             ></locations>
 
                             <partners
                                 v-model="partners"
                                 class="partners"
                                 :def="fieldsDef.partners"
+                                @input="dataUpdated()"
                             ></partners>
 
                             <contacts
                                 v-model="contacts"
                                 class="contacts"
                                 :def="fieldsDef.contacts"
+                                @input="dataUpdated()"
                             ></contacts>
 
                             <papers
                                 v-model="papers"
                                 class="papers"
                                 :def="fieldsDef.papers"
+                                @input="dataUpdated()"
                             ></papers>
 
                             <div class="section">
@@ -102,6 +115,7 @@
                                     v-model="comments"
                                     class="comments"
                                     :def="fieldsDef.comments"
+                                    @input="dataUpdated()"
                                 ></textarea-field>
 
                             </div>
@@ -158,6 +172,8 @@
 
                             </div>
 
+                            <p v-if="lastUpdated.length > 0">Last Update: {{ lastUpdated }}</p>
+
                         </affix>
                     </div>
                 </div>
@@ -193,12 +209,15 @@
     import expirePlugin from 'store/plugins/expire';
     store.addPlugin(expirePlugin);
 
+    import OutreachProgram from '../models/OutreachProgram';
     import Survey from '../services/Survey';
 
     import Contacts from './survey/Contacts';
     import Locations from './survey/Locations';
     import Papers from './survey/Papers';
     import Partners from './survey/Partners';
+
+    const CACHE_KEY = 'FEMR.survey';
 
     export default {
 
@@ -226,6 +245,7 @@
                 // TODO -- use this fields as an update/new flag
                 id: '',
 
+                lastUpdated: '',
                 schoolName: '',
                 name: '',
                 usesEmr: '',
@@ -260,14 +280,13 @@
                 return this.windowWidth >= 768;
             },
 
-            // TODO -- implement later
+            // TODO -- implement better
             totalQuestions: function() {
 
                 let total = _.keys( this.fieldsDef ).length - 1;
                 total += _.keys( this.fieldsDef['additionalFields'] ).length;
 
                 return total;
-
             },
 
             completedQuestions: function() {
@@ -336,12 +355,53 @@
                     partners: this.filterEmptyObjects( _.map( this.partners, ( p ) => p.post() ) ),
                     contacts: this.filterEmptyObjects( _.map( this.contacts, ( c ) => c.post() ) ),
                     papers: this.filterEmptyObjects( _.map( this.papers, ( p ) => p.post() ) )
-                }
+                };
 
+            },
+
+            storeFields: function() {
+
+                return {
+
+                    schoolName: this.schoolName,
+                    name: this.name,
+                    usesEmr: ( this.usesEmr === 'yes' ) ,
+                    yearInitiated: this.yearInitiated,
+                    yearlyOutreachParticipants: this.yearlyOutreachParticipants,
+                    monthsOfTravel: _.map( this.monthsOfTravel, ( m ) => m.value ),
+                    matriculantsPerClass: this.matriculantsPerClass,
+                    schoolClasses: _.map( this.schoolClasses, ( c ) => c.value ),
+                    additionalFields: this.additionalFields,
+                    comments: this.comments,
+                    lastUpdated: this.lastUpdated,
+                    visitedLocations: this.filterEmptyObjects( _.map( this.visitedLocations, ( l ) => l.store() ) ),
+                    partners: this.filterEmptyObjects( _.map( this.partners, ( p ) => p.store() ) ),
+                    contacts: this.filterEmptyObjects( _.map( this.contacts, ( c ) => c.store() ) ),
+                    papers: this.filterEmptyObjects( _.map( this.papers, ( p ) => p.store() ) )
+                };
             }
         },
 
         methods: {
+
+            dataUpdated() {
+
+                if( _.isInteger( this.programId ) ) {
+
+                    // auto save every 30 seconds when updating
+                    //this.delayedUpdate();
+                }
+                else{
+
+                    store.set( CACHE_KEY, this.storeFields, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */ );
+                }
+            },
+
+            delayedUpdate: _.throttle( function() {
+
+                this.updateSurvey();
+
+            }, 30000 ),
 
             setWindowWidth() {
 
@@ -367,6 +427,7 @@
 
                 this.id = program.id;
 
+                this.lastUpdated = program.lastUpdated;
                 this.name = program.name;
                 this.schoolName = program.schoolName;
                 this.usesEmr = ( program.usesEmr ) ? 'yes' : 'no';
@@ -414,10 +475,9 @@
 
             createSurvey(){
 
-                Survey.create( this.postFields, ( program ) => {
+                this.isSubmitting = true;
 
-                    console.log( "Create Finished" );
-                    console.log( program );
+                Survey.create( this.postFields, ( program ) => {
 
                     this.setLocalData( program );
                     this.isSubmitting = false;
@@ -427,12 +487,11 @@
 
             updateSurvey() {
 
-                console.log( this.postFields );
+                if( ! _.isInteger( this.id ) ) return;
+
+                this.isSubmitting = true;
 
                 Survey.update( this.id, this.postFields, ( program ) => {
-
-                    console.log( "Update Finished" );
-                    console.log( program );
 
                     this.setLocalData( program );
                     this.isSubmitting = false;
@@ -456,12 +515,25 @@
                     }
                 });
 
+                _.forEach( this.fieldsDef.additionaFields, ( field, key ) => this.additionalFields[ key ] = '' );
+
             } );
 
             if( this.programId !== undefined ) {
 
                 Survey.get( this.programId, program => this.setLocalData( program ) );
             }
+            else {
+
+                let cachedSurvey = store.get( CACHE_KEY );
+                if( cachedSurvey ) {
+
+                    let program = new OutreachProgram();
+                    program.populate( cachedSurvey );
+                    this.setLocalData( program );
+                }
+            }
+
 
             window.addEventListener('resize', _.debounce( this.setWindowWidth, 500, {}, false ) );
             this.setWindowWidth();

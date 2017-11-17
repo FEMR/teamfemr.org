@@ -23,12 +23,15 @@ class OutreachProgram {
         this.yearlyOutreachParticipants = '';
         this.monthsOfTravel = '';
         this.comments = '';
+
+        this.additionalFields = {};
         this.schoolClasses = [];
         this.contacts = [];
         this.partners = [];
         this.papers = [];
         this.visitedLocations = [];
 
+        this.lastUpdated = '';
         this.isVisible = false;
     }
 
@@ -43,11 +46,12 @@ class OutreachProgram {
         this.yearInitiated = json.yearInitiated;
         this.yearlyOutreachParticipants = json.yearlyOutreachParticipants;
         this.comments = json.comments;
+        this.lastUpdated = json.lastUpdated;
 
         this.additionalFields = {};
-        _.forEach( json.additionalFields, ( field ) => {
+        _.forEach( json.additionalFields, ( value, key ) => {
 
-           this.additionalFields[ field.key ] = field.value;
+           this.additionalFields[ key ] = value;
         });
 
         //this.monthsOfTravel = json.monthsOfTravel;
@@ -63,7 +67,7 @@ class OutreachProgram {
         });
 
         this.schoolClasses = [];
-        _.forEach( json.schoolClasses, ( schoolClass ) => {
+        _.forEach( json.schoolClasses, ( schoolClass, key ) => {
 
             // this is matched up to what the MultiSelectField in the survey wants
             this.schoolClasses.push( {
@@ -133,6 +137,31 @@ class OutreachProgram {
             return '/programs/' + this.slug;
         }
         else return '#';
+    }
+
+    post() {
+
+        return  {
+            "id": this.id,
+            "name": this.name,
+            "slug": this.slug,
+            "schoolName": this.schoolName,
+            "usesEmr": this.usesEmr = false,
+            "matriculantsPerClass": this.matriculantsPerClass,
+            "yearInitiated": this.yearInitiated,
+            "yearlyOutreachParticipants": this.yearlyOutreachParticipants,
+            "monthsOfTravel": this.monthsOfTravel,
+            "comments": this.comments,
+            "additionalFields": this.additionalFields,
+            "schoolClasses": this.schoolClasses,
+            "isVisible": this.isVisible,
+            "lastUpdated": this.lastUpdated,
+
+            "contacts": _.map( this.contacts, ( contact ) => contact.post() ),
+            "partners": _.map( this.partners, ( partner ) => partner.post() ),
+            "papers": _.map( this.papers, ( paper ) => paper.post() ),
+            "visitedLocations": _.map( this.visitedLocations, ( location ) => location.post() ),
+        };
     }
 }
 
