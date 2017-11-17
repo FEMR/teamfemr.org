@@ -31,16 +31,15 @@
                     <label class="label mobile-only">{{ def.name.label }}</label>
 
                     <multi-select-field
-                        v-if="!Number.isInteger(partner.id)"
-                        v-on:valueAdded="partnerAdded"
+                        v-if="! partner.isUpdate()"
                         :index="idx"
                         :def="def.name"
                         :value="partner"
                         label="name"
-                        track-by="uniqueId"
-                        :taggable="true"
                         :multiple="false"
+                        :taggable="true"
                         :show-label="false"
+                        v-on:valueChanged="partnerChanged"
                     ></multi-select-field>
 
                     <text-field
@@ -48,7 +47,7 @@
                         :def="def.name"
                         :value="partner.name"
                         :initialValue="partner.name"
-                        :disabled="Number.isInteger(partner.id)"
+                        :disabled="partner.isUpdate()"
                     ></text-field>
 
                 </div>
@@ -65,7 +64,7 @@
                         v-model="partner.website"
                         :def="def.website"
                         :initialValue="partner.website"
-                        :disabled="Number.isInteger( partner.id )"
+                        :disabled="partner.isUpdate()"
                     ></text-field>
 
                 </div>
@@ -167,18 +166,24 @@
                 if( this.partners.length === 0 ) this.addEmptyPartner();
             },
 
-            partnerAdded( { name, value, index } ) {
+            partnerChanged( { index, name, value } ) {
 
+                console.log( "partnerChanged" );
                 console.log( index );
                 console.log( name );
                 console.log( value );
 
                 let partner = this.partners[index];
-                partner.name = value.label;
-                partner.slug = value.slug;
-                console.log( partner );
+                _.assign( partner, value );
 
-                this.$set( this.partners, index, partner );
+                if( _.isInteger( partner.id ) ) {
+
+                    this.website = value.website;
+                }
+                else {
+
+                    partner.slug = _.slugify( partner.name );
+                }
             }
         },
 

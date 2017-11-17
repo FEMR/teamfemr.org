@@ -12,14 +12,11 @@
                     :name="def.name"
                     :multiple="multiple"
                     :taggable="taggable"
-                    @tag="addTag"
-                    tag-placeholder="Add this as new item"
                     placeholder="Type to search or add new"
                     :label="label"
-                    :track-by="trackBy"
                     :data-vv-as="def.label"
                     v-validate="def.validators"
-                    @input="updateValue"
+                    :on-change="valueChanged"
                     :options="localOptions"
                 >
                     <!--<option v-if="def.placeholder.length > 0" value="" disabled>{{ def.placeholder }}</option>-->
@@ -91,9 +88,6 @@
 
                 handler: function( newValue ) {
 
-                    console.log( "New Value" );
-                    console.log( newValue );
-
                     this.localValue = newValue;
                 },
                 deep: true
@@ -111,25 +105,26 @@
 
         methods: {
 
-            addTag ( newTag ) {
+//            addTag ( newTag ) {
+//
+//                const tag = {
+//
+//                    id: _.uniqueId(),
+//                    value: _.slugify( newTag ) + Math.floor((Math.random() * 10000000)),
+//                    label: newTag,
+//                    name: newTag,
+//                    slug: _.slugify( newTag )
+//                };
+//
+//                this.localOptions.push( tag );
+//                this.localValue = tag;
+//
+//                this.$emit( 'valueAdded', { index: this.index, name: this.def.name, value: tag } )
+//            },
 
-                const tag = {
+            valueChanged: function ( value ) {
 
-                    id: _.uniqueId(),
-                    value: _.slugify( newTag ) + Math.floor((Math.random() * 10000000)),
-                    label: newTag,
-                    name: newTag,
-                    slug: _.slugify( newTag )
-                };
-
-                this.localOptions.push( tag );
-                this.localValue = tag;
-
-                this.$emit( 'valueAdded', { index: this.index, name: this.def.name, value: tag } )
-            },
-
-            updateValue: function ( value ) {
-
+                console.log( "valueChanged" );
                 console.log( value );
 
                 // cleanse/format value here if needed
