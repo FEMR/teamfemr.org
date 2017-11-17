@@ -455,32 +455,27 @@ class OutreachProgram extends Model
     public function syncPartnerOrganizations( $partners = [] )
     {
         if( ! is_array( $partners ) ) return $this;
-
-        // get existing partners
-        $existing_ids = $this->partnerOrganizations->pluck( 'id' );
+        $partners_to_sync = [];
 
         foreach( $partners as $partner )
         {
-            if( isset( $partner['id'] ) && ! empty( $partner['id'] ) )
-            {
-                // remove encountered papers from existing_ids
-                $existing_ids = $existing_ids->filter( function( $value, $key ) use( $partner )
-                {
-                    return $value !== intval( $partner['id'] );
-                });
+            if( is_numeric( $partner['id'] ) ) {
 
-                $this->partnerOrganizations()
-                     ->findOrFail( $partner['id'] )
-                     ->update( $partner );
+                $partners_to_sync[] = $partner['id'];
             }
-            else
-            {
-                $this->partnerOrganizations()->create( $partner );
+            else {
+
+                $existing = PartnerOrganization::find( $partner['id'] );
+                if( is_null( $existing ) ) {
+
+                    $new = $this->partnerOrganizations()
+                                ->create( $partner );
+                    $partners_to_sync[] = $new->id;
+                }
             }
+
+            $this->partnerOrganizations()->sync( $partners_to_sync );
         }
-
-        // remove existing ids not encountered in $partners
-        $this->partnerOrganizations()->detach( $existing_ids );
 
         return $this;
     }
