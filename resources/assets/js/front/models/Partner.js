@@ -31,6 +31,11 @@ class Partner{
             "website": this.website,
         }
     }
+
+    isUpdate() {
+
+        return _.isInteger( this.id );
+    }
 }
 
 export default Partner;
