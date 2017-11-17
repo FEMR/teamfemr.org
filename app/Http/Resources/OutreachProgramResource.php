@@ -26,16 +26,18 @@ class OutreachProgramResource extends Resource
             'yearlyOutreachParticipants' => $this->yearly_outreach_participants,
             'monthsOfTravel' => $this->months_of_travel,
             'comments' => $this->comments,
-            'additionalFields' => $this->fields->map( function( $field ) {
-
-                return [
-
-                    'id' => $field->id,
-                    'name' => $field->name,
-                    'key' => $field->key,
-                    'value' => $field->value
-                ];
-            }),
+            'lastUpdated' => $this->updated_at->format( 'm/d/Y h:i a T' ),
+//            'additionalFields' => $this->fields->map( function( $field ) {
+//
+//                return [
+//
+//                    'id' => $field->id,
+//                    'name' => $field->name,
+//                    'key' => $field->key,
+//                    'value' => $field->value
+//                ];
+//            }),
+            'additionalFields' => $this->fields->pluck( 'value', 'key' ),
             'schoolClasses' => $this->schoolClasses->map( function( $class ) {
 
                 return [

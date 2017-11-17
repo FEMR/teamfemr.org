@@ -28,6 +28,17 @@ class Paper{
             "description": this.description,
         }
     }
+
+    store() {
+
+        return {
+
+            "id": this.id,
+            "title": this.title,
+            "url": this.url,
+            "description": this.description,
+        }
+    }
 }
 
 export default Paper;

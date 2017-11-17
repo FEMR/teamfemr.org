@@ -124,9 +124,6 @@
 
             valueChanged: function ( value ) {
 
-                console.log( "valueChanged" );
-                console.log( value );
-
                 // cleanse/format value here if needed
                 this.$emit( 'input', value );
                 this.$emit( 'valueChanged', { index: this.index, name: this.def.name, value: value } )

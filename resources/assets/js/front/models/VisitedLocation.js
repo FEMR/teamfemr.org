@@ -130,6 +130,24 @@ class VisitedLocation{
         }
     }
 
+    store() {
+
+        return {
+
+            "id": this.id,
+            "address": this.address || "",
+            "addressExt": this.addressExt || "",
+            "locality": this.locality || "",
+            "administrativeAreaLevel1": this.administrativeAreaLevel1 || "",
+            "administrativeAreaLevel2": this.administrativeAreaLevel2 || "",
+            "postalCode": this.postalCode || "",
+            "country": this.country || "",
+            "latitude": this.latitude || "",
+            "longitude": this.longitude || ""
+        }
+    }
+
+
     hasPosition( m ) {
 
         return ( this.latitude !== 0.0 ) && ( this.longitude !== 0.0 );

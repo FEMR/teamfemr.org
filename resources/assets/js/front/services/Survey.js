@@ -77,10 +77,7 @@ class Survey {
 
     static update( id, fields, successCB, errorCB = ()=>{} ) {
 
-        if( FEMR.userToken  !== 'guest' ) {
-
-            fields[ 'api_token' ] = FEMR.userToken;
-        }
+        if( ! _.isInteger( id ) ) return;
 
         axios.put( '/api/survey/' + id, fields )
             .then( function( result ) {
