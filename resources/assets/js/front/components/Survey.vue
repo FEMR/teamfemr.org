@@ -387,7 +387,7 @@
 
             dataUpdated() {
 
-                if( _.isInteger( this.programId ) ) {
+                if( _.isInteger( this.id ) ) {
 
                     // auto save every 30 seconds when updating
                     //this.delayedUpdate();
@@ -484,6 +484,10 @@
                     this.isSubmitting = false;
 
                     store.remove( CACHE_KEY );
+
+                    // If logged in, redirect to edit
+
+                    // If not logged in, show survey set to moderate message
 
                 }, ( error ) => this.isSubmitting = false );
             },
