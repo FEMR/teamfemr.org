@@ -24,8 +24,8 @@ class OutreachProgramController extends Controller
                                   'papers',
                                   'partnerOrganizations'
                               ])
-                       ->get();
-
+                       ->paginate( 15 );
+//dd( $programs );
         $user = \Auth::user();
 
         return view( 'programs.index', [ 'programs' => $programs, 'user' => $user ]);
