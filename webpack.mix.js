@@ -19,7 +19,9 @@ mix.webpackConfig({
 
     // front end
 mix .js( 'resources/assets/js/front/app.js', 'public/js/front' )
+    .js( 'resources/assets/js/front/forum.js', 'public/js/front' )
     .sass( 'resources/assets/sass/front/app.scss', 'public/css/front' )
+    .sass( 'resources/assets/sass/front/forum.scss', 'public/css/front' )
     .copyDirectory( 'resources/assets/images', 'public/images', false )
 
     // Admin
