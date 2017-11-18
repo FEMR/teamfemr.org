@@ -126,7 +126,7 @@
                 </div>
 
                 <div
-                    v-if="windowWidth> 768"
+                    v-if="windowWidth > 768"
                     class="column is-4"
                 >
                     <div
@@ -242,10 +242,9 @@
 
             return {
 
-                // TODO -- use this fields as an update/new flag
-                id: '',
+                fieldsDef: {},
 
-                lastUpdated: '',
+                id: '',
                 schoolName: '',
                 name: '',
                 usesEmr: '',
@@ -256,13 +255,14 @@
                 schoolClasses: [],
                 additionalFields: {},
                 comments: '',
+                lastUpdated: '',
+
                 visitedLocations: [],
                 partners: [],
                 contacts: [],
                 papers: [],
-                isSubmitting: false,
-                fieldsDef: {},
 
+                isSubmitting: false,
                 windowWidth: 0,
                 statusWidth: 'auto'
             }
@@ -369,9 +369,9 @@
                     usesEmr: ( this.usesEmr === 'yes' ) ,
                     yearInitiated: this.yearInitiated,
                     yearlyOutreachParticipants: this.yearlyOutreachParticipants,
-                    monthsOfTravel: _.map( this.monthsOfTravel, ( m ) => m.value ),
+                    monthsOfTravel: this.monthsOfTravel,
                     matriculantsPerClass: this.matriculantsPerClass,
-                    schoolClasses: _.map( this.schoolClasses, ( c ) => c.value ),
+                    schoolClasses: this.schoolClasses,
                     additionalFields: this.additionalFields,
                     comments: this.comments,
                     lastUpdated: this.lastUpdated,
@@ -394,10 +394,19 @@
                 }
                 else{
 
-                    store.set( CACHE_KEY, this.storeFields, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */ );
+                    this.updateCache();
                 }
             },
 
+            updateCache: _.throttle( function() {
+
+                console.log( 'Updating Cache' );
+                console.log( this.storeFields );
+                store.set( CACHE_KEY, this.storeFields, Date.now() + 120 * 60 * 1000 /* 2 hours in ms */ );
+
+            }, 10000 ),
+
+            // Experimented with this, not currently using
             delayedUpdate: _.throttle( function() {
 
                 this.updateSurvey();
@@ -418,6 +427,7 @@
                 }
             },
 
+            // TODO - move this to its own class/file
             filterEmptyObjects( items ) {
 
                 // `uniqueId` will always have a value, so ignore it when checking for all empty fields
@@ -426,15 +436,17 @@
 
             setLocalData( program ) {
 
-                this.id = program.id;
+                console.log( "Set Local Data" );
+                console.log( program );
 
+                this.id = program.id;
                 this.lastUpdated = program.lastUpdated;
                 this.name = program.name;
                 this.schoolName = program.schoolName;
                 this.usesEmr = ( program.usesEmr ) ? 'yes' : 'no';
                 this.yearInitiated = program.yearInitiated;
                 this.yearlyOutreachParticipants = program.yearlyOutreachParticipants;
-                this.monthsOfTravel = program.monthsOfTravel;
+                this.monthsOfTravel = Object.assign({}, program.monthsOfTravel);
                 this.matriculantsPerClass = program.matriculantsPerClass;
                 this.schoolClasses = program.schoolClasses;
                 this.additionalFields = program.additionalFields;
@@ -443,6 +455,10 @@
                 this.contacts = program.contacts;
                 this.papers = program.papers;
                 this.visitedLocations = program.visitedLocations;
+
+
+                console.log( this.monthsOfTravel );
+                console.log( program.monthsOfTravel );
             },
 
             saveClicked() {
@@ -536,12 +552,16 @@
                 if( cachedSurvey ) {
 
                     let program = new OutreachProgram();
-                    program.populate( cachedSurvey );
+                    program.restore( cachedSurvey );
+
+                    console.log( cachedSurvey );
+                    console.log( program );
+
                     this.setLocalData( program );
                 }
             }
 
-
+            // TODO - move all this to a mixin?
             window.addEventListener('resize', _.debounce( this.setWindowWidth, 500, {}, false ) );
             this.setWindowWidth();
         },

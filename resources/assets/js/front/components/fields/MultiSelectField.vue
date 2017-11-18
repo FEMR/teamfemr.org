@@ -8,7 +8,7 @@
             <div :class="{ 'is-fullwidth': def.isFullWidth, 'is-success': isSuccess, 'is-danger': isError }">
 
                 <v-select
-                    v-model="localValue"
+                    :value="value"
                     :name="def.name"
                     :multiple="multiple"
                     :taggable="taggable"
@@ -16,8 +16,8 @@
                     :label="label"
                     :data-vv-as="def.label"
                     v-validate="def.validators"
-                    :on-change="valueChanged"
                     :options="localOptions"
+                    :on-change="valueChanged"
                 >
                     <!--<option v-if="def.placeholder.length > 0" value="" disabled>{{ def.placeholder }}</option>-->
                     <!--<option v-for="( option, value ) in def.options" :value="value">{{ option }}</option>-->
@@ -84,14 +84,6 @@
 
         watch: {
 
-            value: {
-
-                handler: function( newValue ) {
-
-                    this.localValue = newValue;
-                },
-                deep: true
-            }
         },
 
         data() {
@@ -105,28 +97,16 @@
 
         methods: {
 
-//            addTag ( newTag ) {
-//
-//                const tag = {
-//
-//                    id: _.uniqueId(),
-//                    value: _.slugify( newTag ) + Math.floor((Math.random() * 10000000)),
-//                    label: newTag,
-//                    name: newTag,
-//                    slug: _.slugify( newTag )
-//                };
-//
-//                this.localOptions.push( tag );
-//                this.localValue = tag;
-//
-//                this.$emit( 'valueAdded', { index: this.index, name: this.def.name, value: tag } )
-//            },
-
             valueChanged: function ( value ) {
 
+                console.log( "multiselect value changed" );
+                console.log( value );
+
+                this.localValue = value;
+
                 // cleanse/format value here if needed
-                this.$emit( 'input', value );
-                this.$emit( 'valueChanged', { index: this.index, name: this.def.name, value: value } )
+                this.$emit( 'input', this.localValue );
+                this.$emit( 'valueChanged', { index: this.index, name: this.def.name, value: this.localValue } )
             }
         },
 
@@ -165,6 +145,10 @@
         created() {
 
             this.localOptions = this.def.options;
+            this.localValue = this.value[ this.label ];
+
+            console.log( "multiselect created" );
+            console.log( this.value );
 
             // Fires when parent triggers validateAll
             this.$parent.$on( 'validate', ( key ) => {

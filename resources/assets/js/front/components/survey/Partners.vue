@@ -23,9 +23,9 @@
 
                     <multi-select-field
                         v-if="! partner.isUpdate()"
+                        :value="multiSelectPartner"
                         :index="idx"
                         :def="def.name"
-                        :value="partner"
                         label="name"
                         :multiple="false"
                         :taggable="true"
@@ -131,6 +131,15 @@
             }
         },
 
+        computed: {
+
+            multiSelectPartner: function(){
+
+                // Make sure that an empty partner object does not get sent to the multi-select
+                return _.some( this.value, ( field, key ) =>  ! _.isEmpty( field ) && key !== 'uniqueId' );
+            }
+        },
+
         methods: {
 
             validate() {
@@ -152,6 +161,10 @@
             },
 
             partnerChanged( { index, name, value } ) {
+
+                console.log( "partnerChanged" );
+                console.log( name );
+                console.log( value );
 
                 let partner = this.partners[index];
                 _.assign( partner, value );

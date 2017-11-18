@@ -110,6 +110,55 @@ class OutreachProgram {
         });
     }
 
+    restore( data ) {
+
+        this.id = data.id;
+        this.name = data.name;
+        this.slug = data.slug;
+        this.schoolName = data.schoolName;
+        this.usesEmr = data.usesEmr;
+        this.matriculantsPerClass = data.matriculantsPerClass;
+        this.yearInitiated = data.yearInitiated;
+        this.yearlyOutreachParticipants = data.yearlyOutreachParticipants;
+        this.comments = data.comments;
+        this.lastUpdated = data.lastUpdated;
+        this.additionalFields = data.additionalFields;
+        this.monthsOfTravel = data.monthsOfTravel;
+        this.schoolClasses = data.schoolClasses;
+
+        _.forEach( data.contacts, ( contact ) => {
+
+            let newContact = new Contact();
+            newContact.populate( contact );
+
+            this.contacts.push( newContact );
+        });
+
+        _.forEach( data.partners, ( partner ) => {
+
+            let newPartner = new Partner();
+            newPartner.populate( partner );
+
+            this.partners.push( newPartner );
+        });
+
+        _.forEach( data.visitedLocations, ( location ) => {
+
+            let newLoc = new VisitedLocation();
+            newLoc.populate( location );
+
+            this.visitedLocations.push( newLoc );
+        });
+
+        _.forEach( data.papers, ( paper ) => {
+
+            let newPaper = new Paper();
+            newPaper.populate( paper );
+
+            this.papers.push( newPaper );
+        });
+    }
+    
     schoolClassesList() {
 
         return this.schoolClasses.map( item => item.label ).join( ', ' );
