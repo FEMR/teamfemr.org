@@ -160,7 +160,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Geocoder\Laravel\Providers\GeocoderService::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class
+        Laravel\Tinker\TinkerServiceProvider::class,
+        DevDojo\Chatter\ChatterServiceProvider::class
     ],
 
     /*
