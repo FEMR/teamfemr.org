@@ -22,7 +22,7 @@
                     <label class="label mobile-only">{{ def.name.label }}</label>
 
                     <multi-select-field
-                        v-if="! partner.isUpdate()"
+                        v-if="! partner.isUpdate() && partner.name.length === 0"
                         :value="multiSelectPartner"
                         :index="idx"
                         :def="def.name"
