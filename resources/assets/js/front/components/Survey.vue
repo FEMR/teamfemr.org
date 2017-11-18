@@ -400,8 +400,6 @@
 
             updateCache: _.throttle( function() {
 
-                console.log( 'Updating Cache' );
-                console.log( this.storeFields );
                 store.set( CACHE_KEY, this.storeFields, Date.now() + 120 * 60 * 1000 /* 2 hours in ms */ );
 
             }, 10000 ),
@@ -436,9 +434,6 @@
 
             setLocalData( program ) {
 
-                console.log( "Set Local Data" );
-                console.log( program );
-
                 this.id = program.id;
                 this.lastUpdated = program.lastUpdated;
                 this.name = program.name;
@@ -446,7 +441,7 @@
                 this.usesEmr = ( program.usesEmr ) ? 'yes' : 'no';
                 this.yearInitiated = program.yearInitiated;
                 this.yearlyOutreachParticipants = program.yearlyOutreachParticipants;
-                this.monthsOfTravel = Object.assign({}, program.monthsOfTravel);
+                this.monthsOfTravel = program.monthsOfTravel;
                 this.matriculantsPerClass = program.matriculantsPerClass;
                 this.schoolClasses = program.schoolClasses;
                 this.additionalFields = program.additionalFields;
@@ -455,10 +450,6 @@
                 this.contacts = program.contacts;
                 this.papers = program.papers;
                 this.visitedLocations = program.visitedLocations;
-
-
-                console.log( this.monthsOfTravel );
-                console.log( program.monthsOfTravel );
             },
 
             saveClicked() {
@@ -553,10 +544,6 @@
 
                     let program = new OutreachProgram();
                     program.restore( cachedSurvey );
-
-                    console.log( cachedSurvey );
-                    console.log( program );
-
                     this.setLocalData( program );
                 }
             }

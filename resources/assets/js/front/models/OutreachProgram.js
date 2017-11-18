@@ -134,7 +134,7 @@ class OutreachProgram {
             this.contacts.push( newContact );
         });
 
-        _.forEach( data.partners, ( partner ) => {
+        _.forEach( data.partnerOrganizations, ( partner ) => {
 
             let newPartner = new Partner();
             newPartner.populate( partner );
