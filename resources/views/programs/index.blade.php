@@ -14,6 +14,9 @@
 
                     <h3>University Programs</h3>
 
+                    <div class="pagination-top">
+                        <p class="pull-right">Page {{ $programs->currentPage() }} of {{  $programs->lastPage() }}</p>
+                    </div>
                     <table class="table is-bordered">
                         <thead>
                             <tr>
@@ -120,6 +123,7 @@
 
                     </table>
 
+                    {{ $programs->links( 'vendor.pagination.bulma' ) }}
 
                 </div>
 
