@@ -128,14 +128,41 @@ body{
     }
 }
 
-@media only screen and ( min-width: $tablet ){
+@media only screen and ( max-width: $tablet - 1 ) {
 
-    body{
+    .nav-menu.nav-right {
 
-        // 90x for main nav + 40px top bar
-        //margin-top: 130px;
+        .logged-in-status {
 
+            border-top: 2px solid #1f1f1f;
+            font-size: 1rem;
+            font-weight: bold;
+            background-color: #efefef;
+        }
+
+        .user-item,
+        .user-item .logout-button {
+
+            text-transform: none;
+            font-weight: normal;
+            font-size: 1rem;
+            color: #1f1f1f;
+            background-color: #efefef;
+        }
+
+        .user-item{
+
+            padding-left: 2rem;
+        }
+
+        .user-item .logout-button {
+
+            padding: 0;
+        }
     }
+}
+
+@media only screen and ( min-width: $tablet ){
 
     .main-nav {
 
@@ -145,69 +172,66 @@ body{
         right: 0;
         z-index: 99999;
         box-shadow: 0 2px 3px rgba( 0, 0, 0, 0.4 );
-
         height: 90px;
 
-        & > .container{
+        @media only screen and ( max-width: 899px ) {
 
-            min-height: 90px;
+
+            height: 130px;
+
+            & > .container {
+                min-height: 90px;
+                flex-wrap: wrap;
+
+                .nav-left,
+                .nav-right {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+
+            .logo {
+
+                img {
+                    height: 3rem;
+                    max-height: none;
+                    display: inline-block;
+                }
+            }
         }
 
-        .nav-left{
+        .has-nav-toggle{
 
-            // stop left side from taking up 50% of width
-            flex: 0 1 auto;
+            display: none;
         }
 
         .nav-item a,
         a.nav-item{
 
             font-size: .8rem;
-            padding: 0.5rem;
+            padding: 0.5rem 0.75rem;
         }
 
-        .nav-item{
+        .nav-item.nav-button{
 
-            .donate-paypal{
+            .button {
 
-                margin-right: 0;
-            }
-        }
-
-        .logo{
-
-            flex-grow: 0;
-            display: flex;
-            justify-content: flex-start;
-
-            img{
-
-                height: 4.25rem;
-            }
-        }
-    }
-}
-
-@media only screen and ( min-width: $tablet ){
-
-    .main-nav {
-
-        .logo{
-
-            img{
-
-                height: 3rem;
+                font-size: .8rem;
             }
         }
 
         .nav-item{
 
-            margin: 0 3px;
             text-align: center;
 
             br{
 
                 display: block;
+            }
+
+            .donate-paypal{
+
+                margin-right: 0;
             }
         }
 
@@ -217,6 +241,15 @@ body{
             height: 2.25rem;
             padding-left: .75rem;
             padding-right: .75rem;
+        }
+
+        .logo{
+
+            flex-grow: 0;
+            display: flex;
+            justify-content: flex-start;
+
+
         }
     }
 }
@@ -229,7 +262,44 @@ body{
 
             img{
 
-                height: 3.75rem;
+                height: 3rem;
+            }
+        }
+
+        .nav-item a,
+        a.nav-item{
+
+            font-size: .85rem;
+            padding: 0.5rem 0.75rem;
+        }
+
+        .nav-item.nav-button{
+
+            .button {
+
+                font-size: .85rem;
+            }
+        }
+
+        .donate-paypal .donate-button{
+
+            font-size: .8rem;
+            height: 2.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+}
+
+@media only screen and ( min-width: $desktop ){
+
+    .main-nav {
+
+        .logo{
+
+            img{
+
+                height: 3rem;
             }
         }
 
@@ -237,15 +307,38 @@ body{
         a.nav-item{
 
             font-size: .9rem;
-            padding: 0.5rem 0.75rem;
+        }
+
+        .nav-item.nav-button{
+
+            .button {
+
+                font-size: .9rem;
+            }
         }
 
         .donate-paypal .donate-button{
 
             font-size: .9rem;
-            height: 2.75rem;
-            padding-left: 1.25rem;
-            padding-right: 1.25rem;
+        }
+    }
+}
+
+@media only screen and ( min-width: $widescreen ){
+
+    .main-nav {
+
+        .logo {
+
+            img {
+                height: 3.75rem;
+            }
+        }
+
+        .nav-item a,
+        a.nav-item{
+
+            padding: 0.5rem 1rem;
         }
     }
 }

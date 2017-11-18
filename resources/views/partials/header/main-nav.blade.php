@@ -19,7 +19,7 @@
 
             <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
             <!-- Toggle the "is-active" class on "nav-menu" -->
-            <span class="nav-item">
+            <span class="nav-item has-nav-toggle">
                 <span class="nav-toggle">
                     <span></span>
                     <span></span>
@@ -31,11 +31,12 @@
 
         <div class="nav-right nav-menu" style="overflow: visible /** TODO - move this **/">
 
-            <a
-                href="/"
-                class="nav-item"
-            >
+            <a href="/" class="nav-item" >
                 Home
+            </a>
+
+            <a href="{{ route( 'survey.create' ) }}" class="nav-item" >
+                Survey
             </a>
 
             <div class="nav-item nav-button">
@@ -96,26 +97,33 @@
 
             @if( Auth::check() )
 
-                {{--@if( Auth::user()->is_admin )--}}
-                {{--<span class="nav-item">--}}
-                {{--<a  class="button is-info is-small" href="{{ route( 'admin.dashboard.index' ) }}">Admin</a>--}}
-                {{--</span>--}}
-                {{--@endif--}}
-
                 <span class="nav-item is-hidden-tablet logged-in-status">
                     Welcome {{ Auth::user()->name }}
-                    |
+                </span>
+
+                @if( Auth::user()->is_admin )
+                <a class="nav-item user-item" href="{{ route( 'admin.dashboard.index' ) }}">
+                  Admin
+                </a>
+                @endif
+
+                <span class="nav-item user-item is-hidden-tablet">
                     {!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}
                     <button class="logout-button" href="{{ url('/logout') }}">Logout</button>
                     {!! Form::close() !!}
                 </span>
 
             @else
-                <a class="nav-item is-hidden-tablet" href="{{ route( 'register' ) }}">
+
+                <span class="nav-item is-hidden-tablet logged-in-status">
+                    Account
+                </span>
+
+                <a class="nav-item user-item is-hidden-tablet" href="{{ route( 'register' ) }}">
                     Register
                 </a>
 
-                <a class="nav-item is-hidden-tablet" href="{{ route( 'login' ) }}">
+                <a class="nav-item user-item is-hidden-tablet" href="{{ route( 'login' ) }}">
                     Login
                 </a>
 
