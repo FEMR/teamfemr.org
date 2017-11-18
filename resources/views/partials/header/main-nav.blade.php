@@ -29,7 +29,7 @@
 
         </div>
 
-        <div class="nav-right nav-menu">
+        <div class="nav-right nav-menu" style="overflow: visible /** TODO - move this **/">
 
             <a
                 href="/"
@@ -38,52 +38,61 @@
                 Home
             </a>
 
-            <a
-                href="/#open-source"
-                @if( Route::currentRouteName() == 'pages.home' )
-                v-scroll-to="'#open-source'"
-                @endif
-                class="nav-item"
-            >
-                Open Source
-            </a>
+            <div class="nav-item nav-button">
+                <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
 
-            <a
-                href="/#publications"
-                @if( Route::currentRouteName() == 'pages.home' )
-                v-scroll-to="'#publications'"
-                @endif
-                class="nav-item"
+                            <span>Annual Reports</span>
+                            <span class="icon is-small">
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </span>
+
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+
+                        <div class="dropdown-content">
+
+                            <a class="dropdown-item" href="{{ asset('/documents/Annual_Report_2017.pdf') }}" target="_blank">
+                                <span>2017 Annual Report</span>
+                                <span class="icon has-text-info">
+                                  <i class="fa fa-external-link"></i>
+                                </span>
+                            </a>
+                            <a class="dropdown-item" href="{{ asset('/documents/Annual_Report_2016.pdf') }}" target="_blank">
+                                <span>2016 Annual Report</span>
+                                <span class="icon has-text-info">
+                                  <i class="fa fa-external-link"></i>
+                                </span>
+                            </a>
+                            <a class="dropdown-item" href="{{ asset('/documents/Annual_Report_2015.pdf') }}" target="_blank">
+                                <span>2015 Annual Report</span>
+                                <span class="icon has-text-info">
+                                  <i class="fa fa-external-link"></i>
+                                </span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/#publications"
+               @if( Route::currentRouteName() == 'pages.home' )
+               v-scroll-to="'#publications'"
+               @endif
+               class="nav-item"
             >
                 Publications<br >
-            {{--</a>--}}
-
-            {{--<a--}}
-                {{--href="/#news"--}}
-                {{--@if( Route::currentRouteName() == 'pages.home' )--}}
-                {{--v-scroll-to="'#news'"--}}
-                {{--@endif--}}
-                {{--class="nav-item"--}}
-            {{-->--}}
                 and News
             </a>
 
-            <a
-                    href="{{ route( 'programs.index' ) }}"
-                    class="nav-item"
-            >
+            <a href="{{ route( 'programs.index' ) }}" class="nav-item">
                 International Med. <br > Outreach Programs
             </a>
 
-            <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2017.pdf') }}" target="_blank">
-                2017 Annual Report
-            </a>
-            <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2016.pdf') }}" target="_blank">
-                2016 Annual Report
-            </a>
-            <a class="nav-item is-hidden-tablet" href="{{ asset('/documents/Annual_Report_2015.pdf') }}" target="_blank">
-                2015 Annual Report
-            </a>
+
 
             @if( Auth::check() )
 
