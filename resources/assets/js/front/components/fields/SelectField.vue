@@ -1,7 +1,7 @@
 <template>
     <div class="field">
 
-        <label class="label">{{ def.label }}</label>
+        <label class="label" v-if="showLabel">{{ def.label }}</label>
 
         <div class="control has-icons-right">
 
@@ -50,6 +50,11 @@
                 type: String,
                 default: '',
                 required: true
+            },
+            "showLabel": {
+
+                type: Boolean,
+                default: () => true
             }
         },
 

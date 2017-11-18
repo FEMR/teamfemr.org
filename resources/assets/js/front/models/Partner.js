@@ -46,7 +46,7 @@ class Partner{
 
     isUpdate() {
 
-        return _.isInteger( this.id );
+        return _.isInteger( this.id ) || this.name.length > 0;
     }
 }
 
