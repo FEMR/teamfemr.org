@@ -79,9 +79,14 @@
                 else return false;
             },
 
+            hasNonEmptyValue(){
+
+                return this.value !== undefined && this.value.length > 0;
+            },
+
             isSuccess() {
 
-                return this.valueHasChanged && ! this.errors.has( this.def.name );
+                return this.valueHasChanged && this.hasNonEmptyValue  && ! this.errors.has( this.def.name );
             },
 
             isError() {
