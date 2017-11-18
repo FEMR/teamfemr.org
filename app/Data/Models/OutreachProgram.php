@@ -3,11 +3,12 @@
 namespace FEMR\Data\Models;
 
 use Collective\Html\Eloquent\FormAccessible;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use FEMR\Data\Traits\UsesCriteria;
 use FEMR\Data\Utilities\HasSlug;
 use FEMR\Data\Models\OutreachProgram\Field;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use FEMR\Data\Scopes\IsApprovedScope;
 
 class OutreachProgram extends Model
 {
@@ -58,7 +59,8 @@ class OutreachProgram extends Model
         'matriculants_per_class' => 'string',
         'months_of_travel' => 'string',
         'uses_emr' => 'boolean',
-        'comments' => 'string'
+        'comments' => 'string',
+        'approved_at' => 'datetime'
     ];
 
     /**
@@ -89,6 +91,18 @@ class OutreachProgram extends Model
         'faculty-time-alotted' => 'Faculty time allotted:',
         'administrative-support' => 'Administrative support:'
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope( new IsApprovedScope() );
+    }
 
     /**
      * Grabs a value by $key from the fields relationship
@@ -176,6 +190,14 @@ class OutreachProgram extends Model
                 'lng' => $center_lng
 
             ] );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsApprovedAttribute()
+    {
+        return ! is_null( $this->attributes['approved_at'] ) && $this->approved_at->isPast();
     }
 
     /**

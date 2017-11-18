@@ -16,6 +16,9 @@
                     <table class="table is-bordered">
                         <thead>
                             <tr>
+                                @if( ! is_null( $user ) && $user->is_admin )
+                                <th></th>
+                                @endif
                                 <th>Name</th>
                                 <th class="tablet-only">Months of Travel</th>
                                 <th class="tablet-only">Class Involvement</th>
@@ -28,6 +31,19 @@
                         <tbody>
                             @foreach( $programs as $program )
                             <tr>
+                                @if( ! is_null( $user ) && $user->is_admin )
+                                <td>
+                                    @if( $program->is_approved )
+                                        <span class="icon is-medium">
+                                          <i class="fa fa-lg fa-eye"></i>
+                                        </span>
+                                    @else
+                                        <span class="icon is-medium">
+                                          <i class="fa fa-lg fa-eye-slash has-text-danger"></i>
+                                        </span>
+                                    @endif
+                                </td>
+                                @endif
                                 <td>
                                     <a href="{{ route( 'programs.show', [ $program->slug ] ) }}">
                                         {!! str_ireplace( '-', '- <br />', $program->name ) !!}
@@ -85,13 +101,14 @@
 
                                 </td>
                                 <td>
+
                                     <a href="{{ route( 'programs.show', [ $program->slug ] ) }}" class="button is-info is-small">
                                         Full Survey
                                     </a>
 
                                     @if( ! is_null( $user ) && $user->can( 'update-survey', $program ) )
                                     <a href="{{ route( 'survey.edit', [ $program->id ] ) }}" class="button is-success is-small edit-survey">
-                                        Edit
+                                        <span>Edit</span>
                                     </a>
                                     @endif
 
