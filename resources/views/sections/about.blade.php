@@ -16,33 +16,6 @@
                             More importantly, we are volunteers. Our mission is to help to provide the best healthcare possible to people who are often without access to life's basic necessities.
                         </p>
 
-                        <p>&nbsp;</p>
-
-                        <p>
-                            <a class="" href="{{ asset('/documents/Annual_Report_2017.pdf') }}" target="_blank">
-                                <span class="icon is-small">
-                                  <i class="fa fa-file-pdf-o"></i>
-                                </span>
-                                2017 Annual Report
-                            </a>
-                        </p>
-                        <p>
-                            <a class="" href="{{ asset('/documents/Annual_Report_2016.pdf') }}" target="_blank">
-                                <span class="icon is-small">
-                                  <i class="fa fa-file-pdf-o"></i>
-                                </span>
-                                2016 Annual Report
-                            </a>
-                        </p>
-                        <p>
-                            <a class="" href="{{ asset('/documents/Annual_Report_2015.pdf') }}" target="_blank">
-                                <span class="icon is-small">
-                                  <i class="fa fa-file-pdf-o"></i>
-                                </span>
-                                2015 Annual Report
-                            </a>
-                        </p>
-
                     </div>
 
                 </div>

@@ -29,6 +29,15 @@ body{
         font-size: 0.9rem;
     }
 
+    .dropdown-content{
+
+        .nav-item a,
+        a.nav-item{
+
+            text-transform: none;
+        }
+    }
+
     .nav-item{
 
         text-align: left;
@@ -42,6 +51,68 @@ body{
 
             margin-left: auto;
             margin-right: auto;
+        }
+
+        &.nav-button{
+
+            padding: 0;
+
+            .button{
+
+                color: $lightGrey;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 0.9rem;
+
+                @media only screen and ( max-width: 768px ) {
+
+                    padding: 0.75rem;
+                    height: auto;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+            }
+        }
+
+        @media only screen and ( max-width: 768px ) {
+
+            .dropdown,
+            .dropdown-trigger {
+                width: 100%;
+            }
+
+            .dropdown {
+
+                position: static;
+                flex-wrap: wrap;
+
+                .dropdown-item{
+
+                    padding: 0.75rem 3rem;
+                    display: flex;
+                    justify-content: space-between;
+                    border-top: 1px solid rgba(219, 219, 219, 0.5);
+                }
+            }
+
+            .dropdown-menu {
+
+                display: block;
+                position: static;
+                padding: 0;
+                width: 100%;
+                left: auto;
+                top: auto;
+                z-index: initial;
+            }
+
+            .dropdown-content {
+
+                box-shadow: none;
+                padding: 0;
+                margin: 0 -0.75rem;
+            }
+
         }
     }
 
