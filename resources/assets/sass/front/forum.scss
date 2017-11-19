@@ -6,11 +6,6 @@
 
     }
 
-    .chatter_container {
-
-        padding: 0 0.75rem;
-    }
-
     &.chatter_home .chatter_middle p{
 
         font-size: 0.9rem;
@@ -26,6 +21,33 @@
 
     @media only screen and ( max-width: 768px ) {
 
+        .chatter_sidebar,
+        #chatter_header{
+
+            padding: 0 15px;
+        }
+
+        #chatter_header .container{
+
+            line-height: 1.3;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+
+            .back_btn{
+
+                margin-top: 0;
+            }
+
+            h1{
+
+                flex: 1;
+                line-height: 1.3;
+            }
+        }
+
         ul.discussions li a.discussion_list .chatter_avatar,
         ul.discussions li .chatter_posts .chatter_avatar{
 
@@ -39,13 +61,73 @@
             margin-right: 50px;
         }
 
+        .conversation ul.discussions li .chatter_posts .chatter_middle{
 
+            padding-left: 0;
+        }
+
+        &.discussion #new_response{
+
+            padding-left: 15px;
+
+            #new_discussion{
+
+                left: auto;
+                bottom: auto;
+            }
+
+            #discussion_response_email{
+
+                overflow: hidden;
+            }
+
+            .chatter_avatar{
+
+                display: none;
+            }
+        }
 
         ul.discussions li a.discussion_list .chatter_right,
         ul.discussions li .chatter_posts .chatter_right{
 
             right: 3px;
         }
+    }
+
+    @media only screen and ( max-width: 550px ) {
+
+        #chatter_header {
+
+            .container {
+
+                flex-wrap: wrap;
+
+                span {
+
+                    margin: 1rem 0;
+                    line-height: 1.5;
+                    width: 100%;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 749px) and (min-width: 239px){
+
+        #new_discussion, #new_discussion_in_discussion_view {
+            width: 100% !important;
+            margin-left: 0 !important;
+        }
+
+        #new_discussion_in_discussion_view{
+
+            left: 0;
+            top: 120px;
+            bottom: 0;
+            overflow-y: scroll;
+        }
+
     }
 
     .chatter-form-editor{

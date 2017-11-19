@@ -104,7 +104,7 @@
                                         <div id="delete_warning_{{ $post->id }}" class="chatter_warning_delete">
 		                					<i class="chatter-warning"></i>Are you sure you want to delete this response?
 		                					<button class="button is-small is-danger pull-right delete_response">Yes Delete It</button>
-		                					<button class="button is-small is-default pull-right">No Thanks</button>
+		                					<button class="button is-small is-default pull-right no-thanks">No Thanks</button>
 		                				</div>
                                         <div class="chatter_post_actions">
 			                				<p class="chatter_delete_btn">
@@ -457,7 +457,7 @@
                         $('#delete_warning_' + id).show();
                     });
 
-                    $('.chatter_warning_delete .btn-default').click(function(){
+                    $('.chatter_warning_delete .is-default').click(function(){
                         $(this).parent('.chatter_warning_delete').hide();
                         $(this).parents('li').removeClass('delete_warning');
                     });

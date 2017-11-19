@@ -94,6 +94,11 @@ body{
     padding-top: 115px;
     min-height: 100vh;
 
+    @media only screen and ( min-width: $tablet ) {
+
+        padding-top: 170px;
+    }
+
     @media only screen and ( min-width: $desktop ) {
 
         // 90x for main nav + 40px top bar
