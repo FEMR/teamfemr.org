@@ -21,8 +21,6 @@
 
             <div class="stretch-content {{ isset( $content_wrapper_class ) ? $content_wrapper_class : '' }}">
 
-                @yield( 'hero' )
-
                 @yield('above-content')
 
                 @yield('content')

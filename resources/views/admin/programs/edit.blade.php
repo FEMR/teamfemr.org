@@ -29,47 +29,6 @@
 
 @section('section-content')
 
-    <div class="columns">
-
-        <div class="column is-half">
-
-            <div class="notification ">
-
-                {!! Form::model( $program, [ 'method' => 'put', 'route' => [ 'admin.programs.update', $program->id ] ]) !!}
-
-                    @include( 'admin.programs.partials.form.base-fields' )
-
-                    @include( 'admin.programs.partials.form.other-fields' )
-
-                    <div class="field is-grouped">
-                        <p class="control">
-                            <button class="button is-primary">Submit</button>
-                        </p>
-                    </div>
-
-                {!! Form::close() !!}
-
-            </div>
-
-        </div>
-
-        <div class="column is-half">
-
-            {{-- Only show the additional fields when there is an existing program --}}
-            @if( isset( $program ) )
-
-                @include( 'admin.programs.partials.form.locations.table' )
-
-                @include( 'admin.programs.partials.form.contacts.table' )
-
-                @include( 'admin.programs.partials.form.papers.table' )
-
-                @include( 'admin.programs.partials.form.partners.table' )
-
-            @endif
-
-        </div>
-
-    </div>
+    <survey :program-id="{{ $program->id }}"></survey>
 
 @endsection

@@ -15,9 +15,10 @@
          */
         public function index()
         {
-            $programs = OutreachProgram::orderBy( 'name' )->paginate( 50 );
+            $programs = OutreachProgram::orderBy( 'name' )->paginate( 30 );
+            $user = auth( 'web' )->user();
 
-            return view( 'admin.programs.index', [ 'programs' => $programs ] );
+            return view( 'admin.programs.index', [ 'programs' => $programs, 'user' => $user ] );
         }
 
         /**
@@ -25,7 +26,6 @@
          */
         public function archived()
         {
-
             $programs = OutreachProgram::onlyTrashed()->get();
 
             return view( 'admin.programs.archived', [ 'programs' => $programs ] );

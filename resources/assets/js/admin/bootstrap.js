@@ -1,4 +1,5 @@
-// window._ = require('lodash');
+window._ = require('lodash');
+require('lodash-addons'); // for slugify
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -29,6 +30,10 @@ window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': FEMR.csrfToken,
     'X-Requested-With': 'XMLHttpRequest'
 };
+
+// append the api_token as a param to every request by default
+window.axios.defaults.params = {};
+window.axios.defaults.params['api_token'] = window.FEMR.userToken;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

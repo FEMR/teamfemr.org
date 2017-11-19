@@ -33,6 +33,9 @@
             <thead>
                 <tr>
                     <th></th>
+                    @if( ! is_null( $user ) && $user->is_admin )
+                    <th></th>
+                    @endif
                     <th>Name</th>
                     <th>Year Initiated</th>
                     <th>Participants</th>
@@ -44,10 +47,22 @@
             <tbody>
                 @foreach( $programs as $program )
                 <tr>
-
                     <td>
                         @include( 'admin.programs.partials.dropdown' )
                     </td>
+                    @if( ! is_null( $user ) && $user->is_admin )
+                    <td>
+                        @if( $program->is_approved )
+                            <span class="icon is-medium">
+                              <i class="fa fa-eye"></i>
+                            </span>
+                        @else
+                            <span class="icon is-medium">
+                              <i class="fa fa-eye-slash has-text-danger"></i>
+                            </span>
+                        @endif
+                    </td>
+                    @endif
                     <td>{{ $program->name }}</td>
                     <td>{{ $program->year_initiated }}</td>
                     <td>{{ $program->yearly_outreach_participants }}</td>

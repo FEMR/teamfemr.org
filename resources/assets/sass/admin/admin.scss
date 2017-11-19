@@ -21,6 +21,16 @@ $link: $primary;
 @import "dashboard";
 @import "schools";
 
+html{
+
+    height: 100%;
+}
+
+html,body{
+
+    min-height: 100%;
+}
+
 [v-cloak] {
 
     display: none;
@@ -31,12 +41,51 @@ table{
     font-size: 0.9rem;
 }
 
+.desktop-only{
+
+    display: none;
+}
+
+@media only screen and ( min-width: 768px ) {
+
+    .desktop-only {
+
+        display: block;
+    }
+
+    .mobile-only {
+
+        display: none;
+    }
+}
+
+.flex-wrap{
+
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .flex-stretch{
+
+        flex: 1;
+
+        display: flex;
+        align-items: stretch;
+    }
+}
+
 .footer{
 
-    margin-top: 0.75em;
+    padding: 2rem 1.5rem;
 }
 
 @import "components/header";
 @import "components/section-menu";
 @import "components/breadcrumbs";
 @import "components/location-modal";
+
+
+// "Sharing" with the front end
+@import "../front/colors";
+@import "../front/buttons";
+@import "../front/pages/survey";
