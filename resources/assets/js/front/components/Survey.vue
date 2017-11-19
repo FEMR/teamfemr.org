@@ -4,135 +4,140 @@
         <div v-if="fieldsDefIsLoaded">
 
             <div class="columns questions-container">
-
                 <div id="survey-questions" class="column is-8">
                     <div class="columns is-multiline">
 
-                        <div class="column is-10 section">
+                        <template v-if="showGuestComplete">
 
-                            <text-field
-                                v-model="schoolName"
-                                class="school_name"
-                                :def="fieldsDef.schoolName"
-                                @input="dataUpdated()"
-                            ></text-field>
+                            <guest-complete></guest-complete>
 
-                            <text-field
-                                v-model="name"
-                                class="name"
-                                :def="fieldsDef.name"
-                                @input="dataUpdated()"
-                            ></text-field>
+                        </template>
 
-                            <select-field
-                                v-model="usesEmr"
-                                class="uses_emr"
-                                :def="fieldsDef.usesEmr"
-                                @input="dataUpdated()"
-                            ></select-field>
+                        <template v-else>
 
-                            <text-field
-                                v-model="yearInitiated"
-                                class="year_initiated"
-                                :def="fieldsDef.yearInitiated"
-                                @input="dataUpdated()"
-                            ></text-field>
+                            <div class="column is-10">
+                                <welcome-message :program-id="programId"></welcome-message>
+                            </div>
 
-                            <text-field
-                                v-model="yearlyOutreachParticipants"
-                                class="yearly_outreach_participants"
-                                :def="fieldsDef.yearlyOutreachParticipants"
-                                @input="dataUpdated()"
-                            ></text-field>
+                            <div class="column is-10 section">
 
-                            <text-field
-                                v-model="matriculantsPerClass"
-                                class="matriclants_per_class"
-                                :def="fieldsDef.matriculantsPerClass"
-                                @input="dataUpdated()"
-                            ></text-field>
-
-                            <multi-select-field
-                                v-model="monthsOfTravel"
-                                class="months_of_travel"
-                                :def="fieldsDef.monthsOfTravel"
-                                @input="dataUpdated()"
-                            ></multi-select-field>
-
-                            <multi-select-field
-                                v-model="schoolClasses"
-                                class="school_classes"
-                                :def="fieldsDef.schoolClasses"
-                                @input="dataUpdated()"
-                            ></multi-select-field>
-
-                        </div>
-
-                        <div class="column is-10 section">
-                            <textarea-field
-                                v-for="additionalDef in fieldsDef.additionalFields"
-                                :key="additionalDef.name"
-                                v-model="additionalFields[ additionalDef.name ]"
-                                class="additionalDef.name"
-                                :def="additionalDef"
-                                @input="dataUpdated()"
-                            ></textarea-field>
-                        </div>
-
-                        <div class="column is-12 custom-section">
-
-                            <locations
-                                v-model="visitedLocations"
-                                class="visited_locations"
-                                :def="fieldsDef.visitedLocations"
-                                @input="dataUpdated()"
-                            ></locations>
-
-                            <partners
-                                v-model="partners"
-                                class="partners"
-                                :def="fieldsDef.partners"
-                                @input="dataUpdated()"
-                            ></partners>
-
-                            <contacts
-                                v-model="contacts"
-                                class="contacts"
-                                :def="fieldsDef.contacts"
-                                @input="dataUpdated()"
-                            ></contacts>
-
-                            <papers
-                                v-model="papers"
-                                class="papers"
-                                :def="fieldsDef.papers"
-                                @input="dataUpdated()"
-                            ></papers>
-
-                            <div class="section">
-
-                                <textarea-field
-                                    v-model="comments"
-                                    class="comments"
-                                    :def="fieldsDef.comments"
+                                <text-field
+                                    v-model="schoolName"
+                                    class="school_name"
+                                    :def="fieldsDef.schoolName"
                                     @input="dataUpdated()"
+                                ></text-field>
+
+                                <text-field
+                                    v-model="name"
+                                    class="name"
+                                    :def="fieldsDef.name"
+                                    @input="dataUpdated()"
+                                ></text-field>
+
+                                <select-field
+                                    v-model="usesEmr"
+                                    class="uses_emr"
+                                    :def="fieldsDef.usesEmr"
+                                    @input="dataUpdated()"
+                                ></select-field>
+
+                                <text-field
+                                    v-model="yearInitiated"
+                                    class="year_initiated"
+                                    :def="fieldsDef.yearInitiated"
+                                    @input="dataUpdated()"
+                                ></text-field>
+
+                                <text-field
+                                    v-model="yearlyOutreachParticipants"
+                                    class="yearly_outreach_participants"
+                                    :def="fieldsDef.yearlyOutreachParticipants"
+                                    @input="dataUpdated()"
+                                ></text-field>
+
+                                <text-field
+                                    v-model="matriculantsPerClass"
+                                    class="matriclants_per_class"
+                                    :def="fieldsDef.matriculantsPerClass"
+                                    @input="dataUpdated()"
+                                ></text-field>
+
+                                <multi-select-field
+                                    v-model="monthsOfTravel"
+                                    class="months_of_travel"
+                                    :def="fieldsDef.monthsOfTravel"
+                                    @input="dataUpdated()"
+                                ></multi-select-field>
+
+                                <multi-select-field
+                                    v-model="schoolClasses"
+                                    class="school_classes"
+                                    :def="fieldsDef.schoolClasses"
+                                    @input="dataUpdated()"
+                                ></multi-select-field>
+
+                            </div>
+                            <div class="column is-10 section">
+                                <textarea-field
+                                        v-for="additionalDef in fieldsDef.additionalFields"
+                                        :key="additionalDef.name"
+                                        v-model="additionalFields[ additionalDef.name ]"
+                                        class="additionalDef.name"
+                                        :def="additionalDef"
+                                        @input="dataUpdated()"
                                 ></textarea-field>
+                            </div>
+                            <div class="column is-12 custom-section">
+
+                                <locations
+                                        v-model="visitedLocations"
+                                        class="visited_locations"
+                                        :def="fieldsDef.visitedLocations"
+                                        @input="dataUpdated()"
+                                ></locations>
+
+                                <partners
+                                        v-model="partners"
+                                        class="partners"
+                                        :def="fieldsDef.partners"
+                                        @input="dataUpdated()"
+                                ></partners>
+
+                                <contacts
+                                        v-model="contacts"
+                                        class="contacts"
+                                        :def="fieldsDef.contacts"
+                                        @input="dataUpdated()"
+                                ></contacts>
+
+                                <papers
+                                        v-model="papers"
+                                        class="papers"
+                                        :def="fieldsDef.papers"
+                                        @input="dataUpdated()"
+                                ></papers>
+
+                                <div class="section">
+
+                                    <textarea-field
+                                            v-model="comments"
+                                            class="comments"
+                                            :def="fieldsDef.comments"
+                                            @input="dataUpdated()"
+                                    ></textarea-field>
+
+                                </div>
 
                             </div>
 
-                        </div>
-
+                        </template>
                     </div>
                 </div>
 
-                <div
-                    v-if="windowWidth > 768"
-                    class="column is-4"
-                >
-                    <div
-                        class="status-container"
-                        ref="status-container"
-                    >
+                <div v-if="windowWidth > 768" class="column is-4" >
+                    <!-- TODO - make component -->
+                    <div class="status-container" ref="status-container" >
                         <affix
                             class="survey-status"
                             ref="survey-status"
@@ -145,10 +150,6 @@
                         >
 
                             <div class="message is-danger" v-if="errors.any()">
-                                <div class="message-header">
-                                    <p>Error</p>
-                                    <button class="delete" aria-label="delete"></button>
-                                </div>
                                 <div class="message-body">
 
                                     <ul>
@@ -167,7 +168,8 @@
                                     :class="{ button: true, 'femr-button': true, 'is-loading': isSubmitting }"
                                     @click="saveClicked()"
                                 >
-                                    Save
+                                    <span v-if="Number.isInteger( id )">Save</span>
+                                    <span v-else>Submit</span>
                                 </button>
 
                             </div>
@@ -186,7 +188,8 @@
                 :class="{ button:true, 'femr-button': true, 'is-loading': isSubmitting }"
                 @click="saveClicked()"
             >
-                Save
+                <span v-if="Number.isInteger( id )">Save</span>
+                <span v-else>Submit</span>
             </button>
 
         </div>
@@ -195,7 +198,7 @@
 
             <p class="loading">
                 <span class="button is-text is-loading"></span>
-                Building Form...
+                Loading..
             </p>
 
         </div>
@@ -211,11 +214,16 @@
 
     import OutreachProgram from '../models/OutreachProgram';
     import Survey from '../services/Survey';
+    import User from '../services/User';
 
     import Contacts from './survey/Contacts';
     import Locations from './survey/Locations';
     import Papers from './survey/Papers';
     import Partners from './survey/Partners';
+    import GuestComplete from './survey/GuestComplete';
+    import WelcomeMessage from './survey/WelcomeMessage';
+    import SignUp from './SignUp';
+    import Register from './Register';
 
     const CACHE_KEY = 'FEMR.survey';
 
@@ -235,7 +243,12 @@
             'contacts': Contacts,
             'locations': Locations,
             'papers': Papers,
-            'partners': Partners
+            'partners': Partners,
+            'guest-complete': GuestComplete,
+            'welcome-message': WelcomeMessage,
+
+            'sign-up': SignUp,
+            'register': Register
         },
 
         data() {
@@ -263,17 +276,13 @@
                 papers: [],
 
                 isSubmitting: false,
+                showGuestComplete: false,
                 windowWidth: 0,
                 statusWidth: 'auto'
             }
         },
 
         computed: {
-
-            fieldKeys: function() {
-
-
-            },
 
             isDesktop: function() {
 
@@ -380,7 +389,13 @@
                     contacts: this.filterEmptyObjects( _.map( this.contacts, ( c ) => c.store() ) ),
                     papers: this.filterEmptyObjects( _.map( this.papers, ( p ) => p.store() ) )
                 };
+            },
+
+            isLoggedIn: function() {
+
+                return User.isLoggedIn();
             }
+
         },
 
         methods: {
@@ -389,7 +404,8 @@
 
                 if( _.isInteger( this.id ) ) {
 
-                    // auto save every 30 seconds when updating
+                    // auto save every 30 seconds when updating?
+                    // -- save this for vuex refactor
                     //this.delayedUpdate();
                 }
                 else{
@@ -425,7 +441,7 @@
                 }
             },
 
-            // TODO - move this to its own class/file
+            // TODO - move this to its own class/file and write it a little clearer
             filterEmptyObjects( items ) {
 
                 // `uniqueId` will always have a value, so ignore it when checking for all empty fields
@@ -487,14 +503,20 @@
 
                 Survey.create( this.postFields, ( program ) => {
 
-                    this.setLocalData( program );
-                    this.isSubmitting = false;
+                    // If logged in, redirect to edit page
+                    if( User.isLoggedIn() ) {
 
-                    store.remove( CACHE_KEY );
-
-                    // If logged in, redirect to edit
-
+                        window.location.href = '/survey/' + program.id;
+                    }
                     // If not logged in, show survey set to moderate message
+                    else {
+
+                        this.isSubmitting = false;
+                        this.showGuestComplete = true;
+
+                        //this.setLocalData( program );
+                        store.remove( CACHE_KEY );
+                    }
 
                 }, ( error ) => this.isSubmitting = false );
             },
@@ -528,7 +550,6 @@
                         this.$validator.attach(def.name, def.validators, { alias: def.label });
                     }
                 });
-
                 _.forEach( this.fieldsDef.additionaFields, ( field, key ) => this.additionalFields[ key ] = '' );
 
             } );

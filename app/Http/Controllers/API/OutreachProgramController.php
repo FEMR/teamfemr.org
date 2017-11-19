@@ -15,7 +15,6 @@ class OutreachProgramController extends Controller
      */
     public function index()
     {
-        // TODO -- use a Response here
         $programs = OutreachProgram::withAll()->get();
 
         return OutreachProgramResource::collection( $programs );

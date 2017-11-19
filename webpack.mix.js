@@ -1,4 +1,5 @@
 const { mix } = require('laravel-mix');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,9 +14,11 @@ const { mix } = require('laravel-mix');
 
 mix.disableNotifications();
 
-mix.webpackConfig({
-
-});
+// mix.webpackConfig({
+//     plugins: [
+//         new CleanWebpackPlugin(['./public/js', './public/css', './public/fonts'])
+//     ]
+// });
 
     // front end
 mix .js( 'resources/assets/js/front/app.js', 'public/js/front' )

@@ -8,7 +8,7 @@
             <div class="card ">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Sign Up
+                        Register
                     </p>
                 </header>
                 <div class="card-content">
@@ -16,7 +16,7 @@
                     <p>Registering for an account will give you access to the advanced features of the site.</p>
                     <ul>
                         <li>View contact information</li>
-                        <li>Update your program's existing survey (coming soon)</li>
+                        <li>Update your program's survey information</li>
                     </ul>
 
                     <form class="login-form register-form" role="form" method="POST" action="{{ url('/register') }}">

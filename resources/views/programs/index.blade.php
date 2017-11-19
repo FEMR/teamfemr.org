@@ -131,7 +131,7 @@
 
                     <h2>How can I list my program here?</h2>
 
-                    <p>To add additional programs, please <a href="{{ route( 'survey.create' ) }}">fill out our survey</a></p>
+                    <p>To add your program to this directory, please <a href="{{ route( 'survey.create' ) }}">fill out our survey</a>!</p>
 
                     <a class="button femr-button" href="{{ route( 'survey.create' ) }}">Take the survey</a>
 

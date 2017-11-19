@@ -54,11 +54,10 @@ class OutreachProgram {
            this.additionalFields[ key ] = value;
         });
 
-        //this.monthsOfTravel = json.monthsOfTravel;
         this.monthsOfTravel = [];
         _.forEach( json.monthsOfTravel, ( month ) => {
 
-            // this is matched up to what the MultiSelectField in the survey wants
+            // this is matched up to what vue-select wants
             this.monthsOfTravel.push( {
 
                 label: month,
@@ -69,7 +68,7 @@ class OutreachProgram {
         this.schoolClasses = [];
         _.forEach( json.schoolClasses, ( schoolClass, key ) => {
 
-            // this is matched up to what the MultiSelectField in the survey wants
+            // this is matched up to what vue-select wants
             this.schoolClasses.push( {
 
                 label: schoolClass.name,
