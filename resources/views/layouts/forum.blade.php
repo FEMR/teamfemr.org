@@ -9,6 +9,7 @@
 
         <link href="{{ mix('css/front/app.css') }}" rel="stylesheet">
         @yield('css')
+        <link href="{{ mix('css/front/forum.css') }}" rel="stylesheet">
 
     </head>
 
