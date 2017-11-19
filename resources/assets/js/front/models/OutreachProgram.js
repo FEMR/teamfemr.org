@@ -17,7 +17,7 @@ class OutreachProgram {
         this.name = '';
         this.slug = '';
         this.schoolName = '';
-        this.usesEmr = false;
+        this.usesEmr = '';
         this.matriculantsPerClass = '';
         this.yearInitiated = '';
         this.yearlyOutreachParticipants = '';
