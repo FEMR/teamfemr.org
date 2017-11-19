@@ -454,7 +454,7 @@
                 this.lastUpdated = program.lastUpdated;
                 this.name = program.name;
                 this.schoolName = program.schoolName;
-                this.usesEmr = ( program.usesEmr ) ? 'yes' : 'no';
+                this.usesEmr = ( program.usesEmr === true ) ? 'yes' : ( program.usesEmr === false ) ? 'no' : '';
                 this.yearInitiated = program.yearInitiated;
                 this.yearlyOutreachParticipants = program.yearlyOutreachParticipants;
                 this.monthsOfTravel = program.monthsOfTravel;
