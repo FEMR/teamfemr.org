@@ -4,7 +4,7 @@
         <template v-if="! isEdit">
             <p>Fill out this survey to list your program in our [directory?].</p>
         </template>
-        <template v-else-if="isLoggedIn && ! isEdit">
+        <template v-if="isLoggedIn && ! isEdit">
             <p>You are logged in!</p>
             <p>After you submit the survey you will be able to come back and make edits later.</p>
         </template>
