@@ -35,10 +35,8 @@
 
                     Welcome {{ Auth::user()->name }}
 
-
-                    |
-
                     @if( Auth::user()->is_admin )
+                    |
                     <a class="nav-item logged-in-status" href="{{ route( 'admin.dashboard.index' ) }}">
                       Admin
                     </a>
