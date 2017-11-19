@@ -45,10 +45,8 @@ class SurveyController extends Controller
 
             /** @var User $user */
             $user = \Auth::guard('api')->user();
-            if( ! $user->is_admin ) {
-
-                $program->users()->attach( $user );
-            }
+            $program->users()->attach( $user );
+            $program->save();
         }
 
         return new OutreachProgramResource( $program );

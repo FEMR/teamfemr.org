@@ -18,12 +18,23 @@ class IsApprovedScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $user = \Auth::user();
+        // TODO -- how to get the user for multiple guards in a better way than this?
+        $user = auth('api')->user();
+        if( ! $user ) $user = auth('web' )->user();
+
         if( ! ( $user && $user->is_admin ) ) {
 
             $builder->whereNotNull('approved_at' );
         }
+        else if( $user ) {
 
-
+            if( ! $user->is_admin )
+            {
+                $builder->whereHas( 'user', function ( $query ) use ( $user )
+                {
+                    $query->where( 'id', '=', $user->id );
+                } );
+            }
+        }
     }
 }

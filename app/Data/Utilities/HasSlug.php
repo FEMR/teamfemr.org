@@ -10,10 +10,8 @@ trait HasSlug
     /**
      * Observe model updates and ensure slug is set - generate from title if not
      */
-    protected static function boot()
+    protected static function bootHasSlug()
     {
-
-        parent::boot();
 
         static::saving( function( $entity )
         {
