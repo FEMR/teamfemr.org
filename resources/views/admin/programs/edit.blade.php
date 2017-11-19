@@ -29,6 +29,6 @@
 
 @section('section-content')
 
-    <survey :program-id="{{ $program->id }}"></survey>
+    <survey :program-id="{{ $program->id }}"  :use-local-storage="false" :show-welcome-message="false"></survey>
 
 @endsection

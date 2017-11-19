@@ -29,6 +29,6 @@
 
 @section('section-content')
 
-    <survey></survey>
+    <survey :use-local-storage="false" :show-welcome-message="false"></survey>
 
 @endsection

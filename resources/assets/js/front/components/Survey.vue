@@ -7,7 +7,7 @@
                 <div id="survey-questions" class="column is-8">
                     <div class="columns is-multiline">
 
-                        <template v-if="showGuestComplete">
+                        <template v-if="showWelcomeMessage && showGuestComplete">
 
                             <guest-complete></guest-complete>
 
@@ -15,7 +15,7 @@
 
                         <template v-else>
 
-                            <div class="column is-10">
+                            <div class="column is-10"  v-if="showWelcomeMessage">
                                 <welcome-message :program-id="programId"></welcome-message>
                             </div>
 
@@ -235,6 +235,18 @@
 
                 type: Number,
                 default: undefined
+            },
+
+            showWelcomeMessage: {
+
+                type: Boolean,
+                default: true
+            },
+
+            useLocalStorage: {
+
+                type: Boolean,
+                default: true
             }
         },
 
@@ -416,7 +428,10 @@
 
             updateCache: _.throttle( function() {
 
-                store.set( CACHE_KEY, this.storeFields, Date.now() + 120 * 60 * 1000 /* 2 hours in ms */ );
+                if( this.useLocalStorage ) {
+
+                    store.set(CACHE_KEY, this.storeFields, Date.now() + 120 * 60 * 1000 /* 2 hours in ms */);
+                }
 
             }, 10000 ),
 
@@ -558,7 +573,7 @@
 
                 Survey.get( this.programId, program => this.setLocalData( program ) );
             }
-            else {
+            else if( this.useLocalStorage ) {
 
                 let cachedSurvey = store.get( CACHE_KEY );
                 if( cachedSurvey ) {
