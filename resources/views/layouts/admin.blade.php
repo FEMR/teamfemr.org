@@ -15,24 +15,14 @@
     </head>
 <body>
 
-    <div id="app">
+    <div id="app" class="flex-wrap">
+
         <nav class="nav top-nav has-shadow" id="top">
             <div class="container">
                 <div class="nav-left">
                     <a class="nav-item" href="{{ route( 'pages.home' ) }}">
                         <img src="{{ asset('images/logo/logo_color_med.png') }}" alt="Description">
                     </a>
-
-                    <a href="{{ route( 'admin.dashboard.index' ) }}"  class="nav-item is-tab {{ Route::currentRouteName() == 'admin.dashboard.index' ? 'is-active' : '' }}">
-                        Dashboard
-                    </a>
-                    <a href="{{ route( 'admin.schools.index' ) }}"  class="nav-item is-tab {{ str_contains( Route::currentRouteName(), 'admin.schools.' ) ? 'is-active' : '' }}">
-                        Schools
-                    </a>
-                    <a href="{{ route( 'admin.programs.index' ) }}" class="nav-item is-tab {{ str_contains( Route::currentRouteName(), 'admin.programs.' ) ? 'is-active' : '' }}">
-                        Outreach Programs
-                    </a>
-
                 </div>
                 <span class="nav-toggle">
                     <span></span>
@@ -51,9 +41,16 @@
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container flex-stretch">
             <div class="columns admin-panel">
-                <div class="column is-12 admin-content">
+
+                <div class="column is-2 side-menu">
+
+                    @include( 'admin.partials.side-nav' )
+
+                </div>
+
+                <div class="column is-10 admin-content">
 
                     {{-- Header Section --}}
                     <section class="hero">
@@ -94,22 +91,25 @@
 
         @stack( 'after-container' )
 
+        <footer class="footer">
+            <div class="container">
+                <div class="has-text-centered">
+                    <p>
+                        &copy {{ date( 'Y' ) }} Team fEMR
+                    </p>
+                </div>
+            </div>
+
+        </footer>
+
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="has-text-centered">
-                <p>
-                    &copy {{ date( 'Y' ) }} Team fEMR
-                </p>
-            </div>
-        </div>
-
-    </footer>
 
     <script>
 
         var FEMR = {!! json_encode([
+
+            'userToken' => user_token(),
             'csrfToken' => csrf_token(),
             'googleMapsKey' => env( 'GMAPS_API_KEY' )
         ]) !!};

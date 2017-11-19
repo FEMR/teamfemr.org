@@ -1,33 +1,27 @@
 require('./bootstrap');
 
-import "select2"
-// import store from './store';
+import * as VueGoogleMaps from 'vue2-google-maps';
 
-import PapersForm from './components/papers/form';
-Vue.component( 'papers-form', PapersForm );
-import PapersTable from './components/papers/table';
-Vue.component( 'papers-table', PapersTable );
+Vue.use( VueGoogleMaps, {
+    load: {
+        key: FEMR.googleMapsKey,
+        libraries: 'places'
+    }
+});
 
-import PartnersForm from './components/partners/form';
-Vue.component( 'partners-form', PartnersForm );
-import PartnersTable from './components/partners/table';
-Vue.component( 'partners-table', PartnersTable );
+let Affix = require('vue-affix');
+Vue.use(Affix);
 
-import LocationsForm from './components/locations/form';
-Vue.component( 'locations-form', LocationsForm );
-import LocationsTable from './components/locations/table';
-Vue.component( 'locations-table', LocationsTable );
+import VeeValidate from 'vee-validate';
+Vue.use( VeeValidate, { inject: true } );
 
-import ContactsForm from './components/contacts/form';
-Vue.component( 'contacts-form', ContactsForm );
-import ContactsTable from './components/contacts/table';
-Vue.component( 'contacts-table', ContactsTable );
+Vue.component( 'survey', require( '../front/components/Survey.vue' ) );
+Vue.component( 'text-field', require( '../front/components/fields/TextField.vue' ) );
+Vue.component( 'textarea-field', require( '../front/components/fields/TextareaField.vue' ) );
+Vue.component( 'select-field', require( '../front/components/fields/SelectField.vue' ) );
+Vue.component( 'multi-select-field', require( '../front/components/fields/MultiSelectField.vue' ) );
 
-// Register the map component
 Vue.component('femr-map', require('./components/FemrMap.vue'));
-Vue.component('school-form', require('./components/schools/SchoolForm.vue'));
-
-// TODO -- probably a more specific name for these?
 Vue.component('dropdown-menu', require('./components/DropdownMenu.vue'));
 Vue.component('menu-item', require('./components/MenuItem.vue'));
 Vue.component('menu-form', require('./components/MenuForm.vue'));
@@ -57,17 +51,4 @@ const app = new Vue({
             menu.classList.toggle('is-active');
         });
     }
-});
-
-
-//
-// jQuery stuff so I can get things working faster while learning how to use Vue
-//
-$( function() {
-
-    $( '.select2' ).select2({
-
-        tags: true,
-        tokenSeparators: [',', ' ']
-    });
 });

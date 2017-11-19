@@ -3,12 +3,26 @@ body {
 }
 
 .admin-panel {
+
     padding-bottom: 0;
+    width: 100%;
+
+    .side-menu{
+
+        background-color: #f7f7f7;
+        font-size: 1.1rem;
+        padding: 3rem 0.75rem 0.75rem;
+    }
 
     .menu-label {
-        color: #ffffff;
-        border-bottom: 1px solid #6f6f6f;
-        margin-bottom: 0.5em;
+
+        color: #1f1f1f;
+        border-bottom: 1px solid #1f1f1f;
+
+        &:not(:first-child){
+
+            margin-top: 2rem;
+        }
     }
 
     .menu-list {
@@ -21,25 +35,18 @@ body {
             font-size: 0.9em;
 
             &:hover {
-                color: #9f9f9f;
+                color: #1f1f1f;
                 background-color: transparent;
             }
 
             &.is-active {
-                color: #ffffff;
+                color: #1f1f1f;
                 background-color: transparent;
+                font-weight: bold;
             }
         }
     }
 
-    .aside {
-        background-color: #232b2d;
-        margin-right: -10px;
-    }
-    .aside .main {
-        padding: 10px;
-        color: #6f7b7e;
-    }
 
     .admin-content {
         display: block;
