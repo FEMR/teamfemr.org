@@ -163,6 +163,11 @@ class OutreachProgram {
         return this.schoolClasses.map( item => item.label ).join( ', ' );
     }
 
+    monthsOfTravelList() {
+
+        return this.monthsOfTravel.map( item => item.label ).join( ', ' );
+    }
+
     partnersList() {
 
         return this.partners.map( item => item.name ).join( ', ' );
