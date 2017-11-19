@@ -5,4 +5,150 @@
 
 
     }
+
+    .chatter_container {
+
+        padding: 0 0.75rem;
+    }
+
+    &.chatter_home .chatter_middle p{
+
+        font-size: 0.9rem;
+        color: #1f1f1f;
+    }
+
+    ul.discussions li a.discussion_list .chatter_middle span.chatter_middle_details,
+    ul.discussions li .chatter_posts .chatter_middle span.chatter_middle_details{
+
+        font-size: 0.8rem;
+        color: #5a7cae;
+    }
+
+    @media only screen and ( max-width: 768px ) {
+
+        ul.discussions li a.discussion_list .chatter_avatar,
+        ul.discussions li .chatter_posts .chatter_avatar{
+
+            display: none;
+        }
+
+        ul.discussions li a.discussion_list .chatter_middle,
+        ul.discussions li .chatter_posts .chatter_middle{
+
+            margin-left: 0;
+            margin-right: 50px;
+        }
+
+
+
+        ul.discussions li a.discussion_list .chatter_right,
+        ul.discussions li .chatter_posts .chatter_right{
+
+            right: 3px;
+        }
+    }
+
+    .chatter-form-editor{
+
+        padding: 0.75rem;
+    }
+
+    #chatter_category_id {
+
+        // overide so the select box matches bulma
+        height: 2.25em;
+        color: #363636;
+        position: relative;
+        left: auto;
+    }
+
+    &.discussion #new_response{
+
+        position: relative;
+    }
+
+    .chatter_avatar span.chatter_avatar_circle{
+
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        line-height: 52px;
+    }
+
+    ul.discussions li a.discussion_list .chatter_middle .chatter_body,
+    ul.discussions li .chatter_posts .chatter_middle .chatter_body{
+
+        padding-bottom: 0.5rem;
+    }
+
+    ul.discussions li .chatter_posts .chatter_middle p{
+
+        font-size: 1rem;
+    }
+
+    ul.discussions li a.discussion_list,
+    ul.discussions li .chatter_posts{
+
+        background-color: #f5f5f5;
+        position: relative;
+    }
+
+    ul.discussions li a.discussion_list .chatter_post_actions,
+    ul.discussions li .chatter_posts .chatter_post_actions{
+
+        right: 15px;
+    }
+
+    ul.discussions li a.discussion_list,
+    ul.discussions li .chatter_posts{
+
+        margin-bottom: 0.75rem;
+    }
+
+    #new_discussion .chatter-close,
+    #new_discussion_in_discussion_view .chatter-close {
+
+        height: 2rem;
+        width: 2rem;
+        border-radius: 100%;
+        top: auto;
+        right: auto;
+        position: relative;
+        padding: 0;
+        margin: 0.1rem 0.1rem 0 0;
+        display: inline-block;
+        text-align: center;
+
+        &:before{
+
+            line-height: 2rem;
+        }
+    }
+
+    #new_discussion .select_color_text,
+    #new_discussion_in_discussion_view .select_color_text {
+
+        color: #4f4f4f;
+    }
+
+    .tag{
+
+        color: #ffffff;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    ul.discussions li a.discussion_list .chatter_post_actions p,
+    ul.discussions li .chatter_posts .chatter_post_actions p{
+
+        color: #6f6f6f;
+        border-radius: 2px;
+        background: #cff1fa;
+        margin: 0 2px;
+    }
+
+    .chatter_warning_delete button{
+
+        margin: 0 4px;
+    }
 }

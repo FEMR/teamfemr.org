@@ -19,19 +19,8 @@
 
     <div id="chatter" class="chatter_home">
 
-        <div id="chatter_hero">
-            <div id="chatter_hero_dimmer"></div>
-            <?php $headline_logo = Config::get('chatter.headline_logo'); ?>
-            @if( isset( $headline_logo ) && !empty( $headline_logo ) )
-                <img src="{{ Config::get('chatter.headline_logo') }}">
-            @else
-                <h1>{{ Config::get('chatter.headline') }}</h1>
-                <p>{{ Config::get('chatter.description') }}</p>
-            @endif
-        </div>
-
         @if(Session::has('chatter_alert'))
-            <div class="chatter-alert alert alert-{{ Session::get('chatter_alert_type') }}">
+            <div class="chatter-alert notification is-{{ Session::get('chatter_alert_type') }}">
                 <div class="container">
                     <strong><i class="chatter-alert-{{ Session::get('chatter_alert_type') }}"></i> {{ Config::get('chatter.alert_messages.' . Session::get('chatter_alert_type')) }}</strong>
                     {{ Session::get('chatter_alert') }}
@@ -42,7 +31,7 @@
         @endif
 
         @if (count($errors) > 0)
-            <div class="chatter-alert alert alert-danger">
+            <div class="chatter-alert notification is-danger">
                 <div class="container">
                     <p><strong><i class="chatter-alert-danger"></i> {{ Config::get('chatter.alert_messages.danger') }}</strong> Please fix the following errors:</p>
                     <ul>
@@ -118,7 +107,7 @@
                                         </div>
 
                                         <div class="chatter_middle">
-                                            <h3 class="chatter_middle_title">{{ $discussion->title }} <div class="chatter_cat" style="background-color:{{ $discussion->category->color }}">{{ $discussion->category->name }}</div></h3>
+                                            <h3 class="chatter_middle_title">{{ $discussion->title }} <div class="tag" style="background-color:{{ $discussion->category->color }}">{{ $discussion->category->name }}</div></h3>
                                             <span class="chatter_middle_details">Posted By: <span data-href="/user">{{ ucfirst($discussion->user->{Config::get('chatter.user.database_field_with_user_name')}) }}</span> {{ \Carbon\Carbon::createFromTimeStamp(strtotime($discussion->created_at))->diffForHumans() }}</span>
                                             @if($discussion->post[0]->markdown)
                                                 <?php $discussion_body = GrahamCampbell\Markdown\Facades\Markdown::convertToHtml( $discussion->post[0]->body ); ?>
@@ -155,28 +144,37 @@
                 <div></div>
             </div>
 
-            <form id="chatter_form_editor" action="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}" method="POST">
-                <div class="row">
-                    <div class="col-md-7">
+            <form id="chatter_form_editor" class="chatter-form-editor" action="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}" method="POST">
+
+                <div class="columns">
+                    <div class="column is-7">
                         <!-- TITLE -->
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Title of {{ Config::get('chatter.titles.discussion') }}" v-model="title" value="{{ old('title') }}" >
+                        <div class="field">
+                            <input type="text" class="input" id="title" name="title" placeholder="Title of {{ Config::get('chatter.titles.discussion') }}" v-model="title" value="{{ old('title') }}" >
+                        </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="column is-4">
                         <!-- CATEGORY -->
-                        <select id="chatter_category_id" class="form-control" name="chatter_category_id">
-                            <option value="">Select a Category</option>
-                            @foreach($categories as $category)
-                                @if(old('chatter_category_id') == $category->id)
-                                    <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                                @else
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endif
-                            @endforeach
-                        </select>
+                        <div class="field">
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select id="chatter_category_id" name="chatter_category_id">
+                                        <option value="">Select a Category</option>
+                                        @foreach($categories as $category)
+                                            @if(old('chatter_category_id') == $category->id)
+                                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                            @else
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-md-1">
+                    <div class="column is-1">
                         <i class="chatter-close"></i>
                     </div>
                 </div><!-- .row -->
@@ -199,11 +197,11 @@
                     <input type='text' id="color" name="color" /><span class="select_color_text">Select a Color for this Discussion (optional)</span>
                     <button id="submit_discussion" class="button is-success pull-right">
                         <span class="icon">
-                          <i class="fa fa-new"></i>
+                          <i class="fa fa-plus"></i>
                         </span>
                         <span>Create {{ Config::get('chatter.titles.discussion') }}</span>
                     </button>
-                    <a href="/{{ Config::get('chatter.routes.home') }}" class="btn btn-default pull-right" id="cancel_discussion">Cancel</a>
+                    <a href="/{{ Config::get('chatter.routes.home') }}" class="button is-text pull-right" id="cancel_discussion">Cancel</a>
                     <div style="clear:both"></div>
                 </div>
             </form>
@@ -253,7 +251,7 @@
             });
             $('#new_discussion_btn, #cancel_discussion').click(function(){
                 @if(Auth::guest())
-                    window.location.href = "/{{ Config::get('chatter.routes.home') }}/login";
+                    window.location.href = "/login";
                 @else
                 $('#new_discussion').slideDown();
                 $('#title').focus();
