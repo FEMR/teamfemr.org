@@ -213,6 +213,22 @@ class OutreachProgram extends Model
 
     /**
      * @param $query
+     * @param array $filters
+     *
+     * @return mixed
+     */
+    public function scopeFilter( $query, $filters = [] )
+    {
+        if( isset( $filters['searchText'] ) )
+        {
+            $query->where( 'name', 'LIKE', '%' . $filters['searchText'] . '&' );
+        }
+
+        return $query;
+    }
+
+    /**
+     * @param $query
      *
      * @return mixed
      */

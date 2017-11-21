@@ -47,7 +47,7 @@
                 <p class="city_state_country">
                     <span>{{ program.firstLocationCityStateCountry() }}</span>
                 </p>
-                <p><strong>Dates of travel:</strong> {{ program.monthsOfTravelList() }}</p>
+                <p><strong>Dates of travel:</strong> {{ monthsOfTravel( program ) }}</p>
                 <p><strong>Class Involvement:</strong> {{ ( program.schoolClasses.length > 0 ) ? program.schoolClassesList() : '--' }}</p>
                 <p><strong>Partners:</strong> {{ ( program.partners.length > 0 ) ? program.partnersList() : '--' }}</p>
 

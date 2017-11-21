@@ -6,12 +6,12 @@ import { default as OutreachProgramModel } from '../models/OutreachProgram';
 
 class OutreachProgram {
 
-    static index( callback ) {
+    static index( filters, callback ) {
 
         const CACHE_KEY = 'FEMR.programs';
         let cachedPrograms = store.get( CACHE_KEY );
 
-        if( cachedPrograms ) {
+        if( _.isEmpty( filters ) && cachedPrograms ) {
 
             console.log( "loaded from cache" );
 
@@ -25,7 +25,7 @@ class OutreachProgram {
         }
         else {
 
-            axios.get( '/api/programs' )
+            axios.get( '/api/programs', { params: filters } )
                 .then( ( response ) => {
 
                     let programs = [];
