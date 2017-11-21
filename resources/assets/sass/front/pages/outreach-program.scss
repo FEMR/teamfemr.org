@@ -147,6 +147,41 @@
             font-size: 0.9rem;
         }
     }
+
+    .take-survey-section{
+
+        padding-top: 3rem;
+        background-color: #3f3f3f;
+        color: #ffffff;
+
+        .title{
+
+            color: #ffffff;
+        }
+
+        .button-column{
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .femr-button{
+
+                font-size: 1.4rem;
+                height: 2.75em;
+            }
+        }
+
+        a{
+
+            color: #efefef;
+
+            &:hover{
+
+                color: #ffffff;
+            }
+        }
+    }
 }
 
 @media only screen and ( min-width: $desktop ){
