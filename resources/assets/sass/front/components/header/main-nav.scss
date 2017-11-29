@@ -21,8 +21,7 @@ body{
     }
 
     .nav-item a,
-    a.nav-item,
-    span.nav-item{
+    a.nav-item{
 
         color: $lightGrey;
         font-weight: bold;
@@ -30,11 +29,6 @@ body{
         font-size: 0.9rem;
         text-align: left;
         cursor: pointer;
-
-        &:hover{
-
-            background-color: whitesmoke;
-        }
     }
 
     .dropdown-content{
