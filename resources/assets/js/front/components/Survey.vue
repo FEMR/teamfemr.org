@@ -174,7 +174,10 @@
 
                             </div>
 
-                            <p v-if="lastUpdated.length > 0">Last Update: {{ lastUpdated }}</p>
+                            <p v-if="lastUpdated.length > 0" class="last-updated">
+                                <span class="title">Last Update:</span>
+                                <span>{{ lastUpdated }}</span>
+                            </p>
 
                         </affix>
                     </div>
@@ -207,6 +210,8 @@
 </template>
 
 <script type="text/babel">
+
+    import moment from 'moment';
 
     import store from 'store';
     import expirePlugin from 'store/plugins/expire';
@@ -466,7 +471,7 @@
             setLocalData( program ) {
 
                 this.id = program.id;
-                this.lastUpdated = program.lastUpdated;
+                this.lastUpdated = moment( program.lastUpdated ).format( "dddd MMMM Do, YYYY \a\t h:mma" );
                 this.name = program.name;
                 this.schoolName = program.schoolName;
                 this.usesEmr = ( program.usesEmr === true ) ? 'yes' : ( program.usesEmr === false ) ? 'no' : '';
@@ -636,6 +641,22 @@
 
     .progress::-webkit-progress-value {
         transition: width 0.3s ease;
+    }
+
+    .last-updated{
+
+        margin-top: 15px;
+    }
+
+    .last-updated span{
+
+        display: block;
+    }
+
+    .last-updated .title{
+
+        font-size: 0.9rem;
+        margin-bottom: 4px;
     }
 
 </style>
