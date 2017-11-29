@@ -21,12 +21,20 @@ body{
     }
 
     .nav-item a,
-    a.nav-item{
+    a.nav-item,
+    span.nav-item{
 
         color: $lightGrey;
         font-weight: bold;
         text-transform: uppercase;
         font-size: 0.9rem;
+        text-align: left;
+        cursor: pointer;
+
+        &:hover{
+
+            background-color: whitesmoke;
+        }
     }
 
     .dropdown-content{
@@ -41,7 +49,57 @@ body{
 
             .icon{
 
-                margin-left: 8px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .dropdown-section{
+
+        padding: 0.5rem 1rem;
+
+        .title{
+
+            display: block;
+            font-size: 0.9rem;
+            text-decoration: underline;
+            text-align: left;
+            margin-bottom: 8px;
+            color: #7f7f7f;
+            text-transform: uppercase;
+        }
+
+        .content{
+
+            a{
+
+                padding: 0;
+                margin: 0 0 4px 8px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                line-height: 1.5;
+                font-size: 0.85rem;
+
+                .icon{
+
+                    margin-left: 10px;
+                }
+
+                &:hover{
+
+                    background-color: transparent;
+
+                    span {
+
+                        text-decoration: underline;
+
+                        &.icon{
+
+                            text-decoration: none;
+                        }
+                    }
+                }
             }
         }
     }

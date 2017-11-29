@@ -140,14 +140,14 @@
 
                         <div class="column">
 
-                            <h2 class="title">How can I list my program here?</h2>
+                            <h2 class="title">Want to list your program here?</h2>
                             <p>To add your program to this directory, please <a href="{{ route( 'survey.create' ) }}">fill out our survey</a>!</p>
 
                         </div>
 
                         <div class="column button-column">
 
-                            <a class="button femr-button" href="{{ route( 'survey.create' ) }}">Take the survey</a>
+                            <a class="button femr-button" href="{{ route( 'survey.create' ) }}">Take our quick survey (?)</a>
 
                         </div>
 

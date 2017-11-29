@@ -7,10 +7,6 @@
                 Forum
             </a>
 
-            <a class="nav-item vcu" href="https://vcu.teamfemr.org/" target="_blank">
-                VCU
-            </a>
-
             <a class="nav-item" href="https://www.facebook.com/Team-Femr-1839194879645777/" target="_blank">
               <span class="icon">
                 <i class="fa fa-facebook-f"></i>
