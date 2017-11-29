@@ -35,16 +35,12 @@
                 Home
             </a>
 
-            <a href="{{ route( 'survey.create' ) }}" class="nav-item" >
-                Survey
-            </a>
-
             <div class="nav-item nav-button">
                 <div class="dropdown is-hoverable">
                     <div class="dropdown-trigger">
                         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
 
-                            <span>Annual Reports</span>
+                            <span>About Us</span>
                             <span class="icon is-small">
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                             </span>
@@ -55,45 +51,52 @@
 
                         <div class="dropdown-content">
 
-                            <a class="dropdown-item" href="{{ asset('/documents/Annual_Report_2017.pdf') }}" target="_blank">
-                                <span>2017 Annual Report</span>
-                                <span class="icon is-small has-text-info">
-                                  <i class="fa fa-external-link"></i>
-                                </span>
+                            <a class="dropdown-item" href="/#publications" target="_blank">
+                                Publications and News
                             </a>
-                            <a class="dropdown-item" href="{{ asset('/documents/Annual_Report_2016.pdf') }}" target="_blank">
-                                <span>2016 Annual Report</span>
-                                <span class="icon is-small has-text-info">
-                                  <i class="fa fa-external-link"></i>
-                                </span>
-                            </a>
-                            <a class="dropdown-item" href="{{ asset('/documents/Annual_Report_2015.pdf') }}" target="_blank">
-                                <span>2015 Annual Report</span>
-                                <span class="icon is-small has-text-info">
-                                  <i class="fa fa-external-link"></i>
-                                </span>
-                            </a>
+                            <div class="dropdown-section">
+                                <span class="title">Annual Reports</span>
+                                <div class="content">
+
+                                    <a href="{{ asset('/documents/Annual_Report_2017.pdf') }}" target="_blank">
+                                        <span>2017 Annual Report</span>
+                                        <span class="icon is-small has-text-info">
+                                          <i class="fa fa-external-link"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{{ asset('/documents/Annual_Report_2016.pdf') }}" target="_blank">
+                                        <span>2016 Annual Report</span>
+                                        <span class="icon is-small has-text-info">
+                                          <i class="fa fa-external-link"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{{ asset('/documents/Annual_Report_2015.pdf') }}" target="_blank">
+                                        <span>2015 Annual Report</span>
+                                        <span class="icon is-small has-text-info">
+                                          <i class="fa fa-external-link"></i>
+                                        </span>
+                                    </a>
+
+                                </div>
+                            </div>
 
                         </div>
                     </div>
                 </div>
             </div>
 
-            <a href="/#publications"
-               @if( Route::currentRouteName() == 'pages.home' )
-               v-scroll-to="'#publications'"
-               @endif
-               class="nav-item"
-            >
-                Publications<br >
-                and News
+            <a href="http://demo.teamfemr.org" class="nav-item" target="_blank">
+                Demo
+            </a>
+
+            <a href="{{ route( 'survey.create' ) }}" class="nav-item" >
+                Survey
             </a>
 
             <a href="{{ route( 'programs.index' ) }}" class="nav-item">
-                International Med. <br > Outreach Programs
+                {{--International Med. <br > Outreach Programs--}}
+                Program Directory
             </a>
-
-
 
             @if( Auth::check() )
 

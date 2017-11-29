@@ -9,7 +9,7 @@
             {{--<span class="icon is-small">--}}
               {{--<i class="fa fa-paypal"></i>--}}
             {{--</span>--}}
-            <span>Donate Now</span>
+            Donate Now
         </button>
 
         {{--<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0"--}}
