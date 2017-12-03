@@ -1,5 +1,6 @@
 import FormField from '../models/FormField';
 import OutreachProgram from '../models/OutreachProgram';
+import { ErrorBag } from 'vee-validate';
 
 class Survey {
 
@@ -70,8 +71,17 @@ class Survey {
             })
             .catch( ( error ) => {
 
-                console.log( error );
-                errorCB( error )
+                let response = error.response;
+                let errors = new ErrorBag();
+                if( _.has( response, [ "data", "errors" ] ) ) {
+
+                    _.forEach( response.data.errors, ( error, key ) => {
+
+                        errors.add( key, _.first( error ) );
+                    } );
+                }
+
+                errorCB( errors );
             });
     }
 
@@ -89,7 +99,17 @@ class Survey {
             })
             .catch( ( error ) => {
 
-                errorCB( error )
+                let response = error.response;
+                let errors = new ErrorBag();
+                if( _.has( response, [ "data", "errors" ] ) ) {
+
+                    _.forEach( response.data.errors, ( error, key ) => {
+
+                        errors.add( key, _.first( error ) );
+                    } );
+                }
+
+                errorCB( errors );
             });
     }
 }

@@ -392,7 +392,7 @@
                     id: this.id,
                     schoolName: this.schoolName,
                     name: this.name,
-                    usesEmr: ( this.usesEmr === 'yes' ) ,
+                    usesEmr: this.usesEmr,
                     yearInitiated: this.yearInitiated,
                     yearlyOutreachParticipants: this.yearlyOutreachParticipants,
                     monthsOfTravel: this.monthsOfTravel,
@@ -471,7 +471,12 @@
             setLocalData( program ) {
 
                 this.id = program.id;
-                this.lastUpdated = moment( program.lastUpdated ).format( "dddd MMMM Do, YYYY \a\t h:mma" );
+
+                if( program.lastUpdated.length > 0 ) {
+
+                    this.lastUpdated = moment(program.lastUpdated).format("dddd MMMM Do, YYYY \a\t h:mma");
+                }
+
                 this.name = program.name;
                 this.schoolName = program.schoolName;
                 this.usesEmr = ( program.usesEmr === true ) ? 'yes' : ( program.usesEmr === false ) ? 'no' : '';
@@ -491,6 +496,8 @@
             saveClicked() {
 
                 this.isSubmitting = true;
+
+                this.$validator.errors.clear();
 
                 // if all fields are valid, then update/create, else show errors
                 this.$validator.validateAll( this.postFields ).then( ( result ) => {
@@ -538,7 +545,11 @@
                         store.remove( CACHE_KEY );
                     }
 
-                }, ( error ) => this.isSubmitting = false );
+                }, ( errors ) => {
+
+                    this.$validator.errors = errors;
+                    this.isSubmitting = false
+                } );
             },
 
             updateSurvey() {
@@ -552,7 +563,12 @@
                     this.setLocalData( program );
                     this.isSubmitting = false;
 
-                }, ( error ) => this.isSubmitting = false );
+                }, ( errors ) => {
+
+
+                    this.$validator.errors = errors;
+                    this.isSubmitting = false
+                } );
             }
         },
 
@@ -565,12 +581,12 @@
                 // TODO - this needs to be much better - will not validate additional fields
                 _.forEach( this.fieldsDef, ( def ) => {
 
-                    if( def.validators.length > 0 ) {
+                    if( _.has( def, 'validators' ) && def.validators.length > 0 ) {
 
                         this.$validator.attach(def.name, def.validators, { alias: def.label });
                     }
                 });
-                _.forEach( this.fieldsDef.additionaFields, ( field, key ) => this.additionalFields[ key ] = '' );
+                _.forEach( this.fieldsDef.additionalFields, ( field, key ) => this.additionalFields[ key ] = '' );
 
             } );
 

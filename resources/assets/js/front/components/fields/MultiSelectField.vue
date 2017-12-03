@@ -99,9 +99,6 @@
 
             valueChanged: function ( value ) {
 
-                console.log( "multiselect value changed" );
-                console.log( value );
-
                 this.localValue = value;
 
                 // cleanse/format value here if needed
@@ -146,9 +143,6 @@
 
             this.localOptions = this.def.options;
             this.localValue = this.value[ this.label ];
-
-            console.log( "multiselect created" );
-            console.log( this.value );
 
             // Fires when parent triggers validateAll
             this.$parent.$on( 'validate', ( key ) => {
