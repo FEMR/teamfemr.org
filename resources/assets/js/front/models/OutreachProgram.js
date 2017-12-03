@@ -199,7 +199,7 @@ class OutreachProgram {
             "name": this.name,
             "slug": this.slug,
             "schoolName": this.schoolName,
-            "usesEmr": this.usesEmr = false,
+            "usesEmr": this.usesEmr,
             "matriculantsPerClass": this.matriculantsPerClass,
             "yearInitiated": this.yearInitiated,
             "yearlyOutreachParticipants": this.yearlyOutreachParticipants,
