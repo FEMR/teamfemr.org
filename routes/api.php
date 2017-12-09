@@ -19,9 +19,11 @@
     Route::get( '/programs/',             'OutreachProgramController@index' );
     Route::get( '/programs/{program_id}', 'OutreachProgramController@show'  );
 
-    Route::post( '/survey',              'SurveyController@store'     )->name( 'survey.store'     );
-    Route::get(  '/survey/form',         'Survey\FormController@show' )->name( 'survey.form.show' );
-    Route::get(  '/survey/{survey_id}',  'SurveyController@show'      )->name( 'survey.show'      );
-    Route::put(  '/survey/{survey_id}',  'SurveyController@update'    )->name( 'survey.update'    )->middleware( 'auth:api' );
+    Route::post( '/survey',               'SurveyController@store'       )->name( 'survey.store'     );
+    Route::get(  '/survey/form',          'Survey\FormController@show'   )->name( 'survey.form.show' );
+    Route::get(  '/survey/{survey_id}',   'SurveyController@show'        )->name( 'survey.show'      );
+    Route::put(  '/survey/{survey_id}',   'SurveyController@update'      )->name( 'survey.update'    )->middleware( 'auth:api' );
 
-    Route::post( '/slack/invite',       'SlackInviteController@create'      )->name( 'api.slack.invite' );
+    Route::post( '/slack/invite',         'SlackInviteController@create' )->name( 'api.slack.invite' );
+
+    Route::post( '/forum/media',          'Forum\MediaController@create' )->name( 'api.forum.media.store' );
