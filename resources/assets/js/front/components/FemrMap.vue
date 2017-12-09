@@ -15,6 +15,7 @@
                                 ref="autocomplete"
                                 v-model="autocompleteValue"
                                 :value="searchText"
+                                :selectFirstOnEnter="true"
                                 class="input"
                                 placeholder="Enter a city, state or country"
                                 @place_changed="locationChanged"
@@ -25,6 +26,7 @@
                             <text-field
                                 v-model="searchText"
                                 :def="fieldsDef.searchText"
+                                :is-loading="isLoading"
                             ></text-field>
                         </template>
                     </div>
@@ -50,10 +52,19 @@
                         <div class="results-wrapper">
                             <table class="table">
 
-                                <tr v-for="( program, index ) in programs">
-                                    <td>{{ program.name }}</td>
-                                    <td>
-                                        <button @click="showProgramInfoWindow( program )" class="button is-info is-small">View</button>
+                                <template v-if="programs.length > 0">
+                                    <tr v-for="( program, index ) in programs">
+                                        <td>{{ program.name }}</td>
+                                        <td>
+                                            <button
+                                                @click="showProgramInfoWindow( program )"
+                                                :class="{ button: true, 'is-info': true, 'is-small': true }">View</button>
+                                        </td>
+                                    </tr>
+                                </template>
+                                <tr v-else>
+                                    <td colspan="2">
+                                        No results found for your search
                                     </td>
                                 </tr>
 
@@ -72,7 +83,8 @@
                         :zoom="zoom"
                         :options="{ scrollwheel: false }"
                         class="map">
-                    <gmap-cluster :grid-size="50">
+
+                    <gmap-cluster :grid-size="50" v-if="useClusters">
 
                         <femr-info-window ref="infoWindow"></femr-info-window>
                         <gmap-marker
@@ -86,6 +98,20 @@
                         </gmap-marker>
 
                     </gmap-cluster>
+
+                    <template v-else>
+                        <femr-info-window ref="infoWindow"></femr-info-window>
+                        <gmap-marker
+                                :key="index"
+                                v-for="( m, index ) in groupedLocations"
+                                :position="m[0].position"
+                                :clickable="true"
+                                :draggable="false"
+                                @click="toggleInfoWindow( m, index )"
+                        >
+                        </gmap-marker>
+                    </template>
+
                 </gmap-map>
 
             </div>
@@ -123,37 +149,61 @@
 
                 searchText: '',
                 autocompleteValue: '',
-                location: '',
+                searchLocation: '',
                 sortBy: '',
                 isLocationSearch: true,
 
+                useClusters: true,
                 isLoading: false,
 
                 center: { lat: 0.0, lng: 0.0 },
                 zoom: 2,
-                programs: []
+                programs: [],
+                filteredPrograms: []
             }
         },
 
         watch: {
 
-            locations: function( newLocations ) {
+            groupedLocations: {
 
-                console.log( 'Locations Changed' );
-                this.extendBounds();
+                handler: function( newLocations ) {
+
+                    this.extendBounds();
+                },
+                deep: true
+            },
+
+            allFilters: function( newFilters ) {
+
+                this.getLocations();
             }
         },
 
         computed: {
 
+            isValidNameSearch: function() {
+
+                return ( ! this.isLocationSearch && ! _.isEmpty( this.searchText ) )
+            },
+
+            isValidLocationSearch: function() {
+
+                return  ( this.isLocationSearch && ! _.isEmpty( this.searchLocation ) )
+            },
+
             allFilters: function() {
 
-              return {
+                if( ! this.isValidNameSearch && ! this.isValidLocationSearch ) {
+                    return {};
+                }
 
-                  searchText: this.searchText,
-                  latitiude: this.location.latitude,
-                  longitude: this.location.longitude
-              }
+                return {
+                    search_by: this.isLocationSearch ?'location' : 'name',
+                    name: this.searchText,
+                    latitude:  ! _.isEmpty( this.searchLocation ) ? this.searchLocation.latitude : '',
+                    longitude: ! _.isEmpty( this.searchLocation ) ? this.searchLocation.longitude : ''
+                }
             },
 
             fieldsDefIsLoaded: function() {
@@ -164,10 +214,13 @@
             groupedLocations: function(){
 
                 // get the locations from each program into 1 array
-                const locations = _.transform( this.programs, ( accumulator, program ) => {
+                let locations = []
+                _.forEach( this.programs, ( program ) => {
 
-                    accumulator =  _.merge( accumulator, program.visitedLocations );
-                    return true;
+                    _.forEach( program.visitedLocations, ( location ) => {
+
+                        locations.push( location );
+                    } );
 
                 }, [] );
 
@@ -184,7 +237,13 @@
 
             locationChanged( place ){
 
-                console.log( place );
+                if( _.has( place, 'geometry.location' ) ) {
+
+                    this.searchLocation = {
+                        latitude: parseFloat(place.geometry.location.lat().toFixed(5)),
+                        longitude: parseFloat(place.geometry.location.lng().toFixed(5))
+                    };
+                }
             },
 
             toggleInfoWindow( locations, idx ) {
@@ -223,32 +282,83 @@
 
             extendBounds() {
 
-                console.log( "Extend Bounds" );
+                // Location search, so zoom in on searched location with radius
+                if( this.isValidLocationSearch ) {
 
-                const bounds = new google.maps.LatLngBounds();
-                _.forEach( this.programs, ( program ) => {
+                    // default center
+                    this.center = {
 
-                    _.forEach( program.visitedLocations, ( location ) => {
+                        lat: this.searchLocation.latitude,
+                        lng: this.searchLocation.longitude
+                    };
+                    this.zoom = 5;
+                }
 
-                        bounds.extend( location.position );
+                // Zoom based on location results
+                else if( _.keys( this.groupedLocations ).length > 1 ) {
+
+                    const bounds = new google.maps.LatLngBounds();
+
+                    _.forEach( this.groupedLocations, ( group, key ) => {
+
+                        _.forEach( group, ( location ) => {
+
+                            if( _.has( location, 'position' ) ) {
+
+                                bounds.extend( location.position );
+                            }
+                        });
+                    });
+                    this.$refs.gmap.$mapObject.fitBounds( bounds );
+
+                }
+                else if( _.keys( this.groupedLocations ).length > 0 ) {
+
+                    const locations = _.get( this.groupedLocations, _.first( _.keys( this.groupedLocations ) ) );
+
+                    _.forEach( locations, ( location ) => {
+
+                        if( _.has( location, 'position' )  ) {
+
+                            this.center = location.position;
+                            this.zoom = 7;
+                        }
+                        else {
+
+                            // default center
+                            this.center = { lat: 0.0, lng: 0.0 };
+                            this.zoom = 2
+                        }
                     })
-                });
-                this.$refs.gmap.$mapObject.fitBounds( bounds );
-
+                }
             },
 
-            getLocations() {
+            getLocations: _.debounce( function() {
 
-                OutreachProgram.index( this.allFilters, ( programs ) => this.programs = programs );
-            }
+                this.isLoading = true;
+                OutreachProgram.search( this.allFilters, ( programs ) => {
+
+                    this.programs = programs;
+                    this.isLoading = false;
+
+                    if( ! _.isEmpty( this.allFilters ) ) {
+
+                        this.useClusters = false;
+                    }
+                    else {
+
+                        this.useClusers = true;
+                    }
+
+                } );
+
+            }, 400 )
         },
         created() {
 
             this.fieldsDef = Search.form();
 
             VueGoogleMaps.loaded.then( () => {
-
-                console.log('Map Library Loaded');
 
                 window.addEventListener('resize', _.debounce( this.extendBounds, 500, {}, false ) );
 
@@ -308,6 +418,7 @@
 
                 .table{
 
+                    width: 100%;
                     font-size: 0.8rem;
                 }
             }

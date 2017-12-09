@@ -6,7 +6,7 @@ import { default as OutreachProgramModel } from '../models/OutreachProgram';
 
 class OutreachProgram {
 
-    static index( filters, callback ) {
+    static search( filters, callback ) {
 
         const CACHE_KEY = 'FEMR.programs';
         let cachedPrograms = store.get( CACHE_KEY );
@@ -25,7 +25,7 @@ class OutreachProgram {
         }
         else {
 
-            axios.get( '/api/programs', { params: filters } )
+            axios.get( '/api/search', { params: filters } )
                 .then( ( response ) => {
 
                     let programs = [];
@@ -37,8 +37,11 @@ class OutreachProgram {
                         programs.push( program );
                     });
 
-                    // put the locations in local storage
-                    store.set( CACHE_KEY, programs, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */ );
+                    if( _.isEmpty( filters ) ){
+
+                        // put the locations in local storage -- only store the unfiltered results
+                        store.set(CACHE_KEY, programs, Date.now() + 30 * 60 * 1000 /* 30 minutes in ms */);
+                    }
 
                     callback( programs ) ;
                 })

@@ -3,7 +3,7 @@
 
         <label class="label" v-if="! def.hideLabel">{{ def.label }}</label>
 
-        <div :class="{ control: true, 'has-icons-right': hasRightIcon, 'has-icons-left': hasLeftIcon }">
+        <div :class="{ control: true, 'has-icons-right': hasRightIcon, 'has-icons-left': hasLeftIcon, 'is-loading': isLoading }">
 
             <input
                 ref="field"
@@ -59,6 +59,11 @@
                 default: false
             },
             "disabled": {
+
+                type: Boolean,
+                default: false
+            },
+            "isLoading": {
 
                 type: Boolean,
                 default: false
@@ -124,10 +129,16 @@
 
             isSuccess() {
 
+                // TODO - figure out a better way to disable validation highlighting
+                if( this.def.noValidation ) return false;
+
                 return this.valueHasChanged && this.hasNonEmptyValue && ! this.errors.has( this.def.name );
             },
 
             isError() {
+
+                // TODO - figure out a better way to disable validation highlighting
+                if( this.def.noValidation ) return false;
 
                 return this.valueHasChanged && this.errors.has( this.def.name );
             },

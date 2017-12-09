@@ -17,7 +17,8 @@ class Search {
                 options: [],
                 placeholder: "Enter search text",
                 type: "text",
-                validators: "required",
+                validators: "",
+                noValidation: true,
                 value: ""
             }),
 
