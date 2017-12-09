@@ -34,9 +34,18 @@
             @include( 'partials.footer' )
         </div>
 
+        <script>
 
+            window.FEMR = {!! json_encode([
+
+                'userToken' => user_token(),
+                'csrfToken' => csrf_token()
+
+            ]) !!};
+
+        </script>
         <script src="{{ mix('js/front/forum.js') }}"></script>
         @yield('js')
-
+        <script src="{{ mix('js/front/trumbowyg-plugins.js') }}"></script>
     </body>
 </html>

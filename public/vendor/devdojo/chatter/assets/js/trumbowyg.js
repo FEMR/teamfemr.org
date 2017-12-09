@@ -23,14 +23,27 @@ $('document').ready(function() {
             ['formatting'],
             'btnGrp-semantic',
             ['link'],
-            ['insertImage'],
+            ['insertImage', 'upload'],
             'btnGrp-justify',
             'btnGrp-lists',
             ['horizontalRule'],
             ['removeformat'],
             ['preformatted'],
             ['fullscreen']
-        ]
+        ],
+        plugins: {
+            //https://alex-d.github.io/Trumbowyg/documentation/plugins/#plugin-upload
+            upload: {
+                'serverPath': '/api/forum/media?api_token=' + window.FEMR.userToken,
+                'fileFieldName': 'media',
+                'headers':{
+
+                    'X-CSRF-TOKEN': window.FEMR.csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                'urlPropertyName': 'url'
+            }
+        }
     });
 
     document.getElementById('new_discussion_loader').style.display = "none";

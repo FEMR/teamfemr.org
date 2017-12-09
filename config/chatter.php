@@ -55,8 +55,8 @@ return [
     */
 
     'headline'      => 'Welcome to Team fEMR',
-    'description'   => 'A simple forum package for your Laravel app.',
-    'headline_logo' => '/vendor/devdojo/chatter/assets/images/logo-light.png',
+    'description'   => '',
+    'headline_logo' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -243,7 +243,7 @@ return [
     */
 
     'email' => [
-        'enabled' => false,
+        'enabled' => true,
         'view'    => 'chatter::email',
     ],
 

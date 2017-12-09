@@ -19,6 +19,21 @@
         color: #5a7cae;
     }
 
+    // chatter hides all forms, but only shows specific ones with js
+    //   which hid the forms within trumbowyg, so making them visible
+    #new_discussion,
+    #new_discussion_in_discussion_view {
+
+        .trumbowyg-box {
+
+            form {
+
+
+                display: block;
+            }
+        }
+    }
+
     @media only screen and ( max-width: 768px ) {
 
         .chatter_sidebar,
