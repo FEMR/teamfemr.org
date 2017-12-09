@@ -4,7 +4,6 @@ namespace FEMR\Http\Controllers\API;
 
 use FEMR\Http\Controllers\Controller;
 use FEMR\Data\Models\OutreachProgram;
-use FEMR\Http\Requests\API\OutreachProgramRequest;
 use FEMR\Http\Resources\OutreachProgramResource;
 
 class OutreachProgramController extends Controller
@@ -12,13 +11,11 @@ class OutreachProgramController extends Controller
 
     /**
      *
-     * @param OutreachProgramRequest $request
-     *
      * @return mixed
      */
-    public function index( OutreachProgramRequest $request )
+    public function index()
     {
-        $programs = OutreachProgram::withAll()->filter( $request->filters() )->get();
+        $programs = OutreachProgram::withAll()->get();
 
         return OutreachProgramResource::collection( $programs );
     }

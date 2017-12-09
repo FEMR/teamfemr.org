@@ -182,6 +182,31 @@ class VisitedLocation extends Model
     }
 
     /**
+     * @param $query
+     * @param $latitude
+     * @param $longitude
+     * @param int $radius
+     *
+     * @return
+     */
+    public function scopeNearbyLocation( $query, $latitude, $longitude, $radius = 1000 )
+    {
+        return $query->selectRaw(
+                        'id,
+                        outreach_program_id,
+                        ( 6371 * acos( cos( radians(?) ) *
+                           cos( radians( latitude ) )
+                           * cos( radians( longitude ) - radians(?)
+                           ) + sin( radians(?) ) *
+                           sin( radians( latitude ) ) )
+                        ) AS distance',
+                            [ $latitude, $longitude, $latitude ]
+                        )
+                     ->having( "distance", "<=", $radius )
+                     ->orderBy( "distance", 'asc');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function outreachProgram()

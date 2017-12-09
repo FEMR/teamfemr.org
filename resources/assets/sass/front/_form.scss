@@ -24,6 +24,11 @@
             }
         }
     }
+
+    .is-loading .icon{
+
+        display: none;
+    }
 }
 
 .input, .textarea{

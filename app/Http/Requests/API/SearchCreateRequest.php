@@ -4,7 +4,7 @@ namespace FEMR\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OutreachProgramRequest extends FormRequest
+class SearchCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,19 +25,10 @@ class OutreachProgramRequest extends FormRequest
     {
         return [
 
-            'search_text' => 'sometimes|string',
-            'latitude'    => 'required_with:longitude|float',
-            'longitude'   => 'required_with:latitude|float'
+            'search_by' => 'sometimes|string',
+            'name'      => 'sometimes|string',
+            'latitude'  => 'sometimes|required_if:search_by,location|numeric',
+            'longitude' => 'sometimes|required_if:search_by,location|numeric'
         ];
-    }
-
-    public function filters(){
-
-        return $this->only([
-
-            'search_text',
-            'latitude',
-            'longitude'
-       ]);
     }
 }

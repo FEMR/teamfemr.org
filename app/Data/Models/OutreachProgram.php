@@ -251,6 +251,22 @@ class OutreachProgram extends Model
     }
 
     /**
+     * @param $query
+     * @param $name
+     *
+     * @return mixed
+     */
+    public function scopeByName( $query, $name )
+    {
+        return $query->orWhere( 'name', 'LIKE', '%' . $name . '%' )
+              ->orWhere( 'school_name', 'LIKE', '%' . $name . '%' )
+              ->orWhereHas( 'partnerOrganizations', function( $query ) use ( $name )
+              {
+                  $query->where( 'name', 'LIKE', '%' . $name . '%' );
+              });
+    }
+
+    /**
      * @return mixed
      */
     public function formSchoolClassesAttribute()

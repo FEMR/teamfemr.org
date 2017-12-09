@@ -13,7 +13,8 @@ class FormField {
             validators: '',
             options: [],
             hideLabel: false,
-            isFullWidth: false
+            isFullWidth: false,
+            noValidation: false
         };
 
         Object.assign( this, defaults, formJson );

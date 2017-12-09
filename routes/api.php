@@ -19,6 +19,8 @@
     Route::get( '/programs/',             'OutreachProgramController@index' );
     Route::get( '/programs/{program_id}', 'OutreachProgramController@show'  );
 
+    Route::get(  '/search',               'SearchController@create'      )->name( 'search.create'    );
+
     Route::post( '/survey',               'SurveyController@store'       )->name( 'survey.store'     );
     Route::get(  '/survey/form',          'Survey\FormController@show'   )->name( 'survey.form.show' );
     Route::get(  '/survey/{survey_id}',   'SurveyController@show'        )->name( 'survey.show'      );
