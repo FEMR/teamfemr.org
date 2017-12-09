@@ -23,7 +23,7 @@ class MediaController extends Controller
             $media = ChatterMedia::create([
 
                         'user_id' => auth()->guard( 'api' )->user()->id,
-                        'file'    => $path,
+                        'file'    => str_replace( "public/", "", $path ),
                         'alt'     => $request->input( 'alt' )
                   ]);
 

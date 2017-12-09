@@ -210,7 +210,7 @@
 
                                         </div><!-- #new_discussion -->
                                         <div id="discussion_response_email">
-                                            <button id="submit_response" class="button is-success pull-right">
+                                            <button type="button" id="submit_response" class="button is-success pull-right">
                                                 <span class="icon">
                                                     <i class="fa fa-plus"></i>
                                                 </span>
@@ -443,7 +443,9 @@
                     });
 
                     $('#submit_response').click(function(){
+
                         $('#chatter_form_editor').submit();
+                        return false;
                     });
 
                     // ******************************
