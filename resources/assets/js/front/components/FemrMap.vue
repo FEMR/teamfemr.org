@@ -50,7 +50,12 @@
                     <div class="results-container">
 
                         <div class="results-wrapper">
-                            <table class="table">
+                            <p class="status has-text-centered" v-if="isLoading">
+                                <span class="icon is-large">
+                                  <i class="fa fa-3x fa-circle-o-notch fa-spin"></i>
+                                </span>
+                            </p>
+                            <table class="table" v-else>
 
                                 <template v-if="programs.length > 0">
                                     <tr v-for="( program, index ) in programs">
@@ -184,7 +189,7 @@
 
             isValidNameSearch: function() {
 
-                return ( ! this.isLocationSearch && ! _.isEmpty( this.searchText ) )
+                return ( ! this.isLocationSearch && this.searchText.length > 1  )
             },
 
             isValidLocationSearch: function() {
@@ -361,9 +366,10 @@
 
                     this.programs = programs;
                     this.isLoading = false;
+
                 } );
 
-            }, 400 )
+            }, 200 )
         },
         created() {
 
@@ -447,6 +453,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
+                z-index: 1;
             }
         }
 
