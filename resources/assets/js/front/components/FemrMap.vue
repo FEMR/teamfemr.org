@@ -57,6 +57,7 @@
                                         <td>{{ program.name }}</td>
                                         <td>
                                             <button
+                                                    v-if="programs.length > 1"
                                                 @click="showProgramInfoWindow( program )"
                                                 :class="{ button: true, 'is-info': true, 'is-small': true }">View</button>
                                         </td>
@@ -153,7 +154,6 @@
                 sortBy: '',
                 isLocationSearch: true,
 
-                useClusters: true,
                 isLoading: false,
 
                 center: { lat: 0.0, lng: 0.0 },
@@ -229,8 +229,16 @@
 
                    return location.latitude + ', ' + location.longitude;
                 });
-            }
+            },
 
+            useClusters: function(){
+
+                // use clusters whenever there are more than 20 results
+                if( _.keys( this.groupedLocations ).length > 20 ) return true;
+
+                // If less than 20, only use clusters if no filters are set
+                return _.isEmpty( this.allFilters );
+            }
         },
 
         methods: {
@@ -244,6 +252,23 @@
                         longitude: parseFloat(place.geometry.location.lng().toFixed(5))
                     };
                 }
+            },
+
+            showProgramInfoWindow( program ) {
+
+                // get first location in program
+                let location = _.first( program.visitedLocations );
+
+                // find groupedLocations with visitedLocation and get marker key
+                let locationKey = _.findKey( this.groupedLocations, ( locations, key ) => {
+
+                  return _.reduce( locations, ( result, l ) => result || l.id === location.id, false );
+                });
+
+                this.center = location.position;
+                this.zoom = 9;
+
+                this.$refs.infoWindow.toggle( [ program ], locationKey );
             },
 
             toggleInfoWindow( locations, idx ) {
@@ -274,10 +299,6 @@
 
                 // send the programs to show to the infoWindow
                 this.$refs.infoWindow.toggle( programs, idx );
-            },
-
-            showProgramInfoWindow( program ) {
-
             },
 
             extendBounds() {
@@ -340,16 +361,6 @@
 
                     this.programs = programs;
                     this.isLoading = false;
-
-                    if( ! _.isEmpty( this.allFilters ) ) {
-
-                        this.useClusters = false;
-                    }
-                    else {
-
-                        this.useClusers = true;
-                    }
-
                 } );
 
             }, 400 )
