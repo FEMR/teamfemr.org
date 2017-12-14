@@ -3,10 +3,6 @@
 
         <div class="nav-right">
 
-            <a class="nav-item vcu" href="{{ route( 'chatter.home' ) }}">
-                Forum
-            </a>
-
             <a class="nav-item" href="https://www.facebook.com/Team-Femr-1839194879645777/" target="_blank">
               <span class="icon">
                 <i class="fa fa-facebook-f"></i>

@@ -89,6 +89,10 @@
                 Demo
             </a>
 
+            <a href="{{ route( 'chatter.home' ) }}" class="nav-item">
+                Forum
+            </a>
+
             <a href="{{ route( 'survey.create' ) }}" class="nav-item" >
                 Survey
             </a>
