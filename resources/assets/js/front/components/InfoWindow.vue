@@ -79,6 +79,7 @@
 
                 navIsVisible: true,
 
+                // TODO - move this to a prop
                 opened: false,
                 content: '',
                 position: {
