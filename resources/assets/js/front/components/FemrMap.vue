@@ -90,9 +90,10 @@
                         :options="{ scrollwheel: false }"
                         class="map">
 
+                    <femr-info-window ref="infoWindow"></femr-info-window>
+
                     <gmap-cluster :grid-size="50" v-if="useClusters">
 
-                        <femr-info-window ref="infoWindow"></femr-info-window>
                         <gmap-marker
                             :key="index"
                             v-for="( m, index ) in groupedLocations"
@@ -106,7 +107,6 @@
                     </gmap-cluster>
 
                     <template v-else>
-                        <femr-info-window ref="infoWindow"></femr-info-window>
                         <gmap-marker
                                 :key="index"
                                 v-for="( m, index ) in groupedLocations"
@@ -238,6 +238,9 @@
 
             useClusters: function(){
 
+                // TODO -- change this everywhere! move opened into FemrMap
+                if( _.has( this, '$refs.infoWindow.opened' ) && this.$refs.infoWindow.opened ) return false;
+
                 // use clusters whenever there are more than 20 results
                 if( _.keys( this.groupedLocations ).length > 20 ) return true;
 
@@ -271,7 +274,7 @@
                 });
 
                 this.center = location.position;
-                this.zoom = 9;
+                this.zoom = 6;
 
                 this.$refs.infoWindow.toggle( [ program ], locationKey );
             },
@@ -335,7 +338,8 @@
                             }
                         });
                     });
-                    this.$refs.gmap.$mapObject.fitBounds( bounds );
+
+                    this.$refs.gmap.fitBounds( bounds );
 
                 }
                 else if( _.keys( this.groupedLocations ).length > 0 ) {
