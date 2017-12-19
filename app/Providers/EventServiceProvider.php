@@ -12,8 +12,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'FEMR\Events\SomeEvent' => [
-            'FEMR\Listeners\EventListener',
+        'DevDojo\Chatter\Events\ChatterAfterNewDiscussion' => [
+            'FEMR\Listeners\Forum\SendNewDiscussionEmail',
+        ],
+        'DevDojo\Chatter\Events\ChatterAfterNewResponse' => [
+            'FEMR\Listeners\Forum\SendNewResponseEmail',
         ],
     ];
 
