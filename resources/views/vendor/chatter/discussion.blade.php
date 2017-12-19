@@ -359,7 +359,6 @@
 
             @if(Config::get('chatter.sidebar_in_discussion_view'))
                 <script src="/vendor/devdojo/chatter/assets/vendor/spectrum/spectrum.js"></script>
-                <script src="/vendor/devdojo/chatter/assets/js/chatter.js"></script>
             @endif
 
             <script>
@@ -495,7 +494,10 @@
                     });
 
                     @if (count($errors) > 0)
+                        {{-- Only show the discussion form if that was submitted -- just making chatter work --}}
+                        @if( old( 'chatter_category_id' ) && old( 'title' ) )
                     $('#new_discussion_in_discussion_view').slideDown();
+                        @endif
                     $('#title').focus();
                     @endif
                     @endif
