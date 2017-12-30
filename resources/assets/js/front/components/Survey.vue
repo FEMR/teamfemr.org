@@ -69,6 +69,7 @@
                                     v-model="monthsOfTravel"
                                     class="months_of_travel"
                                     :def="fieldsDef.monthsOfTravel"
+                                    :taggable="false"
                                     @input="dataUpdated()"
                                 ></multi-select-field>
 
@@ -76,6 +77,7 @@
                                     v-model="schoolClasses"
                                     class="school_classes"
                                     :def="fieldsDef.schoolClasses"
+                                    :taggable="false"
                                     @input="dataUpdated()"
                                 ></multi-select-field>
 

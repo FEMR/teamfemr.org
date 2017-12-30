@@ -12,7 +12,7 @@
                     :name="def.name"
                     :multiple="multiple"
                     :taggable="taggable"
-                    placeholder="Type to search or add new"
+                    :placeholder=" taggable ? 'Type to search or add new' : ''"
                     :label="label"
                     :data-vv-as="def.label"
                     v-validate="def.validators"
