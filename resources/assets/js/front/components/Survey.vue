@@ -7,16 +7,18 @@
                 <div id="survey-questions" class="column is-8">
                     <div class="columns is-multiline">
 
-                        <template v-if="showWelcomeMessage && showGuestComplete">
+                        <template v-if="showWelcomeMessage && showCompleteMessage">
 
-                            <guest-complete></guest-complete>
+                            <complete-message></complete-message>
 
                         </template>
 
                         <template v-else>
 
                             <div class="column is-10"  v-if="showWelcomeMessage">
+
                                 <welcome-message :program-id="programId"></welcome-message>
+
                             </div>
 
                             <div class="column is-10 section">
@@ -225,7 +227,7 @@
     import Locations from './survey/Locations';
     import Papers from './survey/Papers';
     import Partners from './survey/Partners';
-    import GuestComplete from './survey/GuestComplete';
+    import CompleteMessage from './survey/CompleteMessage';
     import WelcomeMessage from './survey/WelcomeMessage';
     import SignUp from './SignUp';
     import Register from './Register';
@@ -261,7 +263,7 @@
             'locations': Locations,
             'papers': Papers,
             'partners': Partners,
-            'guest-complete': GuestComplete,
+            'complete-message': CompleteMessage,
             'welcome-message': WelcomeMessage,
 
             'sign-up': SignUp,
@@ -293,7 +295,7 @@
                 papers: [],
 
                 isSubmitting: false,
-                showGuestComplete: false,
+                showCompleteMessage: false,
                 windowWidth: 0,
                 statusWidth: 'auto'
             }
@@ -530,20 +532,11 @@
 
                 Survey.create( this.postFields, ( program ) => {
 
-                    // If logged in, redirect to edit page
-                    if( User.isLoggedIn() ) {
+                    this.isSubmitting = false;
+                    this.showCompleteMessage = true;
 
-                        window.location.href = '/survey/' + program.id;
-                    }
-                    // If not logged in, show survey set to moderate message
-                    else {
-
-                        this.isSubmitting = false;
-                        this.showGuestComplete = true;
-
-                        //this.setLocalData( program );
-                        store.remove( CACHE_KEY );
-                    }
+                    //this.setLocalData( program );
+                    store.remove( CACHE_KEY );
 
                 }, ( errors ) => {
 
@@ -564,7 +557,6 @@
                     this.isSubmitting = false;
 
                 }, ( errors ) => {
-
 
                     this.$validator.errors = errors;
                     this.isSubmitting = false

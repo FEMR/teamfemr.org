@@ -10,9 +10,6 @@
                     <p class="back-button"><a class="button is-link" href="{{ route( 'programs.index' ) }}">&laquo; All Surveyed Programs</a></p>
                 @endif
 
-                <h1 class="title">Survey</h1>
-
-                <hr>
 
                 <survey :program-id="{{ $program->id }}"></survey>
 

@@ -146,7 +146,7 @@
 
                             <div class="partners">
 
-                                <h4>Partner Organizations</h4>
+                                <h4>NGO/In Country Partners</h4>
 
                                 <ul>
                                 @if( $program->partnerOrganizations->count() )

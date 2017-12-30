@@ -17,7 +17,7 @@
                     <div class="pagination-top">
                         <p class="pull-right">Page {{ $programs->currentPage() }} of {{  $programs->lastPage() }}</p>
                     </div>
-                    <table class="table is-bordered">
+                    <table class="table is-bordered is-striped">
                         <thead>
                             <tr>
                                 @if( ! is_null( $user ) && $user->is_admin )
@@ -147,7 +147,7 @@
 
                         <div class="column button-column">
 
-                            <a class="button femr-button" href="{{ route( 'survey.create' ) }}">Take our quick survey (?)</a>
+                            <a class="button femr-button" href="{{ route( 'survey.create' ) }}">Take our Survey</a>
 
                         </div>
 
