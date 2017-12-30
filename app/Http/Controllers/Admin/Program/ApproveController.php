@@ -16,6 +16,7 @@ class ApproveController extends Controller
     public function store( $outreach_program_id )
     {
         $program = OutreachProgram::findOrFail( $outreach_program_id );
+        $program->approved_by = auth()->user()->id;
         $program->approved_at = Carbon::now();
         $program->save();
 
@@ -31,6 +32,7 @@ class ApproveController extends Controller
     public function destroy( $outreach_program_id )
     {
         $program = OutreachProgram::findOrFail( $outreach_program_id );
+        $program->approved_by = null;
         $program->approved_at = null;
         $program->save();
 

@@ -60,6 +60,7 @@ class OutreachProgram extends Model
         'months_of_travel' => 'string',
         'uses_emr' => 'boolean',
         'comments' => 'string',
+        'approved_by' => 'integer',
         'approved_at' => 'datetime'
     ];
 

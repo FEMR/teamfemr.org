@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterOutreachProgramsAddApprovedAt extends Migration
+class AlterOutreachProgramsTableAddApprovedBy extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,8 @@ class AlterOutreachProgramsAddApprovedAt extends Migration
     {
         Schema::table( 'outreach_programs', function( Blueprint $table )
         {
-            $table->timestamp( 'approved_at' )->nullable()->after( 'comments' );
+            $table->integer('approved_by')->unsigned()->nullable()->after( 'comments' );
+            $table->foreign('approved_by')->references('id')->on('users');
         });
     }
 
@@ -28,7 +29,7 @@ class AlterOutreachProgramsAddApprovedAt extends Migration
     {
         Schema::table( 'outreach_programs', function( Blueprint $table )
         {
-            $table->dropColumn( 'approved_at' );
+            $table->dropColumn( 'approved_by' );
         });
     }
 }
