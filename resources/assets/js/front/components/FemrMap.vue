@@ -1,131 +1,131 @@
 <template>
+    <div class="map-section">
+        <div class="container search-container">
 
-    <div class="container search-container">
+            <div class="columns is-mobile wrap">
 
-        <div class="columns is-mobile wrap">
+                <div class="column filters-container">
 
-            <div class="column filters-container">
+                    <template v-if="fieldsDefIsLoaded">
 
-                <template v-if="fieldsDefIsLoaded">
+                        <div class="field">
 
-                    <div class="field">
-
-                        <template v-if="isLocationSearch">
-                            <gmap-autocomplete
-                                ref="autocomplete"
-                                v-model="autocompleteValue"
-                                :value="searchText"
-                                :selectFirstOnEnter="true"
-                                class="input"
-                                placeholder="Enter a city, state or country"
-                                @place_changed="locationChanged"
-                                @keyup.enter.prevent
-                            ></gmap-autocomplete>
-                        </template>
-                        <template v-else>
-                            <text-field
-                                v-model="searchText"
-                                :def="fieldsDef.searchText"
-                                :is-loading="isLoading"
-                            ></text-field>
-                        </template>
-                    </div>
+                            <template v-if="isLocationSearch">
+                                <gmap-autocomplete
+                                    ref="autocomplete"
+                                    v-model="autocompleteValue"
+                                    :value="searchText"
+                                    :selectFirstOnEnter="true"
+                                    class="input"
+                                    placeholder="Enter a city, state or country"
+                                    @place_changed="locationChanged"
+                                    @keyup.enter.prevent
+                                ></gmap-autocomplete>
+                            </template>
+                            <template v-else>
+                                <text-field
+                                    v-model="searchText"
+                                    :def="fieldsDef.searchText"
+                                    :is-loading="isLoading"
+                                ></text-field>
+                            </template>
+                        </div>
 
 
-                    <div class="tabs is-toggle small search-type-tabs">
-                        <ul>
-                            <li :class="{ 'is-active': isLocationSearch }" @click="isLocationSearch = true">
-                                <a>
-                                    <span>Search By Location</span>
-                                </a>
-                            </li>
-                            <li :class="{ 'is-active': ! isLocationSearch }" @click="isLocationSearch = false">
-                                <a>
-                                    <span>Search By Name</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                        <div class="tabs is-toggle small search-type-tabs">
+                            <ul>
+                                <li :class="{ 'is-active': isLocationSearch }" @click="isLocationSearch = true">
+                                    <a>
+                                        <span>Search By Location</span>
+                                    </a>
+                                </li>
+                                <li :class="{ 'is-active': ! isLocationSearch }" @click="isLocationSearch = false">
+                                    <a>
+                                        <span>Search By Name</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
-                    <div class="results-container">
+                        <div class="results-container">
 
-                        <div class="results-wrapper">
-                            <p class="status has-text-centered" v-if="isLoading">
-                                <span class="icon is-large">
-                                  <i class="fa fa-3x fa-circle-o-notch fa-spin"></i>
-                                </span>
-                            </p>
-                            <table class="table" v-else>
+                            <div class="results-wrapper">
+                                <p class="status has-text-centered" v-if="isLoading">
+                                    <span class="icon is-large">
+                                      <i class="fa fa-3x fa-circle-o-notch fa-spin"></i>
+                                    </span>
+                                </p>
+                                <table class="table" v-else>
 
-                                <template v-if="programs.length > 0">
-                                    <tr v-for="( program, index ) in programs">
-                                        <td>{{ program.name }}</td>
-                                        <td>
-                                            <button
+                                    <template v-if="programs.length > 0">
+                                        <tr v-for="( program, index ) in programs">
+                                            <td>{{ program.name }}</td>
+                                            <td>
+                                                <button
                                                     v-if="programs.length > 1"
-                                                @click="showProgramInfoWindow( program )"
-                                                :class="{ button: true, 'is-info': true, 'is-small': true }">View</button>
+                                                    @click="showProgramInfoWindow( program )"
+                                                    :class="{ button: true, 'is-info': true, 'is-small': true }">View</button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                    <tr v-else>
+                                        <td colspan="2">
+                                            No results found for your search
                                         </td>
                                     </tr>
-                                </template>
-                                <tr v-else>
-                                    <td colspan="2">
-                                        No results found for your search
-                                    </td>
-                                </tr>
 
-                            </table>
+                                </table>
+                            </div>
                         </div>
-                    </div>
 
-                </template>
+                    </template>
 
-            </div>
+                </div>
 
-            <div class="column map-container">
-                <gmap-map
-                        ref="gmap"
-                        :center="center"
-                        :zoom="zoom"
-                        :options="{ scrollwheel: false }"
-                        class="map">
+                <div class="column map-container">
+                    <gmap-map
+                            ref="gmap"
+                            :center="center"
+                            :zoom="zoom"
+                            :options="{ scrollwheel: false, minZoom: minZoom }"
+                            class="map">
 
-                    <femr-info-window ref="infoWindow"></femr-info-window>
+                        <femr-info-window ref="infoWindow"></femr-info-window>
 
-                    <gmap-cluster :grid-size="50" v-if="useClusters">
+                        <gmap-cluster :grid-size="50" v-if="useClusters">
 
-                        <gmap-marker
-                            :key="index"
-                            v-for="( m, index ) in groupedLocations"
-                            :position="m[0].position"
-                            :clickable="true"
-                            :draggable="false"
-                            @click="toggleInfoWindow( m, index )"
-                        >
-                        </gmap-marker>
-
-                    </gmap-cluster>
-
-                    <template v-else>
-                        <gmap-marker
+                            <gmap-marker
                                 :key="index"
                                 v-for="( m, index ) in groupedLocations"
                                 :position="m[0].position"
                                 :clickable="true"
                                 :draggable="false"
                                 @click="toggleInfoWindow( m, index )"
-                        >
-                        </gmap-marker>
-                    </template>
+                            >
+                            </gmap-marker>
 
-                </gmap-map>
+                        </gmap-cluster>
+
+                        <template v-else>
+                            <gmap-marker
+                                    :key="index"
+                                    v-for="( m, index ) in groupedLocations"
+                                    :position="m[0].position"
+                                    :clickable="true"
+                                    :draggable="false"
+                                    @click="toggleInfoWindow( m, index )"
+                            >
+                            </gmap-marker>
+                        </template>
+
+                    </gmap-map>
+
+                </div>
 
             </div>
 
         </div>
-
     </div>
-
 </template>
 
 <script type="text/babel">
@@ -163,6 +163,7 @@
 
                 center: { lat: 0.0, lng: 0.0 },
                 zoom: 2,
+                minZoom: 0,
                 programs: [],
                 filteredPrograms: []
             }
@@ -238,6 +239,8 @@
 
             useClusters: function(){
 
+                if( this.$refs.gmap && this.$refs.gmap.zoom < 6 ) return true;
+
                 // TODO -- change this everywhere! move opened into FemrMap
                 if( _.has( this, '$refs.infoWindow.opened' ) && this.$refs.infoWindow.opened ) return false;
 
@@ -309,7 +312,15 @@
                 this.$refs.infoWindow.toggle( programs, idx );
             },
 
+            calculateMinZoom() {
+
+                // calculate the allowed minZoom based on the map size - trying to prevent grey borders and repeating of the map
+                this.minZoom = Math.ceil( Math.log( this.$refs.gmap.$el.offsetWidth / 256 ) / Math.log( 2 ) );
+            },
+
             extendBounds() {
+
+                this.calculateMinZoom();
 
                 // Location search, so zoom in on searched location with radius
                 if( this.isValidLocationSearch ) {
@@ -384,6 +395,7 @@
                 window.addEventListener('resize', _.debounce( this.extendBounds, 500, {}, false ) );
 
                 this.getLocations();
+                this.calculateMinZoom();
             });
 
         }
@@ -392,6 +404,10 @@
 </script>
 
 <style lang="scss" scoped>
+
+    .map-section{
+
+    }
 
     .search-container{
 
@@ -484,10 +500,12 @@
             .filters-container{
 
                 flex: initial;
+                order: 2;
             }
 
             .map-container{
 
+                order: 1;
                 flex: 1;
                 min-height: 250px;
             }

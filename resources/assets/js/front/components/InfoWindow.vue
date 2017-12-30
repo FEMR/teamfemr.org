@@ -49,7 +49,7 @@
                 </p>
                 <p><strong>Dates of travel:</strong> {{ ( program.monthsOfTravel.length > 0 ) ? program.monthsOfTravelList() : '--' }}</p>
                 <p><strong>Class Involvement:</strong> {{ ( program.schoolClasses.length > 0 ) ? program.schoolClassesList() : '--' }}</p>
-                <p><strong>Partners:</strong> {{ ( program.partners.length > 0 ) ? program.partnersList() : '--' }}</p>
+                <p><strong>NGO/In Country Partners:</strong> {{ ( program.partners.length > 0 ) ? program.partnersList() : '--' }}</p>
 
                 <p>
                     <a :href="program.programPageUrl()" class="button femr-button">
@@ -109,9 +109,6 @@
 
             toggle( programs, clickedIndex ) {
 
-                console.log( programs );
-                console.log( clickedIndex );
-
                 this.outreachPrograms = [];
                 _.forEach( programs, ( program ) => {
 
@@ -132,12 +129,9 @@
                 // Different marker clicked
                 else {
 
-                    console.log( this.outreachPrograms );
                     let firstLocation = _.first( _.get( _.first( this.outreachPrograms ), 'visitedLocations' ) );
 
                     if( firstLocation !== undefined ) {
-
-                        console.log( firstLocation );
 
                         this.opened = false;
                         this.position = {lat: firstLocation.latitude, lng: firstLocation.longitude};

@@ -2,11 +2,9 @@
     <div class="container">
         <div class="content">
 
-            <p>You are a guest and just completed the survey. Thanks [thumbs up]</p>
+            <h2>Thanks for completing our Survey!</h2>
 
-            <ul>
-                <li>[Insert message about "Survey will be approved soon"</li>
-            </ul>
+            <p></p>
 
         </div>
     </div>

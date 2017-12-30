@@ -1,5 +1,22 @@
 .survey-container {
 
+    .title{
+
+        margin-bottom: 0.5rem;
+    }
+
+    .title:not(.is-spaced) + .subtitle{
+
+        margin-top: 0;
+    }
+
+    .subtitle{
+
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+
     // Fix for bulma icons overlaying z-index
     .control.has-icons-left .icon,
     .control.has-icons-right .icon{

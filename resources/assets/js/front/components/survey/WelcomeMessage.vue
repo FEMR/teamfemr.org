@@ -1,20 +1,16 @@
 <template>
     <div class="content">
 
-        <template v-if="! isEdit">
-            <p>Fill out this survey to list your program in our [directory?].</p>
-        </template>
-        <template v-if="isLoggedIn && ! isEdit">
-            <p>You are logged in!</p>
-            <p>After you submit the survey you will be able to come back and make edits later.</p>
-        </template>
-        <template v-else-if="isEdit">
+        <h1 class="title">Survey</h1>
+        <p class="subtitle">International Medical Outreach Programs at Medical Schools: Where Do We Go?</p>
 
-            <p>You are editing a survey - try to distinguish between "just created" and edit</p>
+        <p>Each year, teams from medical schools and other organizations organize medical relief trips to areas around the globe. Each program is at a different stage of development and vary in their organization. Additionally, a significant amount of resources are spent on these activities.</p>
 
-        </template>
-        <template v-else>
-            <p><strong><a href="/login">Sign in</a></strong> or <strong><a href="/register">register</a></strong> before submitting the survey if you'd like to be able to make edits later.</p>
+        <p>This website is a forum for information and data sharing to work towards collaborating and discussing best practices. Completing this survey will add your program to our directory of international medical outreach programs.</p>
+
+        <template v-if="!isLoggedIn">
+            <hr>
+            <p>Please <strong><a href="/login">Login</a></strong> or <strong><a href="/register">Register</a></strong> before starting the survey if you'd like to be able to make edits later.</p>
         </template>
 
     </div>

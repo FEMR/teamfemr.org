@@ -27,7 +27,7 @@
                         <div class="demo">
 
                             <a href="http://demo.teamfemr.org" class="button femr-button demo-button" target="_blank">
-                                <span>Demo</span>
+                                <span>EMR Demo</span>
                             </a>
                             <ul class="credentials">
                                 <li><span id="username">username: visitor</span></li>

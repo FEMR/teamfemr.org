@@ -86,7 +86,7 @@
             </div>
 
             <a href="http://demo.teamfemr.org" class="nav-item" target="_blank">
-                Demo
+                EMR Demo
             </a>
 
             <a href="{{ route( 'chatter.home' ) }}" class="nav-item">
