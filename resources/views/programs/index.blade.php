@@ -147,7 +147,7 @@
 
                         <div class="column button-column">
 
-                            <a class="button femr-button" href="{{ route( 'survey.create' ) }}">Take our Survey</a>
+                            <a class="button femr-button" href="{{ route( 'survey.create' ) }}">Take the Survey</a>
 
                         </div>
 

@@ -289,7 +289,7 @@
                         </div><!-- .row -->
 
                         <!-- BODY -->
-                        <div id="editor">
+                        <div id="editor" class="content">
                             @if( $chatter_editor == 'tinymce' || empty($chatter_editor) )
                                 <label id="tinymce_placeholder">Add the content for your Discussion here</label>
                                 <textarea id="body_in_discussion_view" class="richText" name="body" placeholder="">{{ old('body') }}</textarea>

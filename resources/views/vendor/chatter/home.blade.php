@@ -19,6 +19,19 @@
 
     <div id="chatter" class="chatter_home">
 
+        <div class="hero is-dark has-text-centered">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Welcome to the Team fEMR Forums
+                    </h1>
+                    <p class="subtitle">
+                        A place for discussing best practices, sharing data, and collaborating
+                    </p>
+                </div>
+            </div>
+        </div>
+
         @if(Session::has('chatter_alert'))
             <div class="chatter-alert notification is-{{ Session::get('chatter_alert_type') }}">
                 <div class="container">
