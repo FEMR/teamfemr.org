@@ -7,7 +7,7 @@
                 <div id="survey-questions" class="column is-8">
                     <div class="columns is-multiline">
 
-                        <template v-if="true || ( showWelcomeMessage && showCompleteMessage )">
+                        <template v-if="showWelcomeMessage && showCompleteMessage">
 
                             <complete-message></complete-message>
 
