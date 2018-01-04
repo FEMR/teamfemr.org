@@ -2,7 +2,7 @@
     <div class="content">
 
         <h1 class="title">Survey</h1>
-        <p class="subtitle">International Medical Outreach Programs at Medical Schools: Where Do We Go?</p>
+        <p class="subtitle">International Medical Outreach Programs: Where Do We Go?</p>
 
         <p>Each year, teams from medical schools and other organizations organize medical relief trips to areas around the globe. Each program is at a different stage of development and vary in their organization. Additionally, a significant amount of resources are spent on these activities.</p>
 
