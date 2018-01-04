@@ -16,14 +16,14 @@ class MediaController extends Controller
      */
     public function create( MediaCreateRequest $request )
     {
-        $path = $request->file( 'media' )->store( 'public/forum/uploads' );
+        $path = $request->file( 'media' )->store( 'forum/uploads' );
 
         if( $path )
         {
             $media = ChatterMedia::create([
 
                         'user_id' => auth()->guard( 'api' )->user()->id,
-                        'file'    => str_replace( "public/", "", $path ),
+                        'file'    => $path,
                         'alt'     => $request->input( 'alt' )
                   ]);
 
