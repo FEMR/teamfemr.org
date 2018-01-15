@@ -31,7 +31,7 @@
                             </a>
                             <ul class="credentials">
                                 <li><span id="username">username: visitor</span></li>
-                                <li><span id="password">password: fEMR2016</span></li>
+                                <li><span id="password">password: fEMR2018</span></li>
                             </ul>
 
                         </div>
