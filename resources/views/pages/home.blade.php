@@ -8,7 +8,7 @@
                     Team fEMR
                 </h1>
                 <p>
-                    We created a fast, open-source Electronic Med for transient medical teams in order to promote data driven communication in low resource settings.
+                    We created a fast, open-source Electronic Medical Records system for transient medical teams in order to promote data driven communication in low resource settings.
                 </p>
 
                 <div class="columns button-columns">
