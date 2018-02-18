@@ -16,7 +16,7 @@ class AlterUsersTableAddApiKey extends Migration
     {
         Schema::table('users', function( Blueprint $table )
         {
-            $table->string( 'api_key', 40 )->after( 'remember_token' );
+            $table->string( 'api_token', 40 )->after( 'remember_token' );
         });
 
         // generate api keys for users without one
@@ -32,7 +32,7 @@ class AlterUsersTableAddApiKey extends Migration
 
         Schema::table('users', function( Blueprint $table )
         {
-            $table->string( 'api_key' )->unique()->change();
+            $table->string( 'api_token' )->unique()->change();
         });
     }
 
@@ -45,7 +45,7 @@ class AlterUsersTableAddApiKey extends Migration
     {
         Schema::table('users', function( Blueprint $table )
         {
-            $table->dropColumn( 'api_key' );
+            $table->dropColumn( 'api_token' );
         });
     }
 }
