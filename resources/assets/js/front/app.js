@@ -71,12 +71,14 @@ const app = new Vue({
         setupMobileMenuToggle(){
 
             // Toggle mobile menu
+            let mainNav = document.querySelector('.main-nav');
             let burger = document.querySelector('.nav-toggle');
             let menu = document.querySelector('.nav-menu');
             burger.addEventListener('click', function() {
 
                 burger.classList.toggle('is-active');
                 menu.classList.toggle('is-active');
+                mainNav.classList.toggle('is-active');
             });
 
             // hide mobile menu when item is clicked
@@ -91,6 +93,7 @@ const app = new Vue({
 
                         burger.classList.remove('is-active');
                         menu.classList.remove('is-active');
+                        mainNav.classList.remove('is-active');
                     }
                 });
             });
