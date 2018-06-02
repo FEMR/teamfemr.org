@@ -15,6 +15,22 @@
                         <div class="column is-3-tablet news-item">
 
                             <figure class="image is-16by9">
+                                <a href="http://michiganradio.org/post/medical-records-platform-designed-detroit-offers-new-tool-humanitarian-aid-work" target="_blank">
+                                    <img src="{{ asset( "/images/news/stateside-radio.png" ) }}" alt="Doctors and students using fEMR" />
+                                </a>
+                                {{--<iframe src="https://www.youtube.com/embed/Zppwhc2vHgo" style="height: 100%; width: 100%; bottom: 0; left: 0; position: absolute; right: 0; top: 0;" frameborder="0" allowfullscreen></iframe>--}}
+                            </figure>
+                            <h3 class="headline">
+                                <a href="http://michiganradio.org/post/medical-records-platform-designed-detroit-offers-new-tool-humanitarian-aid-work" target="_blank">
+                                    Team fEMR on Stateside on Michigan Radio
+                                </a>
+                            </h3>
+
+                        </div>
+
+                        <div class="column is-3-tablet news-item">
+
+                            <figure class="image is-16by9">
                                 <a href="http://www.youtube.com/watch?v=Zppwhc2vHgo" target="_blank">
                                     <img src="{{ asset( "/images/news/wsu-promo.png" ) }}" alt="Doctors and students using fEMR" />
                                 </a>
