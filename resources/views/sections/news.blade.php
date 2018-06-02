@@ -10,9 +10,13 @@
                         Featured News
                     </h2>
 
-                    <div class="columns is-multiline news">
+                    <carousel
+                        :autoplay="true"
+                        :per-page="1"
+                        :per-page-custom="[[768,2],[1024, 4]]"
+                    >
 
-                        <div class="column is-3-tablet news-item">
+                        <slide class="news-item">
 
                             <figure class="image is-16by9">
                                 <a href="http://michiganradio.org/post/medical-records-platform-designed-detroit-offers-new-tool-humanitarian-aid-work" target="_blank">
@@ -26,9 +30,9 @@
                                 </a>
                             </h3>
 
-                        </div>
+                        </slide>
 
-                        <div class="column is-3-tablet news-item">
+                        <slide class="news-item">
 
                             <figure class="image is-16by9">
                                 <a href="http://www.youtube.com/watch?v=Zppwhc2vHgo" target="_blank">
@@ -42,9 +46,9 @@
                                 </a>
                             </h3>
 
-                        </div>
+                        </slide>
 
-                        <div class="column is-3-tablet news-item">
+                        <slide class="news-item">
 
                             <figure class="image is-16by9">
                                 <a href="http://www.clickondetroit.com/news/live-in-the-d/detroit-college-students-aim-to-help-haiti-earthquake-victims/24959282" target="_blank">
@@ -57,9 +61,9 @@
                                 </a>
                             </h3>
 
-                        </div>
+                        </slide>
 
-                        <div class="column is-3-tablet news-item">
+                        <slide class="news-item">
 
                             <figure class="image is-16by9">
                                 <a href="http://www.emrandehr.com/tag/emergency-ehr/" target="_blank">
@@ -72,24 +76,9 @@
                                 </a>
                             </h3>
 
-                        </div>
+                        </slide>
 
-                        {{--<div class="column is-4-tablet news-item">--}}
-
-                            {{--<figure class="image is-16by9">--}}
-                                {{--<a href="http://www.improvewsu.org/Articles/tabid/90/ID/6/WSU-Students-Lead-Development-of-Electronic-Medical-Records-in-Haiti.aspx" target="_blank">--}}
-                                    {{--<img src="{{ asset( "/images/about-img.png" ) }}" alt="Doctors and students using fEMR" />--}}
-                                {{--</a>--}}
-                            {{--</figure>--}}
-                            {{--<h3 class="headline">--}}
-                                {{--<a href="http://www.improvewsu.org/Articles/tabid/90/ID/6/WSU-Students-Lead-Development-of-Electronic-Medical-Records-in-Haiti.aspx" target="_blank">--}}
-                                    {{--Wayne State University, ImproveWSU.org, "WSU students lead development of electronic medical records in Haiti"--}}
-                                {{--</a>--}}
-                            {{--</h3>--}}
-
-                        {{--</div>--}}
-
-                        <div class="column is-3-tablet news-item">
+                        <slide class="news-item">
 
                             <figure class="image is-16by9">
                                 <a href="https://www.med.wayne.edu/news/2013/04/11/wsu-computer-science-students-open-source-software-benefits-school-of-medicine-mission-trips/" target="_blank">
@@ -102,42 +91,9 @@
                                 </a>
                             </h3>
 
-                        </div>
+                        </slide>
 
-
-                        {{--<div class="column is-3-tablet news-item">--}}
-
-                            {{--<figure class="image is-16by9">--}}
-                                {{--<a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">--}}
-                                    {{--<img src="{{ asset( "/images/logo/logo_no_tagline.png" ) }}" alt="Doctors and students using fEMR" />--}}
-                                {{--</a>--}}
-                            {{--</figure>--}}
-                            {{--<h3 class="headline">--}}
-                                {{--<a href="{{ asset( 'documents/news/catalyst-for-collaboration-international-medical-relief-work.pdf' ) }}" target="_blank">--}}
-                                    {{--Electronic health records system as a catalyst for interinstitutional--}}
-                                    {{--collaboration in international medical relief work--}}
-                                {{--</a>--}}
-                            {{--</h3>--}}
-
-                        {{--</div>--}}
-
-                        {{--<div class="column is-3-tablet news-item">--}}
-
-                            {{--<figure class="image is-16by9">--}}
-                                {{--<a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">--}}
-                                    {{--<img src="{{ asset( "/images/logo/logo_no_tagline.png" ) }}" alt="Doctors and students using fEMR" />--}}
-                                {{--</a>--}}
-                            {{--</figure>--}}
-                            {{--<h3 class="headline">--}}
-                                {{--<a href="{{ asset( 'documents/news/impact-implementing-emr-international-medical-mission.pdf' ) }}" target="_blank">--}}
-                                    {{--Impact of Implementing an Electronic Medical Record on an--}}
-                                    {{--International Medical Mission--}}
-                                {{--</a>--}}
-                            {{--</h3>--}}
-
-                        {{--</div>--}}
-
-                    </div>
+                    </carousel>
 
                 </div>
 
