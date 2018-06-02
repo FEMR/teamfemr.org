@@ -32,6 +32,7 @@
     "store": "^2.0.12",
     "trumbowyg": "^2.9.2",
     "vee-validate": "^2.0.0-rc.14",
+    "vue-carousel": "^0.8.0",
     "vue-clickaway": "^2.1.0",
     "vue-multiselect": "^2.0.8",
     "vue-scrollto": "^2.7.0",

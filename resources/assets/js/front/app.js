@@ -8,6 +8,9 @@ Vue.use( VueGoogleMaps, {
     }
 });
 
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel);
+
 let Affix = require('vue-affix');
 Vue.use(Affix);
 
