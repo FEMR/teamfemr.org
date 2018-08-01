@@ -19,6 +19,21 @@
                         <slide class="news-item">
 
                             <figure class="image is-16by9">
+                                <a href="http://www.crainsdetroit.com/article/20180708/news/665511/wayne-state-students-develop-electronic-medical-record-used-by" target="_blank">
+                                    <img src="{{ asset( "/images/news/nabil-othman-femr.jpg" ) }}" alt="Doctors and students using fEMR" />
+                                </a>
+                            </figure>
+                            <h3 class="headline">
+                                <a href="http://www.crainsdetroit.com/article/20180708/news/665511/wayne-state-students-develop-electronic-medical-record-used-by" target="_blank">
+                                    Wayne State students develop electronic medical record used by international missions
+                                </a>
+                            </h3>
+
+                        </slide>
+
+                        <slide class="news-item">
+
+                            <figure class="image is-16by9">
                                 <a href="http://michiganradio.org/post/medical-records-platform-designed-detroit-offers-new-tool-humanitarian-aid-work" target="_blank">
                                     <img src="{{ asset( "/images/news/stateside-radio.png" ) }}" alt="Doctors and students using fEMR" />
                                 </a>
