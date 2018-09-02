@@ -1,7 +1,6 @@
 /vendor
 /storage/*.key
 /node_modules
-/nova
 Homestead.yaml
 Homestead.json
 .env
