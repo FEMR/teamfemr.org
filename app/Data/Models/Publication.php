@@ -6,16 +6,16 @@ use FEMR\Data\Utilities\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class News extends Model
+class Publication extends Model
 {
-    use SoftDeletes, HasSlug;
+    use SoftDeletes;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'news';
+    protected $table = 'publications';
 
     /**
      * The attributes that are mass assignable.
@@ -23,12 +23,9 @@ class News extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
-        'slug',
-        'url',
-        'thumbnail',
-        'thumbnail_alt',
-        'is_featured'
+        'name',
+        'description',
+        'file'
     ];
 
     /**
@@ -37,12 +34,9 @@ class News extends Model
      * @var array
      */
     protected $casts = [
-        'title'   => 'string',
-        'slug'    => 'string',
-        'url'     => 'string',
-        'thumbnail' => 'string',
-        'thumbnail_alt' => 'string',
-        'is_featured' => 'boolean'
+        'name' => 'string',
+        'description' => 'string',
+        'file' => 'string'
     ];
 
     /**

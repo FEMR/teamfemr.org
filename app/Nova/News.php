@@ -2,28 +2,28 @@
 
 namespace FEMR\Nova;
 
-use FEMR\Nova\Filters\UserType;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class User extends Resource
+class News extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'FEMR\\Data\\Models\\User';
+    public static $model = 'FEMR\Data\Models\News';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -31,7 +31,8 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id',
+        'title'
     ];
 
     /**
@@ -43,26 +44,27 @@ class User extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->sortable()->hideFromIndex(),
 
-            Text::make('Name')
+            Image::make('Thumbnail Photo', 'thumbnail')
+                 ->disk(env('FILESYSTEM_DRIVER', 'local'))
+                 ->prunable(),
+
+            Text::make('Thumbnail Alt')
+                ->rules('max:255')
+                ->hideFromIndex(),
+
+            Boolean::make('Featured', 'is_featured')
+                   ->sortable(),
+
+            Text::make('Title')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Boolean::make('Admin', 'is_admin')
-                ->sortable()
-                ->exceptOnForms(),
+            Text::make('Url')
+                ->rules('required', 'max:255', 'url')
+                ->hideFromIndex(),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:255')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:6')
-                ->updateRules('nullable', 'string', 'min:6'),
         ];
     }
 
@@ -85,9 +87,7 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [
-            new UserType
-        ];
+        return [];
     }
 
     /**

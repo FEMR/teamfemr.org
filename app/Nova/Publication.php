@@ -2,28 +2,26 @@
 
 namespace FEMR\Nova;
 
-use FEMR\Nova\Filters\UserType;
-use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Password;
 
-class User extends Resource
+class Publication extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'FEMR\\Data\\Models\\User';
+    public static $model = 'FEMR\Data\Models\Publication';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -31,7 +29,9 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id',
+        'name',
+        'description'
     ];
 
     /**
@@ -49,20 +49,12 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Boolean::make('Admin', 'is_admin')
-                ->sortable()
-                ->exceptOnForms(),
+            Text::make('Description')
+                ->rules('required', 'max:255'),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:255')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:6')
-                ->updateRules('nullable', 'string', 'min:6'),
+            File::make('File')
+                 ->disk(env('FILESYSTEM_DRIVER', 'local'))
+                 ->prunable(),
         ];
     }
 
@@ -85,9 +77,7 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [
-            new UserType
-        ];
+        return [];
     }
 
     /**
