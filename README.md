@@ -46,7 +46,6 @@ teamfemr.org
 
 * CSS Framework - http://bulma.io/
 * Font Awesome - http://fontawesome.io/
-* Admin Template - https://github.com/dansup/bulma-templates
 
 ### Maps/Location Data
 
@@ -60,4 +59,10 @@ teamfemr.org
 * vue2-google-maps
     - https://github.com/xkjyeah/vue-google-maps
     - https://github.com/xkjyeah/vue-google-maps/blob/vue2/API.md
+    
+    
+### Docker
+
+`docker-compose up -d nginx mysql`
+`docker-compose exec --user=laradock workspace bash`
 
