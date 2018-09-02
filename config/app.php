@@ -162,7 +162,8 @@ return [
         Geocoder\Laravel\Providers\GeocoderService::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
-        DevDojo\Chatter\ChatterServiceProvider::class
+        DevDojo\Chatter\ChatterServiceProvider::class,
+        FEMR\Providers\NovaServiceProvider::class
     ],
 
     /*
