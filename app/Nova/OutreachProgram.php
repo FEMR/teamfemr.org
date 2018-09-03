@@ -2,19 +2,23 @@
 
 namespace FEMR\Nova;
 
-use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Publication extends Resource
+class OutreachProgram extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'FEMR\Data\Models\Publication';
+    public static $model = 'FEMR\Data\Models\OutreachProgram';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -30,9 +34,15 @@ class Publication extends Resource
      */
     public static $search = [
         'id',
-        'name',
-        'description'
+        'name'
     ];
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['schoolClasses'];
 
     /**
      * Get the fields displayed by the resource.
@@ -44,18 +54,60 @@ class Publication extends Resource
     {
         return [
             ID::make()
+                ->sortable()
                 ->onlyOnDetail(),
 
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Description')
+            Text::make('School Name')
+                ->sortable()
                 ->rules('required', 'max:255'),
 
-            File::make('File')
-                 ->disk(env('FILESYSTEM_DRIVER', 'local'))
-                 ->prunable(),
+            Boolean::make('Uses Emr')
+                   ->rules('required')
+                   ->hideFromIndex(),
+
+            Text::make('Class Involvement', function(){
+
+                    return $this->schoolClasses->implode('name', ', ');
+                })
+                ->onlyOnIndex(),
+
+            Text::make('Year Initiated')
+                ->rules('required', 'numeric')
+                ->hideFromIndex(),
+
+            Text::make('Yearly Participants', 'yearly_outreach_participants')
+                ->rules('required', 'max:255')
+                ->hideFromIndex(),
+
+            Text::make('Matriculants Per Class')
+                ->rules('required', 'max:255')
+                ->hideFromIndex(),
+
+            Text::make('Months of Travel')
+                ->rules('required', 'max:255')
+                ->hideFromIndex(),
+
+            Textarea::make('Comments')
+                ->rules('required')
+                ->hideFromIndex(),
+
+            HasMany::make('Fields'),
+
+            BelongsToMany::make('PartnerOrganizations'),
+
+            BelongsToMany::make('SchoolClasses'),
+
+            HasMany::make('Papers'),
+
+            HasMany::make('VisitedLocations'),
+
+            BelongsToMany::make('Contacts'),
+
+            BelongsToMany::make('Users')
         ];
     }
 

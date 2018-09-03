@@ -2,28 +2,27 @@
 
 namespace FEMR\Nova;
 
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class News extends Resource
+class VisitedLocation extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'FEMR\Data\Models\News';
+    public static $model = 'FEMR\Data\Models\VisitedLocation';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -32,7 +31,13 @@ class News extends Resource
      */
     public static $search = [
         'id',
-        'title'
+        'address',
+        'address_ext',
+        'locality',
+        'administrative_area_level_1',
+        'administrative_area_level_2',
+        'postal_code',
+        'country'
     ];
 
     /**
@@ -45,25 +50,55 @@ class News extends Resource
     {
         return [
             ID::make()
+                ->sortable()
                 ->onlyOnDetail(),
 
-            Image::make('Thumbnail Photo', 'thumbnail')
-                 ->disk(env('FILESYSTEM_DRIVER', 'local'))
-                 ->prunable(),
 
-            Text::make('Thumbnail Alt')
+            Place::make('Address','address')
+                ->secondAddressLine('address_ex')
+                ->city('locality')
+                ->state('administrative_area_level_1')
+                ->postalCode('postal_code')
+                ->country('country')
+                ->sortable()
                 ->rules('max:255')
                 ->hideFromIndex(),
 
-            Boolean::make('Featured', 'is_featured')
-               ->sortable(),
+            Text::make('Address Ext')
+                ->sortable()
+                ->rules('max:255')
+                ->hideFromIndex(),
 
-            Text::make('Title')
+            Text::make('City', 'locality')
+                ->sortable()
+                ->rules('max:255'),
+
+            Text::make('State Code', 'administrative_area_level_1')
+                ->sortable()
+                ->rules('max:2'),
+
+            Text::make('Administrative Area Level 2')
+                ->sortable()
+                ->rules('max:2')
+                ->hideFromIndex(),
+
+            Text::make('Postal Code')
+                ->sortable()
+                ->rules('max:255')
+                ->hideFromIndex(),
+
+            Text::make('Country')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Url')
-                ->rules('required', 'max:255', 'url')
+            Text::make('Latitude')
+                ->sortable()
+                ->rules('required', 'numeric')
+                ->hideFromIndex(),
+
+            Text::make('Longitude')
+                ->sortable()
+                ->rules('required', 'numeric')
                 ->hideFromIndex(),
 
         ];
