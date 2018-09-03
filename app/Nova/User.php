@@ -43,7 +43,8 @@ class User extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()
+              ->sortable(),
 
             Text::make('Name')
                 ->sortable()

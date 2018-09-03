@@ -2,28 +2,26 @@
 
 namespace FEMR\Nova;
 
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class News extends Resource
+class PartnerOrganization extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'FEMR\Data\Models\News';
+    public static $model = 'FEMR\Data\Models\PartnerOrganization';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -32,7 +30,8 @@ class News extends Resource
      */
     public static $search = [
         'id',
-        'title'
+        'name',
+        'website'
     ];
 
     /**
@@ -45,27 +44,20 @@ class News extends Resource
     {
         return [
             ID::make()
-                ->onlyOnDetail(),
+              ->sortable()
+              ->onlyOnDetail(),
 
-            Image::make('Thumbnail Photo', 'thumbnail')
-                 ->disk(env('FILESYSTEM_DRIVER', 'local'))
-                 ->prunable(),
-
-            Text::make('Thumbnail Alt')
-                ->rules('max:255')
-                ->hideFromIndex(),
-
-            Boolean::make('Featured', 'is_featured')
-               ->sortable(),
-
-            Text::make('Title')
+            Text::make('name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Url')
-                ->rules('required', 'max:255', 'url')
-                ->hideFromIndex(),
+            Text::make('slug')
+                ->sortable()
+                ->rules('required', 'max:255'),
 
+            Text::make('website')
+                ->sortable()
+                ->rules('required', 'url'),
         ];
     }
 

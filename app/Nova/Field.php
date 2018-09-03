@@ -2,28 +2,31 @@
 
 namespace FEMR\Nova;
 
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class News extends Resource
+class Field extends Resource
 {
+    /**
+     * @var bool
+     */
+    public static $displayInNavigation = false;
+
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'FEMR\Data\Models\News';
+    public static $model = 'FEMR\Data\Models\OutreachProgram\Field';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -32,8 +35,20 @@ class News extends Resource
      */
     public static $search = [
         'id',
-        'title'
+        'name',
+        'key',
+        'value'
     ];
+
+    /**
+     * Get the displayable label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return 'Additional Fields';
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -44,27 +59,13 @@ class News extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()
-                ->onlyOnDetail(),
+            ID::make()->sortable(),
 
-            Image::make('Thumbnail Photo', 'thumbnail')
-                 ->disk(env('FILESYSTEM_DRIVER', 'local'))
-                 ->prunable(),
+            Text::make('name'),
 
-            Text::make('Thumbnail Alt')
-                ->rules('max:255')
-                ->hideFromIndex(),
+            Text::make('key')->onlyOnForms(),
 
-            Boolean::make('Featured', 'is_featured')
-               ->sortable(),
-
-            Text::make('Title')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Url')
-                ->rules('required', 'max:255', 'url')
-                ->hideFromIndex(),
+            Text::make('value'),
 
         ];
     }

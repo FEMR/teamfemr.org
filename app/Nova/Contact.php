@@ -2,28 +2,27 @@
 
 namespace FEMR\Nova;
 
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class News extends Resource
+class Contact extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'FEMR\Data\Models\News';
+    public static $model = 'FEMR\Data\Models\Contact';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -32,7 +31,11 @@ class News extends Resource
      */
     public static $search = [
         'id',
-        'title'
+        'first_name',
+        'last_name',
+        'full_name',
+        'email',
+        'phone'
     ];
 
     /**
@@ -45,27 +48,45 @@ class News extends Resource
     {
         return [
             ID::make()
+                ->sortable()
                 ->onlyOnDetail(),
 
-            Image::make('Thumbnail Photo', 'thumbnail')
-                 ->disk(env('FILESYSTEM_DRIVER', 'local'))
-                 ->prunable(),
-
-            Text::make('Thumbnail Alt')
+            Text::make('prefix')
                 ->rules('max:255')
+                ->onlyOnForms(),
+
+            Text::make('first_name')
+                ->rules('max:255')
+                ->onlyOnForms(),
+
+            Text::make('last_name')
+                ->rules('max:255')
+                ->onlyOnForms(),
+
+            Text::make('full_name')
+                ->rules('max:255')
+                ->resolveUsing(function($full_name){
+
+                    return empty($full_name) ? $this->first_name .' '.$this->last_name : $full_name;
+                }),
+
+            Text::make('suffix')
+                ->rules('max:255')
+                ->onlyOnForms(),
+
+            Text::make('title')
+                ->rules('max:255')
+                ->onlyOnForms(),
+
+            Text::make('phone')
+                ->rules('max:255'),
+
+            Text::make('email')
+                ->rules('max:255', 'email'),
+
+            Textarea::make('notes')
+                ->rules('string')
                 ->hideFromIndex(),
-
-            Boolean::make('Featured', 'is_featured')
-               ->sortable(),
-
-            Text::make('Title')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Url')
-                ->rules('required', 'max:255', 'url')
-                ->hideFromIndex(),
-
         ];
     }
 
