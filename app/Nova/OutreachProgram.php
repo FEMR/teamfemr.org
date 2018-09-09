@@ -2,6 +2,7 @@
 
 namespace FEMR\Nova;
 
+use Carbon\Carbon;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
@@ -57,6 +58,10 @@ class OutreachProgram extends Resource
                 ->sortable()
                 ->onlyOnDetail(),
 
+            Boolean::make('Is Approved', function(){
+                return !is_null($this->approved_at) && $this->approved_at->isPast();
+            }),
+
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
@@ -70,7 +75,6 @@ class OutreachProgram extends Resource
                    ->hideFromIndex(),
 
             Text::make('Class Involvement', function(){
-
                     return $this->schoolClasses->implode('name', ', ');
                 })
                 ->onlyOnIndex(),
@@ -152,6 +156,9 @@ class OutreachProgram extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            \App::make(Actions\ApproveOutreachProgram::class),
+            \App::make(Actions\DisapproveOutreachProgram::class),
+        ];
     }
 }
