@@ -11,6 +11,11 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class Contact extends Resource
 {
     /**
+     * @var bool
+     */
+    public static $displayInNavigation = true;
+
+    /**
      * The model the resource corresponds to.
      *
      * @var string

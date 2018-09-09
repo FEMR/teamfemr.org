@@ -11,6 +11,11 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class VisitedLocation extends Resource
 {
     /**
+     * @var bool
+     */
+    public static $displayInNavigation = false;
+
+    /**
      * The model the resource corresponds to.
      *
      * @var string
