@@ -10,6 +10,11 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class SchoolClass extends Resource
 {
     /**
+     * @var bool
+     */
+    public static $displayInNavigation = false;
+
+    /**
      * The model the resource corresponds to.
      *
      * @var string

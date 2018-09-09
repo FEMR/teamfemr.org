@@ -1,13 +1,20 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "repositories": [
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/TextField"
         }
     ],
     "require": {
@@ -20,7 +27,8 @@
         "laravelcollective/html": "^5.3.0",
         "league/flysystem-aws-s3-v3": "~1.0",
         "toin0u/geocoder-laravel": "^1.0",
-        "laravel/nova": "*"
+        "laravel/nova": "*",
+        "femr/text-field": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
