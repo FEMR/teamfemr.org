@@ -56,7 +56,8 @@ class SchoolClass extends Resource
 
             Text::make('slug')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->hideFromIndex(),
         ];
     }
 

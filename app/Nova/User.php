@@ -2,12 +2,12 @@
 
 namespace FEMR\Nova;
 
-use FEMR\Nova\Filters\UserType;
-use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
@@ -35,6 +35,18 @@ class User extends Resource
     ];
 
     /**
+     * Build an "index" query for the given resource.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->where('is_admin', '=', 0);
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,10 +62,6 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Boolean::make('Admin', 'is_admin')
-                ->sortable()
-                ->exceptOnForms(),
-
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:255')
@@ -64,6 +72,16 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:6')
                 ->updateRules('nullable', 'string', 'min:6'),
+
+            Text::make('Surveys', function(){
+
+                    return 1;
+//                    return view('admin.partials.survey-links', [
+//                        'outreachPrograms' => $this->outreachPrograms ?? [],
+//                    ])->render();
+                }),
+
+            BelongsToMany::make('OutreachPrograms'),
         ];
     }
 
@@ -86,9 +104,7 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [
-            new UserType
-        ];
+        return [];
     }
 
     /**
