@@ -75,11 +75,9 @@ class User extends Resource
 
             Text::make('Surveys', function(){
 
-                    return 1;
-//                    return view('admin.partials.survey-links', [
-//                        'outreachPrograms' => $this->outreachPrograms ?? [],
-//                    ])->render();
-                }),
+                    return $this->outreachPrograms ? $this->outreachPrograms->count() : 0;
+                })
+                ->onlyOnIndex(),
 
             BelongsToMany::make('OutreachPrograms'),
         ];
