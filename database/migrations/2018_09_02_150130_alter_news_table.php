@@ -16,6 +16,7 @@ class AlterNewsTable extends Migration
         Schema::table('news', function (Blueprint $table)
         {
             // remove old columns
+            $table->dropColumn('slug');
             $table->dropColumn( 'content' );
             $table->dropColumn( 'excerpt' );
 
@@ -40,6 +41,7 @@ class AlterNewsTable extends Migration
             $table->dropColumn( 'is_featured' );
 
             // add new columns
+            $table->string( 'slug' )->unique();
             $table->text( 'content' )->nullable()->after('url');
             $table->text( 'excerpt' )->nullable()->after('content');
         });
