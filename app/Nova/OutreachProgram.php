@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Femr\TextField\TextField as Text;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -70,14 +71,19 @@ class OutreachProgram extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Text::make('Locations', function () {
+                    return $this->visitedLocations ? $this->visitedLocations->count() : 0;
+                })
+                ->onlyOnIndex(),
+
+            Text::make('Partners', function () {
+                    return ($this->partnerOrganizations) ? $this->partnerOrganizations->count() : 0;
+                })
+                ->onlyOnIndex(),
+
             Boolean::make('Uses Emr')
                    ->rules('required')
                    ->hideFromIndex(),
-
-            Text::make('Class Involvement', function(){
-                    return $this->schoolClasses->implode('name', ', ');
-                })
-                ->onlyOnIndex(),
 
             Text::make('Year Initiated')
                 ->rules('required', 'numeric')
@@ -91,7 +97,7 @@ class OutreachProgram extends Resource
                 ->rules('required', 'max:255')
                 ->hideFromIndex(),
 
-            Text::make('Months of Travel')
+            Textarea::make('Months of Travel')
                 ->rules('required', 'max:255')
                 ->hideFromIndex(),
 

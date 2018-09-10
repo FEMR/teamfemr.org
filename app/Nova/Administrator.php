@@ -4,22 +4,18 @@ namespace FEMR\Nova;
 
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class PartnerOrganization extends Resource
+class Administrator extends Resource
 {
-    /**
-     * @var bool
-     */
-    public static $displayInNavigation = false;
-
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'FEMR\Data\Models\PartnerOrganization';
+    public static $model = 'FEMR\\Data\\Models\\User';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -34,10 +30,20 @@ class PartnerOrganization extends Resource
      * @var array
      */
     public static $search = [
-        'id',
-        'name',
-        'website'
+        'id', 'name', 'email',
     ];
+
+    /**
+     * Build an "index" query for the given resource.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->where('is_admin', '=', 1);
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -49,21 +55,22 @@ class PartnerOrganization extends Resource
     {
         return [
             ID::make()
-              ->sortable()
-              ->onlyOnDetail(),
+              ->sortable(),
 
-            Text::make('name')
+            Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('slug')
+            Text::make('Email')
                 ->sortable()
-                ->rules('required', 'max:255')
-                ->hideFromIndex(),
+                ->rules('required', 'email', 'max:255')
+                ->creationRules('unique:users,email')
+                ->updateRules('unique:users,email,{{resourceId}}'),
 
-            Text::make('website')
-                ->sortable()
-                ->rules('required', 'url'),
+            Password::make('Password')
+                    ->onlyOnForms()
+                    ->creationRules('required', 'string', 'min:6')
+                    ->updateRules('nullable', 'string', 'min:6'),
         ];
     }
 

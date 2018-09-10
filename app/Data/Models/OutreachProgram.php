@@ -144,20 +144,7 @@ class OutreachProgram extends Model
         }
 
     }
-
-    /**
-     * @return array
-     */
-    public function getMonthsOfTravelAttribute()
-    {
-        // TODO - handle this more appropriately?
-        if( strlen( $this->attributes['months_of_travel'] ) > 0 ) {
-
-            return explode( ",", $this->attributes['months_of_travel'] );
-        }
-        else return [];
-    }
-
+    
     /**
      * @return array
      */
