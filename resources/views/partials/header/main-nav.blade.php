@@ -57,26 +57,7 @@
                             <div class="dropdown-section">
                                 <span class="title">Annual Reports</span>
                                 <div class="content">
-
-                                    <a href="{{ asset('/documents/Annual_Report_2017.pdf') }}" target="_blank">
-                                        <span>2017 Annual Report</span>
-                                        <span class="icon is-small has-text-info">
-                                          <i class="fa fa-external-link"></i>
-                                        </span>
-                                    </a>
-                                    <a href="{{ asset('/documents/Annual_Report_2016.pdf') }}" target="_blank">
-                                        <span>2016 Annual Report</span>
-                                        <span class="icon is-small has-text-info">
-                                          <i class="fa fa-external-link"></i>
-                                        </span>
-                                    </a>
-                                    <a href="{{ asset('/documents/Annual_Report_2015.pdf') }}" target="_blank">
-                                        <span>2015 Annual Report</span>
-                                        <span class="icon is-small has-text-info">
-                                          <i class="fa fa-external-link"></i>
-                                        </span>
-                                    </a>
-
+                                    @include('partials.annual-reports-list')
                                 </div>
                             </div>
 

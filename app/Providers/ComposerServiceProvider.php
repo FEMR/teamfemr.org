@@ -2,6 +2,7 @@
 
 namespace FEMR\Providers;
 
+use FEMR\Http\ViewComposers\AnnualReportsListComposer;
 use FEMR\Http\ViewComposers\FeaturedNewsComposer;
 use FEMR\Http\ViewComposers\LatestPublicationsComposer;
 use FEMR\Http\ViewComposers\Admin\AdminMessageComposer;
@@ -20,6 +21,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('sections.publications', LatestPublicationsComposer::class);
         View::composer('sections.news', FeaturedNewsComposer::class);
+        View::composer('partials.annual-reports-list', AnnualReportsListComposer::class);
 
         View::composer( 'admin.programs.partials.form.base-fields', ProgramFormComposer::class );
         View::composer( 'admin.partials.message', AdminMessageComposer::class );
