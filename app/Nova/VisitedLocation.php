@@ -84,12 +84,12 @@ class VisitedLocation extends Resource
 
             Text::make('State Code', 'administrative_area_level_1')
                 ->sortable()
-                ->rules('max:2'),
+                ->rules('max:255'),
 
-//            Text::make('Administrative Area Level 2')
-//                ->sortable()
-//                ->rules('max:2')
-//                ->hideFromIndex(),
+            Text::make('Administrative Area Level 2')
+                ->sortable()
+                ->rules('max:255')
+                ->hideFromIndex(),
 
             Text::make('Postal Code')
                 ->sortable()
