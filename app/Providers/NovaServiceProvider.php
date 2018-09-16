@@ -6,7 +6,6 @@ use FEMR\Nova\Metrics\MostVisitedCountries;
 use FEMR\Nova\Metrics\NewUsers;
 use FEMR\Nova\Metrics\SurveysPerWeek;
 use Laravel\Nova\Nova;
-use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
