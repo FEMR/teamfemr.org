@@ -54,16 +54,7 @@ class OutreachProgram {
            this.additionalFields[ key ] = value;
         });
 
-        this.monthsOfTravel = [];
-        _.forEach( json.monthsOfTravel, ( month ) => {
-
-            // this is matched up to what vue-select wants
-            this.monthsOfTravel.push( {
-
-                label: month,
-                value: month
-            });
-        });
+        this.monthsOfTravel = json.monthsOfTravel;
 
         this.schoolClasses = [];
         _.forEach( json.schoolClasses, ( schoolClass, key ) => {
@@ -165,7 +156,7 @@ class OutreachProgram {
 
     monthsOfTravelList() {
 
-        return this.monthsOfTravel.map( item => item.label ).join( ', ' );
+        return this.monthsOfTravel.map( item => item.label );
     }
 
     partnersList() {

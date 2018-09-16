@@ -33,6 +33,7 @@ class OutreachProgram {
                     _.forEach( response.data.data, ( programJson ) => {
 
                         let program = new OutreachProgramModel();
+                        console.log(programJson);
                         program.populate( programJson );
                         programs.push( program );
                     });
