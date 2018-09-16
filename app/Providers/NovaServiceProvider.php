@@ -2,6 +2,9 @@
 
 namespace FEMR\Providers;
 
+use FEMR\Nova\Metrics\MostVisitedCountries;
+use FEMR\Nova\Metrics\NewUsers;
+use FEMR\Nova\Metrics\SurveysPerWeek;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
@@ -54,7 +57,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new NewUsers,
+            new SurveysPerWeek,
+            (new MostVisitedCountries)->width( '2/3')
         ];
     }
 
