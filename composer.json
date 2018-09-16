@@ -15,20 +15,30 @@
         {
             "type": "path",
             "url": "./nova-components/TextField"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/AddressField"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/MapField"
         }
     ],
     "require": {
         "php": ">=7.0",
         "devdojo/chatter": "0.2.8",
         "doctrine/dbal": "^2.5",
+        "femr/text-field": "*",
+        "femr/address-field": "*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
+        "laravel/nova": "*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3.0",
         "league/flysystem-aws-s3-v3": "~1.0",
         "toin0u/geocoder-laravel": "^1.0",
-        "laravel/nova": "*",
-        "femr/text-field": "*"
+        "Femr/MapField": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
