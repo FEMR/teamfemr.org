@@ -90,7 +90,7 @@
                 </span>
 
                 @if( Auth::user()->is_admin )
-                <a class="nav-item user-item is-hidden-tablet" href="{{ route( 'admin.dashboard.index' ) }}">
+                <a class="nav-item user-item is-hidden-tablet" href="{{ Nova::path() }}">
                   Admin
                 </a>
                 @endif

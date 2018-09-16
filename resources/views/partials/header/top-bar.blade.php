@@ -29,7 +29,7 @@
 
                     @if( Auth::user()->is_admin )
                     |
-                    <a class="nav-item logged-in-status" href="{{ route( 'admin.dashboard.index' ) }}">
+                    <a class="nav-item logged-in-status" href="{{ Nova::path() }}">
                       Admin
                     </a>
                     @endif
