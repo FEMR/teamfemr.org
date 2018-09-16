@@ -8,8 +8,13 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "workspace": "docker-compose exec --user=laradock workspace bash",
         "build-text-field": "cd nova-components/TextField && npm run dev",
-        "build-text-field-prod": "cd nova-components/TextField && npm run prod"
+        "build-text-field-prod": "cd nova-components/TextField && npm run prod",
+        "build-address-field": "cd nova-components/AddressField && npm run dev",
+        "build-address-field-prod": "cd nova-components/AddressField && npm run prod",
+        "build-map-field": "cd nova-components/MapField && npm run dev",
+        "build-map-field-prod": "cd nova-components/MapField && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.15.3",

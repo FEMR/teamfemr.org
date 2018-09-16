@@ -2,6 +2,8 @@
 
 namespace FEMR\Nova;
 
+use Femr\AddressField\AddressField;
+use Femr\MapField\MapField;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Place;
@@ -68,16 +70,8 @@ class VisitedLocation extends Resource
                 ->sortable()
                 ->onlyOnDetail(),
 
-
-            Place::make('Address','address')
-                ->secondAddressLine('address_ex')
-                ->city('locality')
-                ->state('administrative_area_level_1')
-                ->postalCode('postal_code')
-                ->country('country')
-                ->sortable()
-                ->rules('max:255')
-                ->hideFromIndex(),
+            AddressField::make( 'Address')
+                        ->rules('string'),
 
             Text::make('Address Ext')
                 ->sortable()
@@ -92,10 +86,10 @@ class VisitedLocation extends Resource
                 ->sortable()
                 ->rules('max:2'),
 
-            Text::make('Administrative Area Level 2')
-                ->sortable()
-                ->rules('max:2')
-                ->hideFromIndex(),
+//            Text::make('Administrative Area Level 2')
+//                ->sortable()
+//                ->rules('max:2')
+//                ->hideFromIndex(),
 
             Text::make('Postal Code')
                 ->sortable()
@@ -116,6 +110,13 @@ class VisitedLocation extends Resource
                 ->rules('required', 'numeric')
                 ->hideFromIndex(),
 
+            MapField::make('map', function(){
+                return [
+                        'lat' => $this->latitude ?? 0.0,
+                        'lng' => $this->longitude ?? 0.0
+                    ];
+                })
+                ->onlyOnDetail()
         ];
     }
 

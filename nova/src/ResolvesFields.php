@@ -91,6 +91,7 @@ trait ResolvesFields
     protected function removeNonCreationFields(Collection $fields)
     {
         return $fields->reject(function ($field) {
+
             return $field instanceof ListableField ||
                    $field instanceof ResourceToolElement ||
                    $field->attribute === $this->resource->getKeyName() ||
