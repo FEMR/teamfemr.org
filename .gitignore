@@ -8,6 +8,7 @@ Homestead.json
 _ide_helper.php
 storage
 npm-debug.log
+auth.json
 
 public/css
 public/fonts
@@ -17,4 +18,3 @@ public/documents
 public/mix-manifest.json
 
 credentials.yml
->>>>>>> 93156dc6b45206e195d99a90639df31cf0ee1377

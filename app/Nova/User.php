@@ -2,12 +2,11 @@
 
 namespace FEMR\Nova;
 
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
@@ -16,7 +15,7 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = 'FEMR\\Data\\Models\\User';
+    public static $model = 'FEMR\\User';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -35,18 +34,6 @@ class User extends Resource
     ];
 
     /**
-     * Build an "index" query for the given resource.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        return $query->where('is_admin', '=', 0);
-    }
-
-    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -55,8 +42,9 @@ class User extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()
-              ->sortable(),
+            ID::make()->sortable(),
+
+            Gravatar::make(),
 
             Text::make('Name')
                 ->sortable()
@@ -64,7 +52,7 @@ class User extends Resource
 
             Text::make('Email')
                 ->sortable()
-                ->rules('required', 'email', 'max:255')
+                ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
@@ -72,14 +60,6 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:6')
                 ->updateRules('nullable', 'string', 'min:6'),
-
-            Text::make('Surveys', function(){
-
-                    return $this->outreachPrograms ? $this->outreachPrograms->count() : 0;
-                })
-                ->onlyOnIndex(),
-
-            BelongsToMany::make('OutreachPrograms'),
         ];
     }
 
