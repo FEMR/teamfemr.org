@@ -156,6 +156,7 @@ return [
         FEMR\Providers\EventServiceProvider::class,
         FEMR\Providers\NovaServiceProvider::class,
         FEMR\Providers\NovaServiceProvider::class,
+        FEMR\Providers\NovaServiceProvider::class,
         FEMR\Providers\RouteServiceProvider::class,
         FEMR\Providers\ComposerServiceProvider::class,
         FEMR\Providers\ObserverServiceProvider::class,
