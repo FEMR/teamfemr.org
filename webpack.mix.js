@@ -11,8 +11,6 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.disableNotifications();
-
     // front end
 mix .js( 'resources/assets/js/front/app.js', 'public/js/front' )
     .js( 'resources/assets/js/front/forum.js', 'public/js/front' )

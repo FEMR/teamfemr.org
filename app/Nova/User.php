@@ -15,7 +15,7 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = 'FEMR\\User';
+    public static $model = 'FEMR\\Data\\Models\\User';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
