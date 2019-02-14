@@ -6,7 +6,8 @@ Homestead.json
 .env
 .idea
 _ide_helper.php
-storage
+storage/clockwork
+storage/debugbar
 npm-debug.log
 auth.json
 
@@ -18,3 +19,7 @@ public/documents
 public/mix-manifest.json
 laradock
 credentials.yml
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
