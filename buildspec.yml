@@ -35,8 +35,9 @@ phases:
     commands:
     - echo Build started on `date`
     - echo Installing composer deps
-    - composer install
-    - npm install
+    - composer install --quiet --no-progress --no-suggest
+    - npm install -s
+    - for dir in ./nova-components/*/ ; do (cd "$dir" && npm install && npm run prod); done
     - npm run prod
 
   post_build:
