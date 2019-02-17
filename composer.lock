@@ -1,57 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "44a288340d1016cfcaed66c0a78b2944",
+    "content-hash": "593df42eef735eadf175cd60cd7b6d19",
     "packages": [
         {
-            "name": "Femr/MapField",
-            "version": "dev-feature/nova-admin",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/MapField",
-                "reference": "01fc2ee775cf65d62014ca973e838a37e7f502b5",
-                "shasum": null
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Femr\\MapField\\FieldServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Femr\\MapField\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova field.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ]
-        },
-        {
             "name": "aws/aws-sdk-php",
-            "version": "3.87.9",
+            "version": "3.87.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3508f119723b7ee69929c102e350ea26f3c5ff2d"
+                "reference": "2f3f01d43a8d90b68e6fa0a17257d16fa7f07c47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3508f119723b7ee69929c102e350ea26f3c5ff2d",
-                "reference": "3508f119723b7ee69929c102e350ea26f3c5ff2d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2f3f01d43a8d90b68e6fa0a17257d16fa7f07c47",
+                "reference": "2f3f01d43a8d90b68e6fa0a17257d16fa7f07c47",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +86,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-02-12T23:15:22+00:00"
+            "time": "2019-02-15T19:08:26+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -884,7 +850,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova-components/AddressField",
-                "reference": "83cc7ae1d4dfa486c190f8d33572369e246e092f",
+                "reference": "e45eaa6ffc74365827be3833c08e01d948d8c435",
                 "shasum": null
             },
             "require": {
@@ -894,13 +860,47 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Femr\\AddressField\\FieldServiceProvider"
+                        "FEMR\\AddressField\\FieldServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Femr\\AddressField\\": "src/"
+                    "FEMR\\AddressField\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
+        },
+        {
+            "name": "femr/map-field",
+            "version": "dev-feature/nova-admin",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/MapField",
+                "reference": "5ca844ede00dfab9bd011a4d530b586fcba7847f",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "FEMR\\MapField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FEMR\\MapField\\": "src/"
                 }
             },
             "license": [
@@ -918,7 +918,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova-components/TextField",
-                "reference": "c86d63f6c207e0425027af7491289de92bab9ac5",
+                "reference": "160834cd79aba531abc2597ef3b35b00d2b409f5",
                 "shasum": null
             },
             "require": {
@@ -928,13 +928,13 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Femr\\TextField\\FieldServiceProvider"
+                        "FEMR\\TextField\\FieldServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Femr\\TextField\\": "src/"
+                    "FEMR\\TextField\\": "src/"
                 }
             },
             "license": [
@@ -2094,16 +2094,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a"
+                "reference": "5221f49a608808c1e4d436df32884cbc1b821ac0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
-                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5221f49a608808c1e4d436df32884cbc1b821ac0",
+                "reference": "5221f49a608808c1e4d436df32884cbc1b821ac0",
                 "shasum": ""
             },
             "require": {
@@ -2141,7 +2141,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-01-12T16:31:37+00:00"
+            "time": "2019-02-16T20:54:15+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -5513,16 +5513,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.4",
+            "version": "7.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0"
+                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2896657da5fb237bc316bdfc18c2650efeee0dc0",
-                "reference": "2896657da5fb237bc316bdfc18c2650efeee0dc0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
+                "reference": "23a200a60552cb9ba483a8d1e106c70fb0be0bb9",
                 "shasum": ""
             },
             "require": {
@@ -5593,7 +5593,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-07T14:15:04+00:00"
+            "time": "2019-02-15T14:00:34+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

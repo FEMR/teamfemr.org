@@ -1,6 +1,6 @@
 <?php
 
-namespace Femr\AddressField;
+namespace FEMR\AddressField;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;

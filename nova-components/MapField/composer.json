@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Femr\\MapField\\": "src/"
+            "FEMR\\MapField\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Femr\\MapField\\FieldServiceProvider"
+                "FEMR\\MapField\\FieldServiceProvider"
             ]
         }
     },

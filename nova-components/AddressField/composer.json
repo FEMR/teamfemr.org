@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Femr\\AddressField\\": "src/"
+            "FEMR\\AddressField\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Femr\\AddressField\\FieldServiceProvider"
+                "FEMR\\AddressField\\FieldServiceProvider"
             ]
         }
     },

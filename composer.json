@@ -29,16 +29,16 @@
         "php": ">=7.0",
         "devdojo/chatter": "0.2.8",
         "doctrine/dbal": "^2.5",
-        "femr/text-field": "*",
         "femr/address-field": "*",
+        "femr/text-field": "*",
+        "femr/map-field": "*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/nova": "~1.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3.0",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "toin0u/geocoder-laravel": "^1.0",
-        "Femr/MapField": "*"
+        "toin0u/geocoder-laravel": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
