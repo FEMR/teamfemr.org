@@ -1,6 +1,6 @@
 <?php
 
-namespace Femr\MapField;
+namespace FEMR\MapField;
 
 use Laravel\Nova\Fields\Field;
 

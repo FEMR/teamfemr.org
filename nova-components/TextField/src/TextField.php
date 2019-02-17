@@ -1,6 +1,6 @@
 <?php
 
-namespace Femr\TextField;
+namespace FEMR\TextField;
 
 use Laravel\Nova\Fields\Field;
 
