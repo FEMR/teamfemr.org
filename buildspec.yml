@@ -43,7 +43,7 @@ phases:
   post_build:
     commands:
     - echo Build completed on `date`
-    #- ./vendor/phpunit/phpunit/phpunit
+    - ./vendor/bin/phpunit
     - echo $(TAG) > version.txt
 
 artifacts:
