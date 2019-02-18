@@ -5,6 +5,7 @@ namespace FEMR\Providers;
 use FEMR\Nova\Metrics\MostVisitedCountries;
 use FEMR\Nova\Metrics\NewUsers;
 use FEMR\Nova\Metrics\SurveysPerWeek;
+use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -19,6 +20,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::serving(function (ServingNova $event) {
+            Nova::provideToScript([
+                'googleMapsKey' => env( 'GMAPS_API_KEY' )
+          ]);
+        });
+
+
     }
 
     /**

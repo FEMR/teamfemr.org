@@ -2,10 +2,9 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 
 Nova.booting((Vue, router) => {
 
-    // TODO -- get API key from .env
     Vue.use( VueGoogleMaps, {
         load: {
-            key: '',
+            key: Nova.config.googleMapsKey,
             libraries: 'places'
         }
     });
