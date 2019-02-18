@@ -25,6 +25,6 @@ class LatestPublicationsComposer
      */
     public function compose(View $view)
     {
-        $view->with('publications', Publication::orderBy('created_at', 'asc')->take(10)->get());
+        $view->with('publications', Publication::orderBy('created_at', 'desc')->take(10)->get());
     }
 }
