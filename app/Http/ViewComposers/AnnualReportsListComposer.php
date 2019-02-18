@@ -25,6 +25,6 @@ class AnnualReportsListComposer
      */
     public function compose(View $view)
     {
-        $view->with('annual_reports', AnnualReport::orderBy('created_at', 'asc')->take(5)->get());
+        $view->with('annual_reports', AnnualReport::orderBy('created_at', 'desc')->take(5)->get());
     }
 }
