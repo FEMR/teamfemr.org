@@ -2,8 +2,8 @@
 
 namespace FEMR\Nova;
 
-use Femr\AddressField\AddressField;
-use Femr\MapField\MapField;
+use FEMR\AddressField\AddressField;
+use FEMR\MapField\MapField;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Place;
