@@ -53,6 +53,7 @@ artifacts:
   - artisan
   - bootstrap/**/*
   - config/**/*
+  - composer.json
   - database/**/*
   - helpers/**/*
   - nova-components/**/*
