@@ -50,9 +50,9 @@ class Publication extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Slug')
-                ->rules('max:255')
-                ->onlyOnForms(),
+//            Text::make('Slug')
+//                ->rules('max:255')
+//                ->onlyOnForms(),
 
             Text::make('Description')
                 ->rules('required', 'max:255'),
