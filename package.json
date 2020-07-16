@@ -27,7 +27,7 @@
         "cross-env": "^3.2.3",
         "jquery": "^3.3.1",
         "laravel-mix": "^2.0",
-        "lodash": "^4.17.11",
+        "lodash": "^4.17.19",
         "vue": "^2.6.6",
         "vue-affix": "^0.2.4",
         "vue2-google-maps": "^0.8.12"
