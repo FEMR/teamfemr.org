@@ -28,6 +28,6 @@ class SendNewDiscussionEmail
     {
         // $event->discussion
         // $event->post
-        \Mail::to( 'kdunlap4918@gmail.com' )->send( new DiscussionCreated( $event->request ) );
+        \Mail::to( 'info@teamfemr.org' )->send( new DiscussionCreated( $event->request ) );
     }
 }

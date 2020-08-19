@@ -27,6 +27,6 @@ class SendNewResponseEmail
     public function handle( ChatterAfterNewResponse $event )
     {
         // $event->post
-        \Mail::to( 'kdunlap4918@gmail.com' )->send( new ResponseCreated( $event->request ) );
+        \Mail::to( 'info@teamfemr.org' )->send( new ResponseCreated( $event->request ) );
     }
 }
