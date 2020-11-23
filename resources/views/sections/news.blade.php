@@ -11,7 +11,6 @@
                     </h2>
 
                     <carousel
-                        :autoplay="true"
                         :per-page="1"
                         :per-page-custom="[[768,2],[1024, 4]]"
                     >
