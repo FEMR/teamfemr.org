@@ -24,8 +24,17 @@
         }
     }
 
-    .column{
+    .columns{
+        display: flex;
+        align-items: center;
 
+        .copyright{
+            flex: 1;
+        }
+    }
+
+    .column{
+        flex: initial;
         display: flex;
         flex-direction: column;
         justify-content: center;
