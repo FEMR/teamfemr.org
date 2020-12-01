@@ -26,6 +26,7 @@ phases:
       php composer-setup.php ;
       php -r "unlink('composer-setup.php');" ;
       mv composer.phar /usr/local/bin/composer
+      composer config http-basic.nova.laravel.com ${NOVA_USERNAME} ${NOVA_PASSWORD}
 
   pre_build:
     commands:
