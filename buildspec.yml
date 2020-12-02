@@ -52,6 +52,7 @@ phases:
 artifacts:
   files:
   - .ebextensions/**/*
+  - .platform/**/*
   - app/**/*
   - artisan
   - bootstrap/**/*
