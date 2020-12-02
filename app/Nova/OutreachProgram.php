@@ -7,7 +7,6 @@ use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use FEMR\TextField\TextField as Text;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Textarea;
@@ -73,39 +72,39 @@ class OutreachProgram extends Resource
                 return !is_null($this->approved_at) && $this->approved_at->isPast();
             }),
 
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('School Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Locations', function () {
-                    return $this->visitedLocations ? $this->visitedLocations->count() : 0;
-                })
-                ->onlyOnIndex(),
-
-            Text::make('Partners', function () {
-                    return ($this->partnerOrganizations) ? $this->partnerOrganizations->count() : 0;
-                })
-                ->onlyOnIndex(),
+//            Text::make('Name')
+//                ->sortable()
+//                ->rules('required', 'max:255'),
+//
+//            Text::make('School Name')
+//                ->sortable()
+//                ->rules('required', 'max:255'),
+//
+//            Text::make('Locations', function () {
+//                    return $this->visitedLocations ? $this->visitedLocations->count() : 0;
+//                })
+//                ->onlyOnIndex(),
+//
+//            Text::make('Partners', function () {
+//                    return ($this->partnerOrganizations) ? $this->partnerOrganizations->count() : 0;
+//                })
+//                ->onlyOnIndex(),
 
             Boolean::make('Uses Emr')
                    ->rules('required')
                    ->hideFromIndex(),
 
-            Text::make('Year Initiated')
-                ->rules('required', 'numeric')
-                ->hideFromIndex(),
-
-            Text::make('Yearly Participants', 'yearly_outreach_participants')
-                ->rules('required', 'max:255')
-                ->hideFromIndex(),
-
-            Text::make('Matriculants Per Class')
-                ->rules('required', 'max:255')
-                ->hideFromIndex(),
+//            Text::make('Year Initiated')
+//                ->rules('required', 'numeric')
+//                ->hideFromIndex(),
+//
+//            Text::make('Yearly Participants', 'yearly_outreach_participants')
+//                ->rules('required', 'max:255')
+//                ->hideFromIndex(),
+//
+//            Text::make('Matriculants Per Class')
+//                ->rules('required', 'max:255')
+//                ->hideFromIndex(),
 
             Textarea::make('Months of Travel')
                 ->rules('required', 'max:255')

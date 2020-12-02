@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "593df42eef735eadf175cd60cd7b6d19",
+    "content-hash": "a85966903abae20e1e62d02d5eb81ab3",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.164.0",
+            "version": "3.165.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "39ecf57d828eb50ab23fd70255a68b8996392ac9"
+                "reference": "ddc727e18c670ab07c453ceeb5f310bb6b2f1508"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/39ecf57d828eb50ab23fd70255a68b8996392ac9",
-                "reference": "39ecf57d828eb50ab23fd70255a68b8996392ac9",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ddc727e18c670ab07c453ceeb5f310bb6b2f1508",
+                "reference": "ddc727e18c670ab07c453ceeb5f310bb6b2f1508",
                 "shasum": ""
             },
             "require": {
@@ -92,9 +92,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.164.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.165.0"
             },
-            "time": "2020-11-24T19:18:22+00:00"
+            "time": "2020-12-01T19:14:48+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1030,114 +1030,6 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/v4.8.0"
             },
             "time": "2016-07-16T12:58:58+00:00"
-        },
-        {
-            "name": "femr/address-field",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/AddressField",
-                "reference": "dad678e0afc8624475ffdda0610bdc4e50d8c1f6"
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "FEMR\\AddressField\\FieldServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "FEMR\\AddressField\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova field.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "femr/map-field",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/MapField",
-                "reference": "cebfa1121ea95e19bdf8e0480ff7df42c79a453e"
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "FEMR\\MapField\\FieldServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "FEMR\\MapField\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova field.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "femr/text-field",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/TextField",
-                "reference": "1908c1c986e4e28c77f4683d6b8ab9ec7f31f957"
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "FEMR\\TextField\\FieldServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "FEMR\\TextField\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova field.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
         },
         {
             "name": "fideloper/proxy",

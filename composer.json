@@ -11,27 +11,12 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/TextField"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/AddressField"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/MapField"
         }
     ],
     "require": {
         "php": ">=7.0",
         "devdojo/chatter": "0.2.8",
         "doctrine/dbal": "^2.5",
-        "femr/address-field": "*",
-        "femr/text-field": "*",
-        "femr/map-field": "*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/nova": "~1.0",
