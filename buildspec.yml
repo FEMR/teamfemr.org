@@ -40,7 +40,6 @@ phases:
     - composer config http-basic.nova.laravel.com $NOVA_USERNAME $NOVA_PASSWORD
     - composer install --quiet --no-progress --no-suggest
     - npm install -s
-    - for dir in ./nova-components/*/ ; do (cd "$dir" && npm install && npm run prod); done
     - npm run prod
 
   post_build:
@@ -60,7 +59,6 @@ artifacts:
   - composer.json
   - database/**/*
   - helpers/**/*
-  - nova-components/**/*
   - public/**/*
   - resources/**/*
   - routes/**/*
