@@ -37,7 +37,7 @@ class OutreachProgramResource extends Resource
 //                    'value' => $field->value
 //                ];
 //            }),
-            'additionalFields' => $this->fields->pluck( 'value', 'key' ),
+            'additionalFields' => [], //$this->fields->pluck( 'value', 'key' ),
             'schoolClasses' => $this->schoolClasses->map( function( $class ) {
 
                 return [
