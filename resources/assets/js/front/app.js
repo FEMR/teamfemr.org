@@ -27,15 +27,15 @@ Vue.use( VueScrollTo, {
     onCancel: false
 });
 
-Vue.component( 'slack-invite', require( './components/SlackInvite.vue' ) );
-Vue.component( 'femr-map', require( './components/FemrMap.vue' ) );
-Vue.component( 'program-map', require( './components/ProgramMap.vue' ) );
-Vue.component( 'copy-to-clipboard', require( './components/CopyToClipboard.vue' ) );
-Vue.component( 'survey', require( './components/Survey.vue' ) );
-Vue.component( 'text-field', require( './components/fields/TextField.vue' ) );
-Vue.component( 'textarea-field', require( './components/fields/TextareaField.vue' ) );
-Vue.component( 'select-field', require( './components/fields/SelectField.vue' ) );
-Vue.component( 'multi-select-field', require( './components/fields/MultiSelectField.vue' ) );
+Vue.component( 'slack-invite', require( './components/SlackInvite.vue' ).default );
+Vue.component( 'femr-map', require( './components/FemrMap.vue' ).default );
+Vue.component( 'program-map', require( './components/ProgramMap.vue' ).default );
+Vue.component( 'copy-to-clipboard', require( './components/CopyToClipboard.vue' ).default );
+Vue.component( 'survey', require( './components/Survey.vue' ).default );
+Vue.component( 'text-field', require( './components/fields/TextField.vue' ).default );
+Vue.component( 'textarea-field', require( './components/fields/TextareaField.vue' ).default );
+Vue.component( 'select-field', require( './components/fields/SelectField.vue' ).default );
+Vue.component( 'multi-select-field', require( './components/fields/MultiSelectField.vue' ).default );
 
 const app = new Vue({
 

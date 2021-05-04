@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+let mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -22,4 +22,5 @@ mix .js( 'resources/assets/js/front/app.js', 'public/js/front' )
     // Move document files
     .copyDirectory( 'resources/documents', 'public/documents' )
 
-    .version();
+    .version()
+    .vue();
