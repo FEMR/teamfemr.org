@@ -7,17 +7,23 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "require": {
         "php": "^7.2.5|^8.0",
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
-        "devdojo/chatter": "0.2.8",
+        "devdojo/chatter": "0.2.*",
         "doctrine/dbal": "^2.5",
-        "laravel/nova": "~1.0",
-        "laravelcollective/html": "^5.3.0",
+        "laravel/nova": "^2.0",
+        "laravelcollective/html": "^6.20.0",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "toin0u/geocoder-laravel": "^1.0"
+        "toin0u/geocoder-laravel": "^4.0"
     },
     "require-dev": {
         "facade/ignition": "^1.16.15",
