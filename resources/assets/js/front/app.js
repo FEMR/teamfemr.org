@@ -1,6 +1,6 @@
 ﻿require('./bootstrap');
-import * as VueGoogleMaps from 'vue2-google-maps';
 
+import * as VueGoogleMaps from 'vue2-google-maps';
 Vue.use( VueGoogleMaps, {
     load: {
         key: FEMR.googleMapsKey,
@@ -14,10 +14,10 @@ Vue.use(VueCarousel);
 let Affix = require('vue-affix');
 Vue.use(Affix);
 
-import VeeValidate from 'vee-validate';
+import * as VeeValidate from 'vee-validate';
 Vue.use( VeeValidate, { inject: true } );
 
-let VueScrollTo = require('vue-scrollto');
+import VueScrollTo from 'vue-scrollto';
 Vue.use( VueScrollTo, {
     container: "body",
     duration: 500,

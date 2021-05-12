@@ -128,6 +128,7 @@
     </div>
 </template>
 
+
 <script type="text/babel">
 
     import * as VueGoogleMaps from 'vue2-google-maps';
@@ -233,7 +234,7 @@
                 // group by the lat/lng coords to handle overlapping pins
                 return _.groupBy( locations, ( location ) => {
 
-                   return location.latitude + ', ' + location.longitude;
+                    return location.latitude + ', ' + location.longitude;
                 });
             },
 
@@ -273,7 +274,7 @@
                 // find groupedLocations with visitedLocation and get marker key
                 let locationKey = _.findKey( this.groupedLocations, ( locations, key ) => {
 
-                  return _.reduce( locations, ( result, l ) => result || l.id === location.id, false );
+                    return _.reduce( locations, ( result, l ) => result || l.id === location.id, false );
                 });
 
                 this.center = location.position;
