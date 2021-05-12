@@ -12,7 +12,7 @@ let mix = require('laravel-mix');
  */
 
     // front end
-mix .js( 'resources/assets/js/front/app.js', 'public/js/front' )
+mix .js( 'resources/assets/js/front/app.js', 'public/js/front' ).vue()
     .js( 'resources/assets/js/front/forum.js', 'public/js/front' )
     .js( 'node_modules/trumbowyg/plugins/upload/trumbowyg.upload.js', 'public/js/front/trumbowyg-plugins.js' )
     .sass( 'resources/assets/sass/front/app.scss', 'public/css/front' )
@@ -22,5 +22,4 @@ mix .js( 'resources/assets/js/front/app.js', 'public/js/front' )
     // Move document files
     .copyDirectory( 'resources/documents', 'public/documents' )
 
-    .version()
-    .vue();
+    .version();
