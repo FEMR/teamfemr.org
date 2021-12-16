@@ -27,7 +27,21 @@
                         <div class="demo">
 
                             <a href="http://demo.teamfemr.org" class="button femr-button demo-button" target="_blank">
-                                <span>EMR Demo</span>
+                                <span>Legacy fEMR Demo</span>
+                            </a>
+                            <ul class="credentials">
+                                <li><span id="username">username: visitor</span></li>
+                                <li><span id="password">password: Teamfemr1</span></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="demo">
+
+                            <a href="http://femr-onchain-training-beta.eba-umphej7e.us-west-2.elasticbeanstalk.com/" class="button femr-button demo-button" target="_blank">
+                                <span>fEMR OnChain Demo</span>
                             </a>
                             <ul class="credentials">
                                 <li><span id="username">username: visitor</span></li>
