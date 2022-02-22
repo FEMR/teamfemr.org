@@ -154,19 +154,16 @@ return [
         FEMR\Providers\AppServiceProvider::class,
         FEMR\Providers\AuthServiceProvider::class,
         FEMR\Providers\EventServiceProvider::class,
-        FEMR\Providers\NovaServiceProvider::class,
-        FEMR\Providers\NovaServiceProvider::class,
-        FEMR\Providers\NovaServiceProvider::class,
         FEMR\Providers\RouteServiceProvider::class,
         FEMR\Providers\ComposerServiceProvider::class,
         FEMR\Providers\ObserverServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        //Barryvdh\Debugbar\ServiceProvider::class,
+        //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Geocoder\Laravel\Providers\GeocoderService::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
         DevDojo\Chatter\ChatterServiceProvider::class,
-        //FEMR\Providers\NovaServiceProvider::class
+        FEMR\Providers\NovaServiceProvider::class
     ],
 
     /*
@@ -215,7 +212,7 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
 
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        //'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
