@@ -37,7 +37,7 @@
         "clipboard": "^2.0.8",
         "font-awesome": "^4.7.0",
         "lodash-addons": "^2.0.1",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "select2": "^4.0.3",
         "store": "^2.0.12",
         "trumbowyg": "^2.14.0",
