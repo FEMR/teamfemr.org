@@ -2,7 +2,6 @@
 
 namespace FEMR\Data\Models;
 
-use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use FEMR\Data\Traits\UsesCriteria;
@@ -12,7 +11,7 @@ use FEMR\Data\Scopes\IsApprovedScope;
 
 class OutreachProgram extends Model
 {
-    use SoftDeletes, HasSlug, FormAccessible, UsesCriteria;
+    use SoftDeletes, HasSlug, UsesCriteria;
 
     /**
      * The table associated with the model.
