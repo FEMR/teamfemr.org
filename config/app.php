@@ -160,7 +160,7 @@ return [
         //Barryvdh\Debugbar\ServiceProvider::class,
         //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Geocoder\Laravel\Providers\GeocoderService::class,
-        Fideloper\Proxy\TrustedProxyServiceProvider::class,
+        // Fideloper\Proxy\TrustedProxyServiceProvider::class, // No longer needed in Laravel 9+
         Laravel\Tinker\TinkerServiceProvider::class,
         //DevDojo\Chatter\ChatterServiceProvider::class,
         //FEMR\Providers\NovaServiceProvider::class
