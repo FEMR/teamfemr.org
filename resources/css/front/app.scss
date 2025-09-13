@@ -1,0 +1,146 @@
+// Import Bulma 1.0 - simplified approach  
+@import "bulma/bulma";
+
+// Import Font Awesome
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/regular";
+@import "@fortawesome/fontawesome-free/scss/brands";
+
+// Temporarily disable custom overrides to get build working
+// TODO: Re-enable after fixing variable compatibility
+// @import "colors";
+// @import "fonts";  
+// @import "grid";
+
+// TODO - move this to a content.scss or do with a bulma class override
+.content {
+
+    h1, h2, h3, h4{
+
+        font-weight: bold;
+    }
+}
+
+.desktop-only{
+
+    display: none;
+}
+
+@media only screen and ( min-width: 768px ) {
+
+    .desktop-only {
+
+        display: block;
+    }
+
+    .mobile-only {
+
+        display: none;
+    }
+}
+
+h1.title,
+h2.title,
+h3.title,
+h4.title {
+    font-weight: bold;
+}
+
+.section{
+
+    padding-top: 1rem;
+}
+
+.modal{
+
+    z-index: 999999;
+}
+
+.map-modal{
+
+    .modal-content {
+
+        width: 100%;
+        max-width: 1200px;
+        height: 80%;
+        max-height: 100%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+
+        .map-container{
+
+            width: 100%;
+            height: auto;
+
+            .map{
+
+                height: 100%;
+            }
+        }
+    }
+}
+
+body, html {
+
+    min-height: 100vh;
+}
+
+body{
+    overflow: auto;
+}
+
+#app{
+
+    // 75px for main nav + 40 top bar
+    padding-top: 115px;
+    min-height: 100vh;
+
+    @media only screen and ( min-width: 768px ) {
+
+        padding-top: 170px;
+    }
+
+    @media only screen and ( min-width: 1024px ) {
+
+        // 90x for main nav + 40px top bar
+        padding-top: 130px;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    .stretch-content{
+
+        flex: 1;
+
+        &.has-top-spacing{
+
+            padding-top: 15px;
+        }
+    }
+}
+
+//@import "buttons";
+//@import "form";
+
+//@import "components/header/top-bar";
+//@import "components/header/main-nav";
+
+//@import "components/hero/hero";
+//@import "components/hero/home";
+//@import "components/hero/about";
+//@import "components/hero/open-source";
+//@import "components/hero/publications";
+//@import "components/hero/news";
+
+//@import "components/footer";
+//@import "components/login";
+//@import "components/pagination";
+
+//@import "components/donate/paypal";
+
+//@import "pages/outreach-program";
+//@import "pages/survey";
