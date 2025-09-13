@@ -1,13 +1,13 @@
 {
     "private": true,
     "scripts": {
-        "dev": "mix",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "mix --production",
-        "production": "mix --production",
+        "dev": "NODE_OPTIONS='--openssl-legacy-provider' mix",
+        "development": "NODE_OPTIONS='--openssl-legacy-provider' mix",
+        "watch": "NODE_OPTIONS='--openssl-legacy-provider' mix watch",
+        "watch-poll": "NODE_OPTIONS='--openssl-legacy-provider' mix watch -- --watch-options-poll=1000",
+        "hot": "NODE_OPTIONS='--openssl-legacy-provider' mix watch --hot",
+        "prod": "NODE_OPTIONS='--openssl-legacy-provider' mix --production",
+        "production": "NODE_OPTIONS='--openssl-legacy-provider' mix --production",
         "start": "docker-compose up -d nginx mysql",
         "stop": "docker-compose down",
         "workspace": "docker-compose exec --user=laradock workspace bash"
