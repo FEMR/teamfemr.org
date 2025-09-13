@@ -70,9 +70,10 @@
                 EMR Demo
             </a>
 
-            <a href="{{ route( 'chatter.home' ) }}" class="nav-item">
+            {{-- Forum temporarily disabled during Laravel upgrade --}}
+            {{-- <a href="{{ route( 'chatter.home' ) }}" class="nav-item">
                 Forum
-            </a>
+            </a> --}}
 
             <a href="{{ route( 'survey.create' ) }}" class="nav-item" >
                 Survey
