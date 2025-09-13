@@ -9,21 +9,21 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "devdojo/chatter": "0.2.*",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^4.4",
         "graham-campbell/markdown": "^13.1",
-        "laravel/framework": "^6.20.26",
+        "laravel/framework": "^8.83.0",
         "laravel/tinker": "^2.5",
-        "laravelcollective/html": "^6.20.0",
+        "laravel/ui": "^3.4",
+        "laravelcollective/html": "^6.3",
         "league/flysystem-aws-s3-v3": "~1.0",
         "toin0u/geocoder-laravel": "^4.0"
     },
     "require-dev": {
-        "facade/ignition": "^1.16.15",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.19",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
+        "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^8.5.8|^9.3.3",
         "filp/whoops": "~2.0",
         "barryvdh/laravel-debugbar": "^3.1",
@@ -48,7 +48,7 @@
             "FEMR\\": "app/"
         },
         "classmap": [
-            "database/seeds",
+            "database/seeders",
             "database/factories"
         ],
         "files": [
