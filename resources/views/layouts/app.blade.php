@@ -40,7 +40,7 @@
 
                 'userToken' => user_token(),
                 'csrfToken' => csrf_token(),
-                'googleMapsKey' => env( 'GMAPS_API_KEY' )
+                'googleMapsKey' => env( 'GOOGLE_MAPS_API_KEY' )
 
             ]) !!};
 
