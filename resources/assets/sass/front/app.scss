@@ -9,6 +9,9 @@
 // Import the rest of bulma
 @import "node_modules/bulma/bulma";
 
+// Import vue-select styles
+@import "~vue-select/dist/vue-select.css";
+
 // TODO - move this to a content.scss or do with a bulma class override
 .content {
 
