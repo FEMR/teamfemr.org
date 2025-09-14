@@ -2,6 +2,8 @@
 
 namespace FEMR\Data\Models;
 
+use Database\Factories\OutreachProgramFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use FEMR\Data\Traits\UsesCriteria;
@@ -11,7 +13,12 @@ use FEMR\Data\Scopes\IsApprovedScope;
 
 class OutreachProgram extends Model
 {
-    use SoftDeletes, HasSlug, UsesCriteria;
+    use HasFactory, SoftDeletes, HasSlug, UsesCriteria;
+
+    protected static function newFactory()
+    {
+        return OutreachProgramFactory::new();
+    }
 
     /**
      * The table associated with the model.

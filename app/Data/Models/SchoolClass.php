@@ -2,13 +2,20 @@
 
 namespace FEMR\Data\Models;
 
+use Database\Factories\SchoolClassFactory;
 use FEMR\Data\Utilities\HasSlug;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SchoolClass extends Model
 {
-    use SoftDeletes, HasSlug;
+    use HasFactory, SoftDeletes, HasSlug;
+
+    protected static function newFactory()
+    {
+        return SchoolClassFactory::new();
+    }
 
     /**
      * The table associated with the model.

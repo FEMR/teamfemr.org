@@ -2,13 +2,20 @@
 
 namespace FEMR\Data\Models;
 
+use Database\Factories\PublicationFactory;
 use FEMR\Data\Utilities\HasSlug;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Publication extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
+
+    protected static function newFactory()
+    {
+        return PublicationFactory::new();
+    }
 
     /**
      * The table associated with the model.
