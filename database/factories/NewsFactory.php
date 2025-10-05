@@ -13,11 +13,12 @@ class NewsFactory extends Factory
     public function definition()
     {
         $title = $this->faker->sentence(5, true);
+        $randomId = $this->faker->numberBetween(1, 1000);
 
         return [
             'title' => $title,
-            'url' => $this->faker->url(),
-            'thumbnail' => $this->faker->imageUrl(640, 480, 'news', true),
+            'url' => 'https://example.com/news/' . Str::slug($title),
+            'thumbnail' => "https://picsum.photos/seed/{$randomId}/640/480",
             'thumbnail_alt' => $this->faker->sentence(3),
             'is_featured' => $this->faker->boolean(20),
         ];

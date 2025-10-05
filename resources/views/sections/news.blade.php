@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 <section class="hero is-dark news-hero">
     <div class="hero-body">
         <div id="news" class="container">
@@ -20,7 +21,7 @@
 
                                 <figure class="image is-16by9">
                                     <a href="{{ $news->url }}" target="_blank">
-                                        <img src="{{ Storage::url($news->thumbnail) }}" alt="{{ $news->thumbnail_alt }}" />
+                                        <img src="{{ Str::isUrl($news->thumbnail) ? $news->thumbnail : Storage::url($news->thumbnail) }}" alt="{{ $news->thumbnail_alt }}" />
                                     </a>
                                 </figure>
                                 <h3 class="headline">
