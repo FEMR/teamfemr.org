@@ -2,12 +2,19 @@
 
 namespace FEMR\Data\Models;
 
+use Database\Factories\VisitedLocationFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VisitedLocation extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
+
+    protected static function newFactory()
+    {
+        return VisitedLocationFactory::new();
+    }
 
     /**
      * The table associated with the model.

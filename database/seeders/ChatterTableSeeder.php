@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use FEMR\Data\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ChatterTableSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class ChatterTableSeeder extends Seeder
         $user = User::where( 'email' , '=', 'info@teamfemr.org' )->first();
         if( ! $user )
         {
-            $user = User::create( [ 'name' => 'Team fEMR', 'email' => 'info@teamfemr.org', 'password' => '', 'api_token' => str_random( 40 ) ] );
+            $user = User::create( [ 'name' => 'Team fEMR', 'email' => 'info@teamfemr.org', 'password' => '', 'api_token' => Str::random( 40 ) ] );
         }
 
 

@@ -4,6 +4,7 @@ use FEMR\Data\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Str;
 
 class AlterUsersTableAddApiKey extends Migration
 {
@@ -25,7 +26,7 @@ class AlterUsersTableAddApiKey extends Migration
         {
            if( empty( $user->api_key ) )
            {
-               $user->api_key = str_random( 40 );
+               $user->api_key = Str::random( 40 );
                $user->save();
            }
         });

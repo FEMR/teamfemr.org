@@ -146,7 +146,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
+        Spatie\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -160,10 +160,10 @@ return [
         //Barryvdh\Debugbar\ServiceProvider::class,
         //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Geocoder\Laravel\Providers\GeocoderService::class,
-        Fideloper\Proxy\TrustedProxyServiceProvider::class,
+        // Fideloper\Proxy\TrustedProxyServiceProvider::class, // No longer needed in Laravel 9+
         Laravel\Tinker\TinkerServiceProvider::class,
-        DevDojo\Chatter\ChatterServiceProvider::class,
-        FEMR\Providers\NovaServiceProvider::class
+        //DevDojo\Chatter\ChatterServiceProvider::class,
+        //FEMR\Providers\NovaServiceProvider::class
     ],
 
     /*
@@ -209,8 +209,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
+        'Form'      => Spatie\Html\Facades\Html::class,
+        'Html'      => Spatie\Html\Facades\Html::class,
 
         //'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],

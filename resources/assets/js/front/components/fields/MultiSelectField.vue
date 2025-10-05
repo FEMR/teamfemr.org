@@ -5,19 +5,20 @@
 
         <div class="control has-icons-right">
 
-            <div :class="{ 'is-fullwidth': def.isFullWidth, 'is-success': isSuccess, 'is-danger': isError }">
+            <div :class="{ 'is-fullwidth': def.isFullWidth }">
 
                 <v-select
                     :value="value"
                     :name="def.name"
                     :multiple="multiple"
                     :taggable="taggable"
-                    :placeholder=" taggable ? 'Type to search or add new' : ''"
+                    :placeholder=" taggable ? 'Type to search or add new' : def.placeholder || 'Select options...'"
                     :label="label"
                     :data-vv-as="def.label"
                     v-validate="def.validators"
                     :options="localOptions"
                     :on-change="valueChanged"
+                    :class="{ 'is-success': isSuccess, 'is-danger': isError }"
                 >
                     <!--<option v-if="def.placeholder.length > 0" value="" disabled>{{ def.placeholder }}</option>-->
                     <!--<option v-for="( option, value ) in def.options" :value="value">{{ option }}</option>-->

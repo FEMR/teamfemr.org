@@ -2,9 +2,9 @@
 
 namespace FEMR\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class OutreachProgramResource extends Resource
+class OutreachProgramResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

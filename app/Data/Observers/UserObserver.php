@@ -3,6 +3,7 @@
 namespace FEMR\Data\Observers;
 
 use FEMR\Data\Models\User;
+use Illuminate\Support\Str;
 
 /**
  * Class UserObserver
@@ -16,7 +17,7 @@ class UserObserver
      */
     public function saving( User $user )
     {
-        $user->api_token = str_random( 40 );
+        $user->api_token = Str::random( 40 );
     }
 
 }

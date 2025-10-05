@@ -2,12 +2,19 @@
 
 namespace FEMR\Data\Models;
 
+use Database\Factories\PaperFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Paper extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
+
+    protected static function newFactory()
+    {
+        return PaperFactory::new();
+    }
 
     /**
      * The table associated with the model.
