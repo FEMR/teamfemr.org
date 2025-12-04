@@ -2,9 +2,10 @@
   "family": "teamfemr",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "cpu": "256",
-  "memory": "512",
+  "cpu": "512",
+  "memory": "1024",
   "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::ACCOUNT_ID:role/ecsTaskRole",
   "containerDefinitions": [
     {
       "name": "teamfemr",
@@ -15,33 +16,6 @@
           "protocol": "tcp"
         }
       ],
-      "essential": true,
-      "environment": [
-        {
-          "name": "APP_ENV",
-          "value": "production"
-        },
-        {
-          "name": "APP_DEBUG",
-          "value": "false"
-        },
-        {
-          "name": "DB_HOST",
-          "value": "teamfemr-db.c1wk6a6i8bnd.us-east-2.rds.amazonaws.com"
-        },
-        {
-          "name": "DB_DATABASE",
-          "value": "teamfemr"
-        },
-        {
-          "name": "DB_USERNAME",
-          "value": "admin"
-        },
-        {
-          "name": "DB_PASSWORD",
-          "value": "CalPolyRocks2025!"
-        }
-      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -49,7 +23,8 @@
           "awslogs-region": "us-east-2",
           "awslogs-stream-prefix": "ecs"
         }
-      }
+      },
+      "essential": true
     }
   ]
 }
