@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Generate app key if not set
-php artisan key:generate --force
+# php artisan key:generate --force
 
 # Run migrations
 php artisan migrate --force
