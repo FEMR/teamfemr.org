@@ -97,9 +97,9 @@
                 @endif
 
                 <span class="nav-item user-item is-hidden-tablet">
-                    {!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}
-                    <button class="logout-button" href="{{ url('/logout') }}">Logout</button>
-                    {!! Form::close() !!}
+                    <form method="POST" action="{{ route('logout') }}">
+                        <button class="logout-button" href="{{ url('/logout') }}">Logout</button>
+                    </form>
                 </span>
 
             @else

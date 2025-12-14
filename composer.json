@@ -13,6 +13,7 @@
         "graham-campbell/markdown": "^16.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10",
+        "laravel/nova": "^5.0",
         "laravel/ui": "^4.5",
         "spatie/laravel-html": "^3.4",
         "league/flysystem-aws-s3-v3": "^3.0",
@@ -22,13 +23,14 @@
         "barryvdh/laravel-debugbar": "^3.14",
         "barryvdh/laravel-ide-helper": "^3.2",
         "fakerphp/faker": "^1.23",
+        "laravel/nova-devtool": "^1.8",
         "laravel/pint": "^1.15",
         "laravel/sail": "^1.35",
+        "laravel/sanctum": "^4.0",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
         "phpunit/phpunit": "^11.0",
-        "spatie/laravel-ignition": "^2.8",
-        "laravel/sanctum": "^4.0"
+        "spatie/laravel-ignition": "^2.8"
     },
     "config": {
         "optimize-autoloader": true,
@@ -74,5 +76,11 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ]
 }

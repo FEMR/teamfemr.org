@@ -23,7 +23,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             Nova::provideToScript([
-                'googleMapsKey' => env( 'GOOGLE_MAPS_API_KEY' )
+                'googleMapsKey' => config( 'services.google_maps.api_key' )
           ]);
         });
 
@@ -88,6 +88,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
+        parent::register();
+        
         //
     }
 }

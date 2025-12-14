@@ -35,9 +35,9 @@
                     @endif
 
                     |
-                    {!! Form::open([ 'method' => 'POST', 'route' => 'logout' ]) !!}
+                    <form method="POST" action="{{ route('logout') }}">
                         <button class="nav-item logout-button" href="{{ url('/logout') }}">Logout</button>
-                    {!! Form::close() !!}
+                    </form>
 
                 </span>
 

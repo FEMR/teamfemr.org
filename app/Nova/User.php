@@ -2,20 +2,24 @@
 
 namespace FEMR\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Auth\PasswordValidationRules;
 use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
+    use PasswordValidationRules;
+
     /**
      * The model the resource corresponds to.
      *
-     * @var string
+     * @var class-string<\FEMR\Data\Models\User>
      */
-    public static $model = 'FEMR\\Data\\Models\\User';
+    public static $model = \FEMR\Data\Models\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -36,15 +40,14 @@ class User extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<int, \Laravel\Nova\Fields\Field|\Laravel\Nova\Panel|\Laravel\Nova\ResourceTool|\Illuminate\Http\Resources\MergeValue>
      */
-    public function fields(Request $request)
+    public function fields(NovaRequest $request): array
     {
         return [
             ID::make()->sortable(),
 
-            Gravatar::make(),
+            Gravatar::make()->maxWidth(50),
 
             Text::make('Name')
                 ->sortable()
@@ -58,18 +61,17 @@ class User extends Resource
 
             Password::make('Password')
                 ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:6')
-                ->updateRules('nullable', 'string', 'min:6'),
+                ->creationRules($this->passwordRules())
+                ->updateRules($this->optionalPasswordRules()),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<int, \Laravel\Nova\Card>
      */
-    public function cards(Request $request)
+    public function cards(NovaRequest $request): array
     {
         return [];
     }
@@ -77,10 +79,9 @@ class User extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<int, \Laravel\Nova\Filters\Filter>
      */
-    public function filters(Request $request)
+    public function filters(NovaRequest $request): array
     {
         return [];
     }
@@ -88,10 +89,9 @@ class User extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<int, \Laravel\Nova\Lenses\Lens>
      */
-    public function lenses(Request $request)
+    public function lenses(NovaRequest $request): array
     {
         return [];
     }
@@ -99,10 +99,9 @@ class User extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<int, \Laravel\Nova\Actions\Action>
      */
-    public function actions(Request $request)
+    public function actions(NovaRequest $request): array
     {
         return [];
     }
