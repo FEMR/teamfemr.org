@@ -36,6 +36,7 @@
 
                     |
                     <form method="POST" action="{{ route('logout') }}">
+                        @csrf
                         <button class="nav-item logout-button" href="{{ url('/logout') }}">Logout</button>
                     </form>
 

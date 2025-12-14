@@ -2,9 +2,6 @@
 
 namespace FEMR\Providers;
 
-use FEMR\Nova\Metrics\MostVisitedCountries;
-use FEMR\Nova\Metrics\NewUsers;
-use FEMR\Nova\Metrics\SurveysPerWeek;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
 use Illuminate\Support\Facades\Gate;
@@ -37,10 +34,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function routes()
     {
-        Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+        // Don't register Nova's auth routes - use Laravel's Auth::routes() instead
+        Nova::routes()->register();
     }
 
     /**
@@ -58,16 +53,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     }
 
     /**
-     * Get the cards that should be displayed on the Nova dashboard.
+     * Get the dashboards that should be listed in the Nova sidebar.
      *
      * @return array
      */
-    protected function cards()
+    protected function dashboards()
     {
         return [
-            new NewUsers,
-            new SurveysPerWeek,
-            (new MostVisitedCountries)->width( '2/3')
+            new \FEMR\Nova\Dashboards\Main,
         ];
     }
 

@@ -3,7 +3,7 @@
 namespace FEMR\Nova\Metrics;
 
 use FEMR\Data\Models\OutreachProgram;
-use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Trend;
 
 class SurveysPerWeek extends Trend
@@ -11,10 +11,10 @@ class SurveysPerWeek extends Trend
     /**
      * Calculate the value of the metric.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return mixed
      */
-    public function calculate(Request $request)
+    public function calculate(NovaRequest $request)
     {
         return $this->countByWeeks($request, OutreachProgram::class);
     }

@@ -98,6 +98,7 @@
 
                 <span class="nav-item user-item is-hidden-tablet">
                     <form method="POST" action="{{ route('logout') }}">
+                        @csrf
                         <button class="logout-button" href="{{ url('/logout') }}">Logout</button>
                     </form>
                 </span>
