@@ -20,11 +20,7 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Copy production environment
-RUN cp .env.production .env
-
-# Generate application key if not set
-RUN php artisan key:generate --force
+# Runtime secrets (APP_KEY, DB_*, AWS_*, etc.) must be injected by ECS task env/secrets.
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www \
