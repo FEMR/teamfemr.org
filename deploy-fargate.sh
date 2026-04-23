@@ -2,6 +2,9 @@
 set -e
 
 # Configuration
+# Disable AWS CLI pager so script output never pauses in less/more.
+export AWS_PAGER=""
+export CLI_PAGER=""
 export AWS_PROFILE=teamfemr
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 ECR_REGISTRY=${ACCOUNT_ID}.dkr.ecr.us-east-2.amazonaws.com
