@@ -24,9 +24,26 @@ docker build --platform linux/amd64 -t teamfemr .
 docker tag teamfemr:latest $ECR_REGISTRY/teamfemr:latest
 docker push $ECR_REGISTRY/teamfemr:latest
 
-# Update task definition
+# Update task definition with env vars from .env.production
 echo "📝 Updating task definition..."
-sed "s/ACCOUNT_ID/$ACCOUNT_ID/g" task-definition.json > task-definition-updated.json
+if [ ! -f .env.production ]; then
+  echo "❌ .env.production not found. Copy .env.production.example and fill in real values."
+  exit 1
+fi
+
+# Build JSON array from .env.production (skip comments and blank lines)
+ENV_JSON=$(grep -v '^#' .env.production | grep -v '^$' | grep '=' | while IFS='=' read -r key value; do
+  value=$(echo "$value" | sed 's/^"//' | sed 's/"$//')
+  printf '{"name":"%s","value":"%s"},' "$key" "$value"
+done | sed 's/,$//')
+
+sed "s/ACCOUNT_ID/$ACCOUNT_ID/g" task-definition.json | \
+  python3 -c "
+import json, sys
+td = json.load(sys.stdin)
+td['containerDefinitions'][0]['environment'] = json.loads('[' + sys.argv[1] + ']')
+print(json.dumps(td))
+" "$ENV_JSON" > task-definition-updated.json
 
 # Create ECS resources
 echo "☁️ Setting up ECS resources..."
@@ -74,18 +91,28 @@ fi
 
 # Deploy service
 echo "🚢 Deploying service..."
-aws ecs update-service --cluster teamfemr --service teamfemr --desired-count 0 --region $REGION 2>/dev/null || true
-aws ecs delete-service --cluster teamfemr --service teamfemr --region $REGION 2>/dev/null || true
-sleep 15
+SERVICE_EXISTS=$(aws ecs describe-services --cluster teamfemr --services teamfemr \
+  --query "services[?status=='ACTIVE'].serviceName" --output text --region $REGION 2>/dev/null)
 
-aws ecs create-service \
-  --cluster teamfemr \
-  --service-name teamfemr \
-  --task-definition teamfemr \
-  --desired-count 1 \
-  --launch-type FARGATE \
-  --network-configuration "awsvpcConfiguration={subnets=[$SUBNET_IDS],securityGroups=[$SG_ID],assignPublicIp=ENABLED}" \
-  --region $REGION
+if [ -n "$SERVICE_EXISTS" ]; then
+  echo "Updating existing service (preserving load balancer config)..."
+  aws ecs update-service \
+    --cluster teamfemr \
+    --service teamfemr \
+    --task-definition teamfemr \
+    --desired-count 1 \
+    --region $REGION
+else
+  echo "Creating new service..."
+  aws ecs create-service \
+    --cluster teamfemr \
+    --service-name teamfemr \
+    --task-definition teamfemr \
+    --desired-count 1 \
+    --launch-type FARGATE \
+    --network-configuration "awsvpcConfiguration={subnets=[$SUBNET_IDS],securityGroups=[$SG_ID],assignPublicIp=ENABLED}" \
+    --region $REGION
+fi
 
 echo "⏳ Waiting for service to stabilize..."
 aws ecs wait services-stable --cluster teamfemr --services teamfemr --region $REGION
