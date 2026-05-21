@@ -31,19 +31,37 @@ if [ ! -f .env.production ]; then
   exit 1
 fi
 
-# Build JSON array from .env.production (skip comments and blank lines)
-ENV_JSON=$(grep -v '^#' .env.production | grep -v '^$' | grep '=' | while IFS='=' read -r key value; do
-  value=$(echo "$value" | sed 's/^"//' | sed 's/"$//')
-  printf '{"name":"%s","value":"%s"},' "$key" "$value"
-done | sed 's/,$//')
-
-sed "s/ACCOUNT_ID/$ACCOUNT_ID/g" task-definition.json | \
-  python3 -c "
+python3 - "$ACCOUNT_ID" <<'EOF'
 import json, sys
-td = json.load(sys.stdin)
-td['containerDefinitions'][0]['environment'] = json.loads('[' + sys.argv[1] + ']')
-print(json.dumps(td))
-" "$ENV_JSON" > task-definition-updated.json
+
+account_id = sys.argv[1]
+
+with open('.env.production') as f:
+    env = []
+    for line in f:
+        line = line.strip()
+        if not line or line.startswith('#') or '=' not in line:
+            continue
+        key, _, value = line.partition('=')
+        value = value.strip().strip('"')
+        env.append({'name': key.strip(), 'value': value})
+
+with open('task-definition.json') as f:
+    td = json.load(f)
+
+for key in ['taskDefinitionArn','revision','status','requiresAttributes','compatibilities','registeredAt','registeredBy']:
+    td.pop(key, None)
+
+for arn_key in ['executionRoleArn', 'taskRoleArn']:
+    if arn_key in td:
+        td[arn_key] = td[arn_key].replace('ACCOUNT_ID', account_id)
+
+td['containerDefinitions'][0]['image'] = td['containerDefinitions'][0]['image'].replace('ACCOUNT_ID', account_id)
+td['containerDefinitions'][0]['environment'] = env
+
+with open('task-definition-updated.json', 'w') as f:
+    json.dump(td, f, indent=2)
+EOF
 
 # Create ECS resources
 echo "☁️ Setting up ECS resources..."
